@@ -1,28 +1,36 @@
 /*
- * 2023.3.22
+ * 2024.1.8
  */
 package matsu.num.statistics.random;
 
-import matsu.num.statistics.random.logi.zigg.ZiggLogiRnd;
+import matsu.num.statistics.random.logi.LogisticRndFactory;
 
 /**
- * 標準ロジスティック分布に従う乱数発生器を扱う. <br>
- * 標準ロジスティック分布の確率密度関数 P(<i>x</i>) は,  <br>
- * P(<i>x</i>) &prop; exp(-<i>x</i>)/(1 + exp(-<i>x</i>))<sup>2</sup> <br>
- * である. <br>
- * この乱数発生器はZiggurat法により実装されている.
+ * <p>
+ * 標準ロジスティック分布に従う乱数発生器を扱う.
+ * </p>
+ * 
+ * <p>
+ * 標準ロジスティック分布の確率密度関数 P(<i>x</i>) は次のとおりである. <br>
+ * P(<i>x</i>) &prop;
+ * exp(-<i>x</i>)
+ * /
+ * (1 + exp(-<i>x</i>))<sup>2</sup>
+ * </p>
  *
  * @author Matsuura Y.
- * @version 11.0
+ * @version 17.4
  */
 public interface LogisticRnd extends FloatingRandomGenerator {
 
     /**
+     * <p>
      * 標準ロジスティック分布乱数発生器インスタンスを返す.
-     *
+     * </p>
+     * 
      * @return 標準ロジスティック分布乱数発生器インスタンス
      */
     public static LogisticRnd instance() {
-        return ZiggLogiRnd.instance();
+        return LogisticRndFactory.instance();
     }
 }

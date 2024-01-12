@@ -7,7 +7,7 @@
  * </p>
  * 
  * @author Matsuura Y.
- * @version 16.1
+ * @version 17.5
  */
 module matsu.num.statistics.Random {
     requires matsu.num.Commons;

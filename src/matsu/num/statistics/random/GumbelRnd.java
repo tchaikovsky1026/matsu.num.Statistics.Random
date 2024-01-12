@@ -1,27 +1,33 @@
 /*
- * 2023.3.22
+ * 2024.1.8
  */
 package matsu.num.statistics.random;
 
-import matsu.num.statistics.random.gumbel.zigg.ZiggGumbelRnd;
+import matsu.num.statistics.random.gumbel.GumbelRndFactory;
 
 /**
- * 標準Gumbel分布に従う乱数発生器を扱う. <br>
- * 標準Gumbel分布の確率密度関数 P(<i>x</i>) は,  <br>
- * P(<i>x</i>) &prop; exp(-<i>x</i> - exp(-<i>x</i>)) <br>
- * である. 
+ * <p>
+ * 標準Gumbel分布に従う乱数発生器を扱う.
+ * </p>
+ * 
+ * <p>
+ * 標準Gumbel分布の確率密度関数 P(<i>x</i>) は次のとおりである. <br>
+ * P(<i>x</i>) &prop; exp(-<i>x</i> - exp(-<i>x</i>))
+ * </p>
  *
  * @author Matsuura Y.
- * @version 11.0
+ * @version 17.4
  */
 public interface GumbelRnd extends FloatingRandomGenerator {
 
     /**
+     * <p>
      * 標準ガンベル分布乱数発生器インスタンスを返す.
+     * </p>
      *
      * @return 標準ガンベル分布乱数発生器インスタンス
      */
     public static GumbelRnd instance() {
-        return ZiggGumbelRnd.instance();
+        return GumbelRndFactory.instance();
     }
 }
