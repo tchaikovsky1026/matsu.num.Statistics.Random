@@ -1,9 +1,7 @@
 /**
- * 2024.1.9
+ * 2024.2.23
  */
 package matsu.num.statistics.random;
-
-import matsu.num.statistics.random.beta.StaticBetaRndFactory;
 
 /**
  * <p>
@@ -52,47 +50,83 @@ import matsu.num.statistics.random.beta.StaticBetaRndFactory;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 17.4
+ * @version 18.2
  */
 public interface StaticBetaRnd {
 
     /**
+     * 扱うことができる形状パラメータの最小値.
+     */
+    public static final double LOWER_LIMIT_SHAPE_PARAMETER = 1E-2;
+
+    /**
+     * 扱うことができる形状パラメータの最大値.
+     */
+    public static final double UPPER_LIMIT_SHAPE_PARAMETER = 1E14;
+
+    /**
+     * <p>
+     * 指定したパラメータが乱数発生器に適合するかを判定する.
+     * </p>
+     *
+     * @param a 形状パラメータ
+     * @param b 形状パラメータ
+     * @return パラメータが適合する場合はtrue
+     */
+    public abstract boolean acceptsParameters(double a, double b);
+
+    /**
      * <p>
      * 形状パラメータを与えて, ベータ分布に従う乱数を発生させる.
+     * </p>
+     * 
+     * <p>
+     * パラメータの正当性は {@link #acceptsParameters(double, double)} により検証され,
+     * 不適の場合は例外がスローされる.
      * </p>
      *
      * @param random 基本乱数発生器
      * @param a 形状パラメータ
      * @param b 形状パラメータ
      * @return 形状パラメータが (<i>a</i>, <i>b</i>) のベータ分布に従う乱数の値
-     * @throws IllegalArgumentException パラメータが範囲外の場合
+     * @throws IllegalArgumentException パラメータがacceptされない場合
      * @throws NullPointerException 引数にnullが含まれる場合
      */
-    public abstract double nextRandom(Random random, double a, double b);
+    public abstract double nextRandom(BaseRandom random, double a, double b);
 
     /**
      * <p>
      * 形状パラメータを与えて, ベータプライム分布に従う乱数を発生させる.
+     * </p>
+     * 
+     * <p>
+     * パラメータの正当性は {@link #acceptsParameters(double, double)} により検証され,
+     * 不適の場合は例外がスローされる.
      * </p>
      *
      * @param random 基本乱数発生器
      * @param a 形状パラメータ
      * @param b 形状パラメータ
      * @return 形状パラメータが (<i>a</i>, <i>b</i>) のベータプライム分布に従う乱数の値
-     * @throws IllegalArgumentException パラメータが範囲外の場合
+     * @throws IllegalArgumentException パラメータがacceptされない場合
      * @throws NullPointerException 引数にnullが含まれる場合
      */
-    public abstract double nextBetaPrime(Random random, double a, double b);
+    public abstract double nextBetaPrime(BaseRandom random, double a, double b);
 
     /**
-     * <p>
-     * Staticベータ乱数発生器インスタンスを返す.
-     * </p>
-     *
-     * @return Staticベータ乱数発生器インスタンス
+     * {@link StaticBetaRnd} のファクトリ.
      */
-    public static StaticBetaRnd instance() {
-        return StaticBetaRndFactory.instance();
+    public static interface Factory extends RandomGeneratorFactory {
+
+        /**
+         * <p>
+         * Staticベータ乱数発生器インスタンスを返す.
+         * </p>
+         *
+         * @return Staticベータ乱数発生器インスタンス
+         */
+        public abstract StaticBetaRnd instance();
+
     }
 
 }

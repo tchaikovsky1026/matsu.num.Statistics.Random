@@ -1,9 +1,7 @@
 /*
- * 2024.1.8
+ * 2024.2.21
  */
 package matsu.num.statistics.random;
-
-import matsu.num.statistics.random.logi.LogisticRndFactory;
 
 /**
  * <p>
@@ -19,18 +17,22 @@ import matsu.num.statistics.random.logi.LogisticRndFactory;
  * </p>
  *
  * @author Matsuura Y.
- * @version 17.4
+ * @version 18.1
  */
 public interface LogisticRnd extends FloatingRandomGenerator {
 
     /**
-     * <p>
-     * 標準ロジスティック分布乱数発生器インスタンスを返す.
-     * </p>
-     * 
-     * @return 標準ロジスティック分布乱数発生器インスタンス
+     * {@link LogisticRnd} のファクトリ.
      */
-    public static LogisticRnd instance() {
-        return LogisticRndFactory.instance();
+    public static interface Factory extends RandomGeneratorFactory {
+
+        /**
+         * <p>
+         * 標準ロジスティック分布乱数発生器インスタンスを返す.
+         * </p>
+         * 
+         * @return 標準ロジスティック分布乱数発生器インスタンス
+         */
+        public abstract LogisticRnd instance();
     }
 }

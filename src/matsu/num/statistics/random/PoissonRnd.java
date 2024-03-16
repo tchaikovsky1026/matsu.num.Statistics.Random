@@ -1,9 +1,7 @@
 /*
- * 2024.1.9
+ * 2024.2.23
  */
 package matsu.num.statistics.random;
-
-import matsu.num.statistics.random.poi.PoissonRndFactory;
 
 /**
  * <p>
@@ -28,10 +26,26 @@ import matsu.num.statistics.random.poi.PoissonRndFactory;
  * <li>P(<i>k</i>) = 0 &emsp; (otherwise)</li>
  * </ul>
  * 
+ * <p>
+ * 扱えるパラメータ <i>&lambda;</i> は, <br>
+ * {@code 0.0 <= lambda <= 1.0E6} <br>
+ * である.
+ * </p>
+ * 
  * @author Matsuura Y.
- * @version 17.4
+ * @version 18.2
  */
 public interface PoissonRnd extends IntegerRandomGenerator {
+
+    /**
+     * 扱うことができるパラメータの最小値.
+     */
+    public static final double LOWER_LIMIT_LAMBDA = 0d;
+
+    /**
+     * 扱うことができるパラメータの最大値.
+     */
+    public static final double UPPER_LIMIT_LAMBDA = 1E6;
 
     /**
      * <p>
@@ -43,21 +57,34 @@ public interface PoissonRnd extends IntegerRandomGenerator {
     public abstract double lambda();
 
     /**
-     * <p>
-     * 指定したパラメータのPoisson分布乱数発生器インスタンスを返す.
-     * </p>
-     * 
-     * <p>
-     * 扱えるパラメータ <i>&lambda;</i> は, <br>
-     * {@code 0.0 <= lambda <= 1.0E6} <br>
-     * である.
-     * </p>
-     *
-     * @param lambda パラメータ
-     * @return パラメータが <i>&lambda;</i> のPoisson分布乱数発生器インスタンス
-     * @throws IllegalArgumentException パラメータが範囲外の場合
+     * {@link PoissonRnd} のファクトリ.
      */
-    public static PoissonRnd instanceOf(double lambda) {
-        return PoissonRndFactory.instanceOf(lambda);
+    public static interface Factory extends RandomGeneratorFactory {
+
+        /**
+         * <p>
+         * 指定したパラメータが乱数発生器に適合するかを判定する.
+         * </p>
+         *
+         * @param lambda パラメータ
+         * @return パラメータが適合する場合はtrue
+         */
+        public abstract boolean acceptsParameter(double lambda);
+
+        /**
+         * <p>
+         * 指定したパラメータのPoisson分布乱数発生器インスタンスを返す.
+         * </p>
+         * 
+         * <p>
+         * パラメータの正当性は {@link #acceptsParameter(double)} により検証され,
+         * 不適の場合は例外がスローされる.
+         * </p>
+         *
+         * @param lambda パラメータ
+         * @return パラメータが <i>&lambda;</i> のPoisson分布乱数発生器インスタンス
+         * @throws IllegalArgumentException パラメータがacceptされない場合
+         */
+        public abstract PoissonRnd instanceOf(double lambda);
     }
 }

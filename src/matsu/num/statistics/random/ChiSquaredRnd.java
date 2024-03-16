@@ -1,9 +1,7 @@
 /*
- * 2024.1.8
+ * 2024.2.23
  */
 package matsu.num.statistics.random;
-
-import matsu.num.statistics.random.chisq.ChiSquaredRndFactory;
 
 /**
  * <p>
@@ -25,11 +23,27 @@ import matsu.num.statistics.random.chisq.ChiSquaredRndFactory;
  * 
  * <li>P(<i>x</i>) = 0 &emsp; (otherwise)</li>
  * </ul>
+ * 
+ * <p>
+ * 扱える自由度 <i>k</i> は, <br>
+ * {@code 2.0E-2 <= k <= 2.0E+28} <br>
+ * である.
+ * </p>
  *
  * @author Matsuura Y.
- * @version 17.4
+ * @version 18.2
  */
 public interface ChiSquaredRnd extends FloatingRandomGenerator {
+
+    /**
+     * 扱うことができる自由度の最小値.
+     */
+    public static final double LOWER_LIMIT_DEGREES_OF_FREEDOM = 2E-2;
+
+    /**
+     * 扱うことができる自由度の最大値.
+     */
+    public static final double UPPER_LIMIT_DEGREES_OF_FREEDOM = 2E28;
 
     /**
      * <p>
@@ -41,21 +55,35 @@ public interface ChiSquaredRnd extends FloatingRandomGenerator {
     public abstract double degreesOfFreedom();
 
     /**
-     * <p>
-     * 指定した自由度のカイ二乗分布乱数発生器インスタンスを返す.
-     * </p>
-     * 
-     * <p>
-     * 扱える自由度 <i>k</i> は, <br>
-     * {@code 2.0E-2 <= k <= 2.0E+28} <br>
-     * である.
-     * </p>
-     *
-     * @param k 自由度
-     * @return 自由度が <i>k</i> のカイ二乗分布乱数発生器インスタンス
-     * @throws IllegalArgumentException パラメータが範囲外の場合
+     * {@link ChiSquaredRnd} のファクトリ.
      */
-    public static ChiSquaredRnd instanceOf(double k) {
-        return ChiSquaredRndFactory.instanceOf(k);
+    public static interface Factory extends RandomGeneratorFactory {
+        
+        /**
+         * <p>
+         * 指定したパラメータが乱数発生器に適合するかを判定する.
+         * </p>
+         *
+         * @param k 自由度
+         * @return パラメータが適合する場合はtrue
+         */
+        public abstract boolean acceptsParameter(double k);
+
+        /**
+         * <p>
+         * 指定した自由度のカイ二乗分布乱数発生器インスタンスを返す.
+         * </p>
+         * 
+         * <p>
+         * パラメータの正当性は {@link #acceptsParameter(double)} により検証され,
+         * 不適の場合は例外がスローされる.
+         * </p>
+         *
+         * @param k 自由度
+         * @return 自由度が <i>k</i> のカイ二乗分布乱数発生器インスタンス
+         * @throws IllegalArgumentException パラメータがacceptされない場合
+         */
+        public abstract ChiSquaredRnd instanceOf(double k);
+
     }
 }

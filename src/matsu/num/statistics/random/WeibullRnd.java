@@ -1,9 +1,7 @@
 /*
- * 2024.1.9
+ * 2024.2.23
  */
 package matsu.num.statistics.random;
-
-import matsu.num.statistics.random.weibull.WeibullRndFactory;
 
 /**
  * <p>
@@ -25,10 +23,26 @@ import matsu.num.statistics.random.weibull.WeibullRndFactory;
  * <li>P(<i>x</i>) = 0 &emsp; (otherwise)</li>
  * </ul>
  * 
+ * <p>
+ * 扱える形状パラメータ <i>k</i> は, <br>
+ * {@code 1.0E-2 <= k <= 1.0E+14} <br>
+ * である.
+ * </p>
+ * 
  * @author Matsuura Y.
- * @version 17.4
+ * @version 18.2
  */
 public interface WeibullRnd extends FloatingRandomGenerator {
+
+    /**
+     * 扱うことができる形状パラメータの最小値.
+     */
+    public static final double LOWER_LIMIT_SHAPE_PARAMETER = 1E-2;
+
+    /**
+     * 扱うことができる形状パラメータの最大値.
+     */
+    public static final double UPPER_LIMIT_SHAPE_PARAMETER = 1E14;
 
     /**
      * <p>
@@ -40,21 +54,34 @@ public interface WeibullRnd extends FloatingRandomGenerator {
     public abstract double shapeParameter();
 
     /**
-     * <p>
-     * 指定した形状パラメータのWeibull分布乱数発生器インスタンスを返す.
-     * </p>
-     * 
-     * <p>
-     * 扱える形状パラメータ <i>k</i> は, <br>
-     * {@code 1.0E-2 <= k <= 1.0E+14} <br>
-     * である.
-     * </p>
-     *
-     * @param k 形状パラメータ
-     * @return 形状パラメータが <i>k</i> のWeibull分布乱数発生器インスタンス
-     * @throws IllegalArgumentException パラメータが範囲外の場合
+     * {@link WeibullRnd} のファクトリ.
      */
-    public static WeibullRnd instanceOf(double k) {
-        return WeibullRndFactory.instanceOf(k);
+    public static interface Factory extends RandomGeneratorFactory {
+
+        /**
+         * <p>
+         * 指定したパラメータが乱数発生器に適合するかを判定する.
+         * </p>
+         *
+         * @param k 形状パラメータ
+         * @return パラメータが適合する場合はtrue
+         */
+        public abstract boolean acceptsParameter(double k);
+
+        /**
+         * <p>
+         * 指定した形状パラメータのWeibull分布乱数発生器インスタンスを返す.
+         * </p>
+         * 
+         * <p>
+         * パラメータの正当性は {@link #acceptsParameter(double)} により検証され,
+         * 不適の場合は例外がスローされる.
+         * </p>
+         *
+         * @param k 形状パラメータ
+         * @return 形状パラメータが <i>k</i> のWeibull分布乱数発生器インスタンス
+         * @throws IllegalArgumentException パラメータがacceptされない場合
+         */
+        public abstract WeibullRnd instanceOf(double k);
     }
 }

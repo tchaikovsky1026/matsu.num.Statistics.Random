@@ -1,10 +1,7 @@
 /*
- * 2024.1.8
+ * 2024.2.23
  */
 package matsu.num.statistics.random;
-
-import matsu.num.statistics.random.gamma.GammaRndFactory;
-import matsu.num.statistics.random.gamma.StaticGammaRndFactory;
 
 /**
  * <p>
@@ -25,11 +22,27 @@ import matsu.num.statistics.random.gamma.StaticGammaRndFactory;
  * 
  * <li>P(<i>x</i>) = 0 &emsp; (otherwise)</li>
  * </ul>
+ * 
+ * <p>
+ * 扱える形状パラメータ <i>k</i> は, <br>
+ * {@code 1.0E-2 <= k <= 1.0E+28} <br>
+ * である.
+ * </p>
  *
  * @author Matsuura Y.
- * @version 17.4
+ * @version 18.2
  */
 public interface GammaRnd extends FloatingRandomGenerator {
+
+    /**
+     * 扱うことができる形状パラメータの最小値.
+     */
+    public static final double LOWER_LIMIT_SHAPE_PARAMETER = 1E-2;
+
+    /**
+     * 扱うことができる形状パラメータの最大値.
+     */
+    public static final double UPPER_LIMIT_SHAPE_PARAMETER = 1E28;
 
     /**
      * <p>
@@ -41,45 +54,35 @@ public interface GammaRnd extends FloatingRandomGenerator {
     public abstract double shapeParameter();
 
     /**
-     * <p>
-     * 指定した形状パラメータのガンマ分布乱数発生器インスタンスを返す.
-     * </p>
-     * 
-     * <p>
-     * 扱える形状パラメータ <i>k</i> は, <br>
-     * {@code 1.0E-2 <= k <= 1.0E+28} <br>
-     * である.
-     * </p>
-     *
-     * @param k 形状パラメータ
-     * @return 形状パラメータが <i>k</i> のガンマ分布乱数発生器インスタンス
-     * @throws IllegalArgumentException パラメータが範囲外の場合
+     * {@link GammaRnd} のファクトリ.
      */
-    public static GammaRnd instanceOf(double k) {
-        return GammaRndFactory.instanceOf(k);
-    }
+    public static interface Factory extends RandomGeneratorFactory {
 
-    /**
-     * <p>
-     * 形状パラメータを与えて, 標準ガンマ分布に従う乱数を発生させる.
-     * </p>
-     * 
-     * <p>
-     * 扱える形状パラメータ <i>k</i> は, <br>
-     * {@code 1.0E-2 <= k <= 1.0E+28} <br>
-     * である.
-     * </p>
-     *
-     * @param random 基本乱数発生器
-     * @param k 形状パラメータ
-     * @return 形状パラメータが <i>k</i> の標準ガンマ分布に従う乱数の値
-     * @throws IllegalArgumentException パラメータが範囲外の場合
-     * @throws NullPointerException 引数にnullが含まれる場合
-     * @deprecated 代替インターフェースあり: {@linkplain StaticGammaRnd},
-     *                 このstaticメソッドでなく, インターフェース経由でアクセスすることを推奨する.
-     */
-    @Deprecated
-    public static double nextRandom(Random random, double k) {
-        return StaticGammaRndFactory.instance().nextRandom(random, k);
+        /**
+         * <p>
+         * 指定したパラメータが乱数発生器に適合するかを判定する.
+         * </p>
+         *
+         * @param k 形状パラメータ
+         * @return パラメータが適合する場合はtrue
+         */
+        public abstract boolean acceptsParameter(double k);
+
+        /**
+         * <p>
+         * 指定した形状パラメータのガンマ分布乱数発生器インスタンスを返す.
+         * </p>
+         * 
+         * <p>
+         * パラメータの正当性は {@link #acceptsParameter(double)} により検証され,
+         * 不適の場合は例外がスローされる.
+         * </p>
+         *
+         * @param k 形状パラメータ
+         * @return 形状パラメータが <i>k</i> のガンマ分布乱数発生器インスタンス
+         * @throws IllegalArgumentException パラメータがacceptされない場合
+         */
+        public abstract GammaRnd instanceOf(double k);
+
     }
 }

@@ -1,9 +1,7 @@
 /**
- * 2024.1.8
+ * 2024.2.23
  */
 package matsu.num.statistics.random;
-
-import matsu.num.statistics.random.cauthy.CauthyRndFactory;
 
 /**
  * <p>
@@ -21,7 +19,7 @@ import matsu.num.statistics.random.cauthy.CauthyRndFactory;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 17.4
+ * @version 18.2
  */
 public interface CauthyRnd extends FloatingRandomGenerator {
 
@@ -33,11 +31,11 @@ public interface CauthyRnd extends FloatingRandomGenerator {
      * <p>
      * 戻り値のStudent-t分布の自由度は1である. <br>
      * ビューの変更であるため,
-     * {@linkplain CauthyRnd} としての
-     * {@linkplain #nextRandom(Random)}
+     * {@link CauthyRnd} としての
+     * {@link #nextRandom(BaseRandom)}
      * と
-     * {@linkplain TDistributionRnd} としての
-     * {@linkplain TDistributionRnd#nextRandom(Random)}
+     * {@link TDistributionRnd} としての
+     * {@link TDistributionRnd#nextRandom(BaseRandom)}
      * とは同一の処理を行う.
      * </p>
      * 
@@ -46,13 +44,18 @@ public interface CauthyRnd extends FloatingRandomGenerator {
     public abstract TDistributionRnd asTDistributionRnd();
 
     /**
-     * <p>
-     * 標準Cauthy分布乱数発生器インスタンスを返す.
-     * </p>
-     *
-     * @return 標準Cauthy分布乱数発生器インスタンス
+     * {@link CauthyRnd} のファクトリ.
      */
-    public static CauthyRnd instance() {
-        return CauthyRndFactory.instance();
+    public static interface Factory extends RandomGeneratorFactory {
+
+        /**
+         * <p>
+         * 標準Cauthy分布乱数発生器インスタンスを返す.
+         * </p>
+         *
+         * @return 標準Cauthy分布乱数発生器インスタンス
+         */
+        public abstract CauthyRnd instance();
+
     }
 }

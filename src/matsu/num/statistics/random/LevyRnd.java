@@ -1,9 +1,7 @@
 /**
- * 2024.1.9
+ * 2024.2.21
  */
 package matsu.num.statistics.random;
-
-import matsu.num.statistics.random.levy.LevyRndFactory;
 
 /**
  * <p>
@@ -25,18 +23,22 @@ import matsu.num.statistics.random.levy.LevyRndFactory;
  * </ul>
  * 
  * @author Matsuura Y.
- * @version 17.4
+ * @version 18.1
  */
 public interface LevyRnd extends FloatingRandomGenerator {
 
     /**
-     * <p>
-     * 標準L&eacute;vy分布乱数発生器インスタンスを返す.
-     * </p>
-     *
-     * @return 標準L&eacute;vy分布乱数発生器インスタンス
+     * {@link LevyRnd} のファクトリ.
      */
-    public static LevyRnd instance() {
-        return LevyRndFactory.instance();
+    public static interface Factory extends RandomGeneratorFactory {
+
+        /**
+         * <p>
+         * 標準L&eacute;vy分布乱数発生器インスタンスを返す.
+         * </p>
+         *
+         * @return 標準L&eacute;vy分布乱数発生器インスタンス
+         */
+        public abstract LevyRnd instance();
     }
 }

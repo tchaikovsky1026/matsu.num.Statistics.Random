@@ -1,10 +1,7 @@
 /*
- * 2024.1.8
+ * 2024.2.23
  */
 package matsu.num.statistics.random;
-
-import matsu.num.statistics.random.beta.BetaRndFactory;
-import matsu.num.statistics.random.beta.StaticBetaRndFactory;
 
 /**
  * <p>
@@ -43,11 +40,27 @@ import matsu.num.statistics.random.beta.StaticBetaRndFactory;
  * 
  * <li>P(<i>x</i>) = 0 &emsp; (otherwise)</li>
  * </ul>
+ * 
+ * <p>
+ * 扱える形状パラメータ <i>a</i>, <i>b</i> は, <br>
+ * {@code 1.0E-2 <= (a, b) <= 1.0E+14} <br>
+ * である.
+ * </p>
  *
  * @author Matsuura Y.
- * @version 17.4
+ * @version 18.2
  */
 public interface BetaRnd extends FloatingRandomGenerator {
+
+    /**
+     * 扱うことができる形状パラメータの最小値.
+     */
+    public static final double LOWER_LIMIT_SHAPE_PARAMETER = 1E-2;
+
+    /**
+     * 扱うことができる形状パラメータの最大値.
+     */
+    public static final double UPPER_LIMIT_SHAPE_PARAMETER = 1E14;
 
     /**
      * <p>
@@ -76,75 +89,39 @@ public interface BetaRnd extends FloatingRandomGenerator {
      * @return ベータプライム分布に従う乱数の値
      * @throws NullPointerException 引数にnullが含まれる場合
      */
-    public abstract double nextBetaPrime(Random random);
+    public abstract double nextBetaPrime(BaseRandom random);
 
     /**
-     * <p>
-     * 指定した形状パラメータのベータ分布乱数発生器インスタンスを返す.
-     * </p>
-     * 
-     * <p>
-     * 扱える形状パラメータ <i>a</i>, <i>b</i> は, <br>
-     * {@code 1.0E-2 <= (a, b) <= 1.0E+14} <br>
-     * である.
-     * </p>
-     *
-     * @param a 形状パラメータ
-     * @param b 形状パラメータ
-     * @return 形状パラメータが (<i>a</i>, <i>b</i>) のベータ分布乱数発生器インスタンス
-     * @throws IllegalArgumentException パラメータが範囲外の場合
+     * {@link BetaRnd} のファクトリ.
      */
-    public static BetaRnd instanceOf(double a, double b) {
-        return BetaRndFactory.instanceOf(a, b);
-    }
+    public static interface Factory extends RandomGeneratorFactory {
 
-    /**
-     * <p>
-     * 形状パラメータを与えて, ベータ分布に従う乱数を発生させる.
-     * </p>
-     * 
-     * <p>
-     * 扱える形状パラメータ <i>a</i>, <i>b</i> は, <br>
-     * {@code 1.0E-2 <= (a, b) <= 1.0E+14} <br>
-     * である.
-     * </p>
-     *
-     * @param random 基本乱数発生器
-     * @param a 形状パラメータ
-     * @param b 形状パラメータ
-     * @return 形状パラメータが (<i>a</i>, <i>b</i>) のベータ分布に従う乱数の値
-     * @throws IllegalArgumentException パラメータが範囲外の場合
-     * @throws NullPointerException 引数にnullが含まれる場合
-     * @deprecated 代替インターフェースあり: {@linkplain StaticBetaRnd},
-     *                 このstaticメソッドでなく, インターフェース経由でアクセスすることを推奨する.
-     */
-    @Deprecated
-    public static double nextRandom(Random random, double a, double b) {
-        return StaticBetaRndFactory.instance().nextRandom(random, a, b);
-    }
+        /**
+         * <p>
+         * 指定したパラメータが乱数発生器に適合するかを判定する.
+         * </p>
+         *
+         * @param a 形状パラメータ
+         * @param b 形状パラメータ
+         * @return パラメータが適合する場合はtrue
+         */
+        public abstract boolean acceptsParameters(double a, double b);
 
-    /**
-     * <p>
-     * 形状パラメータを与えて, ベータプライム分布に従う乱数を発生させる.
-     * </p>
-     * 
-     * <p>
-     * 扱える形状パラメータ <i>a</i>, <i>b</i> は, <br>
-     * {@code 1.0E-2 <= (a, b) <= 1.0E+14} <br>
-     * である.
-     * </p>
-     *
-     * @param random 基本乱数発生器
-     * @param a 形状パラメータ
-     * @param b 形状パラメータ
-     * @return 形状パラメータが (<i>a</i>, <i>b</i>) のベータプライム分布に従う乱数の値
-     * @throws IllegalArgumentException パラメータが範囲外の場合
-     * @throws NullPointerException 引数にnullが含まれる場合
-     * @deprecated 代替インターフェースあり: {@linkplain StaticBetaRnd},
-     *                 このstaticメソッドでなく, インターフェース経由でアクセスすることを推奨する.
-     */
-    @Deprecated
-    public static double nextBetaPrime(Random random, double a, double b) {
-        return StaticBetaRndFactory.instance().nextBetaPrime(random, a, b);
+        /**
+         * <p>
+         * 指定した形状パラメータのベータ分布乱数発生器インスタンスを返す.
+         * </p>
+         * 
+         * <p>
+         * パラメータの正当性は {@link #acceptsParameters(double, double)} により検証され,
+         * 不適の場合は例外がスローされる.
+         * </p>
+         *
+         * @param a 形状パラメータ
+         * @param b 形状パラメータ
+         * @return 形状パラメータが (<i>a</i>, <i>b</i>) のベータ分布乱数発生器インスタンス
+         * @throws IllegalArgumentException パラメータがacceptされない場合
+         */
+        public abstract BetaRnd instanceOf(double a, double b);
     }
 }

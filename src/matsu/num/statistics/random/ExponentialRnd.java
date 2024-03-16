@@ -1,9 +1,7 @@
 /*
- * 2024.1.8
+ * 2024.2.21
  */
 package matsu.num.statistics.random;
-
-import matsu.num.statistics.random.exp.ExponentialRndFactory;
 
 /**
  * <p>
@@ -25,18 +23,23 @@ import matsu.num.statistics.random.exp.ExponentialRndFactory;
  * </ul>
  *
  * @author Matsuura Y.
- * @version 17.4
+ * @version 18.1
  */
 public interface ExponentialRnd extends FloatingRandomGenerator {
 
     /**
-     * <p>
-     * 標準指数分布乱数発生器インスタンスを返す.
-     * </p>
-     *
-     * @return 標準指数分布乱数発生器インスタンス
+     * {@link ExponentialRnd} のファクトリ.
      */
-    public static ExponentialRnd instance() {
-        return ExponentialRndFactory.instance();
+    public static interface Factory extends RandomGeneratorFactory {
+
+        /**
+         * <p>
+         * 標準指数分布乱数発生器インスタンスを返す.
+         * </p>
+         *
+         * @return 標準指数分布乱数発生器インスタンス
+         */
+        public abstract ExponentialRnd instance();
+
     }
 }

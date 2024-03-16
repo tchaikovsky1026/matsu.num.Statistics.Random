@@ -1,9 +1,7 @@
 /*
- * 2024.1.8
+ * 2024.2.23
  */
 package matsu.num.statistics.random;
-
-import matsu.num.statistics.random.geo.GeometricRndFactory;
 
 /**
  * <p>
@@ -24,11 +22,25 @@ import matsu.num.statistics.random.geo.GeometricRndFactory;
  * 
  * <li>P(<i>k</i>) = 0 &emsp; (otherwise)</li>
  * </ul>
+ * 
+ * <p>
+ * 扱うことができる成功確率 <i>p</i> は, {@code 1.0E-7 <= p <= 1.0} である.
+ * </p>
  *
  * @author Matsuura Y.
- * @version 17.4
+ * @version 18.2
  */
 public interface GeometricRnd extends IntegerRandomGenerator {
+
+    /**
+     * 扱うことができる成功確率の最小値.
+     */
+    public static final double LOWER_LIMIT_SUCCESS_PROBABILITY = 1E-7;
+
+    /**
+     * 扱うことができる成功確率の最大値.
+     */
+    public static final double UPPER_LIMIT_SUCCESS_PROBABILITY = 1;
 
     /**
      * <p>
@@ -40,19 +52,34 @@ public interface GeometricRnd extends IntegerRandomGenerator {
     public abstract double successPobability();
 
     /**
-     * <p>
-     * 指定した成功確率の幾何分布乱数発生器インスタンスを返す.
-     * </p>
-     * 
-     * <p>
-     * 扱える成功確率 <i>p</i> は, {@code 1.0E-7 <= p <= 1.0} である.
-     * </p>
-     *
-     * @param p 成功確率
-     * @return 成功確率がpの幾何分布乱数発生器インスタンス
-     * @throws IllegalArgumentException パラメータが範囲外の場合
+     * {@link GeometricRnd} のファクトリ.
      */
-    public static GeometricRnd instanceOf(double p) {
-        return GeometricRndFactory.instanceOf(p);
+    public static interface Factory extends RandomGeneratorFactory {
+
+        /**
+         * <p>
+         * 指定したパラメータが乱数発生器に適合するかを判定する.
+         * </p>
+         *
+         * @param p 成功確率
+         * @return パラメータが適合する場合はtrue
+         */
+        public abstract boolean acceptsParameter(double p);
+
+        /**
+         * <p>
+         * 指定した成功確率の幾何分布乱数発生器インスタンスを返す.
+         * </p>
+         * 
+         * <p>
+         * パラメータの正当性は {@link #acceptsParameter(double)} により検証され,
+         * 不適の場合は例外がスローされる.
+         * </p>
+         *
+         * @param p 成功確率
+         * @return 成功確率がpの幾何分布乱数発生器インスタンス
+         * @throws IllegalArgumentException パラメータがacceptされない場合
+         */
+        public GeometricRnd instanceOf(double p);
     }
 }

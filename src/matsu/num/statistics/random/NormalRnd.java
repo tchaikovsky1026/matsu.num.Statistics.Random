@@ -1,9 +1,7 @@
 /*
- * 2024.1.8
+ * 2024.2.21
  */
 package matsu.num.statistics.random;
-
-import matsu.num.statistics.random.norm.NormalRndFactory;
 
 /**
  * <p>
@@ -16,18 +14,23 @@ import matsu.num.statistics.random.norm.NormalRndFactory;
  * </p>
  *
  * @author Matsuura Y.
- * @version 17.4
+ * @version 18.1
  */
 public interface NormalRnd extends FloatingRandomGenerator {
 
     /**
-     * <p>
-     * 標準正規分布乱数発生器インスタンスを返す.
-     * </p>
-     *
-     * @return 標準正規分布乱数発生器インスタンス
+     * {@link NormalRnd} のファクトリ.
      */
-    public static NormalRnd instance() {
-        return NormalRndFactory.instance();
+    public static interface Factory extends RandomGeneratorFactory {
+
+        /**
+         * <p>
+         * 標準正規分布乱数発生器インスタンスを返す.
+         * </p>
+         *
+         * @return 標準正規分布乱数発生器インスタンス
+         */
+        public abstract NormalRnd instance();
+
     }
 }

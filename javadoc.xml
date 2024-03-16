@@ -21,7 +21,8 @@
         	sourcepath="src" 
 
         	additionalparam="--module-path '../dist-num'" 
-        	packagenames="matsu.num.statistics.random"
+        	packagenames="matsu.num.statistics.random,
+        	matsu.num.statistics.random.service,"
         />
         
         <!-- 

@@ -10,7 +10,7 @@ package matsu.num.statistics.random;
  * 
  * <p>
  * このサブタイプのインスタンスはイミュータブルであり, (乱数であることを除いて)関数的に振る舞う. <br>
- * 乱数発生時に与えられる {@linkplain Random} が許すならば,
+ * 乱数発生時に与えられる {@link BaseRandom} が許すならば,
  * 並行プロセスにおいて競合が発生しないことを保証する.
  * </p>
  *
@@ -28,5 +28,5 @@ public interface FloatingRandomGenerator {
      * @return 所定の確率分布に従う乱数の値
      * @throws NullPointerException 引数にnullが含まれる場合
      */
-    public abstract double nextRandom(Random random);
+    public abstract double nextRandom(BaseRandom random);
 }

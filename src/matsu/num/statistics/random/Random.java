@@ -1,13 +1,9 @@
 /**
- * 2023.12.18
+ * 2024.2.23
  */
 package matsu.num.statistics.random;
 
 import java.util.function.Supplier;
-
-import matsu.num.statistics.random.random.impl.RandomFromGetter;
-import matsu.num.statistics.random.random.impl.RandomImpl;
-import matsu.num.statistics.random.random.impl.ThreadSeparatedRandom;
 
 /**
  * <p>
@@ -15,8 +11,10 @@ import matsu.num.statistics.random.random.impl.ThreadSeparatedRandom;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 17.3
+ * @version 18.0
+ * @deprecated 一時的に残しているが, {@link BaseRandom} に置き換えるべき.
  */
+@Deprecated(forRemoval = true)
 public interface Random {
 
     /**
@@ -63,29 +61,30 @@ public interface Random {
 
     /**
      * <p>
-     * {@code java.util.Random} をラップした
-     * {@linkplain Random} インスタンスを返す.
+     * {@code java.util.random.RandomGenerator} をラップした
+     * {@link Random} インスタンスを返す.
      * </p>
      * 
      * @param random ラップされるインスタンス
-     * @return ラップされた {@linkplain Random}
+     * @return ラップされた {@link Random}
      * @throws NullPointerException 引数にnullが含まれる場合
      */
-    public static Random of(java.util.Random random) {
-        return new RandomImpl(random);
+    public static Random of(java.util.random.RandomGenerator random) {
+        return new BaseRandomHelper.RandomImpl(random);
     }
 
     /**
      * <p>
-     * 与えたサプライヤにより {@code java.util.Random}
+     * 与えたサプライヤにより {@code java.util.random.RandomGenerator}
      * を呼び出して乱数を生成するように振る舞う
-     * {@linkplain Random} インスタンスを返す.
+     * {@link Random} インスタンスを返す.
      * </p>
      * 
      * <p>
-     * このメソッドにより返される {@linkplain Random} は,
-     * 毎回の乱数生成のたびに {@linkplain Supplier#get()} を行う. <br>
-     * すなわち, 独自の {@code java.util.Random} インスタンス管理機構を持つ仕組みに適合する. <br>
+     * このメソッドにより返される {@link Random} は,
+     * 毎回の乱数生成のたびに {@link Supplier#get()} を行う. <br>
+     * すなわち, 独自の {@code java.util.random.RandomGenerator} インスタンス管理機構を持つ仕組みに適合する.
+     * <br>
      * 例えば, <br>
      * {@code getter = () -> java.util.concurrent.ThreadLocalRandom.current();}
      * <br>
@@ -93,23 +92,23 @@ public interface Random {
      * </p>
      * 
      * <p>
-     * {@linkplain Supplier#get()} がインスタンス生成を伴うような状況では,
-     * このメソッドではなく {@linkplain #of(java.util.Random)} を使用すべきである. <br>
-     * （つまり {@linkplain Supplier#get()} を呼ぶべきではない）.
+     * {@link Supplier#get()} がインスタンス生成を伴うような状況では,
+     * このメソッドではなく {@link #of(java.util.random.RandomGenerator)} を使用すべきである. <br>
+     * （つまり {@link Supplier#get()} を呼ぶべきではない）.
      * </p>
      * 
-     * @param getter {@code java.util.Random} を呼び出すためのサプライヤ
-     * @return 乱数生成のたびにサプライヤから呼び出すように振る舞う {@linkplain Random}
+     * @param getter {@code java.util.random.RandomGenerator} を呼び出すためのサプライヤ
+     * @return 乱数生成のたびにサプライヤから呼び出すように振る舞う {@link Random}
      * @throws NullPointerException 引数にnullが含まれる場合
      */
-    public static Random fromGetter(Supplier<? extends java.util.Random> getter) {
+    public static Random fromGetter(Supplier<? extends java.util.random.RandomGenerator> getter) {
         //ここでNullPointerExを発生させる可能性がある
-        return new RandomFromGetter(getter);
+        return new BaseRandomHelper.RandomFromGetter(getter);
     }
 
     /**
      * <p>
-     * 内部で競合が発生しないように完全に分離された {@linkplain Random} インスタンスを返す.
+     * 内部で競合が発生しないように完全に分離された {@link Random} インスタンスを返す.
      * </p>
      * 
      * <p>
@@ -118,12 +117,12 @@ public interface Random {
      * </p>
      * 
      * <p>
-     * このメソッドは, {@linkplain #fromGetter(Supplier)} の派生である.
+     * このメソッドは, {@link #fromGetter(Supplier)} の派生である.
      * </p>
      * 
-     * @return スレッド間の競合が発生しない {@linkplain Random}
+     * @return スレッド間の競合が発生しない {@link Random}
      */
     public static Random threadSeparatedRandom() {
-        return ThreadSeparatedRandom.INSTANCE;
+        return BaseRandomHelper.THREAD_SEPARATED_RANDOM;
     }
 }

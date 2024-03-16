@@ -1,9 +1,7 @@
 /*
- * 2024.1.8
+ * 2024.2.21
  */
 package matsu.num.statistics.random;
-
-import matsu.num.statistics.random.gumbel.GumbelRndFactory;
 
 /**
  * <p>
@@ -16,18 +14,22 @@ import matsu.num.statistics.random.gumbel.GumbelRndFactory;
  * </p>
  *
  * @author Matsuura Y.
- * @version 17.4
+ * @version 18.1
  */
 public interface GumbelRnd extends FloatingRandomGenerator {
 
     /**
-     * <p>
-     * 標準ガンベル分布乱数発生器インスタンスを返す.
-     * </p>
-     *
-     * @return 標準ガンベル分布乱数発生器インスタンス
+     * {@link GumbelRnd} のファクトリ.
      */
-    public static GumbelRnd instance() {
-        return GumbelRndFactory.instance();
+    public static interface Factory extends RandomGeneratorFactory {
+
+        /**
+         * <p>
+         * 標準ガンベル分布乱数発生器インスタンスを返す.
+         * </p>
+         *
+         * @return 標準ガンベル分布乱数発生器インスタンス
+         */
+        public abstract GumbelRnd instance();
     }
 }
