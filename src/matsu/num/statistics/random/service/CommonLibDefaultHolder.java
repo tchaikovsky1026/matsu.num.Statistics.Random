@@ -3,6 +3,8 @@
  */
 package matsu.num.statistics.random.service;
 
+import matsu.num.statistics.random.lib.Exponentiation;
+
 /**
  * {@link CommonLib} のデフォルト実装のホルダ.
  * 

@@ -1,5 +1,5 @@
 /**
- * 2024.2.23
+ * 2024.3.22
  */
 package matsu.num.statistics.random;
 
@@ -43,7 +43,7 @@ package matsu.num.statistics.random;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 18.2
+ * @version 19.0
  */
 public interface VoigtRnd extends FloatingRandomGenerator {
 

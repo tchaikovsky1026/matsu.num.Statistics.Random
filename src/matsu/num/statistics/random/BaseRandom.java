@@ -1,5 +1,5 @@
 /**
- * 2024.2.6
+ * 2024.3.16
  */
 package matsu.num.statistics.random;
 
@@ -11,10 +11,9 @@ import java.util.function.Supplier;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 18.0
+ * @version 19.0
  */
-@SuppressWarnings("removal")
-public interface BaseRandom extends Random{
+public interface BaseRandom{
 
     /**
      * <p>
@@ -23,7 +22,6 @@ public interface BaseRandom extends Random{
      * 
      * @return {@code true}, {@code false} が等確率
      */
-    @Override
     public abstract boolean nextBoolean();
 
     /**
@@ -33,7 +31,6 @@ public interface BaseRandom extends Random{
      * 
      * @return {@code int} が取り得る値全体のうちの1個
      */
-    @Override
     public abstract int nextInt();
 
     /**
@@ -49,7 +46,6 @@ public interface BaseRandom extends Random{
      * @return 0以上bound未満の値
      * @throws IllegalArgumentException boundが正でない場合
      */
-    @Override
     public abstract int nextInt(int bound);
 
     /**
@@ -59,7 +55,6 @@ public interface BaseRandom extends Random{
      * 
      * @return 0以上1未満の値
      */
-    @Override
     public abstract double nextDouble();
 
     /**

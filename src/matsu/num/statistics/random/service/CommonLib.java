@@ -5,6 +5,8 @@ package matsu.num.statistics.random.service;
 
 import java.util.Objects;
 
+import matsu.num.statistics.random.lib.Exponentiation;
+
 /**
  * <p>
  * このモジュールで使うライブラリを管理する概念. <br>

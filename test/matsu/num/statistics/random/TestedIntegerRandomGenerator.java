@@ -3,12 +3,15 @@
  */
 package matsu.num.statistics.random;
 
+import org.junit.Ignore;
+
 /**
  * テストを行う整数値離散分布の累積分布関数発生器.
  *
  * @author Matsuura Y.
  * @version 9.0
  */
+@Ignore
 public interface TestedIntegerRandomGenerator {
 
     /**

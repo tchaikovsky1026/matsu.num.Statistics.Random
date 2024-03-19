@@ -13,5 +13,6 @@
     <selectedElements exportClassFiles="true" exportJavaFiles="true" exportOutputFolder="false">
         <javaElement handleIdentifier="=matsu.num.statistics.Random/src"/>
         <folder path="/matsu.num.statistics.Random/javadoc-file"/>
+        <file path="/matsu.num.statistics.Random/history.txt"/>
     </selectedElements>
 </jardesc>

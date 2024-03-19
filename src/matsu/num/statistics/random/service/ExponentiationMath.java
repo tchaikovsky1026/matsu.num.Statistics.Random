@@ -1,13 +1,15 @@
 /**
- * 2024.1.9
+ * 2024.3.12
  */
 package matsu.num.statistics.random.service;
+
+import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
  * {@link Math} ライブラリを用いた {@link Exponentiation}.
  * 
  * @author Matsuura Y.
- * @version 17.5
+ * @version 18.3
  */
 final class ExponentiationMath implements Exponentiation {
 

@@ -14,10 +14,11 @@
  * </p>
  * 
  * @author Matsuura Y.
- * @version 18.2
+ * @version 19.0
  */
 module matsu.num.statistics.Random {
 
     exports matsu.num.statistics.random;
+    exports matsu.num.statistics.random.lib;
     exports matsu.num.statistics.random.service;
 }

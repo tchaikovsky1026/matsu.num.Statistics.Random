@@ -1,0 +1,7 @@
+19.0:
+Exponentiationを共通ライブラリとしてlibパッケージに分離する.
+各発生器とそのファクトリについて, プロバイダから分離する.
+RandomGeneratorTypeの扱い方の変更(シールインターフェースによるimplementsの管理).
+スペルミスの修正:Cauchy.
+
+version　19よりhistoryの記録を開始する.

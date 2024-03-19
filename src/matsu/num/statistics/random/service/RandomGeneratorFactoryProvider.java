@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 import matsu.num.statistics.random.RandomGeneratorFactory;
+import matsu.num.statistics.random.service.functionaltype.FunctionalType;
 
 /**
  * このモジュール内で実装されている乱数生成器のプロバイダ.
@@ -21,7 +22,7 @@ public final class RandomGeneratorFactoryProvider {
             new RandomGeneratorFactoryProvider(CommonLib.defaultImplemented());
 
     private final CommonLib lib;
-    private final Map<RandomGeneratorType<?>, Object> map;
+    private final Map<FunctionalType<?>, RandomGeneratorFactory> map;
 
     //ロック用オブジェクト
     private final Object lock = new Object();
@@ -42,18 +43,19 @@ public final class RandomGeneratorFactoryProvider {
      */
     public <R extends RandomGeneratorFactory> R get(RandomGeneratorType<R> type) {
         Objects.requireNonNull(type);
+        FunctionalType<R> functionalType = (FunctionalType<R>) type;
 
-        Object out = this.map.get(type);
+        Object out = this.map.get(functionalType);
         if (Objects.nonNull(out)) {
-            return type.cast(out);
+            return functionalType.cast(out);
         }
         synchronized (this.lock) {
-            out = this.map.get(type);
+            out = this.map.get(functionalType);
             if (Objects.nonNull(out)) {
-                return type.cast(out);
+                return functionalType.cast(out);
             }
-            R castedObj = type.get(this);
-            this.map.put(type, castedObj);
+            R castedObj = functionalType.get(this);
+            this.map.put(functionalType, castedObj);
             return castedObj;
         }
     }
