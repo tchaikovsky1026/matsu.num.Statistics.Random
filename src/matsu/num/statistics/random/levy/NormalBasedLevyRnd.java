@@ -1,17 +1,23 @@
-/**
- * 2024.1.14
+/*
+ * Copyright (c) 2024 Matsuura Y.
+ * 
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
+ */
+/*
+ * 2024.4.4
  */
 package matsu.num.statistics.random.levy;
 
+import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.LevyRnd;
 import matsu.num.statistics.random.NormalRnd;
-import matsu.num.statistics.random.BaseRandom;
 
 /**
  * 標準正規分布を用いた, 標準L&eacute;vy乱数発生器.
  * 
  * @author Matsuura Y.
- * @version 18.0
+ * @version 20.0
  */
 final class NormalBasedLevyRnd implements LevyRnd {
 

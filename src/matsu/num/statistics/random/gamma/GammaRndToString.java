@@ -1,5 +1,11 @@
-/**
- * 2024.1.8
+/*
+ * Copyright (c) 2024 Matsuura Y.
+ * 
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
+ */
+/*
+ * 2024.4.4
  */
 package matsu.num.statistics.random.gamma;
 
@@ -11,7 +17,7 @@ import matsu.num.statistics.random.GammaRnd;
  * {@link GammaRnd}向けのtoString表示に関するヘルパ.
  * 
  * @author Matsuura Y.
- * @version 17.4
+ * @version 20.0
  */
 final class GammaRndToString {
 

@@ -1,5 +1,11 @@
-/**
- * 2024.3.16
+/*
+ * Copyright (c) 2024 Matsuura Y.
+ * 
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
+ */
+/*
+ * 2024.4.4
  */
 package matsu.num.statistics.random.logi;
 
@@ -18,7 +24,7 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * この乱数発生器はZiggurat法により実装されている.
  *
  * @author Matsuura Y.
- * @version 19.0
+ * @version 20.0
  */
 final class ZiggLogiRnd implements LogisticRnd {
 

@@ -1,5 +1,11 @@
-/**
- * 2024.3.16
+/*
+ * Copyright (c) 2024 Matsuura Y.
+ * 
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
+ */
+/*
+ * 2024.4.4
  */
 package matsu.num.statistics.random;
 
@@ -11,9 +17,9 @@ import java.util.function.Supplier;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 19.0
+ * @version 20.0
  */
-public interface BaseRandom{
+public interface BaseRandom {
 
     /**
      * <p>
@@ -81,7 +87,8 @@ public interface BaseRandom{
      * <p>
      * このメソッドにより返される {@link BaseRandom} は,
      * 毎回の乱数生成のたびに {@link Supplier#get()} を行う. <br>
-     * すなわち, 独自の {@code java.util.random.RandomGenerator} インスタンス管理機構を持つ仕組みに適合する. <br>
+     * すなわち, 独自の {@code java.util.random.RandomGenerator} インスタンス管理機構を持つ仕組みに適合する.
+     * <br>
      * 例えば, <br>
      * {@code getter = () -> java.util.concurrent.ThreadLocalRandom.current();}
      * <br>

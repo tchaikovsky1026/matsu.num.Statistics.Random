@@ -1,10 +1,16 @@
-/**
- * 2024.1.14
+/*
+ * Copyright (c) 2024 Matsuura Y.
+ * 
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
+ */
+/*
+ * 2024.4.4
  */
 package matsu.num.statistics.random.weibull;
 
-import matsu.num.statistics.random.GumbelRnd;
 import matsu.num.statistics.random.BaseRandom;
+import matsu.num.statistics.random.GumbelRnd;
 import matsu.num.statistics.random.WeibullRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
 
@@ -12,7 +18,7 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * 標準Gumbel分布を用いた標準Weibull分布乱数生成器の実装.
  *
  * @author Matsuura Y.
- * @version 18.0
+ * @version 20.0
  */
 final class GumbelBasedWeibullRnd implements WeibullRnd {
 

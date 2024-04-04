@@ -1,5 +1,11 @@
-/**
- * 2024.2.6
+/*
+ * Copyright (c) 2024 Matsuura Y.
+ * 
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
+ */
+/*
+ * 2024.6.14
  */
 package matsu.num.statistics.random.service;
 
@@ -14,12 +20,12 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * </p>
  * 
  * <p>
- * デフォルトインスタンスの生成は {@link #defaultImplemented()} で可能だが, 
+ * デフォルトインスタンスの生成は {@link #defaultImplemented()} で可能だが,
  * その他はビルダを使用する.
  * </p>
  * 
  * @author Matsuura Y.
- * @version 18.2
+ * @version 20.0
  */
 public abstract class CommonLib {
 
@@ -35,7 +41,7 @@ public abstract class CommonLib {
      * 
      * @return 指数関数, 対数関数の計算
      */
-    public abstract Exponentiation exponentiation();
+    abstract Exponentiation exponentiation();
 
     /**
      * このライブラリの文字列表現.
@@ -48,9 +54,9 @@ public abstract class CommonLib {
     }
 
     /**
-     * デフォルトのライブラリが入った状態のビルダを返す.
+     * デフォルトライブラリを返す.
      * 
-     * @return デフォルトビルダ
+     * @return デフォルトライブラリ
      */
     public static CommonLib defaultImplemented() {
         return CommonLibDefaultHolder.DEFAULT_INSTANCE;
@@ -166,7 +172,7 @@ public abstract class CommonLib {
             public Exponentiation exponentiation() {
                 return this.exponentiation;
             }
-            
+
             @Override
             public String toString() {
                 return "CommonLib(byBuilder)";

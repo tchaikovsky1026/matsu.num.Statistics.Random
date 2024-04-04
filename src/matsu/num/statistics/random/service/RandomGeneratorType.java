@@ -1,5 +1,11 @@
-/**
- * 2024.3.19
+/*
+ * Copyright (c) 2024 Matsuura Y.
+ * 
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
+ */
+/*
+ * 2024.4.4
  */
 package matsu.num.statistics.random.service;
 
@@ -12,12 +18,11 @@ import matsu.num.statistics.random.service.functionaltype.FunctionalType;
  * </p>
  * 
  * <p>
- * Sealedインターフェースとしてタイプが表現されている. <br>
- * ユーザーは {@link GeneratorTypes} に用意された定数を使用する.
+ * Sealedインターフェースとしてタイプが表現されている.
  * </p>
  * 
  * @author Matsuura Y.
- * @version 19.0
+ * @version 20.0
  * @param <T> このタイプが返却する乱数発生器ファクトリの型
  */
 @SuppressWarnings("rawtypes")

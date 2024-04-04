@@ -1,5 +1,11 @@
-/**
- * 2024.3.16
+/*
+ * Copyright (c) 2024 Matsuura Y.
+ * 
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
+ */
+/*
+ * 2024.4.4
  */
 package matsu.num.statistics.random.norm;
 
@@ -11,15 +17,15 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * このパッケージに用意された {@link NormalRnd} 実装のインスタンス生成を扱う.
  * 
  * @author Matsuura Y.
- * @version 19.0
+ * @version 20.0
  */
 public final class ZiggNormalRndFactory implements NormalRnd.Factory {
 
     private final NormalRnd normalRnd;
-    
+
     public ZiggNormalRndFactory(Exponentiation exponentiation, ExponentialRnd.Factory exponentialRndFactory) {
         super();
-        
+
         /* NormalRndは状態を持たないのでここで生成. */
         this.normalRnd = new ZiggNormalRnd(exponentiation, exponentialRndFactory);
     }

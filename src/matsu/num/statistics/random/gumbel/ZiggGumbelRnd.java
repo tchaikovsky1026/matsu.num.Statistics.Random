@@ -1,13 +1,20 @@
-/**
- * 2024.1.9
+/*
+ * Copyright (c) 2024 Matsuura Y.
+ * 
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
+ */
+/*
+ * 2024.4.4
  */
 package matsu.num.statistics.random.gumbel;
+
+import java.util.Objects;
 
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.ExponentialRnd;
 import matsu.num.statistics.random.GumbelRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
-import matsu.num.statistics.random.service.CommonLib;
 
 /**
  * Ziggurat法により実装された, 標準Gumbel分布に従う乱数発生器.
@@ -21,7 +28,7 @@ import matsu.num.statistics.random.service.CommonLib;
  * </p>
  *
  * @author Matsuura Y.
- * @version 17.5
+ * @version 20.0
  * @deprecated {@link UniZiggGumbelRnd}を推奨する.
  */
 @Deprecated
@@ -45,12 +52,13 @@ final class ZiggGumbelRnd implements GumbelRnd {
 
     private final ExponentialRnd expRnd;
 
-    private final Exponentiation exponentiation = CommonLib.defaultImplemented().exponentiation();
+    private final Exponentiation exponentiation;
 
-    ZiggGumbelRnd(ExponentialRnd.Factory exponentialRndFactory) {
+    ZiggGumbelRnd(ExponentialRnd.Factory exponentialRndFactory, Exponentiation exponentiation) {
 
         this.expRnd = exponentialRndFactory.instance();
-        
+        this.exponentiation = Objects.requireNonNull(exponentiation);
+
         xi_P = new double[N + 1];
         fi_P = new double[N + 1]; //配列サイズが2^n個にならないよう、無駄スペースあり
         xi_P[N] = V_P / func_p(R_P);
@@ -74,7 +82,7 @@ final class ZiggGumbelRnd implements GumbelRnd {
         }
         xi_M[0] = 0.0;
         fi_M[0] = func_m(xi_M[0]);
-        
+
     }
 
     @Override

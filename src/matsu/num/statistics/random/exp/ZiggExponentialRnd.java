@@ -1,5 +1,11 @@
-/**
- * 2024.3.12
+/*
+ * Copyright (c) 2024 Matsuura Y.
+ * 
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
+ */
+/*
+ * 2024.4.4
  */
 package matsu.num.statistics.random.exp;
 
@@ -17,7 +23,7 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * </p>
  *
  * @author Matsuura Y.
- * @version 18.3
+ * @version 20.0
  */
 final class ZiggExponentialRnd implements ExponentialRnd {
 

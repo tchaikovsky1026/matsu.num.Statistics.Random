@@ -1,5 +1,11 @@
-/**
- * 2023.3.22
+/*
+ * Copyright (c) 2024 Matsuura Y.
+ * 
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
+ */
+/*
+ * 2024.4.4
  */
 package matsu.num.statistics.random.random;
 
@@ -9,12 +15,14 @@ import java.util.Random;
  * メルセンヌツイスタ(MT19937)の実装.
  *
  * @author Matsuura Y.
- * @version 11.0
+ * @version 20.0
  * @deprecated このクラスはどこからも使われていないので非推奨に.
  */
 @Deprecated
 public final class RandomMT extends Random {
 
+    private static final long serialVersionUID = -5601711841979071653L;
+    
     private final static int UPPER_MASK = 0x80000000;
     private final static int LOWER_MASK = 0x7fffffff;
 
@@ -52,7 +60,7 @@ public final class RandomMT extends Random {
 
     /**
      * New seed is set.
-     * The seed value is casted to int. 
+     * The seed value is casted to int.
      *
      * @param seed long &rarr; int
      */

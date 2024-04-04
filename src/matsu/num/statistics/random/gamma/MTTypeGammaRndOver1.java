@@ -1,18 +1,24 @@
-/**
- * 2024.1.12
+/*
+ * Copyright (c) 2024 Matsuura Y.
+ * 
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
+ */
+/*
+ * 2024.4.4
  */
 package matsu.num.statistics.random.gamma;
 
+import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.GammaRnd;
 import matsu.num.statistics.random.NormalRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
-import matsu.num.statistics.random.BaseRandom;
 
 /**
  * Marsaglia-Tsangの方法に基づく, 形状パラメータが1より大きいときの乱数生成器の実装.
  * 
  * @author Matsuura Y.
- * @version 18.0
+ * @version 20.0
  */
 final class MTTypeGammaRndOver1 implements GammaRnd {
 

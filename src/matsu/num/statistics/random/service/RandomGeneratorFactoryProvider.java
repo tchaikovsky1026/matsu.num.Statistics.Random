@@ -1,5 +1,11 @@
-/**
- * 2024.2.21
+/*
+ * Copyright (c) 2024 Matsuura Y.
+ * 
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
+ */
+/*
+ * 2024.6.14
  */
 package matsu.num.statistics.random.service;
 
@@ -11,10 +17,29 @@ import matsu.num.statistics.random.RandomGeneratorFactory;
 import matsu.num.statistics.random.service.functionaltype.FunctionalType;
 
 /**
- * このモジュール内で実装されている乱数生成器のプロバイダ.
+ * <p>
+ * このモジュール内で実装されている乱数発生器のファクトリのプロバイダ.
+ * </p>
+ * 
+ * <p>
+ * まずこのプロバイダを生成するには, 共通ライブラリ
+ * ({@link CommonLib})
+ * の準備が必要である. <br>
+ * デフォルトのライブラリを使う場合は
+ * {@link #byDefaultLib()} をコールすればよく,
+ * ユーザーが準備し多ライブラリを使う場合は
+ * {@link #by(CommonLib)} をコールする.
+ * </p>
+ * 
+ * <p>
+ * このプロバイダの {@link #get(RandomGeneratorType)} メソッドを呼ぶことで,
+ * 対応するエグゼキュータを得ることができる. <br>
+ * {@link RandomGeneratorType} は
+ * {@link GeneratorTypes} クラス内に定数として提供されている.
+ * </p>
  * 
  * @author Matsuura Y.
- * @version 18.1
+ * @version 20.0
  */
 public final class RandomGeneratorFactoryProvider {
 

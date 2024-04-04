@@ -4,9 +4,10 @@
  * </p>
  * 
  * <p>
+ * 各乱数発生器の生成機能 (ファクトリ) はインターフェースとして公開されている. <br>
  * {@link matsu.num.statistics.random.service.RandomGeneratorFactoryProvider}
- * を経由して各ファクトリを生成することが, 
- * このモジュールが提供する乱数発生器の標準的な利用法である.
+ * のメソッドを経由して各ファクトリのインスタンスを取得するのが,
+ * 標準的な利用方法である.
  * </p>
  * 
  * <p>
@@ -14,7 +15,7 @@
  * </p>
  * 
  * @author Matsuura Y.
- * @version 19.0
+ * @version 20.0
  */
 module matsu.num.statistics.Random {
 

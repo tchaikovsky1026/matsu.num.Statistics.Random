@@ -1,5 +1,11 @@
-/**
- * 2023.3.22
+/*
+ * Copyright (c) 2024 Matsuura Y.
+ * 
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
+ */
+/*
+ * 2024.4.4
  */
 package matsu.num.statistics.random.random;
 
@@ -9,11 +15,13 @@ import java.util.Random;
  * SIMD-oriented 高速メルセンヌツイスタ(SFMT19937)の実装.
  *
  * @author Matsuura Y.
- * @version 11.0
+ * @version 20.0
  * @deprecated このクラスはどこからも使われていないので非推奨に.
  */
 @Deprecated
 public final class RandomSFMT extends Random {
+
+    private static final long serialVersionUID = -4123778974745537889L;
 
     //内部ベクトル
     private int[] sfmtValues;

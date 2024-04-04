@@ -1,5 +1,11 @@
 /*
- * 2024.2.23
+ * Copyright (c) 2024 Matsuura Y.
+ * 
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
+ */
+/*
+ * 2024.4.4
  */
 package matsu.num.statistics.random;
 
@@ -31,7 +37,7 @@ package matsu.num.statistics.random;
  * </p>
  *
  * @author Matsuura Y.
- * @version 18.2
+ * @version 20.0
  */
 public interface ChiSquaredRnd extends FloatingRandomGenerator {
 

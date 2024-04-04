@@ -1,5 +1,11 @@
-/**
- * 2024.1.14
+/*
+ * Copyright (c) 2024 Matsuura Y.
+ * 
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
+ */
+/*
+ * 2024.4.4
  */
 package matsu.num.statistics.random.service;
 
@@ -9,7 +15,7 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * {@link CommonLib} のデフォルト実装のホルダ.
  * 
  * @author Matsuura Y.
- * @version 18.0
+ * @version 20.0
  */
 final class CommonLibDefaultHolder {
 
@@ -32,7 +38,7 @@ final class CommonLibDefaultHolder {
         public Exponentiation exponentiation() {
             return this.exponentiation;
         }
-        
+
         @Override
         public String toString() {
             return "CommonLib(default)";

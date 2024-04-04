@@ -1,17 +1,23 @@
-/**
- * 2024.1.12
+/*
+ * Copyright (c) 2024 Matsuura Y.
+ * 
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
+ */
+/*
+ * 2024.4.4
  */
 package matsu.num.statistics.random.beta;
 
+import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.BetaRnd;
 import matsu.num.statistics.random.GammaRnd;
-import matsu.num.statistics.random.BaseRandom;
 
 /**
  * ガンマ分布乱数器を利用した, ベータ分布に従う乱数発生器.
  *
  * @author Matsuura Y.
- * @version 18.0
+ * @version 20.0
  */
 final class GammaBasedBetaRnd implements BetaRnd {
 

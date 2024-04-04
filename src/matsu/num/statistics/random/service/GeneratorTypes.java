@@ -1,5 +1,11 @@
-/**
- * 2024.3.17
+/*
+ * Copyright (c) 2024 Matsuura Y.
+ * 
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
+ */
+/*
+ * 2024.4.4
  */
 package matsu.num.statistics.random.service;
 
@@ -51,7 +57,7 @@ import matsu.num.statistics.random.weibull.GumbelBasedWeibullRndFactory;
  * このパッケージが管理する {@link RandomGeneratorType} 定数.
  * 
  * @author Matsuura Y.
- * @version 19.0
+ * @version 20.0
  */
 public final class GeneratorTypes {
 

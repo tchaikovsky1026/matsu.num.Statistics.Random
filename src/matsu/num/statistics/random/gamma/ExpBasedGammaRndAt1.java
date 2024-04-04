@@ -1,17 +1,23 @@
-/**
- * 2024.1.8
+/*
+ * Copyright (c) 2024 Matsuura Y.
+ * 
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
+ */
+/*
+ * 2024.4.4
  */
 package matsu.num.statistics.random.gamma;
 
+import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.ExponentialRnd;
 import matsu.num.statistics.random.GammaRnd;
-import matsu.num.statistics.random.BaseRandom;
 
 /**
  * 標準指数乱数によって実装された, 形状パラメータが1の乱数生成器.
  * 
  * @author Matsuura Y.
- * @version 17.4
+ * @version 20.0
  */
 final class ExpBasedGammaRndAt1 implements GammaRnd {
 

@@ -1,5 +1,11 @@
-/**
- * 2024.2.23
+/*
+ * Copyright (c) 2024 Matsuura Y.
+ * 
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
+ */
+/*
+ * 2024.4.4
  */
 package matsu.num.statistics.random.staticbeta;
 
@@ -14,7 +20,7 @@ import matsu.num.statistics.random.StaticGammaRnd;
  * 扱える形状パラメータa,bは, {@code 1.0E-2 <= a <= 1.0E+14 && 1.0E-2 <= b <= 1.0E+14} である.
  * 
  * @author Matsuura Y.
- * @version 18.2
+ * @version 20.0
  */
 final class GammaBasedStaticBetaRnd implements StaticBetaRnd {
 
