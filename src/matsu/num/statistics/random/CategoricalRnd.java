@@ -88,7 +88,7 @@ public interface CategoricalRnd extends IntegerRandomGenerator {
          *
          * @param probability 確率値の配列(定数倍の不定性は許される)
          * @return 値配列に比例するカテゴリカル分布乱数発生器インスタンス
-         * @throws IllegalArgumentException カテゴリサイズ(配列のlength)が0の場合
+         * @throws IllegalArgumentException 値配列がacceptされない場合
          * @throws NullPointerException 引数にnulが含まれる場合
          */
         public abstract CategoricalRnd instanceOf(double[] probability);
@@ -110,7 +110,7 @@ public interface CategoricalRnd extends IntegerRandomGenerator {
          *
          * @param logProbability 確率値のlogの配列(定数オフセットの不定性は許される)
          * @return 値配列にのexp比例するカテゴリカル分布乱数発生器インスタンス
-         * @throws IllegalArgumentException カテゴリサイズ(配列のlength)が0の場合
+         * @throws IllegalArgumentException 値配列がacceptされない場合
          * @throws NullPointerException 引数にnulが含まれる場合
          */
         public abstract CategoricalRnd instanceOfExp(double[] logProbability);

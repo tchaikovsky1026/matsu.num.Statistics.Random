@@ -24,13 +24,13 @@ import java.util.concurrent.ConcurrentHashMap;
  * の準備が必要である. <br>
  * デフォルトのライブラリを使う場合は
  * {@link #byDefaultLib()} をコールすればよく,
- * ユーザーが準備し多ライブラリを使う場合は
+ * ユーザーが準備したライブラリを使う場合は
  * {@link #by(CommonLib)} をコールする.
  * </p>
  * 
  * <p>
  * このプロバイダの {@link #get(RandomGeneratorType)} メソッドを呼ぶことで,
- * 対応するエグゼキュータを得ることができる. <br>
+ * 対応するファクトリを得ることができる. <br>
  * {@link RandomGeneratorType} は
  * {@link GeneratorTypes} クラス内に定数として提供されている.
  * </p>

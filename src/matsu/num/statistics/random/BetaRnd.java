@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.24
+ * 2024.9.29
  */
 package matsu.num.statistics.random;
 
@@ -31,7 +31,8 @@ package matsu.num.statistics.random;
  * </ul>
  * 
  * <p>
- * このインターフェースではベータ分布に加えて, ベータプライム分布に従う乱数生成も扱う. <br>
+ * このインターフェースではベータ分布に加えて, ベータプライム分布に従う乱数生成も扱う
+ * ({@link #nextBetaPrime(BaseRandom)}). <br>
  * ベータプライム分布の確率密度関数 P(<i>x</i>) は次のとおりである.
  * </p>
  * 

@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.29
  */
 package matsu.num.statistics.random;
 
@@ -17,7 +17,7 @@ import java.util.function.Supplier;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
 public interface BaseRandom {
 
@@ -79,7 +79,7 @@ public interface BaseRandom {
 
     /**
      * <p>
-     * 与えたサプライヤにより {@code java.util.random.RandomGenerator}
+     * 与えたサプライヤにより {@link java.util.random.RandomGenerator}
      * を呼び出して乱数を生成するように振る舞う
      * {@link BaseRandom} インスタンスを返す.
      * </p>
@@ -87,7 +87,7 @@ public interface BaseRandom {
      * <p>
      * このメソッドにより返される {@link BaseRandom} は,
      * 毎回の乱数生成のたびに {@link Supplier#get()} を行う. <br>
-     * すなわち, 独自の {@code java.util.random.RandomGenerator} インスタンス管理機構を持つ仕組みに適合する.
+     * すなわち, 独自の {@link java.util.random.RandomGenerator} インスタンス管理機構を持つ仕組みに適合する.
      * <br>
      * 例えば, <br>
      * {@code getter = () -> java.util.concurrent.ThreadLocalRandom.current();}
@@ -96,9 +96,10 @@ public interface BaseRandom {
      * </p>
      * 
      * <p>
-     * {@link Supplier#get()} がインスタンス生成を伴うような状況では,
-     * このメソッドではなく {@link #of(java.util.random.RandomGenerator)} を使用すべきである. <br>
-     * （つまり {@link Supplier#get()} を呼ぶべきではない）.
+     * {@code getter} の {@link Supplier#get()} メソッドでは
+     * {@link java.util.random.RandomGenerator} インスタンスを生成してはならない. <br>
+     * そのような状況は, このメソッドではなく {@link #of(java.util.random.RandomGenerator)}
+     * が適切である.
      * </p>
      * 
      * @param getter {@code java.util.random.RandomGenerator} を呼び出すためのサプライヤ
