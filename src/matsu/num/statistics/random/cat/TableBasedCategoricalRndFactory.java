@@ -10,7 +10,6 @@
 package matsu.num.statistics.random.cat;
 
 import java.util.Objects;
-import java.util.function.Function;
 
 import matsu.num.statistics.random.CategoricalRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
@@ -21,35 +20,14 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * @author Matsuura Y.
  * @version 21.0
  */
-public final class TableBasedCategoricalRndFactory implements CategoricalRnd.Factory {
-
-    private static final Function<double[], IllegalArgumentException> exceptionGetter =
-            values -> new IllegalArgumentException(String.format("パラメータ不正: size=%s", values.length));
-
-    private final Exponentiation exponentiation;
+public final class TableBasedCategoricalRndFactory extends SkeletalCategoricalRndFactory {
 
     public TableBasedCategoricalRndFactory(Exponentiation exponentiation) {
-        this.exponentiation = Objects.requireNonNull(exponentiation);
+        super(Objects.requireNonNull(exponentiation));
     }
 
     @Override
-    public CategoricalRnd instanceOf(double[] probability) {
-        if (!CategoricalRnd.acceptsSizeOf(probability)) {
-            throw exceptionGetter.apply(probability);
-        }
-        return TableBasedCategoricalRnd.instanceOf(probability);
-    }
-
-    @Override
-    public CategoricalRnd instanceOfExp(double[] logProbability) {
-        if (!CategoricalRnd.acceptsSizeOf(logProbability)) {
-            throw exceptionGetter.apply(logProbability);
-        }
-        return TableBasedCategoricalRnd.instanceOfExp(logProbability, this.exponentiation);
-    }
-
-    @Override
-    public String toString() {
-        return "CategoricalRnd.Factory";
+    protected CategoricalRnd createInstanceOf(double[] probability) {
+        return new TableBasedCategoricalRnd(probability);
     }
 }

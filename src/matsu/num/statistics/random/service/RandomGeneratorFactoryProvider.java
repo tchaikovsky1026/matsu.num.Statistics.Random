@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.24
+ * 2024.9.28
  */
 package matsu.num.statistics.random.service;
 
@@ -44,7 +44,7 @@ public final class RandomGeneratorFactoryProvider {
             new RandomGeneratorFactoryProvider(CommonLib.defaultImplemented());
 
     private final CommonLib lib;
-    private final Map<FunctionalType<?>, Object> map;
+    private final Map<RandomGeneratorType<?>, Object> map;
 
     //ロック用オブジェクト
     private final Object lock = new Object();
@@ -65,19 +65,18 @@ public final class RandomGeneratorFactoryProvider {
      */
     public <R> R get(RandomGeneratorType<R> type) {
         Objects.requireNonNull(type);
-        FunctionalType<R> functionalType = (FunctionalType<R>) type;
 
-        Object out = this.map.get(functionalType);
+        Object out = this.map.get(type);
         if (Objects.nonNull(out)) {
-            return functionalType.cast(out);
+            return type.cast(out);
         }
         synchronized (this.lock) {
-            out = this.map.get(functionalType);
+            out = this.map.get(type);
             if (Objects.nonNull(out)) {
-                return functionalType.cast(out);
+                return type.cast(out);
             }
-            R castedObj = functionalType.get(this);
-            this.map.put(functionalType, castedObj);
+            R castedObj = type.get(this);
+            this.map.put(type, castedObj);
             return castedObj;
         }
     }

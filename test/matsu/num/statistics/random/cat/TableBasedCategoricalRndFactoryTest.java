@@ -58,6 +58,13 @@ final class TableBasedCategoricalRndFactoryTest {
             FACTORY.instanceOf(p);
             FACTORY.instanceOfExp(p);
         }
+
+        @Test(expected = None.class)
+        public void test_無限大を含んでいても良い() {
+            double[] p = { Double.NaN, Double.MIN_NORMAL, Double.POSITIVE_INFINITY };
+            FACTORY.instanceOf(p);
+            FACTORY.instanceOfExp(p);
+        }
     }
 
     public static class カテゴリ数が1の場合のテスト {

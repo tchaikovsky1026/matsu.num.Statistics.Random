@@ -5,36 +5,28 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.28
  */
 package matsu.num.statistics.random.cat;
 
 import java.util.Arrays;
 
 import matsu.num.statistics.random.BaseRandom;
-import matsu.num.statistics.random.CategoricalRnd;
-import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
  * テーブル法に基づく, カテゴリカル分布に従う乱数発生器の実装.
  *
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
-final class TableBasedCategoricalRnd implements CategoricalRnd {
+final class TableBasedCategoricalRnd extends SkeletalCategoricalRnd {
 
     private static final int N_MAX_BIT = 16;
     private static final int N_START_BIT = 10;
 
     private static final double THRESHOLD = 0.9;
 
-    /**
-     * カテゴリの数. <br>
-     * カテゴリ数が n のとき, 0, 1, ... , n - 1 の値をとる乱数を生成する.
-     */
-    private int catSize;
-
-    private int nBitMask;
+    private final int nBitMask;
 
     //ヒストグラム変数テーブル
     private final int[] table;
@@ -47,67 +39,23 @@ final class TableBasedCategoricalRnd implements CategoricalRnd {
     private final double[] tailCumulative;
 
     /**
-     * 内部から呼ばれる. <br>
-     * 必ずサイズは1以上である. <br>
+     * 引数に正当な確率の配列を渡して, インスタンスを生成する. <br>
      * 呼び出し元で配列の防御的コピーをすること.
+     * 
+     * @param probability 正当な規格化された確率, 上書きされる
      */
-    private TableBasedCategoricalRnd(double[] probability) {
-        if (probability.length == 0) {
-            throw new AssertionError("Bug: 到達不可,カテゴリサイズが0");
-        }
-        this.catSize = probability.length;
-        canonicalize(probability);
-
-        normalize(probability);
+    TableBasedCategoricalRnd(double[] probability) {
+        super(probability.length);
 
         //メインテーブルのサイズを決定し,代入
         int tableSize = tableSize(probability);
         this.nBitMask = tableSize - 1;
         this.table = new int[tableSize];
         this.setMainTable(probability);
-        normalize(probability);
+        ProbabilityNormalization.normalize(probability);
 
         //tailの累積確率を計算
         this.tailCumulative = cumulative(probability);
-    }
-
-    private static void canonicalize(double[] probability) {
-        final int size = probability.length;
-
-        //値が大きすぎる場合は調整する
-        double max = max(probability);
-        if (max > 1E+250) {
-            for (int i = 0; i < size; i++) {
-                probability[i] *= 1E-50;
-            }
-        }
-        //値が小さすぎる場合は調整する
-        //過剰に調整する
-        if (max < 1E-200) {
-            for (int i = 0; i < size; i++) {
-                probability[i] *= 1E+200;
-                probability[i] *= 1E+200;
-            }
-        } else if (max < 1d) {
-            for (int i = 0; i < size; i++) {
-                probability[i] *= 1E+250;
-            }
-        }
-
-        //zero,負,NaNに対する処理
-        //正則な値があれば前段で1E+50を超えるため, ここで代入されたとしても最終的に0になる
-        for (int i = 0; i < size; i++) {
-            if (Double.isNaN(probability[i])) {
-                probability[i] = Double.MIN_NORMAL;
-            }
-            probability[i] = Math.max(probability[i], Double.MIN_NORMAL);
-        }
-
-    }
-
-    @Override
-    public int size() {
-        return this.catSize;
     }
 
     @Override
@@ -130,12 +78,6 @@ final class TableBasedCategoricalRnd implements CategoricalRnd {
             }
         }
         return lowerIndex;
-    }
-
-    @Override
-    public String toString() {
-        return String.format(
-                "CategoricalRnd(size=%s)", this.size());
     }
 
     /**
@@ -187,25 +129,6 @@ final class TableBasedCategoricalRnd implements CategoricalRnd {
     }
 
     /**
-     * 0以上の有限値を持つ配列を, 総和が1dになるように規格化する.
-     */
-    private static void normalize(double[] probability) {
-        int cat = probability.length;
-
-        //確率の規格化
-        double sum = 0;
-        for (int l = cat - 1; l >= 0; l--) {
-            sum += probability[l];
-        }
-        if (!(Double.isFinite(sum) && sum > 0)) {
-            throw new AssertionError("Bug?:カテゴリカル分布として有効な確率値列でない");
-        }
-        for (int i = 0; i < cat; i++) {
-            probability[i] /= sum;
-        }
-    }
-
-    /**
      * 必要なテーブルサイズを求める.
      */
     private static int tableSize(double[] probability) {
@@ -239,80 +162,5 @@ final class TableBasedCategoricalRnd implements CategoricalRnd {
         }
 
         return 1 << nBit;
-    }
-
-    /**
-     * logPをpにする. <br>
-     * だだし, exp計算による+infはでないようにする.
-     * 
-     * @param logProbability
-     * @param exponentiation
-     * @return
-     */
-    private static double[] toExp(double[] logProbability,
-            Exponentiation exponentiation) {
-
-        final int size = logProbability.length;
-        double[] p = logProbability.clone();
-
-        if (size == 0) {
-            return p;
-        }
-
-        double max = max(p);
-
-        //正常値
-        for (int i = 0; i < size; i++) {
-            //NaNはそのまま戻る
-            p[i] = exponentiation.exp(p[i] - max);
-        }
-        return p;
-    }
-
-    /**
-     * 配列の値の最大値を返す.
-     * NaNは無視, infは近い値に丸める.
-     * 
-     * @param values 値たち
-     * @return 最大値
-     */
-    private static double max(double[] values) {
-        if (values.length == 0) {
-            throw new AssertionError("Bug; 空である");
-        }
-        double max = -Double.MAX_VALUE;
-        for (double v : values) {
-            //NaNは無視する
-            if (Double.isNaN(v)) {
-                continue;
-            }
-            max = Math.max(max, v);
-        }
-
-        max = Math.min(max, Double.MAX_VALUE);
-        return max;
-    }
-
-    /**
-     * 指定した値配列に比例するカテゴリ確率を持つ, カテゴリカル分布乱数発生器を生成する. <br>
-     * 必ずサイズは1以上である(サイズ0ならアサーションエラー). <br>
-     *
-     * @param probability 確率値の配列(定数倍の不定性は許される)
-     * @return 値配列に比例するカテゴリカル分布乱数発生器インスタンス
-     */
-    static CategoricalRnd instanceOf(double[] probability) {
-        return new TableBasedCategoricalRnd(probability.clone());
-    }
-
-    /**
-     * 指定した値配列のexpに比例するカテゴリ確率を持つ, カテゴリカル分布乱数発生器を生成する. <br>
-     * 必ずサイズは1以上である(サイズ0ならアサーションエラー). <br>
-     *
-     * @param logProbability 確率値のlogの配列(定数オフセットの不定性は許される)
-     * @return 値配列にのexp比例するカテゴリカル分布乱数発生器インスタンス
-     */
-    static CategoricalRnd instanceOfExp(double[] logProbability,
-            Exponentiation exponentiation) {
-        return new TableBasedCategoricalRnd(toExp(logProbability, exponentiation));
     }
 }

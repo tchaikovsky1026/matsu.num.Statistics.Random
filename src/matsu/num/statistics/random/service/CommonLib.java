@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.6.14
+ * 2024.9.28
  */
 package matsu.num.statistics.random.service;
 
@@ -25,7 +25,7 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
 public abstract class CommonLib {
 
@@ -145,11 +145,11 @@ public abstract class CommonLib {
         }
 
         /**
-         * デフォルトのライブラリが入った状態のビルダを返す.
+         * デフォルトのライブラリが入った状態を初期状態として, ビルダを返す.
          * 
-         * @return デフォルトビルダ
+         * @return 初期ビルダ
          */
-        public static Builder defaultImplemented() {
+        public static Builder implementedInit() {
             return DEFAULT_BUILDER;
         }
 
