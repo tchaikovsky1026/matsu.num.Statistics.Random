@@ -5,33 +5,30 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.24
  */
-package matsu.num.statistics.random.service.functionaltype;
+package matsu.num.statistics.random.service;
 
 import java.util.Objects;
 import java.util.function.Function;
 
-import matsu.num.statistics.random.RandomGeneratorFactory;
-import matsu.num.statistics.random.service.RandomGeneratorFactoryProvider;
-
 /**
  * <p>
- * {@link FunctionalType} の実装クラス.
+ * {@link RandomGeneratorType} を実装した唯一のクラス. <br>
+ * ファクトリを生成する仕組みを追加するmix-in.
  * </p>
  * 
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  * @param <T> このタイプが返却する乱数発生器ファクトリの型
  */
-public final class FunctionalTypeImpl<T extends RandomGeneratorFactory>
-        implements FunctionalType<T> {
+final class FunctionalType<T> implements RandomGeneratorType<T> {
 
     private final String typeName;
     private final Class<T> factoryClass;
     private final Function<RandomGeneratorFactoryProvider, T> getter;
 
-    public FunctionalTypeImpl(String typeName, Class<T> factoryClass,
+    FunctionalType(String typeName, Class<T> factoryClass,
             Function<RandomGeneratorFactoryProvider, T> getter) {
         super();
         this.typeName = Objects.requireNonNull(typeName);
@@ -39,13 +36,24 @@ public final class FunctionalTypeImpl<T extends RandomGeneratorFactory>
         this.getter = Objects.requireNonNull(getter);
     }
 
-    @Override
-    public T cast(Object obj) {
+    /**
+     * キャストするためのメソッド. <br>
+     * このパッケージ内部から呼ばれ, 必ず成功することが想定されている.
+     * 
+     * @param obj (キャスト可能な)オブジェクト
+     * @return キャストしたオブジェクト
+     */
+    T cast(Object obj) {
         return this.factoryClass.cast(obj);
     }
 
-    @Override
-    public T get(RandomGeneratorFactoryProvider provider) {
+    /**
+     * プロバイダからファクトリを生成する.
+     * 
+     * @param provider プロバイダ
+     * @return ファクトリ
+     */
+    T get(RandomGeneratorFactoryProvider provider) {
         return this.getter.apply(provider);
     }
 

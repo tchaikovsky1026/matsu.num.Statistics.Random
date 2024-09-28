@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.28
  */
 package matsu.num.statistics.random.logi;
 
@@ -24,9 +24,9 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * この乱数発生器はZiggurat法により実装されている.
  *
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
-final class ZiggLogiRnd implements LogisticRnd {
+public final class ZiggLogiRnd extends SkeletalLogisticRnd {
 
     private static final int N = 128;
     private static final double R_N = 7.69287439477735d;
@@ -39,7 +39,7 @@ final class ZiggLogiRnd implements LogisticRnd {
 
     private final Exponentiation exponentiation;
 
-    ZiggLogiRnd(Exponentiation exponentiation, ExponentialRnd.Factory exponentialRndFactory) {
+    private ZiggLogiRnd(Exponentiation exponentiation, ExponentialRnd.Factory exponentialRndFactory) {
         super();
         this.exponentiation = Objects.requireNonNull(exponentiation);
         this.expRnd = exponentialRndFactory.instance();
@@ -113,8 +113,18 @@ final class ZiggLogiRnd implements LogisticRnd {
         }
     }
 
-    @Override
-    public String toString() {
-        return "LogisticRnd";
+    /**
+     * {@link LogisticRnd} を生成するファクトリを生成する.
+     * 
+     * @param exponentiation 指数関数計算器
+     * @param exponentialRndFactory 正規乱数生成器のファクトリ
+     * @return Logistic乱数のファクトリ
+     * @throws NullPointerException 引数にnullが含まれる場合
+     */
+    public static LogisticRnd.Factory createFactory(
+            Exponentiation exponentiation,
+            ExponentialRnd.Factory exponentialRndFactory) {
+
+        return new LogisticRndFactory(new ZiggLogiRnd(exponentiation, exponentialRndFactory));
     }
 }

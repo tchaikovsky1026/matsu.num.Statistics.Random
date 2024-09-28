@@ -5,47 +5,31 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.28
  */
 package matsu.num.statistics.random.staticbeta;
-
-import java.util.function.BiFunction;
 
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.StaticBetaRnd;
 import matsu.num.statistics.random.StaticGammaRnd;
 
 /**
- * Marsaglia-Tsangの方法に基づく, ガンマ乱数のstaticな生成器. <br>
- * 扱える形状パラメータa,bは, {@code 1.0E-2 <= a <= 1.0E+14 && 1.0E-2 <= b <= 1.0E+14} である.
+ * Marsaglia-Tsangの方法に基づく, ガンマ乱数のstaticな生成器.
  * 
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
-final class GammaBasedStaticBetaRnd implements StaticBetaRnd {
+public final class GammaBasedStaticBetaRnd extends SkeletalStaticBetaRnd {
 
     private final StaticGammaRnd staticGammaRnd;
 
-    private static final BiFunction<Double, Double, IllegalArgumentException> exceptionGetter =
-            (a, b) -> new IllegalArgumentException(String.format("パラメータ不正:a=%s, b=%s", a, b));
-
-    GammaBasedStaticBetaRnd(StaticGammaRnd.Factory staticGammaRndFactory) {
+    private GammaBasedStaticBetaRnd(StaticGammaRnd.Factory staticGammaRndFactory) {
         super();
         this.staticGammaRnd = staticGammaRndFactory.instance();
     }
 
     @Override
-    public boolean acceptsParameters(double a, double b) {
-        return LOWER_LIMIT_SHAPE_PARAMETER <= a && a <= UPPER_LIMIT_SHAPE_PARAMETER
-                && LOWER_LIMIT_SHAPE_PARAMETER <= b && b <= UPPER_LIMIT_SHAPE_PARAMETER;
-    }
-
-    @Override
-    public double nextRandom(BaseRandom random, double a, double b) {
-        if (!this.acceptsParameters(a, b)) {
-            throw exceptionGetter.apply(a, b);
-        }
-
+    double calcNextBeta(BaseRandom random, double a, double b) {
         double u1 = this.staticGammaRnd.nextRandom(random, a);
         double u2 = this.staticGammaRnd.nextRandom(random, b);
         double out = u1 / (u1 + u2);
@@ -53,10 +37,7 @@ final class GammaBasedStaticBetaRnd implements StaticBetaRnd {
     }
 
     @Override
-    public double nextBetaPrime(BaseRandom random, double a, double b) {
-        if (!this.acceptsParameters(a, b)) {
-            throw exceptionGetter.apply(a, b);
-        }
+    protected double calcNextBetaPrime(BaseRandom random, double a, double b) {
 
         double u1 = this.staticGammaRnd.nextRandom(random, a);
         double u2 = this.staticGammaRnd.nextRandom(random, b);
@@ -64,8 +45,14 @@ final class GammaBasedStaticBetaRnd implements StaticBetaRnd {
         return Double.isFinite(out) ? out : 0;
     }
 
-    @Override
-    public String toString() {
-        return "StaticBetaRnd";
+    /**
+     * {@link StaticBetaRnd} を生成するファクトリを生成する.
+     * 
+     * @param staticGammaRndFactory StaticGamma乱数のファクトリ
+     * @return StaticBeta乱数のファクトリ
+     * @throws NullPointerException 引数にnullが含まれる場合
+     */
+    public static StaticBetaRnd.Factory createFactory(StaticGammaRnd.Factory staticGammaRndFactory) {
+        return new StaticBetaRndFactory(new GammaBasedStaticBetaRnd(staticGammaRndFactory));
     }
 }

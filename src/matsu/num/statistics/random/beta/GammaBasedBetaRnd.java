@@ -5,21 +5,20 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.24
  */
 package matsu.num.statistics.random.beta;
 
 import matsu.num.statistics.random.BaseRandom;
-import matsu.num.statistics.random.BetaRnd;
 import matsu.num.statistics.random.GammaRnd;
 
 /**
  * ガンマ分布乱数器を利用した, ベータ分布に従う乱数発生器.
  *
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
-final class GammaBasedBetaRnd implements BetaRnd {
+final class GammaBasedBetaRnd extends SkeletalBetaRnd {
 
     private final GammaRnd gammaRndA;
     private final GammaRnd gammaRndB;
@@ -33,20 +32,10 @@ final class GammaBasedBetaRnd implements BetaRnd {
      * @param b 形状パラメータb
      */
     GammaBasedBetaRnd(double a, double b, GammaRnd.Factory gammaRndFactory) {
-        super();
+        super(a, b);
 
         this.gammaRndA = gammaRndFactory.instanceOf(a);
         this.gammaRndB = gammaRndFactory.instanceOf(b);
-    }
-
-    @Override
-    public final double shapeA() {
-        return this.gammaRndA.shapeParameter();
-    }
-
-    @Override
-    public final double shapeB() {
-        return this.gammaRndB.shapeParameter();
     }
 
     @Override
@@ -64,11 +53,4 @@ final class GammaBasedBetaRnd implements BetaRnd {
         double out = u1 / u2;
         return Double.isFinite(out) ? out : 0;
     }
-
-    @Override
-    public String toString() {
-        return String.format(
-                "BetaRnd(%s, %s)", this.shapeA(), this.shapeB());
-    }
-
 }

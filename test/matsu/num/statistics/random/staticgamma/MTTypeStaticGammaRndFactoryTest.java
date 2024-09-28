@@ -21,16 +21,16 @@ import matsu.num.statistics.random.lib.ExponentiationForTesting;
 import matsu.num.statistics.random.norm.NormalFactoryForTesting;
 
 /**
- * {@link MTTypeStaticGammaRndFactory}クラスのテスト.
+ * {@link MTTypeStaticGammaRnd}クラスのテスト.
  * 
  * @author Matsuura Y.
  */
 @RunWith(Enclosed.class)
 final class MTTypeStaticGammaRndFactoryTest {
 
-    public static final Class<?> TEST_CLASS = MTTypeStaticGammaRndFactory.class;
+    public static final Class<?> TEST_CLASS = MTTypeStaticGammaRnd.class;
     private static final StaticGammaRnd.Factory FACTORY =
-            new MTTypeStaticGammaRndFactory(
+            MTTypeStaticGammaRnd.createFactory(
                     ExponentiationForTesting.INSTANCE,
                     ExponentialFactoryForTesting.FACTORY,
                     NormalFactoryForTesting.FACTORY);
@@ -48,24 +48,14 @@ final class MTTypeStaticGammaRndFactoryTest {
 
         @Test(expected = None.class)
         public void test_境界内最小値() {
-            assertThat(staticGammaRnd.acceptsParameter(LOWER_LIMIT_SHAPE_PARAMETER), is(true));
+            assertThat(StaticGammaRnd.acceptsParameter(LOWER_LIMIT_SHAPE_PARAMETER), is(true));
             staticGammaRnd.nextRandom(random, LOWER_LIMIT_SHAPE_PARAMETER);
         }
 
         @Test(expected = None.class)
         public void test_境界内最大値() {
-            assertThat(staticGammaRnd.acceptsParameter(UPPER_LIMIT_SHAPE_PARAMETER), is(true));
+            assertThat(StaticGammaRnd.acceptsParameter(UPPER_LIMIT_SHAPE_PARAMETER), is(true));
             staticGammaRnd.nextRandom(random, UPPER_LIMIT_SHAPE_PARAMETER);
-        }
-
-        @Test
-        public void test_境界最小値外() {
-            assertThat(staticGammaRnd.acceptsParameter(Math.nextDown(LOWER_LIMIT_SHAPE_PARAMETER)), is(false));
-        }
-
-        @Test
-        public void test_境界最大値外() {
-            assertThat(staticGammaRnd.acceptsParameter(Math.nextUp(UPPER_LIMIT_SHAPE_PARAMETER)), is(false));
         }
     }
 

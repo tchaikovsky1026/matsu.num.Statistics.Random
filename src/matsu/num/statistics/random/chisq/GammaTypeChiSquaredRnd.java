@@ -5,12 +5,11 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.28
  */
 package matsu.num.statistics.random.chisq;
 
 import matsu.num.statistics.random.BaseRandom;
-import matsu.num.statistics.random.ChiSquaredRnd;
 import matsu.num.statistics.random.GammaRnd;
 
 /**
@@ -21,35 +20,20 @@ import matsu.num.statistics.random.GammaRnd;
  * </p>
  *
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
-final class GammaTypeChiSquaredRnd implements ChiSquaredRnd {
-
-    private final double k;
+final class GammaTypeChiSquaredRnd extends SkeletalChiSquaredRnd {
 
     private final GammaRnd gammaRnd;
 
     GammaTypeChiSquaredRnd(double k, GammaRnd.Factory gammaRndBuilder) {
-        super();
+        super(k);
 
         this.gammaRnd = gammaRndBuilder.instanceOf(k * 0.5);
-        this.k = k;
-    }
-
-    @Override
-    public final double degreesOfFreedom() {
-        return this.k;
     }
 
     @Override
     public final double nextRandom(BaseRandom random) {
         return this.gammaRnd.nextRandom(random) * 2;
     }
-
-    @Override
-    public String toString() {
-        return String.format(
-                "ChiSquaredRnd(%s)", this.degreesOfFreedom());
-    }
-
 }

@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.26
  */
 package matsu.num.statistics.random;
 
@@ -20,14 +20,14 @@ package matsu.num.statistics.random;
  * </p>
  *
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
 public interface NormalRnd extends FloatingRandomGenerator {
 
     /**
      * {@link NormalRnd} のファクトリ.
      */
-    public static interface Factory extends RandomGeneratorFactory {
+    public static interface Factory {
 
         /**
          * <p>
@@ -37,6 +37,5 @@ public interface NormalRnd extends FloatingRandomGenerator {
          * @return 標準正規分布乱数発生器インスタンス
          */
         public abstract NormalRnd instance();
-
     }
 }

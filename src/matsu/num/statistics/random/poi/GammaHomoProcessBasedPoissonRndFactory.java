@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.28
  */
 package matsu.num.statistics.random.poi;
 
@@ -19,9 +19,9 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * ガンマ分布乱数発生器を利用した, Poisson分布に従う乱数発生器のファクトリ.
  * 
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
-public final class GammaHomoProcessBasedPoissonRndFactory implements PoissonRnd.Factory {
+public final class GammaHomoProcessBasedPoissonRndFactory extends SkeletalPoissonRndFactory {
 
     /**
      * 形状パラメータが1, 2, 4, ... のガンマ乱数生成器.
@@ -43,21 +43,7 @@ public final class GammaHomoProcessBasedPoissonRndFactory implements PoissonRnd.
     }
 
     @Override
-    public boolean acceptsParameter(double lambda) {
-        return PoissonRnd.LOWER_LIMIT_LAMBDA <= lambda
-                && lambda <= PoissonRnd.UPPER_LIMIT_LAMBDA;
-    }
-
-    @Override
-    public PoissonRnd instanceOf(double lambda) {
-        if (!this.acceptsParameter(lambda)) {
-            throw new IllegalArgumentException(String.format("パラメータ不正:lambda=%s", lambda));
-        }
+    protected PoissonRnd createInstanceOf(double lambda) {
         return new GammaHomoProcessBasedPoissonRnd(lambda, this.gammaRnds, this.exponentiation);
-    }
-
-    @Override
-    public String toString() {
-        return "PoissonRnd.Factory";
     }
 }

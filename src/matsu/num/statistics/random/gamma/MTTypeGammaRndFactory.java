@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.28
  */
 package matsu.num.statistics.random.gamma;
 
@@ -20,9 +20,9 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * Marsaglia-Tsangに基づく, ガンマ乱数生成器のファクトリ.
  * 
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
-public final class MTTypeGammaRndFactory implements GammaRnd.Factory {
+public final class MTTypeGammaRndFactory extends SkeletalGammRndFactory {
 
     private final GammaRnd gammaRndAt1;
 
@@ -42,16 +42,7 @@ public final class MTTypeGammaRndFactory implements GammaRnd.Factory {
     }
 
     @Override
-    public boolean acceptsParameter(double k) {
-        return GammaRnd.LOWER_LIMIT_SHAPE_PARAMETER <= k && k <= GammaRnd.UPPER_LIMIT_SHAPE_PARAMETER;
-    }
-
-    @Override
-    public GammaRnd instanceOf(double k) {
-        if (!this.acceptsParameter(k)) {
-            throw new IllegalArgumentException(String.format("パラメータ不正:k=%s", k));
-        }
-
+    protected GammaRnd createInstanceOf(double k) {
         //MarsagliaTsangに基づく乱数生成器
         if (k < 1) {
             return new MTTypeGammaRndUnder1(
@@ -63,10 +54,4 @@ public final class MTTypeGammaRndFactory implements GammaRnd.Factory {
 
         return new MTTypeGammaRndOver1(k, this.exponentiation, this.normalRndFactory);
     }
-
-    @Override
-    public String toString() {
-        return "GammaRnd.Factory";
-    }
-
 }

@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.28
  */
 package matsu.num.statistics.random.cat;
 
@@ -19,7 +19,7 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * テーブル法に基づく, カテゴリカル分布に従う乱数発生器のファクトリ.
  * 
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
 public final class TableBasedCategoricalRndFactory implements CategoricalRnd.Factory {
 
@@ -33,13 +33,8 @@ public final class TableBasedCategoricalRndFactory implements CategoricalRnd.Fac
     }
 
     @Override
-    public boolean acceptsSizeOf(double[] probabilityValues) {
-        return probabilityValues.length >= 1;
-    }
-
-    @Override
     public CategoricalRnd instanceOf(double[] probability) {
-        if (!this.acceptsSizeOf(probability)) {
+        if (!CategoricalRnd.acceptsSizeOf(probability)) {
             throw exceptionGetter.apply(probability);
         }
         return TableBasedCategoricalRnd.instanceOf(probability);
@@ -47,7 +42,7 @@ public final class TableBasedCategoricalRndFactory implements CategoricalRnd.Fac
 
     @Override
     public CategoricalRnd instanceOfExp(double[] logProbability) {
-        if (!this.acceptsSizeOf(logProbability)) {
+        if (!CategoricalRnd.acceptsSizeOf(logProbability)) {
             throw exceptionGetter.apply(logProbability);
         }
         return TableBasedCategoricalRnd.instanceOfExp(logProbability, this.exponentiation);

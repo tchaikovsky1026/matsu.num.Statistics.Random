@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.28
  */
 package matsu.num.statistics.random.staticgamma;
 
@@ -18,20 +18,19 @@ import matsu.num.statistics.random.StaticGammaRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
- * Marsaglia-Tsangの方法に基づく, ガンマ乱数のstaticな生成器. <br>
- * 扱える形状パラメータkは, {@code 1.0E-2 <= k <= 1.0E+28} である.
+ * Marsaglia-Tsangの方法に基づく, ガンマ乱数のstaticな生成器.
  * 
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
-final class MTTypeStaticGammaRnd implements StaticGammaRnd {
+public final class MTTypeStaticGammaRnd extends SkeletalStaticGammaRnd {
 
     private final ExponentialRnd expRnd;
     private final NormalRnd normalRnd;
 
     private final Exponentiation exponentiation;
 
-    MTTypeStaticGammaRnd(Exponentiation exponentiation, ExponentialRnd.Factory exponentialRndFactory,
+    private MTTypeStaticGammaRnd(Exponentiation exponentiation, ExponentialRnd.Factory exponentialRndFactory,
             NormalRnd.Factory normalRndFactory) {
         super();
         this.exponentiation = Objects.requireNonNull(exponentiation);
@@ -40,16 +39,7 @@ final class MTTypeStaticGammaRnd implements StaticGammaRnd {
     }
 
     @Override
-    public boolean acceptsParameter(double k) {
-        return LOWER_LIMIT_SHAPE_PARAMETER <= k && k <= UPPER_LIMIT_SHAPE_PARAMETER;
-    }
-
-    @Override
-    public double nextRandom(BaseRandom random, double k) {
-        if (!this.acceptsParameter(k)) {
-            throw new IllegalArgumentException(String.format("パラメータ不正:k=%s", k));
-        }
-
+    protected double calcNextGamma(BaseRandom random, double k) {
         if (k == 1) {
             return this.expRnd.nextRandom(random);
         }
@@ -82,8 +72,20 @@ final class MTTypeStaticGammaRnd implements StaticGammaRnd {
         }
     }
 
-    @Override
-    public String toString() {
-        return "StaticGammaRnd";
+    /**
+     * {@link StaticGammaRnd} を生成するファクトリを生成する.
+     * 
+     * @param exponentiation 指数関数計算器
+     * @param exponentialRndFactory 指数乱数発生器のファクトリ
+     * @param normalRndFactory 正規乱数発生器のファクトリ
+     * @return StaticGammaRnd乱数のファクトリ
+     * @throws NullPointerException 引数にnullが含まれる場合
+     */
+    public static StaticGammaRnd.Factory createFactory(
+            Exponentiation exponentiation,
+            ExponentialRnd.Factory exponentialRndFactory,
+            NormalRnd.Factory normalRndFactory) {
+        return new StaticGammaRndFactory(
+                new MTTypeStaticGammaRnd(exponentiation, exponentialRndFactory, normalRndFactory));
     }
 }

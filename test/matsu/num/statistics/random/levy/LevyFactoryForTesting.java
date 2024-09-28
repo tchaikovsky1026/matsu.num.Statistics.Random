@@ -9,7 +9,7 @@ import matsu.num.statistics.random.norm.NormalFactoryForTesting;
 public final class LevyFactoryForTesting {
 
     public static final LevyRnd.Factory FACTORY =
-            new NormalBasedLevyRndFactory(NormalFactoryForTesting.FACTORY);
+            NormalBasedLevyRnd.createFactory(NormalFactoryForTesting.FACTORY);
 
     private LevyFactoryForTesting() {
     }

@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.28
  */
 package matsu.num.statistics.random.gamma;
 
@@ -20,11 +20,9 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * X～Gamma(k+1),Y～Beta(k+1,1)のとき(XY)～Gamma(k)となることを利用する.
  * 
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
-final class MTTypeGammaRndUnder1 implements GammaRnd {
-
-    private final double k;
+final class MTTypeGammaRndUnder1 extends SkeletalGammaRnd {
 
     //Gamma(k+1)乱数を発生させるためのインスタンス
     private final GammaRnd gammaKPlus1;
@@ -39,19 +37,14 @@ final class MTTypeGammaRndUnder1 implements GammaRnd {
      */
     MTTypeGammaRndUnder1(double k, Exponentiation exponentiation,
             ExponentialRnd.Factory exponentialRndFactory, NormalRnd.Factory normalRndFactory) {
-        if (!(GammaRnd.LOWER_LIMIT_SHAPE_PARAMETER <= k && k <= 1)) {
-            throw new AssertionError("Bug:0.01<=k<=1でない");
-        }
-        this.k = k;
+        super(k);
+
+        assert GammaRnd.LOWER_LIMIT_SHAPE_PARAMETER <= k && k <= 1 : "LL <= k <=1 でない";
+
         this.exponentiation = exponentiation;
         this.gammaKPlus1 = new MTTypeGammaRndOver1(k + 1, exponentiation, normalRndFactory);
         this.invK = 1 / k;
         this.expRnd = exponentialRndFactory.instance();
-    }
-
-    @Override
-    public double shapeParameter() {
-        return this.k;
     }
 
     @Override
@@ -68,10 +61,5 @@ final class MTTypeGammaRndUnder1 implements GammaRnd {
          */
         return this.gammaKPlus1.nextRandom(random) * exponentiation.exp(
                 -this.expRnd.nextRandom(random) * this.invK);
-    }
-
-    @Override
-    public String toString() {
-        return GammaRndToString.toString(this);
     }
 }

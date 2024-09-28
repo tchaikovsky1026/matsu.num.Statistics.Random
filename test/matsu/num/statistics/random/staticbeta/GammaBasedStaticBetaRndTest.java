@@ -19,16 +19,16 @@ import matsu.num.statistics.random.TestedFloatingRandomGenerator;
 import matsu.num.statistics.random.staticgamma.StaticGammaFactoryForTesting;
 
 /**
- * {@link GammaBasedStaticBetaRndFactory}クラスのテスト.
+ * {@link GammaBasedStaticBetaRnd}クラスのテスト.
  * 
  * @author Matsuura Y.
  */
 @RunWith(Enclosed.class)
-final class GammaBasedStaticBetaRndFactoryTest {
+final class GammaBasedStaticBetaRndTest {
 
-    public static final Class<?> TEST_CLASS = GammaBasedStaticBetaRndFactory.class;
+    public static final Class<?> TEST_CLASS = GammaBasedStaticBetaRnd.class;
     private static final StaticBetaRnd.Factory FACTORY =
-            new GammaBasedStaticBetaRndFactory(StaticGammaFactoryForTesting.FACTORY);
+            GammaBasedStaticBetaRnd.createFactory(StaticGammaFactoryForTesting.FACTORY);
 
     public static class パラメータの境界値テスト {
 
@@ -44,7 +44,7 @@ final class GammaBasedStaticBetaRndFactoryTest {
         @Test(expected = None.class)
         public void test_境界内最小値() {
             assertThat(
-                    staticBetaRnd.acceptsParameters(LOWER_LIMIT_SHAPE_PARAMETER, LOWER_LIMIT_SHAPE_PARAMETER),
+                    StaticBetaRnd.acceptsParameters(LOWER_LIMIT_SHAPE_PARAMETER, LOWER_LIMIT_SHAPE_PARAMETER),
                     is(true));
             staticBetaRnd.nextRandom(random, LOWER_LIMIT_SHAPE_PARAMETER, LOWER_LIMIT_SHAPE_PARAMETER);
             staticBetaRnd.nextBetaPrime(random, LOWER_LIMIT_SHAPE_PARAMETER, LOWER_LIMIT_SHAPE_PARAMETER);
@@ -53,33 +53,9 @@ final class GammaBasedStaticBetaRndFactoryTest {
         @Test(expected = None.class)
         public void test_境界内最大値() {
             assertThat(
-                    staticBetaRnd.acceptsParameters(UPPER_LIMIT_SHAPE_PARAMETER, UPPER_LIMIT_SHAPE_PARAMETER),
+                    StaticBetaRnd.acceptsParameters(UPPER_LIMIT_SHAPE_PARAMETER, UPPER_LIMIT_SHAPE_PARAMETER),
                     is(true));
             staticBetaRnd.nextBetaPrime(random, UPPER_LIMIT_SHAPE_PARAMETER, UPPER_LIMIT_SHAPE_PARAMETER);
-        }
-
-        @Test
-        public void test_境界最小値外() {
-            assertThat(
-                    staticBetaRnd.acceptsParameters(
-                            Math.nextDown(LOWER_LIMIT_SHAPE_PARAMETER), LOWER_LIMIT_SHAPE_PARAMETER),
-                    is(false));
-            assertThat(
-                    staticBetaRnd.acceptsParameters(
-                            LOWER_LIMIT_SHAPE_PARAMETER, Math.nextDown(LOWER_LIMIT_SHAPE_PARAMETER)),
-                    is(false));
-        }
-
-        @Test
-        public void test_境界最大値外() {
-            assertThat(
-                    staticBetaRnd.acceptsParameters(
-                            Math.nextUp(UPPER_LIMIT_SHAPE_PARAMETER), UPPER_LIMIT_SHAPE_PARAMETER),
-                    is(false));
-            assertThat(
-                    staticBetaRnd.acceptsParameters(
-                            UPPER_LIMIT_SHAPE_PARAMETER, Math.nextUp(UPPER_LIMIT_SHAPE_PARAMETER)),
-                    is(false));
         }
     }
 

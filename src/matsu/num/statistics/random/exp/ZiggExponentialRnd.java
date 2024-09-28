@@ -25,7 +25,7 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * @author Matsuura Y.
  * @version 20.0
  */
-final class ZiggExponentialRnd implements ExponentialRnd {
+public final class ZiggExponentialRnd extends SkeletalExponentialRnd {
 
     private static final int N = 128;
     private static final double R_N = 6.89831511661564d;
@@ -36,7 +36,12 @@ final class ZiggExponentialRnd implements ExponentialRnd {
 
     private final Exponentiation exponentiation;
 
-    ZiggExponentialRnd(Exponentiation exponentiation) {
+    /**
+     * 唯一のコンストラクタ.
+     * 
+     * @throws NullPointerException null
+     */
+    private ZiggExponentialRnd(Exponentiation exponentiation) {
         super();
         this.exponentiation = Objects.requireNonNull(exponentiation);
 
@@ -94,8 +99,14 @@ final class ZiggExponentialRnd implements ExponentialRnd {
         return R_N - exponentiation.log(random.nextDouble());
     }
 
-    @Override
-    public String toString() {
-        return "ExponentialRnd";
+    /**
+     * {@link ZiggExponentialRnd} を生成するファクトリを生成する.
+     * 
+     * @param exponentiation 指数関数計算器
+     * @return 指数乱数のファクトリ
+     * @throws NullPointerException 引数にnullが含まれる場合
+     */
+    public static ExponentialRnd.Factory createFactory(Exponentiation exponentiation) {
+        return new ExponentialRndFactory(new ZiggExponentialRnd(exponentiation));
     }
 }

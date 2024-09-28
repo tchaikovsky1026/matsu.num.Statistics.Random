@@ -35,24 +35,28 @@ final class StandardImplVoigtRndFactoryTest {
 
         @Test(expected = None.class)
         public void test_境界内最小値() {
-            assertThat(FACTORY.acceptsParameter(LOWER_LIMIT_ALPHA), is(true));
+            assertThat(VoigtRnd.acceptsParameter(LOWER_LIMIT_ALPHA), is(true));
             FACTORY.instanceOf(LOWER_LIMIT_ALPHA);
         }
 
         @Test(expected = None.class)
         public void test_境界内最大値() {
-            assertThat(FACTORY.acceptsParameter(UPPER_LIMIT_ALPHA), is(true));
+            assertThat(VoigtRnd.acceptsParameter(UPPER_LIMIT_ALPHA), is(true));
             FACTORY.instanceOf(UPPER_LIMIT_ALPHA);
         }
 
-        @Test
+        @Test(expected = IllegalArgumentException.class)
         public void test_境界最小値外() {
-            assertThat(FACTORY.acceptsParameter(Math.nextDown(LOWER_LIMIT_ALPHA)), is(false));
+            double alpha = Math.nextDown(LOWER_LIMIT_ALPHA);
+            assertThat(VoigtRnd.acceptsParameter(alpha), is(false));
+            FACTORY.instanceOf(alpha);
         }
 
-        @Test
+        @Test(expected = IllegalArgumentException.class)
         public void test_境界最大値外() {
-            assertThat(FACTORY.acceptsParameter(Math.nextUp(UPPER_LIMIT_ALPHA)), is(false));
+            double alpha = Math.nextUp(UPPER_LIMIT_ALPHA);
+            assertThat(VoigtRnd.acceptsParameter(alpha), is(false));
+            FACTORY.instanceOf(alpha);
         }
     }
 

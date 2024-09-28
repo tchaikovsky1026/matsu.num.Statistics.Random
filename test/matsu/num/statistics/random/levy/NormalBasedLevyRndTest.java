@@ -14,16 +14,16 @@ import matsu.num.statistics.random.TestedFloatingRandomGenerator;
 import matsu.num.statistics.random.norm.NormalFactoryForTesting;
 
 /**
- * {@link NormalBasedLevyRndFactory}クラスのテスト.
+ * {@link NormalBasedLevyRnd}クラスのテスト.
  * 
  * @author Matsuura Y.
  */
 @RunWith(Enclosed.class)
-final class NormalBasedLevyRndFactoryTest {
+final class NormalBasedLevyRndTest {
 
-    public static final Class<?> TEST_CLASS = NormalBasedLevyRndFactory.class;
+    public static final Class<?> TEST_CLASS = NormalBasedLevyRnd.class;
     private static final LevyRnd.Factory FACTORY =
-            new NormalBasedLevyRndFactory(NormalFactoryForTesting.FACTORY);
+            NormalBasedLevyRnd.createFactory(NormalFactoryForTesting.FACTORY);
 
     public static class Levy乱数のテスト {
 

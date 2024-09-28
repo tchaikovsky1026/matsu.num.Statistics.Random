@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.27
  */
 package matsu.num.statistics.random.service;
 
@@ -27,7 +27,6 @@ import matsu.num.statistics.random.LevyRnd;
 import matsu.num.statistics.random.LogisticRnd;
 import matsu.num.statistics.random.NormalRnd;
 import matsu.num.statistics.random.PoissonRnd;
-import matsu.num.statistics.random.RandomGeneratorFactory;
 import matsu.num.statistics.random.StaticBetaRnd;
 import matsu.num.statistics.random.StaticGammaRnd;
 import matsu.num.statistics.random.TDistributionRnd;
@@ -35,20 +34,19 @@ import matsu.num.statistics.random.VoigtRnd;
 import matsu.num.statistics.random.WeibullRnd;
 import matsu.num.statistics.random.beta.GammaBasedBetaRndFactory;
 import matsu.num.statistics.random.cat.TableBasedCategoricalRndFactory;
-import matsu.num.statistics.random.cauchy.ZiggCauchyRndFactory;
+import matsu.num.statistics.random.cauchy.ZiggCauchyRnd;
 import matsu.num.statistics.random.chisq.GammaTypeChiSquaredRndFactory;
-import matsu.num.statistics.random.exp.ZiggExponentialRndFactory;
+import matsu.num.statistics.random.exp.ZiggExponentialRnd;
 import matsu.num.statistics.random.fdist.BetaBasedFDistributionRndFactory;
 import matsu.num.statistics.random.gamma.MTTypeGammaRndFactory;
 import matsu.num.statistics.random.geo.InversionBasedGeoRndFactory;
-import matsu.num.statistics.random.gumbel.UniZiggGumbelRndFactory;
-import matsu.num.statistics.random.levy.NormalBasedLevyRndFactory;
-import matsu.num.statistics.random.logi.ZiggLogiRndFactory;
-import matsu.num.statistics.random.norm.ZiggNormalRndFactory;
+import matsu.num.statistics.random.gumbel.UniZiggGumbelRnd;
+import matsu.num.statistics.random.levy.NormalBasedLevyRnd;
+import matsu.num.statistics.random.logi.ZiggLogiRnd;
+import matsu.num.statistics.random.norm.ZiggNormalRnd;
 import matsu.num.statistics.random.poi.GammaHomoProcessBasedPoissonRndFactory;
-import matsu.num.statistics.random.service.functionaltype.FunctionalTypeImpl;
-import matsu.num.statistics.random.staticbeta.GammaBasedStaticBetaRndFactory;
-import matsu.num.statistics.random.staticgamma.MTTypeStaticGammaRndFactory;
+import matsu.num.statistics.random.staticbeta.GammaBasedStaticBetaRnd;
+import matsu.num.statistics.random.staticgamma.MTTypeStaticGammaRnd;
 import matsu.num.statistics.random.tdist.NormalGammaBasedTDistRndFactory;
 import matsu.num.statistics.random.voigt.StandardImplVoigtRndFactory;
 import matsu.num.statistics.random.weibull.GumbelBasedWeibullRndFactory;
@@ -57,11 +55,11 @@ import matsu.num.statistics.random.weibull.GumbelBasedWeibullRndFactory;
  * このパッケージが管理する {@link RandomGeneratorType} 定数.
  * 
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
 public final class GeneratorTypes {
 
-    private static final Collection<RandomGeneratorType<? extends RandomGeneratorFactory>> values;
+    private static final Collection<RandomGeneratorType<?>> values;
 
     /**
      * ベータ分布に従う乱数を表す.
@@ -137,106 +135,106 @@ public final class GeneratorTypes {
     public static final RandomGeneratorType<WeibullRnd.Factory> WEIBULL_RND;
 
     static {
-        List<RandomGeneratorType<? extends RandomGeneratorFactory>> list = new ArrayList<>();
+        List<RandomGeneratorType<?>> list = new ArrayList<>();
 
-        BETA_RND = new FunctionalTypeImpl<>(
+        BETA_RND = new FunctionalType<>(
                 "BETA_RND", BetaRnd.Factory.class,
                 p -> new GammaBasedBetaRndFactory(p.get(GeneratorTypes.GAMMA_RND)));
         list.add(BETA_RND);
 
-        CATEGORICAL_RND = new FunctionalTypeImpl<>(
+        CATEGORICAL_RND = new FunctionalType<>(
                 "CATEGORICAL_RND", CategoricalRnd.Factory.class,
                 p -> new TableBasedCategoricalRndFactory(p.lib().exponentiation()));
         list.add(CATEGORICAL_RND);
 
-        CAUCHY_RND = new FunctionalTypeImpl<>(
+        CAUCHY_RND = new FunctionalType<>(
                 "CAUCHY_RND", CauchyRnd.Factory.class,
-                p -> new ZiggCauchyRndFactory(p.lib().exponentiation()));
+                p -> ZiggCauchyRnd.createFactory(p.lib().exponentiation()));
         list.add(CAUCHY_RND);
 
-        CHI_SQUARED_RND = new FunctionalTypeImpl<>(
+        CHI_SQUARED_RND = new FunctionalType<>(
                 "CHI_SQUARED_RND", ChiSquaredRnd.Factory.class,
                 p -> new GammaTypeChiSquaredRndFactory(p.get(GeneratorTypes.GAMMA_RND)));
         list.add(CHI_SQUARED_RND);
 
-        EXPONENTIAL_RND = new FunctionalTypeImpl<>(
+        EXPONENTIAL_RND = new FunctionalType<>(
                 "EXPONENTIAL_RND", ExponentialRnd.Factory.class,
-                p -> new ZiggExponentialRndFactory(p.lib().exponentiation()));
+                p -> ZiggExponentialRnd.createFactory(p.lib().exponentiation()));
         list.add(EXPONENTIAL_RND);
 
-        F_DISTRIBUTION_RND = new FunctionalTypeImpl<>(
+        F_DISTRIBUTION_RND = new FunctionalType<>(
                 "F_DISTRIBUTION_RND", FDistributionRnd.Factory.class,
                 p -> new BetaBasedFDistributionRndFactory(p.get(GeneratorTypes.BETA_RND)));
         list.add(F_DISTRIBUTION_RND);
 
-        GAMMA_RND = new FunctionalTypeImpl<>(
+        GAMMA_RND = new FunctionalType<>(
                 "GAMMA_RND", GammaRnd.Factory.class,
                 p -> new MTTypeGammaRndFactory(
                         p.lib().exponentiation(),
                         p.get(GeneratorTypes.EXPONENTIAL_RND), p.get(GeneratorTypes.NORMAL_RND)));
         list.add(GAMMA_RND);
 
-        GEOMETRIC_RND = new FunctionalTypeImpl<>(
+        GEOMETRIC_RND = new FunctionalType<>(
                 "GEOMETRIC_RND", GeometricRnd.Factory.class,
                 p -> new InversionBasedGeoRndFactory(
                         p.lib().exponentiation(), p.get(GeneratorTypes.EXPONENTIAL_RND)));
         list.add(GEOMETRIC_RND);
 
-        GUMBEL_RND = new FunctionalTypeImpl<>(
+        GUMBEL_RND = new FunctionalType<>(
                 "GUMBEL_RND", GumbelRnd.Factory.class,
-                p -> new UniZiggGumbelRndFactory(
+                p -> UniZiggGumbelRnd.createFactory(
                         p.lib().exponentiation(), p.get(GeneratorTypes.EXPONENTIAL_RND)));
         list.add(GUMBEL_RND);
 
-        LEVY_RND = new FunctionalTypeImpl<>(
+        LEVY_RND = new FunctionalType<>(
                 "LEVY_RND", LevyRnd.Factory.class,
-                p -> new NormalBasedLevyRndFactory(p.get(GeneratorTypes.NORMAL_RND)));
+                p -> NormalBasedLevyRnd.createFactory(p.get(GeneratorTypes.NORMAL_RND)));
         list.add(LEVY_RND);
 
-        LOGISTIC_RND = new FunctionalTypeImpl<>(
+        LOGISTIC_RND = new FunctionalType<>(
                 "LOGISTIC_RND", LogisticRnd.Factory.class,
-                p -> new ZiggLogiRndFactory(
+                p -> ZiggLogiRnd.createFactory(
                         p.lib().exponentiation(), p.get(GeneratorTypes.EXPONENTIAL_RND)));
         list.add(LOGISTIC_RND);
 
-        NORMAL_RND = new FunctionalTypeImpl<>(
+        NORMAL_RND = new FunctionalType<>(
                 "NORMAL_RND", NormalRnd.Factory.class,
-                p -> new ZiggNormalRndFactory(
+                p -> ZiggNormalRnd.createFactory(
                         p.lib().exponentiation(), p.get(GeneratorTypes.EXPONENTIAL_RND)));
         list.add(NORMAL_RND);
 
-        POISSON_RND = new FunctionalTypeImpl<>(
+        POISSON_RND = new FunctionalType<>(
                 "POISSON_RND", PoissonRnd.Factory.class,
                 p -> new GammaHomoProcessBasedPoissonRndFactory(
                         p.lib().exponentiation(), p.get(GeneratorTypes.GAMMA_RND)));
         list.add(POISSON_RND);
 
-        STATIC_BETA_RND = new FunctionalTypeImpl<>(
+        STATIC_BETA_RND = new FunctionalType<>(
                 "STATIC_BETA_RND", StaticBetaRnd.Factory.class,
-                p -> new GammaBasedStaticBetaRndFactory(p.get(GeneratorTypes.STATIC_GAMMA_RND)));
+                p -> GammaBasedStaticBetaRnd.createFactory(p.get(GeneratorTypes.STATIC_GAMMA_RND)));
         list.add(STATIC_BETA_RND);
 
-        STATIC_GAMMA_RND = new FunctionalTypeImpl<>(
+        STATIC_GAMMA_RND = new FunctionalType<>(
                 "STATIC_GAMMA_RND", StaticGammaRnd.Factory.class,
-                p -> new MTTypeStaticGammaRndFactory(
+                p -> MTTypeStaticGammaRnd.createFactory(
                         p.lib().exponentiation(),
                         p.get(GeneratorTypes.EXPONENTIAL_RND), p.get(GeneratorTypes.NORMAL_RND)));
         list.add(STATIC_GAMMA_RND);
 
-        T_DISTRIBUTION_RND = new FunctionalTypeImpl<>(
+        T_DISTRIBUTION_RND = new FunctionalType<>(
                 "T_DISTRIBUTION_RND", TDistributionRnd.Factory.class,
                 p -> new NormalGammaBasedTDistRndFactory(
                         p.lib().exponentiation(),
                         p.get(GeneratorTypes.NORMAL_RND), p.get(GeneratorTypes.GAMMA_RND)));
         list.add(T_DISTRIBUTION_RND);
 
-        VOIGT_RND = new FunctionalTypeImpl<>(
+        VOIGT_RND = new FunctionalType<>(
                 "VOIGT_RND", VoigtRnd.Factory.class,
                 p -> new StandardImplVoigtRndFactory(
                         p.get(GeneratorTypes.NORMAL_RND), p.get(GeneratorTypes.CAUCHY_RND)));
         list.add(VOIGT_RND);
 
-        WEIBULL_RND = new FunctionalTypeImpl<>(
+        WEIBULL_RND = new FunctionalType<>(
                 "WEIBULL_RND", WeibullRnd.Factory.class,
                 p -> new GumbelBasedWeibullRndFactory(
                         p.lib().exponentiation(), p.get(GeneratorTypes.GUMBEL_RND)));
@@ -251,7 +249,7 @@ public final class GeneratorTypes {
      * 
      * @return {@link RandomGeneratorType} のコレクション
      */
-    static Collection<? extends RandomGeneratorType<? extends RandomGeneratorFactory>> values() {
+    static Collection<? extends RandomGeneratorType<?>> values() {
         return values;
     }
 

@@ -5,29 +5,25 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.28
  */
 package matsu.num.statistics.random.tdist;
 
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.GammaRnd;
 import matsu.num.statistics.random.NormalRnd;
-import matsu.num.statistics.random.TDistributionRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
  * 正規分布とガンマ分布乱数発生器を利用した, t分布に従う乱数発生器を扱う.
  *
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
-final class NormalGammaBasedTDistRnd implements TDistributionRnd {
+final class NormalGammaBasedTDistRnd extends SkeletalTDistributionRnd {
 
-    private final double nu;
     private final GammaRnd gammaRnd;
-
     private final NormalRnd normalRnd;
-
     private final Exponentiation exponentiation;
 
     /**
@@ -44,27 +40,16 @@ final class NormalGammaBasedTDistRnd implements TDistributionRnd {
             Exponentiation exponentiation,
             NormalRnd.Factory normalRndFactory,
             GammaRnd.Factory gammaRndFactory) {
-        super();
+        super(nu);
+
         this.exponentiation = exponentiation;
         this.normalRnd = normalRndFactory.instance();
         this.gammaRnd = gammaRndFactory.instanceOf(nu * 0.5);
-        this.nu = nu;
-    }
-
-    @Override
-    public final double degreesOfFreedom() {
-        return this.nu;
     }
 
     @Override
     public final double nextRandom(BaseRandom random) {
         return this.normalRnd.nextRandom(random)
                 / exponentiation.sqrt(this.gammaRnd.nextRandom(random) * 2 / this.nu);
-    }
-
-    @Override
-    public String toString() {
-        return String.format(
-                "TDistRnd(%s)", this.degreesOfFreedom());
     }
 }

@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.26
  */
 package matsu.num.statistics.random.gumbel;
 
@@ -13,7 +13,6 @@ import java.util.Objects;
 
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.ExponentialRnd;
-import matsu.num.statistics.random.GumbelRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
@@ -28,11 +27,11 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * </p>
  *
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  * @deprecated {@link UniZiggGumbelRnd}を推奨する.
  */
 @Deprecated
-final class ZiggGumbelRnd implements GumbelRnd {
+final class ZiggGumbelRnd extends SkeletalGumbelRnd {
 
     private static final int N = 128;
     private static final double R_P = 7.4267177720719d;
@@ -257,10 +256,5 @@ final class ZiggGumbelRnd implements GumbelRnd {
             }
             return w0;
         }
-    }
-
-    @Override
-    public String toString() {
-        return "GumbelRnd";
     }
 }

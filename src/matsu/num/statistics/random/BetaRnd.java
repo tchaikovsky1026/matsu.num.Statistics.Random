@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.24
  */
 package matsu.num.statistics.random;
 
@@ -54,7 +54,7 @@ package matsu.num.statistics.random;
  * </p>
  *
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
 public interface BetaRnd extends FloatingRandomGenerator {
 
@@ -98,20 +98,23 @@ public interface BetaRnd extends FloatingRandomGenerator {
     public abstract double nextBetaPrime(BaseRandom random);
 
     /**
+     * <p>
+     * 指定したパラメータが乱数発生器に適合するかを判定する.
+     * </p>
+     *
+     * @param a 形状パラメータ
+     * @param b 形状パラメータ
+     * @return パラメータが適合する場合はtrue
+     */
+    public static boolean acceptsParameters(double a, double b) {
+        return BetaRnd.LOWER_LIMIT_SHAPE_PARAMETER <= a && a <= BetaRnd.UPPER_LIMIT_SHAPE_PARAMETER
+                && BetaRnd.LOWER_LIMIT_SHAPE_PARAMETER <= b && b <= BetaRnd.UPPER_LIMIT_SHAPE_PARAMETER;
+    }
+
+    /**
      * {@link BetaRnd} のファクトリ.
      */
-    public static interface Factory extends RandomGeneratorFactory {
-
-        /**
-         * <p>
-         * 指定したパラメータが乱数発生器に適合するかを判定する.
-         * </p>
-         *
-         * @param a 形状パラメータ
-         * @param b 形状パラメータ
-         * @return パラメータが適合する場合はtrue
-         */
-        public abstract boolean acceptsParameters(double a, double b);
+    public static interface Factory {
 
         /**
          * <p>

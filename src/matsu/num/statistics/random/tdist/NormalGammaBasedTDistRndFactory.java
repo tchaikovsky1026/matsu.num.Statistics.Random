@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.28
  */
 package matsu.num.statistics.random.tdist;
 
@@ -20,9 +20,9 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * 正規ガンマタイプのt分布に従う乱数発生器のファクトリ.
  * 
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
-public final class NormalGammaBasedTDistRndFactory implements TDistributionRnd.Factory {
+public final class NormalGammaBasedTDistRndFactory extends SkeletalTDistributionRndFactory {
 
     private final Exponentiation exponentiation;
     private final NormalRnd.Factory normalRndFactory;
@@ -39,21 +39,7 @@ public final class NormalGammaBasedTDistRndFactory implements TDistributionRnd.F
     }
 
     @Override
-    public boolean acceptsParameter(double nu) {
-        return TDistributionRnd.LOWER_LIMIT_DEGREES_OF_FREEDOM <= nu
-                && nu <= TDistributionRnd.UPPER_LIMIT_DEGREES_OF_FREEDOM;
-    }
-
-    @Override
-    public TDistributionRnd instanceOf(double nu) {
-        if (!this.acceptsParameter(nu)) {
-            throw new IllegalArgumentException(String.format("パラメータ不正:nu=%s", nu));
-        }
+    protected TDistributionRnd createInstanceOf(double nu) {
         return new NormalGammaBasedTDistRnd(nu, this.exponentiation, this.normalRndFactory, this.gammaRndFactory);
-    }
-
-    @Override
-    public String toString() {
-        return "TDistRnd.Factory";
     }
 }

@@ -36,24 +36,28 @@ final class GammaHomoProcessBasedPoissonRndFactoryTest {
 
         @Test(expected = None.class)
         public void test_境界内最小値() {
-            assertThat(FACTORY.acceptsParameter(LOWER_LIMIT_LAMBDA), is(true));
+            assertThat(PoissonRnd.acceptsParameter(LOWER_LIMIT_LAMBDA), is(true));
             FACTORY.instanceOf(LOWER_LIMIT_LAMBDA);
         }
 
         @Test(expected = None.class)
         public void test_境界内最大値() {
-            assertThat(FACTORY.acceptsParameter(UPPER_LIMIT_LAMBDA), is(true));
+            assertThat(PoissonRnd.acceptsParameter(UPPER_LIMIT_LAMBDA), is(true));
             FACTORY.instanceOf(UPPER_LIMIT_LAMBDA);
         }
 
-        @Test
+        @Test(expected = IllegalArgumentException.class)
         public void test_境界最小値外() {
-            assertThat(FACTORY.acceptsParameter(Math.nextDown(LOWER_LIMIT_LAMBDA)), is(false));
+            double lambda = Math.nextDown(LOWER_LIMIT_LAMBDA);
+            assertThat(PoissonRnd.acceptsParameter(lambda), is(false));
+            FACTORY.instanceOf(lambda);
         }
 
-        @Test
+        @Test(expected = IllegalArgumentException.class)
         public void test_境界最大値外() {
-            assertThat(FACTORY.acceptsParameter(Math.nextUp(UPPER_LIMIT_LAMBDA)), is(false));
+            double lambda = Math.nextUp(UPPER_LIMIT_LAMBDA);
+            assertThat(PoissonRnd.acceptsParameter(lambda), is(false));
+            FACTORY.instanceOf(lambda);
         }
     }
 

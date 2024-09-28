@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.28
  */
 package matsu.num.statistics.random;
 
@@ -39,7 +39,7 @@ package matsu.num.statistics.random;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
 public interface FDistributionRnd extends FloatingRandomGenerator {
 
@@ -72,20 +72,25 @@ public interface FDistributionRnd extends FloatingRandomGenerator {
     public abstract double denominatorDegreesOfFreedom();
 
     /**
+     * <p>
+     * 指定したパラメータが乱数発生器に適合するかを判定する.
+     * </p>
+     *
+     * @param d1 分子自由度
+     * @param d2 分母自由度
+     * @return パラメータが適合する場合はtrue
+     */
+    public static boolean acceptsParameters(double d1, double d2) {
+        return FDistributionRnd.LOWER_LIMIT_DEGREES_OF_FREEDOM <= d1
+                && d1 <= FDistributionRnd.UPPER_LIMIT_DEGREES_OF_FREEDOM
+                && FDistributionRnd.LOWER_LIMIT_DEGREES_OF_FREEDOM <= d2
+                && d2 <= FDistributionRnd.UPPER_LIMIT_DEGREES_OF_FREEDOM;
+    }
+
+    /**
      * {@link FDistributionRnd} のファクトリ.
      */
-    public static interface Factory extends RandomGeneratorFactory {
-
-        /**
-         * <p>
-         * 指定したパラメータが乱数発生器に適合するかを判定する.
-         * </p>
-         *
-         * @param d1 分子自由度
-         * @param d2 分母自由度
-         * @return パラメータが適合する場合はtrue
-         */
-        public abstract boolean acceptsParameters(double d1, double d2);
+    public static interface Factory {
 
         /**
          * <p>

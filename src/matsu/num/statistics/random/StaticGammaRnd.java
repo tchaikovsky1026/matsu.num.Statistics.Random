@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.24
  */
 package matsu.num.statistics.random;
 
@@ -38,7 +38,7 @@ package matsu.num.statistics.random;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
 public interface StaticGammaRnd {
 
@@ -60,7 +60,9 @@ public interface StaticGammaRnd {
      * @param k 形状パラメータ
      * @return パラメータが適合する場合はtrue
      */
-    public abstract boolean acceptsParameter(double k);
+    public static boolean acceptsParameter(double k) {
+        return LOWER_LIMIT_SHAPE_PARAMETER <= k && k <= UPPER_LIMIT_SHAPE_PARAMETER;
+    }
 
     /**
      * <p>
@@ -83,7 +85,7 @@ public interface StaticGammaRnd {
     /**
      * {@link StaticGammaRnd} のファクトリ.
      */
-    public static interface Factory extends RandomGeneratorFactory {
+    public static interface Factory {
 
         /**
          * <p>

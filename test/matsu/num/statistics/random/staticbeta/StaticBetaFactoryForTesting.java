@@ -9,7 +9,7 @@ import matsu.num.statistics.random.staticgamma.StaticGammaFactoryForTesting;
 public final class StaticBetaFactoryForTesting {
 
     public static final StaticBetaRnd.Factory FACTORY =
-            new GammaBasedStaticBetaRndFactory(StaticGammaFactoryForTesting.FACTORY);
+            GammaBasedStaticBetaRnd.createFactory(StaticGammaFactoryForTesting.FACTORY);
 
     private StaticBetaFactoryForTesting() {
     }

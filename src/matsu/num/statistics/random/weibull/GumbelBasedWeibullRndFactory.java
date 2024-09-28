@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.28
  */
 package matsu.num.statistics.random.weibull;
 
@@ -19,9 +19,9 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * 標準Gumbelベースの標準Weibull分布乱数生成器のファクトリ.
  * 
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
-public final class GumbelBasedWeibullRndFactory implements WeibullRnd.Factory {
+public final class GumbelBasedWeibullRndFactory extends SkeletalWeibullRndFactory {
 
     private final Exponentiation exponentiation;
     private final GumbelRnd.Factory gumbelRndFactory;
@@ -33,23 +33,7 @@ public final class GumbelBasedWeibullRndFactory implements WeibullRnd.Factory {
     }
 
     @Override
-    public boolean acceptsParameter(double k) {
-        return WeibullRnd.LOWER_LIMIT_SHAPE_PARAMETER <= k
-                && k <= WeibullRnd.UPPER_LIMIT_SHAPE_PARAMETER;
-    }
-
-    @Override
-    public WeibullRnd instanceOf(double k) {
-        if (!this.acceptsParameter(k)) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "パラメータ不正:k=%s", k));
-        }
+    protected WeibullRnd createInstanceOf(double k) {
         return new GumbelBasedWeibullRnd(k, this.exponentiation, this.gumbelRndFactory);
-    }
-
-    @Override
-    public String toString() {
-        return "WeibullRnd.Factory";
     }
 }

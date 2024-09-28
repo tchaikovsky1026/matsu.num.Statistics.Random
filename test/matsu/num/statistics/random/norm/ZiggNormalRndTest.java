@@ -20,11 +20,11 @@ import matsu.num.statistics.random.lib.ExponentiationForTesting;
  * @author Matsuura Y.
  */
 @RunWith(Enclosed.class)
-final class ZiggNormalRndFactoryTest {
+final class ZiggNormalRndTest {
 
-    public static final Class<?> TEST_CLASS = ZiggNormalRndFactory.class;
+    public static final Class<?> TEST_CLASS = ZiggNormalRnd.class;
     private static final NormalRnd.Factory FACTORY =
-            new ZiggNormalRndFactory(
+            ZiggNormalRnd.createFactory(
                     ExponentiationForTesting.INSTANCE,
                     ExponentialFactoryForTesting.FACTORY);
 

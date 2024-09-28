@@ -8,7 +8,7 @@ import matsu.num.statistics.random.lib.ExponentiationForTesting;
 @Ignore
 public final class CauchyFactoryForTesting {
     public static final CauchyRnd.Factory FACTORY =
-            new ZiggCauchyRndFactory(ExponentiationForTesting.INSTANCE);
+            ZiggCauchyRnd.createFactory(ExponentiationForTesting.INSTANCE);
 
     private CauchyFactoryForTesting() {
     }

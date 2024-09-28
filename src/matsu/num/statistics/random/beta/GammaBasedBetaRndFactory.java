@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.24
  */
 package matsu.num.statistics.random.beta;
 
@@ -18,9 +18,9 @@ import matsu.num.statistics.random.GammaRnd;
  * ガンマ乱数生成器に基づくベータ乱数生成器のファクトリ.
  * 
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
-public final class GammaBasedBetaRndFactory implements BetaRnd.Factory {
+public final class GammaBasedBetaRndFactory extends SkeletalBetaRndFactory {
 
     private final GammaRnd.Factory gammaRndFactory;
 
@@ -29,22 +29,7 @@ public final class GammaBasedBetaRndFactory implements BetaRnd.Factory {
     }
 
     @Override
-    public boolean acceptsParameters(double a, double b) {
-        return BetaRnd.LOWER_LIMIT_SHAPE_PARAMETER <= a && a <= BetaRnd.UPPER_LIMIT_SHAPE_PARAMETER
-                && BetaRnd.LOWER_LIMIT_SHAPE_PARAMETER <= b && b <= BetaRnd.UPPER_LIMIT_SHAPE_PARAMETER;
-    }
-
-    @Override
-    public BetaRnd instanceOf(double a, double b) {
-        if (!this.acceptsParameters(a, b)) {
-            throw new IllegalArgumentException(
-                    String.format("パラメータ不正:a=%s, b=%s", a, b));
-        }
+    protected BetaRnd createInstanceOf(double a, double b) {
         return new GammaBasedBetaRnd(a, b, this.gammaRndFactory);
-    }
-
-    @Override
-    public String toString() {
-        return "BetaRnd.Factory";
     }
 }

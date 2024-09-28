@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.24
  */
 package matsu.num.statistics.random;
 
@@ -36,7 +36,7 @@ package matsu.num.statistics.random;
  * </p>
  *
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
 public interface GammaRnd extends FloatingRandomGenerator {
 
@@ -60,19 +60,22 @@ public interface GammaRnd extends FloatingRandomGenerator {
     public abstract double shapeParameter();
 
     /**
+     * <p>
+     * 指定したパラメータが乱数発生器に適合するかを判定する.
+     * </p>
+     *
+     * @param k 形状パラメータ
+     * @return パラメータが適合する場合はtrue
+     */
+    public static boolean acceptsParameter(double k) {
+        return GammaRnd.LOWER_LIMIT_SHAPE_PARAMETER <= k
+                && k <= GammaRnd.UPPER_LIMIT_SHAPE_PARAMETER;
+    }
+
+    /**
      * {@link GammaRnd} のファクトリ.
      */
-    public static interface Factory extends RandomGeneratorFactory {
-
-        /**
-         * <p>
-         * 指定したパラメータが乱数発生器に適合するかを判定する.
-         * </p>
-         *
-         * @param k 形状パラメータ
-         * @return パラメータが適合する場合はtrue
-         */
-        public abstract boolean acceptsParameter(double k);
+    public static interface Factory {
 
         /**
          * <p>

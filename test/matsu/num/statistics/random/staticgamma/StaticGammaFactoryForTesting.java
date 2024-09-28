@@ -11,7 +11,7 @@ import matsu.num.statistics.random.norm.NormalFactoryForTesting;
 public final class StaticGammaFactoryForTesting {
 
     public static final StaticGammaRnd.Factory FACTORY =
-            new MTTypeStaticGammaRndFactory(
+            MTTypeStaticGammaRnd.createFactory(
                     ExponentiationForTesting.INSTANCE,
                     ExponentialFactoryForTesting.FACTORY,
                     NormalFactoryForTesting.FACTORY);

@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.28
  */
 package matsu.num.statistics.random;
 
@@ -49,7 +49,7 @@ package matsu.num.statistics.random;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
 public interface VoigtRnd extends FloatingRandomGenerator {
 
@@ -73,19 +73,22 @@ public interface VoigtRnd extends FloatingRandomGenerator {
     public abstract double alpha();
 
     /**
+     * <p>
+     * 指定したパラメータが乱数発生器に適合するかを判定する.
+     * </p>
+     *
+     * @param alpha パラメータ
+     * @return パラメータが適合する場合はtrue
+     */
+    public static boolean acceptsParameter(double alpha) {
+        return VoigtRnd.LOWER_LIMIT_ALPHA <= alpha
+                && alpha <= VoigtRnd.UPPER_LIMIT_ALPHA;
+    }
+
+    /**
      * {@link VoigtRnd} のファクトリ.
      */
-    public static interface Factory extends RandomGeneratorFactory {
-
-        /**
-         * <p>
-         * 指定したパラメータが乱数発生器に適合するかを判定する.
-         * </p>
-         *
-         * @param alpha パラメータ
-         * @return パラメータが適合する場合はtrue
-         */
-        public abstract boolean acceptsParameter(double alpha);
+    public static interface Factory {
 
         /**
          * <p>

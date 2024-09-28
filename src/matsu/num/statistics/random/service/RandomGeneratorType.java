@@ -5,12 +5,9 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.24
  */
 package matsu.num.statistics.random.service;
-
-import matsu.num.statistics.random.RandomGeneratorFactory;
-import matsu.num.statistics.random.service.functionaltype.FunctionalType;
 
 /**
  * <p>
@@ -22,10 +19,10 @@ import matsu.num.statistics.random.service.functionaltype.FunctionalType;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  * @param <T> このタイプが返却する乱数発生器ファクトリの型
  */
 @SuppressWarnings("rawtypes")
-public sealed interface RandomGeneratorType<T extends RandomGeneratorFactory> permits FunctionalType {
+public sealed interface RandomGeneratorType<T> permits FunctionalType {
 
 }

@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.28
  */
 package matsu.num.statistics.random;
 
@@ -34,7 +34,7 @@ package matsu.num.statistics.random;
  * </p>
  *
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
 public interface GeometricRnd extends IntegerRandomGenerator {
 
@@ -58,19 +58,22 @@ public interface GeometricRnd extends IntegerRandomGenerator {
     public abstract double successPobability();
 
     /**
+     * <p>
+     * 指定したパラメータが乱数発生器に適合するかを判定する.
+     * </p>
+     *
+     * @param p 成功確率
+     * @return パラメータが適合する場合はtrue
+     */
+    public static boolean acceptsParameter(double p) {
+        return LOWER_LIMIT_SUCCESS_PROBABILITY <= p
+                && p <= UPPER_LIMIT_SUCCESS_PROBABILITY;
+    }
+
+    /**
      * {@link GeometricRnd} のファクトリ.
      */
-    public static interface Factory extends RandomGeneratorFactory {
-
-        /**
-         * <p>
-         * 指定したパラメータが乱数発生器に適合するかを判定する.
-         * </p>
-         *
-         * @param p 成功確率
-         * @return パラメータが適合する場合はtrue
-         */
-        public abstract boolean acceptsParameter(double p);
+    public static interface Factory {
 
         /**
          * <p>

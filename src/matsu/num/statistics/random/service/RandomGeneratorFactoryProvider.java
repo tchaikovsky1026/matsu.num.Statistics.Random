@@ -5,16 +5,13 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.6.14
+ * 2024.9.24
  */
 package matsu.num.statistics.random.service;
 
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
-
-import matsu.num.statistics.random.RandomGeneratorFactory;
-import matsu.num.statistics.random.service.functionaltype.FunctionalType;
 
 /**
  * <p>
@@ -39,7 +36,7 @@ import matsu.num.statistics.random.service.functionaltype.FunctionalType;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
 public final class RandomGeneratorFactoryProvider {
 
@@ -47,7 +44,7 @@ public final class RandomGeneratorFactoryProvider {
             new RandomGeneratorFactoryProvider(CommonLib.defaultImplemented());
 
     private final CommonLib lib;
-    private final Map<FunctionalType<?>, RandomGeneratorFactory> map;
+    private final Map<FunctionalType<?>, Object> map;
 
     //ロック用オブジェクト
     private final Object lock = new Object();
@@ -66,7 +63,7 @@ public final class RandomGeneratorFactoryProvider {
      * @return 乱数発生器のファクトリ
      * @throws NullPointerException 引数にnullが含まれる場合
      */
-    public <R extends RandomGeneratorFactory> R get(RandomGeneratorType<R> type) {
+    public <R> R get(RandomGeneratorType<R> type) {
         Objects.requireNonNull(type);
         FunctionalType<R> functionalType = (FunctionalType<R>) type;
 

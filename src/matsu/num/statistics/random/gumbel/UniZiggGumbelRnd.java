@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.26
  */
 package matsu.num.statistics.random.gumbel;
 
@@ -20,9 +20,9 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * 単峰分布タイプのZiggurat法により実装された, 標準Gumbel分布に従う乱数発生器.
  * 
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
-final class UniZiggGumbelRnd implements GumbelRnd {
+public final class UniZiggGumbelRnd extends SkeletalGumbelRnd {
 
     private static int N = 128;
 
@@ -175,7 +175,12 @@ final class UniZiggGumbelRnd implements GumbelRnd {
         }
     }
 
-    UniZiggGumbelRnd(Exponentiation exponentiation, ExponentialRnd.Factory exponentialRndFactory) {
+    /**
+     * 唯一のコンストラクタ.
+     * 
+     * @throws NullPointerException null
+     */
+    private UniZiggGumbelRnd(Exponentiation exponentiation, ExponentialRnd.Factory exponentialRndFactory) {
         super();
         this.exponentiation = Objects.requireNonNull(exponentiation);
         this.expRnd = exponentialRndFactory.instance();
@@ -226,8 +231,16 @@ final class UniZiggGumbelRnd implements GumbelRnd {
         return exponentiation.exp(-exp - x);
     }
 
-    @Override
-    public String toString() {
-        return "GumbelRnd";
+    /**
+     * {@link GumbelRnd} を生成するファクトリを生成する.
+     * 
+     * @param exponentiation 指数関数計算器
+     * @param exponentialRndFactory 指数乱数生成器のファクトリ
+     * @return Gumbel乱数のファクトリ
+     * @throws NullPointerException 引数にnullが含まれる場合
+     */
+    public static GumbelRnd.Factory createFactory(
+            Exponentiation exponentiation, ExponentialRnd.Factory exponentialRndFactory) {
+        return new GumbelRndFactory(new UniZiggGumbelRnd(exponentiation, exponentialRndFactory));
     }
 }

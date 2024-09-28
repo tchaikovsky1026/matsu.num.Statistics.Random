@@ -1,41 +1,36 @@
-package matsu.num.statistics.random.gumbel;
+package matsu.num.statistics.random.logi;
 
 import java.util.Objects;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.experimental.runners.Enclosed;
-import org.junit.runner.RunWith;
 
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.FloatingRandomGeneratorTestingFramework;
-import matsu.num.statistics.random.GumbelRnd;
+import matsu.num.statistics.random.LogisticRnd;
 import matsu.num.statistics.random.TestedFloatingRandomGenerator;
 import matsu.num.statistics.random.exp.ExponentialFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
 /**
- * {@link UniZiggGumbelRndFactory}クラスのテスト.
+ * {@link ZiggLogiRnd}クラスのテスト.
  *
  * @author Matsuura Y.
  */
-@RunWith(Enclosed.class)
-final class UniZiggGumbelRndFactoryTest {
+final class ZiggLogiRndTest {
 
-    public static final Class<?> TEST_CLASS = UniZiggGumbelRndFactory.class;
-    private static final GumbelRnd.Factory FACTORY =
-            new UniZiggGumbelRndFactory(
-                    ExponentiationForTesting.INSTANCE,
-                    ExponentialFactoryForTesting.FACTORY);
+    public static final Class<?> TEST_CLASS = ZiggLogiRnd.class;
+    private static final LogisticRnd.Factory FACTORY =
+            ZiggLogiRnd.createFactory(ExponentiationForTesting.INSTANCE, ExponentialFactoryForTesting.FACTORY);
 
-    public static class Gumbel乱数のテスト {
+    public static class Logistic乱数の生成テスト {
 
         private FloatingRandomGeneratorTestingFramework framework;
 
         @Before
         public void before() {
             framework = FloatingRandomGeneratorTestingFramework
-                    .instanceOf(new TestedGumbel(BaseRandom.threadSeparatedRandom()));
+                    .instanceOf(new TestedLogistic(BaseRandom.threadSeparatedRandom()));
         }
 
         @Test
@@ -43,23 +38,23 @@ final class UniZiggGumbelRndFactoryTest {
             framework.test();
         }
 
-        private static final class TestedGumbel implements TestedFloatingRandomGenerator {
+        private static final class TestedLogistic implements TestedFloatingRandomGenerator {
 
             private final BaseRandom random;
-            private final GumbelRnd gumbelRnd = FACTORY.instance();
+            private final LogisticRnd logisticRnd = FACTORY.instance();
 
-            public TestedGumbel(BaseRandom random) {
+            public TestedLogistic(BaseRandom random) {
                 this.random = Objects.requireNonNull(random);
             }
 
             @Override
             public double newValue() {
-                return gumbelRnd.nextRandom(random);
+                return logisticRnd.nextRandom(random);
             }
 
             @Override
             public double cumulativeProbability(double arg) {
-                return Math.exp(-Math.exp(-arg));
+                return 1 / (1 + Math.exp(-arg));
             }
 
         }
@@ -75,5 +70,4 @@ final class UniZiggGumbelRndFactoryTest {
             System.out.println();
         }
     }
-
 }

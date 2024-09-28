@@ -36,24 +36,28 @@ final class InversionBasedGeoRndFactoryTest {
 
         @Test(expected = None.class)
         public void test_境界内最小値() {
-            assertThat(FACTORY.acceptsParameter(LOWER_LIMIT_SUCCESS_PROBABILITY), is(true));
+            assertThat(GeometricRnd.acceptsParameter(LOWER_LIMIT_SUCCESS_PROBABILITY), is(true));
             FACTORY.instanceOf(LOWER_LIMIT_SUCCESS_PROBABILITY);
         }
 
         @Test(expected = None.class)
         public void test_境界内最大値() {
-            assertThat(FACTORY.acceptsParameter(UPPER_LIMIT_SUCCESS_PROBABILITY), is(true));
+            assertThat(GeometricRnd.acceptsParameter(UPPER_LIMIT_SUCCESS_PROBABILITY), is(true));
             FACTORY.instanceOf(UPPER_LIMIT_SUCCESS_PROBABILITY);
         }
 
-        @Test
+        @Test(expected = IllegalArgumentException.class)
         public void test_境界最小値外() {
-            assertThat(FACTORY.acceptsParameter(Math.nextDown(LOWER_LIMIT_SUCCESS_PROBABILITY)), is(false));
+            double p = Math.nextDown(LOWER_LIMIT_SUCCESS_PROBABILITY);
+            assertThat(GeometricRnd.acceptsParameter(p), is(false));
+            FACTORY.instanceOf(p);
         }
 
-        @Test
+        @Test(expected = IllegalArgumentException.class)
         public void test_境界最大値外() {
-            assertThat(FACTORY.acceptsParameter(Math.nextUp(UPPER_LIMIT_SUCCESS_PROBABILITY)), is(false));
+            double p = Math.nextUp(UPPER_LIMIT_SUCCESS_PROBABILITY);
+            assertThat(GeometricRnd.acceptsParameter(p), is(false));
+            FACTORY.instanceOf(p);
         }
     }
 

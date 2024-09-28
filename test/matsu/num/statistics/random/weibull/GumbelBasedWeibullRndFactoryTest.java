@@ -36,24 +36,28 @@ final class GumbelBasedWeibullRndFactoryTest {
 
         @Test(expected = None.class)
         public void test_境界内最小値() {
-            assertThat(FACTORY.acceptsParameter(LOWER_LIMIT_SHAPE_PARAMETER), is(true));
+            assertThat(WeibullRnd.acceptsParameter(LOWER_LIMIT_SHAPE_PARAMETER), is(true));
             FACTORY.instanceOf(LOWER_LIMIT_SHAPE_PARAMETER);
         }
 
         @Test(expected = None.class)
         public void test_境界内最大値() {
-            assertThat(FACTORY.acceptsParameter(UPPER_LIMIT_SHAPE_PARAMETER), is(true));
+            assertThat(WeibullRnd.acceptsParameter(UPPER_LIMIT_SHAPE_PARAMETER), is(true));
             FACTORY.instanceOf(UPPER_LIMIT_SHAPE_PARAMETER);
         }
 
-        @Test
+        @Test(expected = IllegalArgumentException.class)
         public void test_境界最小値外() {
-            assertThat(FACTORY.acceptsParameter(Math.nextDown(LOWER_LIMIT_SHAPE_PARAMETER)), is(false));
+            double k = Math.nextDown(LOWER_LIMIT_SHAPE_PARAMETER);
+            assertThat(WeibullRnd.acceptsParameter(k), is(false));
+            FACTORY.instanceOf(k);
         }
 
-        @Test
+        @Test(expected = IllegalArgumentException.class)
         public void test_境界最大値外() {
-            assertThat(FACTORY.acceptsParameter(Math.nextUp(UPPER_LIMIT_SHAPE_PARAMETER)), is(false));
+            double k = Math.nextUp(UPPER_LIMIT_SHAPE_PARAMETER);
+            assertThat(WeibullRnd.acceptsParameter(k), is(false));
+            FACTORY.instanceOf(k);
         }
     }
 

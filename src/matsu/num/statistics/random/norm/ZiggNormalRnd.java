@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.26
  */
 package matsu.num.statistics.random.norm;
 
@@ -20,9 +20,9 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * Ziggurat法により実装された標準正規分布に従う乱数発生器.
  *
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
-final class ZiggNormalRnd implements NormalRnd {
+public final class ZiggNormalRnd extends SkeletalNormalRnd {
 
     private static final int N = 128;
     private static final double R_N = 3.44261985589665d;
@@ -34,7 +34,12 @@ final class ZiggNormalRnd implements NormalRnd {
 
     private final Exponentiation exponentiation;
 
-    ZiggNormalRnd(Exponentiation exponentiation, ExponentialRnd.Factory exponentialRndFactory) {
+    /**
+     * 唯一のコンストラクタ.
+     * 
+     * @throws NullPointerException null
+     */
+    private ZiggNormalRnd(Exponentiation exponentiation, ExponentialRnd.Factory exponentialRndFactory) {
         super();
         this.expRnd = exponentialRndFactory.instance();
         this.exponentiation = Objects.requireNonNull(exponentiation);
@@ -106,9 +111,16 @@ final class ZiggNormalRnd implements NormalRnd {
         return exponentiation.sqrt(-2.0 * Math.log(f));
     }
 
-    @Override
-    public String toString() {
-        return "NormalRnd";
+    /**
+     * {@link ZiggNormalRnd} を生成するファクトリを生成する.
+     * 
+     * @param exponentiation 指数関数計算器
+     * @param exponentialRndFactory 指数乱数生成器のファクトリ
+     * @return 正規乱数のファクトリ
+     * @throws NullPointerException 引数にnullが含まれる場合
+     */
+    public static NormalRnd.Factory createFactory(
+            Exponentiation exponentiation, ExponentialRnd.Factory exponentialRndFactory) {
+        return new NormalRndFactory(new ZiggNormalRnd(exponentiation, exponentialRndFactory));
     }
-
 }

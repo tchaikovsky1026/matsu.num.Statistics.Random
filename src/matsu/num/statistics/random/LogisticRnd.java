@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.24
  */
 package matsu.num.statistics.random;
 
@@ -23,14 +23,14 @@ package matsu.num.statistics.random;
  * </p>
  *
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
 public interface LogisticRnd extends FloatingRandomGenerator {
 
     /**
      * {@link LogisticRnd} のファクトリ.
      */
-    public static interface Factory extends RandomGeneratorFactory {
+    public static interface Factory {
 
         /**
          * <p>

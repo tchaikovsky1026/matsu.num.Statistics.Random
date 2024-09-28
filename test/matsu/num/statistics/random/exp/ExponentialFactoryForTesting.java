@@ -9,7 +9,7 @@ import matsu.num.statistics.random.lib.ExponentiationForTesting;
 public final class ExponentialFactoryForTesting {
 
     public static final ExponentialRnd.Factory FACTORY =
-            new ZiggExponentialRndFactory(ExponentiationForTesting.INSTANCE);
+            ZiggExponentialRnd.createFactory(ExponentiationForTesting.INSTANCE);
 
     private ExponentialFactoryForTesting() {
     }

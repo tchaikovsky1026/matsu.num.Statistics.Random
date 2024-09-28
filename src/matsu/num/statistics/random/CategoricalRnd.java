@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.28
  */
 package matsu.num.statistics.random;
 
@@ -33,7 +33,7 @@ package matsu.num.statistics.random;
  * </ul>
  *
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
 public interface CategoricalRnd extends IntegerRandomGenerator {
 
@@ -47,27 +47,29 @@ public interface CategoricalRnd extends IntegerRandomGenerator {
     public abstract int size();
 
     /**
+     * <p>
+     * 指定した値配列のサイズが {@link CategoricalRnd.Factory#instanceOf(double[])},
+     * {@link CategoricalRnd.Factory#instanceOfExp(double[])}
+     * の引数に適合するかを判定する.
+     * </p>
+     * 
+     * <p>
+     * 配列のサイズが0の場合に不適合と判断される. <br>
+     * 配列の中身の値には依存しない.
+     * </p>
+     * 
+     * @param probabilityValues 値配列
+     * @return 値配列が適合する場合はtrue (配列のlengthが1以上の場合である)
+     * @throws NullPointerException 引数にnulが含まれる場合
+     */
+    public static boolean acceptsSizeOf(double[] probabilityValues) {
+        return probabilityValues.length >= 1;
+    }
+
+    /**
      * {@link CategoricalRnd} のファクトリ.
      */
-    public static interface Factory extends RandomGeneratorFactory {
-
-        /**
-         * <p>
-         * 指定した値配列のサイズが {@link #instanceOf(double[])},
-         * {@link #instanceOfExp(double[])}
-         * の引数に適合するかを判定する.
-         * </p>
-         * 
-         * <p>
-         * 配列のサイズが0の場合に不適合と判断される. <br>
-         * 配列の中身の値には依存しない.
-         * </p>
-         * 
-         * @param probabilityValues 値配列
-         * @return 値配列が適合する場合はtrue (配列のlengthが1以上の場合である)
-         * @throws NullPointerException 引数にnulが含まれる場合
-         */
-        public abstract boolean acceptsSizeOf(double[] probabilityValues);
+    public static interface Factory {
 
         /**
          * <p>
@@ -77,6 +79,11 @@ public interface CategoricalRnd extends IntegerRandomGenerator {
          * <p>
          * パラメータの正当性は {@link #acceptsSizeOf(double[])} により検証され,
          * 不適の場合は例外がスローされる.
+         * </p>
+         * 
+         * <p>
+         * 配列に負の数やNaN, 極端な値を含んでいても良いが, 適宜修正される. <br>
+         * どのように修正されるかは規定していない.
          * </p>
          *
          * @param probability 確率値の配列(定数倍の不定性は許される)
@@ -94,6 +101,11 @@ public interface CategoricalRnd extends IntegerRandomGenerator {
          * <p>
          * パラメータの正当性は {@link #acceptsSizeOf(double[])} により検証され,
          * 不適の場合は例外がスローされる.
+         * </p>
+         * 
+         * <p>
+         * 配列にNaN, 極端な値を含んでいても良いが, 適宜修正される. <br>
+         * どのように修正されるかは規定していない.
          * </p>
          *
          * @param logProbability 確率値のlogの配列(定数オフセットの不定性は許される)

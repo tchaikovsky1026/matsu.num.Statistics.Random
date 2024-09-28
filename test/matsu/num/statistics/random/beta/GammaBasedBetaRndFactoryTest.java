@@ -34,34 +34,46 @@ final class GammaBasedBetaRndFactoryTest {
 
         @Test(expected = None.class)
         public void test_境界内最小値() {
-            assertThat(FACTORY.acceptsParameters(LOWER_LIMIT_SHAPE_PARAMETER, LOWER_LIMIT_SHAPE_PARAMETER), is(true));
+            assertThat(BetaRnd.acceptsParameters(LOWER_LIMIT_SHAPE_PARAMETER, LOWER_LIMIT_SHAPE_PARAMETER), is(true));
             FACTORY.instanceOf(LOWER_LIMIT_SHAPE_PARAMETER, LOWER_LIMIT_SHAPE_PARAMETER);
         }
 
         @Test(expected = None.class)
         public void test_境界内最大値() {
-            assertThat(FACTORY.acceptsParameters(UPPER_LIMIT_SHAPE_PARAMETER, UPPER_LIMIT_SHAPE_PARAMETER), is(true));
+            assertThat(BetaRnd.acceptsParameters(UPPER_LIMIT_SHAPE_PARAMETER, UPPER_LIMIT_SHAPE_PARAMETER), is(true));
             FACTORY.instanceOf(UPPER_LIMIT_SHAPE_PARAMETER, UPPER_LIMIT_SHAPE_PARAMETER);
         }
 
-        @Test
-        public void test_境界最小値外() {
-            assertThat(
-                    FACTORY.acceptsParameters(Math.nextDown(LOWER_LIMIT_SHAPE_PARAMETER), LOWER_LIMIT_SHAPE_PARAMETER),
-                    is(false));
-            assertThat(
-                    FACTORY.acceptsParameters(LOWER_LIMIT_SHAPE_PARAMETER, Math.nextDown(LOWER_LIMIT_SHAPE_PARAMETER)),
-                    is(false));
+        @Test(expected = IllegalArgumentException.class)
+        public void test_境界最小値外_a() {
+            double a = Math.nextDown(LOWER_LIMIT_SHAPE_PARAMETER);
+            double b = LOWER_LIMIT_SHAPE_PARAMETER;
+            assertThat(BetaRnd.acceptsParameters(a, b), is(false));
+            FACTORY.instanceOf(a, b);
         }
 
-        @Test
-        public void test_境界最大値外() {
-            assertThat(
-                    FACTORY.acceptsParameters(Math.nextUp(UPPER_LIMIT_SHAPE_PARAMETER), UPPER_LIMIT_SHAPE_PARAMETER),
-                    is(false));
-            assertThat(
-                    FACTORY.acceptsParameters(UPPER_LIMIT_SHAPE_PARAMETER, Math.nextUp(UPPER_LIMIT_SHAPE_PARAMETER)),
-                    is(false));
+        @Test(expected = IllegalArgumentException.class)
+        public void test_境界最小値外_b() {
+            double a = LOWER_LIMIT_SHAPE_PARAMETER;
+            double b = Math.nextDown(LOWER_LIMIT_SHAPE_PARAMETER);
+            assertThat(BetaRnd.acceptsParameters(a, b), is(false));
+            FACTORY.instanceOf(a, b);
+        }
+
+        @Test(expected = IllegalArgumentException.class)
+        public void test_境界最大値外_a() {
+            double a = Math.nextUp(UPPER_LIMIT_SHAPE_PARAMETER);
+            double b = UPPER_LIMIT_SHAPE_PARAMETER;
+            assertThat(BetaRnd.acceptsParameters(a, b), is(false));
+            FACTORY.instanceOf(a, b);
+        }
+
+        @Test(expected = IllegalArgumentException.class)
+        public void test_境界最大値外_b() {
+            double a = UPPER_LIMIT_SHAPE_PARAMETER;
+            double b = Math.nextUp(UPPER_LIMIT_SHAPE_PARAMETER);
+            assertThat(BetaRnd.acceptsParameters(a, b), is(false));
+            FACTORY.instanceOf(a, b);
         }
     }
 

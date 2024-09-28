@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.24
  */
 package matsu.num.statistics.random;
 
@@ -37,7 +37,7 @@ package matsu.num.statistics.random;
  * </p>
  *
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
 public interface ChiSquaredRnd extends FloatingRandomGenerator {
 
@@ -61,19 +61,22 @@ public interface ChiSquaredRnd extends FloatingRandomGenerator {
     public abstract double degreesOfFreedom();
 
     /**
+     * <p>
+     * 指定したパラメータが乱数発生器に適合するかを判定する.
+     * </p>
+     *
+     * @param k 自由度
+     * @return パラメータが適合する場合はtrue
+     */
+    public static boolean acceptsParameter(double k) {
+        return ChiSquaredRnd.LOWER_LIMIT_DEGREES_OF_FREEDOM <= k
+                && k <= ChiSquaredRnd.UPPER_LIMIT_DEGREES_OF_FREEDOM;
+    }
+
+    /**
      * {@link ChiSquaredRnd} のファクトリ.
      */
-    public static interface Factory extends RandomGeneratorFactory {
-        
-        /**
-         * <p>
-         * 指定したパラメータが乱数発生器に適合するかを判定する.
-         * </p>
-         *
-         * @param k 自由度
-         * @return パラメータが適合する場合はtrue
-         */
-        public abstract boolean acceptsParameter(double k);
+    public static interface Factory {
 
         /**
          * <p>

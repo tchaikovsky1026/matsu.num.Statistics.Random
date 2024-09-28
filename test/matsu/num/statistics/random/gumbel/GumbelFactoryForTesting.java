@@ -10,7 +10,7 @@ import matsu.num.statistics.random.lib.ExponentiationForTesting;
 public final class GumbelFactoryForTesting {
 
     public static final GumbelRnd.Factory FACTORY =
-            new UniZiggGumbelRndFactory(
+            UniZiggGumbelRnd.createFactory(
                     ExponentiationForTesting.INSTANCE,
                     ExponentialFactoryForTesting.FACTORY);
 

@@ -5,22 +5,21 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.28
  */
 package matsu.num.statistics.random.poi;
 
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.GammaRnd;
-import matsu.num.statistics.random.PoissonRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
  * ガンマ分布乱数発生器を利用した, Poisson分布に従う乱数発生器を扱う.
  *
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
-final class GammaHomoProcessBasedPoissonRnd implements PoissonRnd {
+final class GammaHomoProcessBasedPoissonRnd extends SkeletalPoissonRnd {
 
     /**
      * lambdaの範囲を網羅できるための, ガンマ乱数の形状パラメータのビット数. <br>
@@ -34,25 +33,19 @@ final class GammaHomoProcessBasedPoissonRnd implements PoissonRnd {
      */
     private final GammaRnd[] gammaRnds;
 
-    private final double lambda;
-
     private final Exponentiation exponentiation;
 
     /**
      * 指定したパラメータのPoisson分布乱数発生器インスタンスを構築する. <br>
      * パラメータ <i>&lambda;</i> は, {@code 0.0 <= lambda <= 1.0E6} でなければならない.
      *
-     * @param lambda パラメータ&lambda;
+     * @param lambda パラメータ
      */
     GammaHomoProcessBasedPoissonRnd(double lambda, GammaRnd[] gammaRnds, Exponentiation exponentiation) {
-        this.lambda = lambda;
+        super(lambda);
+
         this.gammaRnds = gammaRnds;
         this.exponentiation = exponentiation;
-    }
-
-    @Override
-    public double lambda() {
-        return this.lambda;
     }
 
     @Override
@@ -71,12 +64,6 @@ final class GammaHomoProcessBasedPoissonRnd implements PoissonRnd {
             z -= uGamma;
             shift += intTestKmin;
         }
-    }
-
-    @Override
-    public String toString() {
-        return String.format(
-                "PoissonRnd(%s)", this.lambda());
     }
 
     /**

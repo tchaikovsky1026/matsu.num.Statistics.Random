@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.28
  */
 package matsu.num.statistics.random.gamma;
 
@@ -18,11 +18,9 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * Marsaglia-Tsangの方法に基づく, 形状パラメータが1より大きいときの乱数生成器の実装.
  * 
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
-final class MTTypeGammaRndOver1 implements GammaRnd {
-
-    private final double k;
+final class MTTypeGammaRndOver1 extends SkeletalGammaRnd {
 
     //Gamma(k)乱数を発生させるためのdとc
     private final double d;
@@ -35,19 +33,14 @@ final class MTTypeGammaRndOver1 implements GammaRnd {
      * @param k 1<=k<=1E28
      */
     MTTypeGammaRndOver1(double k, Exponentiation exponentiation, NormalRnd.Factory normalRndFactory) {
-        if (!(1 <= k && k <= GammaRnd.UPPER_LIMIT_SHAPE_PARAMETER)) {
-            throw new AssertionError("Bug:1<=k<=1E28でない");
-        }
+        super(k);
+
+        assert 1 <= k && k <= GammaRnd.UPPER_LIMIT_SHAPE_PARAMETER : "1 <= k <= UL でない";
+
         this.normalRnd = normalRndFactory.instance();
         this.exponentiation = exponentiation;
-        this.k = k;
         this.d = k - (1.0 / 3.0);
         this.c = (1.0 / 3.0) / exponentiation.sqrt(d);
-    }
-
-    @Override
-    public double shapeParameter() {
-        return this.k;
     }
 
     @Override
@@ -70,10 +63,5 @@ final class MTTypeGammaRndOver1 implements GammaRnd {
                 return y;
             }
         }
-    }
-
-    @Override
-    public String toString() {
-        return GammaRndToString.toString(this);
     }
 }

@@ -10,7 +10,7 @@ import matsu.num.statistics.random.lib.ExponentiationForTesting;
 public final class LogisticFactoryForTesting {
 
     public static final LogisticRnd.Factory FACTORY =
-            new ZiggLogiRndFactory(
+            ZiggLogiRnd.createFactory(
                     ExponentiationForTesting.INSTANCE, ExponentialFactoryForTesting.FACTORY);
 
     private LogisticFactoryForTesting() {

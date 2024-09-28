@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.28
  */
 package matsu.num.statistics.random;
 
@@ -39,7 +39,7 @@ package matsu.num.statistics.random;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
 public interface PoissonRnd extends IntegerRandomGenerator {
 
@@ -63,19 +63,22 @@ public interface PoissonRnd extends IntegerRandomGenerator {
     public abstract double lambda();
 
     /**
+     * <p>
+     * 指定したパラメータが乱数発生器に適合するかを判定する.
+     * </p>
+     *
+     * @param lambda パラメータ
+     * @return パラメータが適合する場合はtrue
+     */
+    public static boolean acceptsParameter(double lambda) {
+        return PoissonRnd.LOWER_LIMIT_LAMBDA <= lambda
+                && lambda <= PoissonRnd.UPPER_LIMIT_LAMBDA;
+    }
+
+    /**
      * {@link PoissonRnd} のファクトリ.
      */
-    public static interface Factory extends RandomGeneratorFactory {
-
-        /**
-         * <p>
-         * 指定したパラメータが乱数発生器に適合するかを判定する.
-         * </p>
-         *
-         * @param lambda パラメータ
-         * @return パラメータが適合する場合はtrue
-         */
-        public abstract boolean acceptsParameter(double lambda);
+    public static interface Factory {
 
         /**
          * <p>

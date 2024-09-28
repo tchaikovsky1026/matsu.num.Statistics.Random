@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.28
  */
 package matsu.num.statistics.random.voigt;
 
@@ -19,9 +19,9 @@ import matsu.num.statistics.random.VoigtRnd;
  * VoigtRndのスタンダード実装のファクトリ.
  * 
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
-public final class StandardImplVoigtRndFactory implements VoigtRnd.Factory {
+public final class StandardImplVoigtRndFactory extends SkeletalVoigtRndFactory {
 
     private final NormalRnd.Factory normalRndFactory;
     private final CauchyRnd.Factory cauchyRndFactory;
@@ -33,21 +33,7 @@ public final class StandardImplVoigtRndFactory implements VoigtRnd.Factory {
     }
 
     @Override
-    public boolean acceptsParameter(double alpha) {
-        return VoigtRnd.LOWER_LIMIT_ALPHA <= alpha
-                && alpha <= VoigtRnd.UPPER_LIMIT_ALPHA;
-    }
-
-    @Override
-    public VoigtRnd instanceOf(double alpha) {
-        if (!this.acceptsParameter(alpha)) {
-            throw new IllegalArgumentException(String.format("alphaが不正:%s", alpha));
-        }
+    protected VoigtRnd createInstanceOf(double alpha) {
         return new StandardImplVoigtRnd(alpha, this.normalRndFactory, this.cauchyRndFactory);
-    }
-
-    @Override
-    public String toString() {
-        return "VoigtRnd.Factory";
     }
 }

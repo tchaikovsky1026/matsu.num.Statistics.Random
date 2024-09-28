@@ -35,7 +35,7 @@ final class BetaBasedFDistributionRndFactoryTest {
         @Test(expected = None.class)
         public void test_境界内最小値() {
             assertThat(
-                    FACTORY.acceptsParameters(LOWER_LIMIT_DEGREES_OF_FREEDOM, LOWER_LIMIT_DEGREES_OF_FREEDOM),
+                    FDistributionRnd.acceptsParameters(LOWER_LIMIT_DEGREES_OF_FREEDOM, LOWER_LIMIT_DEGREES_OF_FREEDOM),
                     is(true));
             FACTORY.instanceOf(LOWER_LIMIT_DEGREES_OF_FREEDOM, LOWER_LIMIT_DEGREES_OF_FREEDOM);
         }
@@ -43,33 +43,41 @@ final class BetaBasedFDistributionRndFactoryTest {
         @Test(expected = None.class)
         public void test_境界内最大値() {
             assertThat(
-                    FACTORY.acceptsParameters(UPPER_LIMIT_DEGREES_OF_FREEDOM, UPPER_LIMIT_DEGREES_OF_FREEDOM),
+                    FDistributionRnd.acceptsParameters(UPPER_LIMIT_DEGREES_OF_FREEDOM, UPPER_LIMIT_DEGREES_OF_FREEDOM),
                     is(true));
             FACTORY.instanceOf(UPPER_LIMIT_DEGREES_OF_FREEDOM, UPPER_LIMIT_DEGREES_OF_FREEDOM);
         }
 
-        @Test
-        public void test_境界最小値外() {
-            assertThat(
-                    FACTORY.acceptsParameters(
-                            Math.nextDown(LOWER_LIMIT_DEGREES_OF_FREEDOM), LOWER_LIMIT_DEGREES_OF_FREEDOM),
-                    is(false));
-            assertThat(
-                    FACTORY.acceptsParameters(
-                            LOWER_LIMIT_DEGREES_OF_FREEDOM, Math.nextDown(LOWER_LIMIT_DEGREES_OF_FREEDOM)),
-                    is(false));
+        @Test(expected = IllegalArgumentException.class)
+        public void test_境界最小値外_nume() {
+            double nume = Math.nextDown(LOWER_LIMIT_DEGREES_OF_FREEDOM);
+            double denomi = LOWER_LIMIT_DEGREES_OF_FREEDOM;
+            assertThat(FDistributionRnd.acceptsParameters(nume, denomi), is(false));
+            FACTORY.instanceOf(nume, denomi);
         }
 
-        @Test
-        public void test_境界最大値外() {
-            assertThat(
-                    FACTORY.acceptsParameters(
-                            Math.nextUp(UPPER_LIMIT_DEGREES_OF_FREEDOM), UPPER_LIMIT_DEGREES_OF_FREEDOM),
-                    is(false));
-            assertThat(
-                    FACTORY.acceptsParameters(
-                            UPPER_LIMIT_DEGREES_OF_FREEDOM, Math.nextUp(UPPER_LIMIT_DEGREES_OF_FREEDOM)),
-                    is(false));
+        @Test(expected = IllegalArgumentException.class)
+        public void test_境界最小値外_denomi() {
+            double nume = LOWER_LIMIT_DEGREES_OF_FREEDOM;
+            double denomi = Math.nextDown(LOWER_LIMIT_DEGREES_OF_FREEDOM);
+            assertThat(FDistributionRnd.acceptsParameters(nume, denomi), is(false));
+            FACTORY.instanceOf(nume, denomi);
+        }
+
+        @Test(expected = IllegalArgumentException.class)
+        public void test_境界最大値外_nume() {
+            double nume = Math.nextUp(UPPER_LIMIT_DEGREES_OF_FREEDOM);
+            double denomi = UPPER_LIMIT_DEGREES_OF_FREEDOM;
+            assertThat(FDistributionRnd.acceptsParameters(nume, denomi), is(false));
+            FACTORY.instanceOf(nume, denomi);
+        }
+
+        @Test(expected = IllegalArgumentException.class)
+        public void test_境界最大値外_denomi() {
+            double nume = UPPER_LIMIT_DEGREES_OF_FREEDOM;
+            double denomi = Math.nextUp(UPPER_LIMIT_DEGREES_OF_FREEDOM);
+            assertThat(FDistributionRnd.acceptsParameters(nume, denomi), is(false));
+            FACTORY.instanceOf(nume, denomi);
         }
     }
 

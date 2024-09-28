@@ -1,4 +1,4 @@
-package matsu.num.statistics.random.cauchy;
+package matsu.num.statistics.random.exp;
 
 import java.util.Objects;
 
@@ -8,31 +8,31 @@ import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
 
 import matsu.num.statistics.random.BaseRandom;
-import matsu.num.statistics.random.CauchyRnd;
+import matsu.num.statistics.random.ExponentialRnd;
 import matsu.num.statistics.random.FloatingRandomGeneratorTestingFramework;
 import matsu.num.statistics.random.TestedFloatingRandomGenerator;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
 /**
- * {@link ZiggCauchyRndFactory}クラスのテスト.
- * 
+ * {@link ZiggExponentialRnd} クラスのテスト.
+ *
  * @author Matsuura Y.
  */
 @RunWith(Enclosed.class)
-public class ZiggCauchyRndFactoryTest {
+final class ZiggExponentialRndTest {
 
-    public static final Class<?> TEST_CLASS = ZiggCauchyRndFactory.class;
-    private static final CauchyRnd.Factory FACTORY =
-            new ZiggCauchyRndFactory(ExponentiationForTesting.INSTANCE);
+    public static final Class<?> TEST_CLASS = ZiggExponentialRnd.class;
+    private static final ExponentialRnd.Factory FACTORY =
+            ZiggExponentialRnd.createFactory(ExponentiationForTesting.INSTANCE);
 
-    public static class 乱数のテスト {
+    public static class 指数乱数のテスト {
 
         private FloatingRandomGeneratorTestingFramework framework;
 
         @Before
         public void before() {
             framework = FloatingRandomGeneratorTestingFramework
-                    .instanceOf(new TestedCauchy(BaseRandom.threadSeparatedRandom()));
+                    .instanceOf(new TestedExp(BaseRandom.threadSeparatedRandom()));
         }
 
         @Test
@@ -40,23 +40,23 @@ public class ZiggCauchyRndFactoryTest {
             framework.test();
         }
 
-        private static final class TestedCauchy implements TestedFloatingRandomGenerator {
+        private static final class TestedExp implements TestedFloatingRandomGenerator {
 
             private final BaseRandom random;
-            private final CauchyRnd cauchyRnd = FACTORY.instance();
+            private final ExponentialRnd exponentialRnd = FACTORY.instance();
 
-            public TestedCauchy(BaseRandom random) {
+            public TestedExp(BaseRandom random) {
                 this.random = Objects.requireNonNull(random);
             }
 
             @Override
             public double newValue() {
-                return cauchyRnd.nextRandom(random);
+                return exponentialRnd.nextRandom(random);
             }
 
             @Override
             public double cumulativeProbability(double arg) {
-                return 0.5 + Math.atan(arg) / Math.PI;
+                return 1 - Math.exp(-arg);
             }
 
         }
@@ -69,9 +69,7 @@ public class ZiggCauchyRndFactoryTest {
             System.out.println(TEST_CLASS.getName());
             System.out.println(FACTORY);
             System.out.println(FACTORY.instance());
-            System.out.println(FACTORY.instance().asTDistributionRnd());
             System.out.println();
         }
     }
-
 }

@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.28
  */
 package matsu.num.statistics.random.cauchy;
 
@@ -13,7 +13,6 @@ import java.util.Objects;
 
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.CauchyRnd;
-import matsu.num.statistics.random.TDistributionRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
@@ -25,9 +24,9 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
-final class ZiggCauchyRnd implements CauchyRnd {
+public final class ZiggCauchyRnd extends SkeletalCauchyRnd {
 
     private static final int N = 128;
     private static final double R_N = 158.474291831405d;
@@ -36,11 +35,9 @@ final class ZiggCauchyRnd implements CauchyRnd {
     private final double[] xi;
     private final double[] fi;
 
-    private final TDistributionRnd tdistView;
-
     private final Exponentiation exponentiation;
 
-    ZiggCauchyRnd(Exponentiation exponentiation) {
+    private ZiggCauchyRnd(Exponentiation exponentiation) {
         super();
         this.exponentiation = Objects.requireNonNull(exponentiation);
 
@@ -55,8 +52,6 @@ final class ZiggCauchyRnd implements CauchyRnd {
         }
         xi[0] = 0.0;
         fi[0] = func(xi[0]);
-
-        this.tdistView = new TDistView();
     }
 
     /**
@@ -117,41 +112,14 @@ final class ZiggCauchyRnd implements CauchyRnd {
         }
     }
 
-    @Override
-    public TDistributionRnd asTDistributionRnd() {
-        return this.tdistView;
-    }
-
-    @Override
-    public String toString() {
-        return "CauchyRnd";
-    }
-
     /**
-     * Cauchy分布のt分布としてのビューを扱うクラス.
+     * {@link CauchyRnd} を生成するファクトリを生成する.
+     * 
+     * @param exponentiation 指数関数計算器
+     * @return Cauchy乱数のファクトリ
+     * @throws NullPointerException 引数にnullが含まれる場合
      */
-    private final class TDistView implements TDistributionRnd {
-
-        /**
-         * 唯一のコンストラクタ.
-         */
-        TDistView() {
-            super();
-        }
-
-        @Override
-        public double degreesOfFreedom() {
-            return 1d;
-        }
-
-        @Override
-        public double nextRandom(BaseRandom random) {
-            return ZiggCauchyRnd.this.nextRandom(random);
-        }
-
-        @Override
-        public String toString() {
-            return "TDistRnd(Cauchy)";
-        }
+    public static CauchyRnd.Factory createFactory(Exponentiation exponentiation) {
+        return new CauchyRndFactory(new ZiggCauchyRnd(exponentiation));
     }
 }

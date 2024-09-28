@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.9.24
  */
 package matsu.num.statistics.random;
 
@@ -29,7 +29,7 @@ package matsu.num.statistics.random;
  * </p>
  *
  * @author Matsuura Y.
- * @version 20.0
+ * @version 21.0
  */
 public interface TDistributionRnd extends FloatingRandomGenerator {
 
@@ -53,19 +53,22 @@ public interface TDistributionRnd extends FloatingRandomGenerator {
     public abstract double degreesOfFreedom();
 
     /**
+     * <p>
+     * 指定したパラメータが乱数発生器に適合するかを判定する.
+     * </p>
+     *
+     * @param nu 自由度
+     * @return パラメータが適合する場合はtrue
+     */
+    public static boolean acceptsParameter(double nu) {
+        return TDistributionRnd.LOWER_LIMIT_DEGREES_OF_FREEDOM <= nu
+                && nu <= TDistributionRnd.UPPER_LIMIT_DEGREES_OF_FREEDOM;
+    }
+
+    /**
      * {@link TDistributionRnd} のファクトリ.
      */
-    public static interface Factory extends RandomGeneratorFactory {
-
-        /**
-         * <p>
-         * 指定したパラメータが乱数発生器に適合するかを判定する.
-         * </p>
-         *
-         * @param nu 自由度
-         * @return パラメータが適合する場合はtrue
-         */
-        public abstract boolean acceptsParameter(double nu);
+    public static interface Factory {
 
         /**
          * <p>
