@@ -5,18 +5,17 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.27
+ * 2024.10.25
  */
 package matsu.num.statistics.random.gumbel;
 
-import matsu.num.statistics.random.GumbelRnd;
 import matsu.num.statistics.random.base.ParameterlessFactory;
 
 /**
- * {@link matsu.num.statistics.random.GumbelRnd.Factory} の実装.
+ * {@link GumbelRnd.Factory} の実装.
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
 final class GumbelRndFactory
         extends ParameterlessFactory<GumbelRnd> implements GumbelRnd.Factory {

@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.27
+ * 2024.10.25
  */
 package matsu.num.statistics.random;
 
@@ -28,15 +28,25 @@ package matsu.num.statistics.random;
  * <li>P(<i>x</i>) = 0 &emsp; (otherwise)</li>
  * </ul>
  * 
+ * 
+ * <p>
+ * <i>
+ * <u>
+ * このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
+ * 外部で実装することは不可.
+ * </u>
+ * </i>
+ * </p>
+ * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
-public interface LevyRnd extends FloatingRandomGenerator {
+public sealed interface LevyRnd extends FloatingRandomGenerator permits matsu.num.statistics.random.levy.LevyRnd {
 
     /**
      * {@link LevyRnd} のファクトリ.
      */
-    public static interface Factory {
+    public static sealed interface Factory permits matsu.num.statistics.random.levy.LevyRnd.Factory {
 
         /**
          * <p>

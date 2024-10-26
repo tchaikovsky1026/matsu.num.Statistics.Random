@@ -5,17 +5,15 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2024.10.25
  */
 package matsu.num.statistics.random.poi;
-
-import matsu.num.statistics.random.PoissonRnd;
 
 /**
  * {@link PoissonRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
 abstract class SkeletalPoissonRnd implements PoissonRnd {
 
@@ -30,7 +28,7 @@ abstract class SkeletalPoissonRnd implements PoissonRnd {
     protected SkeletalPoissonRnd(double lambda) {
         super();
 
-        assert PoissonRnd.acceptsParameter(lambda) : "パラメータ不正";
+        assert matsu.num.statistics.random.PoissonRnd.acceptsParameter(lambda) : "パラメータ不正";
 
         this.lambda = lambda;
     }

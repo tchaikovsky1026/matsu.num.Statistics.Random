@@ -5,21 +5,20 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2024.10.25
  */
 package matsu.num.statistics.random.poi;
 
 import java.util.Objects;
 
 import matsu.num.statistics.random.GammaRnd;
-import matsu.num.statistics.random.PoissonRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
  * ガンマ分布乱数発生器を利用した, Poisson分布に従う乱数発生器のファクトリ.
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
 public final class GammaHomoProcessBasedPoissonRndFactory extends SkeletalPoissonRndFactory {
 

@@ -5,18 +5,17 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.27
+ * 2024.10.25
  */
 package matsu.num.statistics.random.norm;
 
-import matsu.num.statistics.random.NormalRnd;
 import matsu.num.statistics.random.base.ParameterlessFactory;
 
 /**
- * {@link matsu.num.statistics.random.NormalRnd.Factory} の実装.
+ * {@link NormalRnd.Factory} の実装.
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
 final class NormalRndFactory
         extends ParameterlessFactory<NormalRnd> implements NormalRnd.Factory {

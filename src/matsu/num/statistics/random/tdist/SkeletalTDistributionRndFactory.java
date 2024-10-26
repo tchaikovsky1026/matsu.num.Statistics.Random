@@ -5,17 +5,15 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2024.10.26
  */
 package matsu.num.statistics.random.tdist;
 
-import matsu.num.statistics.random.TDistributionRnd;
-
 /**
- * {@link matsu.num.statistics.random.TDistributionRnd.Factory} の骨格実装.
+ * {@link TDistributionRnd.Factory} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
 abstract class SkeletalTDistributionRndFactory implements TDistributionRnd.Factory {
 
@@ -28,7 +26,7 @@ abstract class SkeletalTDistributionRndFactory implements TDistributionRnd.Facto
 
     @Override
     public final TDistributionRnd instanceOf(double nu) {
-        if (!TDistributionRnd.acceptsParameter(nu)) {
+        if (!matsu.num.statistics.random.TDistributionRnd.acceptsParameter(nu)) {
             throw new IllegalArgumentException(String.format("パラメータ不正:nu=%s", nu));
         }
 

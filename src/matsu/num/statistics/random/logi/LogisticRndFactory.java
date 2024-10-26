@@ -5,18 +5,17 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.10.25
  */
 package matsu.num.statistics.random.logi;
 
-import matsu.num.statistics.random.LogisticRnd;
 import matsu.num.statistics.random.base.ParameterlessFactory;
 
 /**
- * {@link matsu.num.statistics.random.LogisticRnd.Factory} の実装.
+ * {@link LogisticRnd.Factory} の実装.
  * 
  * @author Matsuura Y.
- * @version 20.0
+ * @version 22.0
  */
 final class LogisticRndFactory
         extends ParameterlessFactory<LogisticRnd> implements LogisticRnd.Factory {

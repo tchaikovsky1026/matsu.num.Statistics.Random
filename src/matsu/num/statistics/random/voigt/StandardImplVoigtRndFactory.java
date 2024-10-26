@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2024.10.26
  */
 package matsu.num.statistics.random.voigt;
 
@@ -13,13 +13,12 @@ import java.util.Objects;
 
 import matsu.num.statistics.random.CauchyRnd;
 import matsu.num.statistics.random.NormalRnd;
-import matsu.num.statistics.random.VoigtRnd;
 
 /**
  * VoigtRndのスタンダード実装のファクトリ.
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
 public final class StandardImplVoigtRndFactory extends SkeletalVoigtRndFactory {
 

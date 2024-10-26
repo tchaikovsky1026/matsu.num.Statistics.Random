@@ -5,17 +5,15 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2024.10.25
  */
 package matsu.num.statistics.random.beta;
-
-import matsu.num.statistics.random.BetaRnd;
 
 /**
  * {@link BetaRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
 abstract class SkeletalBetaRnd implements BetaRnd {
 
@@ -32,7 +30,7 @@ abstract class SkeletalBetaRnd implements BetaRnd {
     protected SkeletalBetaRnd(double a, double b) {
         super();
 
-        assert BetaRnd.acceptsParameters(a, b) : "パラメータ不正";
+        assert matsu.num.statistics.random.BetaRnd.acceptsParameters(a, b) : "パラメータ不正";
 
         this.a = a;
         this.b = b;

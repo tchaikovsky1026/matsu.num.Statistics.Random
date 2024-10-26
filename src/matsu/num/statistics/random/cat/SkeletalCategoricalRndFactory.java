@@ -5,21 +5,20 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2024.10.25
  */
 package matsu.num.statistics.random.cat;
 
 import java.util.Objects;
 import java.util.function.Function;
 
-import matsu.num.statistics.random.CategoricalRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
- * {@link matsu.num.statistics.random.CategoricalRnd.Factory} の骨格実装.
+ * {@link CategoricalRnd.Factory} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
 abstract class SkeletalCategoricalRndFactory implements CategoricalRnd.Factory {
 
@@ -44,7 +43,7 @@ abstract class SkeletalCategoricalRndFactory implements CategoricalRnd.Factory {
 
     @Override
     public CategoricalRnd instanceOf(double[] probability) {
-        if (!CategoricalRnd.acceptsSizeOf(probability)) {
+        if (!matsu.num.statistics.random.CategoricalRnd.acceptsSizeOf(probability)) {
             throw exceptionGetter.apply(probability);
         }
 
@@ -56,7 +55,7 @@ abstract class SkeletalCategoricalRndFactory implements CategoricalRnd.Factory {
 
     @Override
     public CategoricalRnd instanceOfExp(double[] logProbability) {
-        if (!CategoricalRnd.acceptsSizeOf(logProbability)) {
+        if (!matsu.num.statistics.random.CategoricalRnd.acceptsSizeOf(logProbability)) {
             throw exceptionGetter.apply(logProbability);
         }
 

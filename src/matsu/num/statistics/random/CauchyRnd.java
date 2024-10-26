@@ -24,10 +24,20 @@ package matsu.num.statistics.random;
  * 標準Cauchy分布は自由度1のStudent-t分布に一致する.
  * </p>
  * 
+ * 
+ * <p>
+ * <i>
+ * <u>
+ * このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
+ * 外部で実装することは不可.
+ * </u>
+ * </i>
+ * </p>
+ * 
  * @author Matsuura Y.
  * @version 21.0
  */
-public interface CauchyRnd extends FloatingRandomGenerator {
+public sealed interface CauchyRnd extends FloatingRandomGenerator permits matsu.num.statistics.random.cauchy.CauchyRnd {
 
     /**
      * <p>
@@ -52,7 +62,7 @@ public interface CauchyRnd extends FloatingRandomGenerator {
     /**
      * {@link CauchyRnd} のファクトリ.
      */
-    public static interface Factory {
+    public static sealed interface Factory permits matsu.num.statistics.random.cauchy.CauchyRnd.Factory {
 
         /**
          * <p>

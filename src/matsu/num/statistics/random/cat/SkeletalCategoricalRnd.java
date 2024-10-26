@@ -5,17 +5,15 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2024.10.25
  */
 package matsu.num.statistics.random.cat;
-
-import matsu.num.statistics.random.CategoricalRnd;
 
 /**
  * {@link CategoricalRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
 abstract class SkeletalCategoricalRnd implements CategoricalRnd {
     /**
@@ -33,7 +31,7 @@ abstract class SkeletalCategoricalRnd implements CategoricalRnd {
     protected SkeletalCategoricalRnd(int catSize) {
         super();
 
-        assert CategoricalRnd.acceptsSizeOf(new double[catSize]);
+        assert matsu.num.statistics.random.CategoricalRnd.acceptsSizeOf(new double[catSize]);
 
         this.catSize = catSize;
     }

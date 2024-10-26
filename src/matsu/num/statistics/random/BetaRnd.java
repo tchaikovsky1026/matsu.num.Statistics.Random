@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.29
+ * 2024.10.24
  */
 package matsu.num.statistics.random;
 
@@ -53,11 +53,22 @@ package matsu.num.statistics.random;
  * {@code 1.0E-2 <= (a, b) <= 1.0E+14} <br>
  * である.
  * </p>
+ * 
+ * 
+ * <p>
+ * <i>
+ * <u>
+ * このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
+ * 外部で実装することは不可.
+ * </u>
+ * </i>
+ * </p>
  *
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
-public interface BetaRnd extends FloatingRandomGenerator {
+public sealed interface BetaRnd
+        extends FloatingRandomGenerator permits matsu.num.statistics.random.beta.BetaRnd {
 
     /**
      * 扱うことができる形状パラメータの最小値.
@@ -115,7 +126,7 @@ public interface BetaRnd extends FloatingRandomGenerator {
     /**
      * {@link BetaRnd} のファクトリ.
      */
-    public static interface Factory {
+    public static sealed interface Factory permits matsu.num.statistics.random.beta.BetaRnd.Factory {
 
         /**
          * <p>

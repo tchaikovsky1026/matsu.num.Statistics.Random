@@ -5,17 +5,15 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2024.10.26
  */
 package matsu.num.statistics.random.tdist;
-
-import matsu.num.statistics.random.TDistributionRnd;
 
 /**
  * {@link TDistributionRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
 public abstract class SkeletalTDistributionRnd implements TDistributionRnd {
 
@@ -30,7 +28,7 @@ public abstract class SkeletalTDistributionRnd implements TDistributionRnd {
     protected SkeletalTDistributionRnd(double nu) {
         super();
 
-        assert TDistributionRnd.acceptsParameter(nu) : "パラメータ不正";
+        assert matsu.num.statistics.random.TDistributionRnd.acceptsParameter(nu) : "パラメータ不正";
 
         this.nu = nu;
     }

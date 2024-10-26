@@ -11,7 +11,6 @@ package matsu.num.statistics.random.cat;
 
 import java.util.Objects;
 
-import matsu.num.statistics.random.CategoricalRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**

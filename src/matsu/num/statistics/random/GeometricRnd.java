@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2024.10.25
  */
 package matsu.num.statistics.random;
 
@@ -33,10 +33,21 @@ package matsu.num.statistics.random;
  * 扱うことができる成功確率 <i>p</i> は, {@code 1.0E-7 <= p <= 1.0} である.
  * </p>
  *
+ *
+ * <p>
+ * <i>
+ * <u>
+ * このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
+ * 外部で実装することは不可.
+ * </u>
+ * </i>
+ * </p>
+ * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
-public interface GeometricRnd extends IntegerRandomGenerator {
+public sealed interface GeometricRnd
+        extends IntegerRandomGenerator permits matsu.num.statistics.random.geo.GeometricRnd {
 
     /**
      * 扱うことができる成功確率の最小値.
@@ -73,7 +84,7 @@ public interface GeometricRnd extends IntegerRandomGenerator {
     /**
      * {@link GeometricRnd} のファクトリ.
      */
-    public static interface Factory {
+    public static sealed interface Factory permits matsu.num.statistics.random.geo.GeometricRnd.Factory {
 
         /**
          * <p>

@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.10.26
  */
 package matsu.num.statistics.random;
 
@@ -19,11 +19,20 @@ package matsu.num.statistics.random;
  * 乱数発生時に与えられる {@link BaseRandom} が許すならば,
  * 並行プロセスにおいて競合が発生しないことを保証する.
  * </p>
+ * 
+ * <p>
+ * <i>
+ * <u>
+ * このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
+ * 外部で実装することは不可.
+ * </u>
+ * </i>
+ * </p>
  *
  * @author Matsuura Y.
- * @version 20.0
+ * @version 22.0
  */
-public interface FloatingRandomGenerator {
+public sealed interface FloatingRandomGenerator permits BetaRnd, CauchyRnd, ChiSquaredRnd, ExponentialRnd, FDistributionRnd, GammaRnd, GumbelRnd, LevyRnd, LogisticRnd, NormalRnd, TDistributionRnd, VoigtRnd, WeibullRnd {
 
     /**
      * <p>

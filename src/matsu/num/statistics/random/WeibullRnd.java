@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2024.10.26
  */
 package matsu.num.statistics.random;
 
@@ -35,10 +35,21 @@ package matsu.num.statistics.random;
  * である.
  * </p>
  * 
+ * 
+ * <p>
+ * <i>
+ * <u>
+ * このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
+ * 外部で実装することは不可.
+ * </u>
+ * </i>
+ * </p>
+ * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
-public interface WeibullRnd extends FloatingRandomGenerator {
+public sealed interface WeibullRnd
+        extends FloatingRandomGenerator permits matsu.num.statistics.random.weibull.WeibullRnd {
 
     /**
      * 扱うことができる形状パラメータの最小値.
@@ -75,7 +86,7 @@ public interface WeibullRnd extends FloatingRandomGenerator {
     /**
      * {@link WeibullRnd} のファクトリ.
      */
-    public static interface Factory {
+    public static sealed interface Factory permits matsu.num.statistics.random.weibull.WeibullRnd.Factory {
 
         /**
          * <p>

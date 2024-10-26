@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.24
+ * 2024.10.25
  */
 package matsu.num.statistics.random;
 
@@ -19,15 +19,25 @@ package matsu.num.statistics.random;
  * P(<i>x</i>) &prop; exp(-<i>x</i> - exp(-<i>x</i>))
  * </p>
  *
+ *
+ * <p>
+ * <i>
+ * <u>
+ * このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
+ * 外部で実装することは不可.
+ * </u>
+ * </i>
+ * </p>
+ * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
-public interface GumbelRnd extends FloatingRandomGenerator {
+public sealed interface GumbelRnd extends FloatingRandomGenerator permits matsu.num.statistics.random.gumbel.GumbelRnd {
 
     /**
      * {@link GumbelRnd} のファクトリ.
      */
-    public static interface Factory {
+    public static sealed interface Factory permits matsu.num.statistics.random.gumbel.GumbelRnd.Factory {
 
         /**
          * <p>

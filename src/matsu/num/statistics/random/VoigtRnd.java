@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2024.10.26
  */
 package matsu.num.statistics.random;
 
@@ -48,10 +48,21 @@ package matsu.num.statistics.random;
  * と定め, 生成された乱数を (<i>&sigma;</i> + <i>&gamma;</i>) 倍すればよい.
  * </p>
  * 
+ * 
+ * <p>
+ * <i>
+ * <u>
+ * このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
+ * 外部で実装することは不可.
+ * </u>
+ * </i>
+ * </p>
+ * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
-public interface VoigtRnd extends FloatingRandomGenerator {
+public sealed interface VoigtRnd
+        extends FloatingRandomGenerator permits matsu.num.statistics.random.voigt.VoigtRnd {
 
     /**
      * パラメータ <i>&alpha;</i> の最小値.
@@ -88,7 +99,7 @@ public interface VoigtRnd extends FloatingRandomGenerator {
     /**
      * {@link VoigtRnd} のファクトリ.
      */
-    public static interface Factory {
+    public static sealed interface Factory permits matsu.num.statistics.random.voigt.VoigtRnd.Factory {
 
         /**
          * <p>

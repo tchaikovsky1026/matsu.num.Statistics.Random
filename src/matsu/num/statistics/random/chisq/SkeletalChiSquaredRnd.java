@@ -5,17 +5,15 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2024.10.25
  */
 package matsu.num.statistics.random.chisq;
-
-import matsu.num.statistics.random.ChiSquaredRnd;
 
 /**
  * {@link ChiSquaredRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
 abstract class SkeletalChiSquaredRnd implements ChiSquaredRnd {
 
@@ -30,7 +28,7 @@ abstract class SkeletalChiSquaredRnd implements ChiSquaredRnd {
     protected SkeletalChiSquaredRnd(double k) {
         super();
 
-        assert ChiSquaredRnd.acceptsParameter(k) : "パラメータ不正";
+        assert matsu.num.statistics.random.ChiSquaredRnd.acceptsParameter(k) : "パラメータ不正";
 
         this.k = k;
     }

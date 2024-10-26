@@ -5,17 +5,15 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2024.10.26
  */
 package matsu.num.statistics.random.voigt;
-
-import matsu.num.statistics.random.VoigtRnd;
 
 /**
  * {@link VoigtRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
 abstract class SkeletalVoigtRnd implements VoigtRnd {
 
@@ -30,7 +28,7 @@ abstract class SkeletalVoigtRnd implements VoigtRnd {
     protected SkeletalVoigtRnd(double alpha) {
         super();
 
-        assert VoigtRnd.acceptsParameter(alpha) : "パラメータ不正";
+        assert matsu.num.statistics.random.VoigtRnd.acceptsParameter(alpha) : "パラメータ不正";
 
         this.alpha = alpha;
     }

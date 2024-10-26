@@ -5,17 +5,15 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.27
+ * 2024.10.25
  */
 package matsu.num.statistics.random.exp;
-
-import matsu.num.statistics.random.ExponentialRnd;
 
 /**
  * {@link ExponentialRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
 abstract class SkeletalExponentialRnd implements ExponentialRnd {
 

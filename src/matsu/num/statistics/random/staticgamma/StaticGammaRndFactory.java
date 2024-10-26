@@ -5,18 +5,17 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2024.10.26
  */
 package matsu.num.statistics.random.staticgamma;
 
-import matsu.num.statistics.random.StaticGammaRnd;
 import matsu.num.statistics.random.base.ParameterlessFactory;
 
 /**
- * {@link matsu.num.statistics.random.StaticGammaRnd.Factory} の実装.
+ * {@link StaticGammaRnd.Factory} の実装.
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
 final class StaticGammaRndFactory
         extends ParameterlessFactory<StaticGammaRnd> implements StaticGammaRnd.Factory {

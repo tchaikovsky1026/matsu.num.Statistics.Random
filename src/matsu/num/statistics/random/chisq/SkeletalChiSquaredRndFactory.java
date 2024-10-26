@@ -5,17 +5,15 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2024.10.25
  */
 package matsu.num.statistics.random.chisq;
 
-import matsu.num.statistics.random.ChiSquaredRnd;
-
 /**
- * {@link matsu.num.statistics.random.ChiSquaredRnd.Factory} の骨格実装.
+ * {@link ChiSquaredRnd.Factory} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
 abstract class SkeletalChiSquaredRndFactory implements ChiSquaredRnd.Factory {
 
@@ -28,7 +26,7 @@ abstract class SkeletalChiSquaredRndFactory implements ChiSquaredRnd.Factory {
 
     @Override
     public final ChiSquaredRnd instanceOf(double k) {
-        if (!ChiSquaredRnd.acceptsParameter(k)) {
+        if (!matsu.num.statistics.random.ChiSquaredRnd.acceptsParameter(k)) {
             throw new IllegalArgumentException(
                     String.format("パラメータ不正:k=%s", k));
         }

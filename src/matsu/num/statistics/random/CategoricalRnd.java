@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2024.10.25
  */
 package matsu.num.statistics.random;
 
@@ -31,11 +31,22 @@ package matsu.num.statistics.random;
  * 
  * <li>P(<i>k</i>) = 0 &emsp; (otherwise)</li>
  * </ul>
+ * 
+ * 
+ * <p>
+ * <i>
+ * <u>
+ * このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
+ * 外部で実装することは不可.
+ * </u>
+ * </i>
+ * </p>
  *
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
-public interface CategoricalRnd extends IntegerRandomGenerator {
+public sealed interface CategoricalRnd
+        extends IntegerRandomGenerator permits matsu.num.statistics.random.cat.CategoricalRnd {
 
     /**
      * <p>
@@ -69,7 +80,7 @@ public interface CategoricalRnd extends IntegerRandomGenerator {
     /**
      * {@link CategoricalRnd} のファクトリ.
      */
-    public static interface Factory {
+    public static sealed interface Factory permits matsu.num.statistics.random.cat.CategoricalRnd.Factory {
 
         /**
          * <p>

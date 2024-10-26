@@ -5,20 +5,19 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2024.10.25
  */
 package matsu.num.statistics.random.chisq;
 
 import java.util.Objects;
 
-import matsu.num.statistics.random.ChiSquaredRnd;
 import matsu.num.statistics.random.GammaRnd;
 
 /**
  * このパッケージに用意された {@link ChiSquaredRnd} 実装のインスタンス生成を扱う.
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
 public final class GammaTypeChiSquaredRndFactory extends SkeletalChiSquaredRndFactory {
 

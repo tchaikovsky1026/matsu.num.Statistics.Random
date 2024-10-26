@@ -5,18 +5,17 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2024.10.26
  */
 package matsu.num.statistics.random.staticbeta;
 
-import matsu.num.statistics.random.StaticBetaRnd;
 import matsu.num.statistics.random.base.ParameterlessFactory;
 
 /**
- * {@link matsu.num.statistics.random.StaticBetaRnd.Factory} の実装.
+ * {@link StaticBetaRnd.Factory} の実装.
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
 final class StaticBetaRndFactory
         extends ParameterlessFactory<StaticBetaRnd> implements StaticBetaRnd.Factory {

@@ -5,17 +5,15 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2024.10.25
  */
 package matsu.num.statistics.random.gamma;
-
-import matsu.num.statistics.random.GammaRnd;
 
 /**
  * {@link GammaRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
 abstract class SkeletalGammaRnd implements GammaRnd {
 
@@ -30,7 +28,7 @@ abstract class SkeletalGammaRnd implements GammaRnd {
     protected SkeletalGammaRnd(double k) {
         super();
 
-        assert GammaRnd.acceptsParameter(k) : "パラメータ不正";
+        assert matsu.num.statistics.random.GammaRnd.acceptsParameter(k) : "パラメータ不正";
 
         this.k = k;
     }

@@ -5,17 +5,15 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2024.10.25
  */
 package matsu.num.statistics.random.fdist;
-
-import matsu.num.statistics.random.FDistributionRnd;
 
 /**
  * {@link FDistributionRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
 abstract class SkeletalFDistributionRnd implements FDistributionRnd {
 
@@ -32,7 +30,8 @@ abstract class SkeletalFDistributionRnd implements FDistributionRnd {
     public SkeletalFDistributionRnd(double d1, double d2) {
         super();
 
-        assert FDistributionRnd.acceptsParameters(d1, d2) : "パラメータ不正";
+        assert matsu.num.statistics.random.FDistributionRnd
+                .acceptsParameters(d1, d2) : "パラメータ不正";
 
         this.d1 = d1;
         this.d2 = d2;

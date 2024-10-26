@@ -5,20 +5,19 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2024.10.26
  */
 package matsu.num.statistics.random.staticgamma;
 
 import java.util.Objects;
 
 import matsu.num.statistics.random.BaseRandom;
-import matsu.num.statistics.random.StaticGammaRnd;
 
 /**
  * {@link StaticGammaRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
 abstract class SkeletalStaticGammaRnd implements StaticGammaRnd {
 
@@ -32,7 +31,7 @@ abstract class SkeletalStaticGammaRnd implements StaticGammaRnd {
     @Override
     public final double nextRandom(BaseRandom random, double k) {
         Objects.requireNonNull(random);
-        if (!StaticGammaRnd.acceptsParameter(k)) {
+        if (!matsu.num.statistics.random.StaticGammaRnd.acceptsParameter(k)) {
             throw new IllegalArgumentException(String.format("パラメータ不正:k=%s", k));
         }
 

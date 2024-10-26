@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2024.10.26
  */
 package matsu.num.statistics.random.staticbeta;
 
@@ -13,13 +13,12 @@ import java.util.Objects;
 import java.util.function.BiFunction;
 
 import matsu.num.statistics.random.BaseRandom;
-import matsu.num.statistics.random.StaticBetaRnd;
 
 /**
  * {@link StaticBetaRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
 abstract class SkeletalStaticBetaRnd implements StaticBetaRnd {
 
@@ -36,7 +35,7 @@ abstract class SkeletalStaticBetaRnd implements StaticBetaRnd {
     @Override
     public final double nextRandom(BaseRandom random, double a, double b) {
         Objects.requireNonNull(random);
-        if (!StaticBetaRnd.acceptsParameters(a, b)) {
+        if (!matsu.num.statistics.random.StaticBetaRnd.acceptsParameters(a, b)) {
             throw exceptionGetter.apply(a, b);
         }
 
@@ -63,7 +62,7 @@ abstract class SkeletalStaticBetaRnd implements StaticBetaRnd {
     @Override
     public final double nextBetaPrime(BaseRandom random, double a, double b) {
         Objects.requireNonNull(random);
-        if (!StaticBetaRnd.acceptsParameters(a, b)) {
+        if (!matsu.num.statistics.random.StaticBetaRnd.acceptsParameters(a, b)) {
             throw exceptionGetter.apply(a, b);
         }
 

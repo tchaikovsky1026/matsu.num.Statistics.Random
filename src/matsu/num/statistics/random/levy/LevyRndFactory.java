@@ -5,18 +5,17 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.27
+ * 2024.10.25
  */
 package matsu.num.statistics.random.levy;
 
-import matsu.num.statistics.random.LevyRnd;
 import matsu.num.statistics.random.base.ParameterlessFactory;
 
 /**
- * {@link matsu.num.statistics.random.LevyRnd.Factory} の実装.
+ * {@link LevyRnd.Factory} の実装.
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
 final class LevyRndFactory
         extends ParameterlessFactory<LevyRnd> implements LevyRnd.Factory {

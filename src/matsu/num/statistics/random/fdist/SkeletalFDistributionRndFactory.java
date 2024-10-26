@@ -5,17 +5,15 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2024.10.25
  */
 package matsu.num.statistics.random.fdist;
 
-import matsu.num.statistics.random.FDistributionRnd;
-
 /**
- * {@link matsu.num.statistics.random.FDistributionRnd.Factory} の骨格実装.
+ * {@link FDistributionRnd.Factory} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
 abstract class SkeletalFDistributionRndFactory implements FDistributionRnd.Factory {
 
@@ -28,7 +26,7 @@ abstract class SkeletalFDistributionRndFactory implements FDistributionRnd.Facto
 
     @Override
     public final FDistributionRnd instanceOf(double d1, double d2) {
-        if (!FDistributionRnd.acceptsParameters(d1, d2)) {
+        if (!matsu.num.statistics.random.FDistributionRnd.acceptsParameters(d1, d2)) {
             throw new IllegalArgumentException(
                     String.format(
                             "パラメータ不正:d1 = %s, d2 = %s", d1, d2));

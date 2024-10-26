@@ -5,17 +5,15 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2024.10.25
  */
 package matsu.num.statistics.random.geo;
 
-import matsu.num.statistics.random.GeometricRnd;
-
 /**
- * {@link matsu.num.statistics.random.GeometricRnd.Factory} の骨格実装
+ * {@link GeometricRnd.Factory} の骨格実装
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
 abstract class SkeletalGeometricRndFactory implements GeometricRnd.Factory {
 
@@ -28,7 +26,7 @@ abstract class SkeletalGeometricRndFactory implements GeometricRnd.Factory {
 
     @Override
     public final GeometricRnd instanceOf(double p) {
-        if (!GeometricRnd.acceptsParameter(p)) {
+        if (!matsu.num.statistics.random.GeometricRnd.acceptsParameter(p)) {
             throw new IllegalArgumentException(String.format("パラメータ不正:p=%s", p));
         }
 

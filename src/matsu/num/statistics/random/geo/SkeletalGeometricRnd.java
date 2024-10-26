@@ -5,17 +5,15 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2024.10.25
  */
 package matsu.num.statistics.random.geo;
-
-import matsu.num.statistics.random.GeometricRnd;
 
 /**
  * {@link GeometricRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
 abstract class SkeletalGeometricRnd implements GeometricRnd {
 
@@ -30,7 +28,7 @@ abstract class SkeletalGeometricRnd implements GeometricRnd {
     protected SkeletalGeometricRnd(double p) {
         super();
 
-        assert GeometricRnd.acceptsParameter(p) : "パラメータ不正";
+        assert matsu.num.statistics.random.GeometricRnd.acceptsParameter(p) : "パラメータ不正";
 
         this.p = p;
     }

@@ -5,17 +5,15 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2024.10.26
  */
 package matsu.num.statistics.random.weibull;
 
-import matsu.num.statistics.random.WeibullRnd;
-
 /**
- * {@link matsu.num.statistics.random.WeibullRnd.Factory} の骨格実装.
+ * {@link WeibullRnd.Factory} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
 abstract class SkeletalWeibullRndFactory implements WeibullRnd.Factory {
 
@@ -28,7 +26,7 @@ abstract class SkeletalWeibullRndFactory implements WeibullRnd.Factory {
 
     @Override
     public final WeibullRnd instanceOf(double k) {
-        if (!WeibullRnd.acceptsParameter(k)) {
+        if (!matsu.num.statistics.random.WeibullRnd.acceptsParameter(k)) {
             throw new IllegalArgumentException(
                     String.format(
                             "パラメータ不正:k=%s", k));

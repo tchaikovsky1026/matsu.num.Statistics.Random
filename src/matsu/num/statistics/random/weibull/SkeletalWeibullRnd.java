@@ -5,17 +5,15 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2024.10.26
  */
 package matsu.num.statistics.random.weibull;
-
-import matsu.num.statistics.random.WeibullRnd;
 
 /**
  * {@link WeibullRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
 abstract class SkeletalWeibullRnd implements WeibullRnd {
 
@@ -30,7 +28,7 @@ abstract class SkeletalWeibullRnd implements WeibullRnd {
     protected SkeletalWeibullRnd(double k) {
         super();
 
-        assert WeibullRnd.acceptsParameter(k) : "パラメータ不正";
+        assert matsu.num.statistics.random.WeibullRnd.acceptsParameter(k) : "パラメータ不正";
 
         this.k = k;
     }

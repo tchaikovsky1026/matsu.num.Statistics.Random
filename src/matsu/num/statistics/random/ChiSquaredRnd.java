@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.24
+ * 2024.10.25
  */
 package matsu.num.statistics.random;
 
@@ -36,10 +36,21 @@ package matsu.num.statistics.random;
  * である.
  * </p>
  *
+ *
+ * <p>
+ * <i>
+ * <u>
+ * このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
+ * 外部で実装することは不可.
+ * </u>
+ * </i>
+ * </p>
+ * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.0
  */
-public interface ChiSquaredRnd extends FloatingRandomGenerator {
+public sealed interface ChiSquaredRnd
+        extends FloatingRandomGenerator permits matsu.num.statistics.random.chisq.ChiSquaredRnd {
 
     /**
      * 扱うことができる自由度の最小値.
@@ -76,7 +87,7 @@ public interface ChiSquaredRnd extends FloatingRandomGenerator {
     /**
      * {@link ChiSquaredRnd} のファクトリ.
      */
-    public static interface Factory {
+    public static sealed interface Factory permits matsu.num.statistics.random.chisq.ChiSquaredRnd.Factory {
 
         /**
          * <p>
