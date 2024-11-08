@@ -5,17 +5,17 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.10.26
+ * 2024.11.9
  */
 package matsu.num.statistics.random.tdist;
 
 /**
- * {@link TDistributionRnd} の骨格実装.
+ * {@link TDistributionRndSealed} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.0
+ * @version 22.1
  */
-public abstract class SkeletalTDistributionRnd implements TDistributionRnd {
+public abstract class SkeletalTDistributionRnd implements TDistributionRndSealed {
 
     protected final double nu;
 

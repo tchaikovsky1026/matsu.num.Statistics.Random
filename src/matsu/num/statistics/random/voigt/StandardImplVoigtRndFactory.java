@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.10.26
+ * 2024.11.9
  */
 package matsu.num.statistics.random.voigt;
 
@@ -18,7 +18,7 @@ import matsu.num.statistics.random.NormalRnd;
  * VoigtRndのスタンダード実装のファクトリ.
  * 
  * @author Matsuura Y.
- * @version 22.0
+ * @version 22.1
  */
 public final class StandardImplVoigtRndFactory extends SkeletalVoigtRndFactory {
 
@@ -32,7 +32,7 @@ public final class StandardImplVoigtRndFactory extends SkeletalVoigtRndFactory {
     }
 
     @Override
-    protected VoigtRnd createInstanceOf(double alpha) {
+    protected VoigtRndSealed createInstanceOf(double alpha) {
         return new StandardImplVoigtRnd(alpha, this.normalRndFactory, this.cauchyRndFactory);
     }
 }

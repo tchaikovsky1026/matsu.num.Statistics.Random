@@ -5,17 +5,17 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.10.25
+ * 2024.11.9
  */
 package matsu.num.statistics.random.beta;
 
 /**
- * {@link BetaRnd} の骨格実装.
+ * {@link BetaRndSealed} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.0
+ * @version 22.1
  */
-abstract class SkeletalBetaRnd implements BetaRnd {
+abstract class SkeletalBetaRnd implements BetaRndSealed {
 
     protected final double a;
     protected final double b;

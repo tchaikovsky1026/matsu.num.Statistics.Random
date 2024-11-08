@@ -5,17 +5,17 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.10.25
+ * 2024.11.9
  */
 package matsu.num.statistics.random.poi;
 
 /**
- * {@link PoissonRnd.Factory} の骨格実装.
+ * {@link PoissonRndSealed.FactorySealed} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.0
+ * @version 22.1
  */
-abstract class SkeletalPoissonRndFactory implements PoissonRnd.Factory {
+abstract class SkeletalPoissonRndFactory implements PoissonRndSealed.FactorySealed {
 
     /**
      * 唯一のコンストラクタ.
@@ -25,7 +25,7 @@ abstract class SkeletalPoissonRndFactory implements PoissonRnd.Factory {
     }
 
     @Override
-    public final PoissonRnd instanceOf(double lambda) {
+    public final PoissonRndSealed instanceOf(double lambda) {
         if (!matsu.num.statistics.random.PoissonRnd.acceptsParameter(lambda)) {
             throw new IllegalArgumentException(String.format("パラメータ不正:lambda=%s", lambda));
         }
@@ -45,7 +45,7 @@ abstract class SkeletalPoissonRndFactory implements PoissonRnd.Factory {
      * @param lambda パラメータ
      * @return パラメータが <i>&lambda;</i> のPoisson分布乱数発生器インスタンス
      */
-    protected abstract PoissonRnd createInstanceOf(double lambda);
+    protected abstract PoissonRndSealed createInstanceOf(double lambda);
 
     @Override
     public String toString() {

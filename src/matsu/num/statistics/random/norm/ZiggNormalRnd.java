@@ -115,7 +115,7 @@ public final class ZiggNormalRnd extends SkeletalNormalRnd {
      * {@link ZiggNormalRnd} を生成するファクトリを生成する.
      * 
      * @param exponentiation 指数関数計算器
-     * @param exponentialRndFactory 指数乱数生成器のファクトリ
+     * @param exponentialRndFactory 指数乱数発生器のファクトリ
      * @return 正規乱数のファクトリ
      * @throws NullPointerException 引数にnullが含まれる場合
      */

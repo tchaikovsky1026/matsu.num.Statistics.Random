@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.10.25
+ * 2024.11.9
  */
 package matsu.num.statistics.random.gamma;
 
@@ -13,9 +13,9 @@ package matsu.num.statistics.random.gamma;
  * {@link matsu.num.statistics.random.GammaRnd.Factory} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.0
+ * @version 22.1
  */
-abstract class SkeletalGammRndFactory implements GammaRnd.Factory {
+abstract class SkeletalGammRndFactory implements GammaRndSealed.FactorySealed {
 
     /**
      * 唯一のコンストラクタ.
@@ -25,7 +25,7 @@ abstract class SkeletalGammRndFactory implements GammaRnd.Factory {
     }
 
     @Override
-    public final GammaRnd instanceOf(double k) {
+    public final GammaRndSealed instanceOf(double k) {
         if (!matsu.num.statistics.random.GammaRnd.acceptsParameter(k)) {
             throw new IllegalArgumentException(String.format("パラメータ不正:k=%s", k));
         }
@@ -45,7 +45,7 @@ abstract class SkeletalGammRndFactory implements GammaRnd.Factory {
      * @param k 形状パラメータ
      * @return 形状パラメータが <i>k</i> のガンマ分布乱数発生器インスタンス
      */
-    protected abstract GammaRnd createInstanceOf(double k);
+    protected abstract GammaRndSealed createInstanceOf(double k);
 
     @Override
     public String toString() {

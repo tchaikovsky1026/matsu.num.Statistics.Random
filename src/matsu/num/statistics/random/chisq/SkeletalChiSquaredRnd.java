@@ -5,17 +5,17 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.10.25
+ * 2024.11.9
  */
 package matsu.num.statistics.random.chisq;
 
 /**
- * {@link ChiSquaredRnd} の骨格実装.
+ * {@link ChiSquaredRndSealed} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.0
+ * @version 22.1
  */
-abstract class SkeletalChiSquaredRnd implements ChiSquaredRnd {
+abstract class SkeletalChiSquaredRnd implements ChiSquaredRndSealed {
 
     protected final double k;
 

@@ -5,9 +5,11 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.10.25
+ * 2024.11.9
  */
 package matsu.num.statistics.random;
+
+import matsu.num.statistics.random.exp.ExponentialRndSealed;
 
 /**
  * <p>
@@ -40,15 +42,16 @@ package matsu.num.statistics.random;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.0
+ * @version 22.1
  */
 public sealed interface ExponentialRnd
-        extends FloatingRandomGenerator permits matsu.num.statistics.random.exp.ExponentialRnd {
+        extends FloatingRandomGenerator permits ExponentialRndSealed {
 
     /**
      * {@link ExponentialRnd} のファクトリ.
      */
-    public static sealed interface Factory permits matsu.num.statistics.random.exp.ExponentialRnd.Factory {
+    public static sealed interface Factory
+            extends RndFactory permits ExponentialRndSealed.FactorySealed {
 
         /**
          * <p>

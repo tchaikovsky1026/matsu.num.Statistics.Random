@@ -5,28 +5,28 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.10.26
+ * 2024.11.9
  */
 package matsu.num.statistics.random.staticbeta;
 
 import matsu.num.statistics.random.base.ParameterlessFactory;
 
 /**
- * {@link StaticBetaRnd.Factory} の実装.
+ * {@link StaticBetaRndSealed.FactorySealed} の実装.
  * 
  * @author Matsuura Y.
- * @version 22.0
+ * @version 22.1
  */
 final class StaticBetaRndFactory
-        extends ParameterlessFactory<StaticBetaRnd> implements StaticBetaRnd.Factory {
+        extends ParameterlessFactory<StaticBetaRndSealed> implements StaticBetaRndSealed.FactorySealed {
 
     /**
-     * 乱数生成器を紐づけて, ファクトリを生成する.
+     * 乱数発生器を紐づけて, ファクトリを生成する.
      * 
-     * @param rnd 乱数生成器
-     * @throws NullPointerException 乱数生成器がnullの場合
+     * @param rnd 乱数発生器
+     * @throws NullPointerException 乱数発生器がnullの場合
      */
-    public StaticBetaRndFactory(StaticBetaRnd rnd) {
+    public StaticBetaRndFactory(StaticBetaRndSealed rnd) {
         super(rnd, "StaticBetaRnd.Factory");
     }
 }

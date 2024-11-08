@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.10.25
+ * 2024.11.9
  */
 package matsu.num.statistics.random.cat;
 
@@ -15,12 +15,12 @@ import java.util.function.Function;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
- * {@link CategoricalRnd.Factory} の骨格実装.
+ * {@link CategoricalRndSealed.FactorySealed} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.0
+ * @version 22.1
  */
-abstract class SkeletalCategoricalRndFactory implements CategoricalRnd.Factory {
+abstract class SkeletalCategoricalRndFactory implements CategoricalRndSealed.FactorySealed {
 
     private static final Function<double[], IllegalArgumentException> exceptionGetter =
             values -> new IllegalArgumentException(String.format("パラメータ不正: size=%s", values.length));
@@ -42,7 +42,7 @@ abstract class SkeletalCategoricalRndFactory implements CategoricalRnd.Factory {
     }
 
     @Override
-    public CategoricalRnd instanceOf(double[] probability) {
+    public CategoricalRndSealed instanceOf(double[] probability) {
         if (!matsu.num.statistics.random.CategoricalRnd.acceptsSizeOf(probability)) {
             throw exceptionGetter.apply(probability);
         }
@@ -54,7 +54,7 @@ abstract class SkeletalCategoricalRndFactory implements CategoricalRnd.Factory {
     }
 
     @Override
-    public CategoricalRnd instanceOfExp(double[] logProbability) {
+    public CategoricalRndSealed instanceOfExp(double[] logProbability) {
         if (!matsu.num.statistics.random.CategoricalRnd.acceptsSizeOf(logProbability)) {
             throw exceptionGetter.apply(logProbability);
         }
@@ -90,7 +90,7 @@ abstract class SkeletalCategoricalRndFactory implements CategoricalRnd.Factory {
      * @param probability 確率値の配列(各値は0以上であり総和が1)
      * @return 値配列に比例するカテゴリカル分布乱数発生器インスタンス
      */
-    protected abstract CategoricalRnd createInstanceOf(double[] probability);
+    protected abstract CategoricalRndSealed createInstanceOf(double[] probability);
 
     @Override
     public String toString() {

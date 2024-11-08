@@ -28,7 +28,7 @@ final class GammaHomoProcessBasedPoissonRnd extends SkeletalPoissonRnd {
     static final int GAMMA_RND_BIT = 20;
 
     /**
-     * 形状パラメータが1, 2, 4, ... のガンマ乱数生成器. <br>
+     * 形状パラメータが1, 2, 4, ... のガンマ乱数発生器. <br>
      * 最大は 2^20 = 1_048_576 (GAMMA_RND_BIT = 20)
      */
     private final GammaRnd[] gammaRnds;

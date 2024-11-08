@@ -117,7 +117,7 @@ public final class ZiggLogiRnd extends SkeletalLogisticRnd {
      * {@link LogisticRnd} を生成するファクトリを生成する.
      * 
      * @param exponentiation 指数関数計算器
-     * @param exponentialRndFactory 正規乱数生成器のファクトリ
+     * @param exponentialRndFactory 正規乱数発生器のファクトリ
      * @return Logistic乱数のファクトリ
      * @throws NullPointerException 引数にnullが含まれる場合
      */

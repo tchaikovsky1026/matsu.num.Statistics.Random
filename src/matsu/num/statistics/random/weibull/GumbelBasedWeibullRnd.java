@@ -14,7 +14,7 @@ import matsu.num.statistics.random.GumbelRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
- * 標準Gumbel分布を用いた標準Weibull分布乱数生成器の実装.
+ * 標準Gumbel分布を用いた標準Weibull分布乱数発生器の実装.
  *
  * @author Matsuura Y.
  * @version 21.0

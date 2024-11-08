@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.11.9
  */
 package matsu.num.statistics.random.exp;
 
@@ -23,7 +23,7 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * </p>
  *
  * @author Matsuura Y.
- * @version 20.0
+ * @version 22.1
  */
 public final class ZiggExponentialRnd extends SkeletalExponentialRnd {
 

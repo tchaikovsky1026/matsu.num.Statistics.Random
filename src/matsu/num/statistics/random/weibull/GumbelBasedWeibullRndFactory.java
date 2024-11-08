@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.10.26
+ * 2024.11.9
  */
 package matsu.num.statistics.random.weibull;
 
@@ -15,10 +15,10 @@ import matsu.num.statistics.random.GumbelRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
- * 標準Gumbelベースの標準Weibull分布乱数生成器のファクトリ.
+ * 標準Gumbelベースの標準Weibull分布乱数発生器のファクトリ.
  * 
  * @author Matsuura Y.
- * @version 22.0
+ * @version 22.1
  */
 public final class GumbelBasedWeibullRndFactory extends SkeletalWeibullRndFactory {
 
@@ -32,7 +32,7 @@ public final class GumbelBasedWeibullRndFactory extends SkeletalWeibullRndFactor
     }
 
     @Override
-    protected WeibullRnd createInstanceOf(double k) {
+    protected WeibullRndSealed createInstanceOf(double k) {
         return new GumbelBasedWeibullRnd(k, this.exponentiation, this.gumbelRndFactory);
     }
 }

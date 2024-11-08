@@ -14,7 +14,7 @@ import matsu.num.statistics.random.StaticBetaRnd;
 import matsu.num.statistics.random.StaticGammaRnd;
 
 /**
- * Marsaglia-Tsangの方法に基づく, ガンマ乱数のstaticな生成器.
+ * Marsaglia-Tsangの方法に基づく, ガンマ乱数のstaticな発生器.
  * 
  * @author Matsuura Y.
  * @version 21.0

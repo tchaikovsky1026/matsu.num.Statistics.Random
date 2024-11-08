@@ -5,28 +5,28 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.10.26
+ * 2024.11.9
  */
 package matsu.num.statistics.random.staticgamma;
 
 import matsu.num.statistics.random.base.ParameterlessFactory;
 
 /**
- * {@link StaticGammaRnd.Factory} の実装.
+ * {@link StaticGammaRndSealed.FactorySealed} の実装.
  * 
  * @author Matsuura Y.
- * @version 22.0
+ * @version 22.1
  */
 final class StaticGammaRndFactory
-        extends ParameterlessFactory<StaticGammaRnd> implements StaticGammaRnd.Factory {
+        extends ParameterlessFactory<StaticGammaRndSealed> implements StaticGammaRndSealed.FactorySealed {
 
     /**
-     * 乱数生成器を紐づけて, ファクトリを生成する.
+     * 乱数発生器を紐づけて, ファクトリを生成する.
      * 
-     * @param rnd 乱数生成器
-     * @throws NullPointerException 乱数生成器がnullの場合
+     * @param rnd 乱数発生器
+     * @throws NullPointerException 乱数発生器がnullの場合
      */
-    public StaticGammaRndFactory(StaticGammaRnd rnd) {
+    public StaticGammaRndFactory(StaticGammaRndSealed rnd) {
         super(rnd, "StaticGammaRnd.Factory");
     }
 }

@@ -15,7 +15,7 @@ import matsu.num.statistics.random.BetaRnd;
 import matsu.num.statistics.random.GammaRnd;
 
 /**
- * ガンマ乱数生成器に基づくベータ乱数生成器のファクトリ.
+ * ガンマ乱数発生器に基づくベータ乱数発生器のファクトリ.
  * 
  * @author Matsuura Y.
  * @version 21.0

@@ -5,9 +5,11 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.10.25
+ * 2024.11.9
  */
 package matsu.num.statistics.random;
+
+import matsu.num.statistics.random.cat.CategoricalRndSealed;
 
 /**
  * <p>
@@ -43,10 +45,10 @@ package matsu.num.statistics.random;
  * </p>
  *
  * @author Matsuura Y.
- * @version 22.0
+ * @version 22.1
  */
 public sealed interface CategoricalRnd
-        extends IntegerRandomGenerator permits matsu.num.statistics.random.cat.CategoricalRnd {
+        extends IntegerRandomGenerator permits CategoricalRndSealed {
 
     /**
      * <p>
@@ -80,7 +82,8 @@ public sealed interface CategoricalRnd
     /**
      * {@link CategoricalRnd} のファクトリ.
      */
-    public static sealed interface Factory permits matsu.num.statistics.random.cat.CategoricalRnd.Factory {
+    public static sealed interface Factory
+            extends RndFactory permits CategoricalRndSealed.FactorySealed {
 
         /**
          * <p>

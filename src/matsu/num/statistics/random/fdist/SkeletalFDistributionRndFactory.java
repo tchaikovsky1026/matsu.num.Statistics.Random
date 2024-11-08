@@ -5,17 +5,17 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.10.25
+ * 2024.11.9
  */
 package matsu.num.statistics.random.fdist;
 
 /**
- * {@link FDistributionRnd.Factory} の骨格実装.
+ * {@link FDistributionRndSealed.FactorySealed} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.0
+ * @version 22.1
  */
-abstract class SkeletalFDistributionRndFactory implements FDistributionRnd.Factory {
+abstract class SkeletalFDistributionRndFactory implements FDistributionRndSealed.FactorySealed {
 
     /**
      * 唯一のコンストラクタ.
@@ -25,7 +25,7 @@ abstract class SkeletalFDistributionRndFactory implements FDistributionRnd.Facto
     }
 
     @Override
-    public final FDistributionRnd instanceOf(double d1, double d2) {
+    public final FDistributionRndSealed instanceOf(double d1, double d2) {
         if (!matsu.num.statistics.random.FDistributionRnd.acceptsParameters(d1, d2)) {
             throw new IllegalArgumentException(
                     String.format(
@@ -49,7 +49,7 @@ abstract class SkeletalFDistributionRndFactory implements FDistributionRnd.Facto
      * @return 自由度が (<i>d</i><sub>1</sub>, <i>d</i><sub>2</sub>)
      *             のF分布乱数発生器インスタンス
      */
-    protected abstract FDistributionRnd createInstanceOf(double d1, double d2);
+    protected abstract FDistributionRndSealed createInstanceOf(double d1, double d2);
 
     @Override
     public String toString() {

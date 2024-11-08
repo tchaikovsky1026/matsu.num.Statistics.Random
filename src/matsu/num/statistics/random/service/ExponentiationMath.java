@@ -5,17 +5,18 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2024.11.8
  */
 package matsu.num.statistics.random.service;
 
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
- * {@link Math} ライブラリを用いた {@link Exponentiation}.
+ * {@link Math} ライブラリを用いた {@link Exponentiation}. <br>
+ * {@link CommonLib} のデフォルトライブラリとして使用される.
  * 
  * @author Matsuura Y.
- * @version 20.0
+ * @version 22.1
  */
 final class ExponentiationMath implements Exponentiation {
 

@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.10.25
+ * 2024.11.9
  */
 package matsu.num.statistics.random.beta;
 
@@ -15,9 +15,9 @@ import matsu.num.statistics.random.BetaRnd;
  * {@link matsu.num.statistics.random.BetaRnd.Factory} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.0
+ * @version 22.1
  */
-abstract class SkeletalBetaRndFactory implements matsu.num.statistics.random.beta.BetaRnd.Factory {
+abstract class SkeletalBetaRndFactory implements matsu.num.statistics.random.beta.BetaRndSealed.FactorySealed {
 
     /**
      * 唯一のコンストラクタ.

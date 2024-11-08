@@ -5,9 +5,11 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.10.26
+ * 2024.11.9
  */
 package matsu.num.statistics.random;
+
+import matsu.num.statistics.random.staticbeta.StaticBetaRndSealed;
 
 /**
  * <p>
@@ -66,9 +68,9 @@ package matsu.num.statistics.random;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.0
+ * @version 22.1
  */
-public sealed interface StaticBetaRnd permits matsu.num.statistics.random.staticbeta.StaticBetaRnd {
+public sealed interface StaticBetaRnd extends Rnd permits StaticBetaRndSealed {
 
     /**
      * 扱うことができる形状パラメータの最小値.
@@ -135,7 +137,8 @@ public sealed interface StaticBetaRnd permits matsu.num.statistics.random.static
     /**
      * {@link StaticBetaRnd} のファクトリ.
      */
-    public static sealed interface Factory permits matsu.num.statistics.random.staticbeta.StaticBetaRnd.Factory {
+    public static sealed interface Factory
+            extends RndFactory permits StaticBetaRndSealed.FactorySealed {
 
         /**
          * <p>

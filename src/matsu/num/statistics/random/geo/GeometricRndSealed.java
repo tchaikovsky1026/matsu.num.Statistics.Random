@@ -5,19 +5,21 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.10.25
+ * 2024.11.9
  */
 package matsu.num.statistics.random.geo;
+
+import matsu.num.statistics.random.GeometricRnd;
 
 /**
  * {@link matsu.num.statistics.random.GeometricRnd} をシールするための非公開インターフェース.
  *
  * @author Matsuura Y.
- * @version 22.0
+ * @version 22.1
  */
-public non-sealed interface GeometricRnd extends matsu.num.statistics.random.GeometricRnd {
+public non-sealed interface GeometricRndSealed extends GeometricRnd {
 
-    public static non-sealed interface Factory extends matsu.num.statistics.random.GeometricRnd.Factory{
+    public static non-sealed interface FactorySealed extends GeometricRnd.Factory {
 
     }
 }

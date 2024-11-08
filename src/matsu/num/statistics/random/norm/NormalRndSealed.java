@@ -5,19 +5,21 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.10.25
+ * 2024.11.9
  */
 package matsu.num.statistics.random.norm;
+
+import matsu.num.statistics.random.NormalRnd;
 
 /**
  * {@link matsu.num.statistics.random.NormalRnd} をシールするための非公開インターフェース.
  * 
  * @author Matsuura Y.
- * @version 22.0
+ * @version 22.1
  */
-public non-sealed interface NormalRnd extends matsu.num.statistics.random.NormalRnd {
+public non-sealed interface NormalRndSealed extends NormalRnd {
 
-    public static non-sealed interface Factory extends matsu.num.statistics.random.NormalRnd.Factory {
+    public static non-sealed interface FactorySealed extends NormalRnd.Factory {
 
     }
 }

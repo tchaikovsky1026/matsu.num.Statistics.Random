@@ -13,7 +13,7 @@ import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.ExponentialRnd;
 
 /**
- * 標準指数乱数によって実装された, 形状パラメータが1の乱数生成器.
+ * 標準指数乱数によって実装された, 形状パラメータが1の乱数発生器.
  * 
  * @author Matsuura Y.
  * @version 21.0

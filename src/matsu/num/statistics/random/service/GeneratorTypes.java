@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.27
+ * 2024.11.8
  */
 package matsu.num.statistics.random.service;
 
@@ -52,10 +52,13 @@ import matsu.num.statistics.random.voigt.StandardImplVoigtRndFactory;
 import matsu.num.statistics.random.weibull.GumbelBasedWeibullRndFactory;
 
 /**
- * このパッケージが管理する {@link RandomGeneratorType} 定数.
+ * <p>
+ * このモジュールが管理する {@link RandomGeneratorType} のシングルトンインスタンスを公開するユーティリティクラス. <br>
+ * {@link RandomGeneratorType} インスタンスは全てこのクラス内に定義されている.
+ * </p>
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.1
  */
 public final class GeneratorTypes {
 

@@ -5,17 +5,17 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.10.26
+ * 2024.11.9
  */
 package matsu.num.statistics.random.tdist;
 
 /**
- * {@link TDistributionRnd.Factory} の骨格実装.
+ * {@link TDistributionRndSealed.FactorySealed} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.0
+ * @version 22.1
  */
-abstract class SkeletalTDistributionRndFactory implements TDistributionRnd.Factory {
+abstract class SkeletalTDistributionRndFactory implements TDistributionRndSealed.FactorySealed {
 
     /**
      * 唯一のコンストラクタ.
@@ -25,7 +25,7 @@ abstract class SkeletalTDistributionRndFactory implements TDistributionRnd.Facto
     }
 
     @Override
-    public final TDistributionRnd instanceOf(double nu) {
+    public final TDistributionRndSealed instanceOf(double nu) {
         if (!matsu.num.statistics.random.TDistributionRnd.acceptsParameter(nu)) {
             throw new IllegalArgumentException(String.format("パラメータ不正:nu=%s", nu));
         }
@@ -45,7 +45,7 @@ abstract class SkeletalTDistributionRndFactory implements TDistributionRnd.Facto
      * @param nu 自由度
      * @return 自由度が <i>&nu;</i> のStudent-t分布乱数発生器インスタンス
      */
-    protected abstract TDistributionRnd createInstanceOf(double nu);
+    protected abstract TDistributionRndSealed createInstanceOf(double nu);
 
     @Override
     public String toString() {

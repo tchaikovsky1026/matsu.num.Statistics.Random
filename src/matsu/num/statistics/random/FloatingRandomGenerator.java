@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.10.26
+ * 2024.11.9
  */
 package matsu.num.statistics.random;
 
@@ -30,9 +30,9 @@ package matsu.num.statistics.random;
  * </p>
  *
  * @author Matsuura Y.
- * @version 22.0
+ * @version 22.1
  */
-public sealed interface FloatingRandomGenerator permits BetaRnd, CauchyRnd, ChiSquaredRnd, ExponentialRnd, FDistributionRnd, GammaRnd, GumbelRnd, LevyRnd, LogisticRnd, NormalRnd, TDistributionRnd, VoigtRnd, WeibullRnd {
+public interface FloatingRandomGenerator extends Rnd {
 
     /**
      * <p>

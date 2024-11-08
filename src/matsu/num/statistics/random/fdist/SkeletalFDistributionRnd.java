@@ -5,17 +5,17 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.10.25
+ * 2024.11.9
  */
 package matsu.num.statistics.random.fdist;
 
 /**
- * {@link FDistributionRnd} の骨格実装.
+ * {@link FDistributionRndSealed} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.0
+ * @version 22.1
  */
-abstract class SkeletalFDistributionRnd implements FDistributionRnd {
+abstract class SkeletalFDistributionRnd implements FDistributionRndSealed {
 
     protected final double d1;
     protected final double d2;

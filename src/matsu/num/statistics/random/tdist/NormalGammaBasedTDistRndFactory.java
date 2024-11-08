@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.10.26
+ * 2024.11.9
  */
 package matsu.num.statistics.random.tdist;
 
@@ -19,7 +19,7 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * 正規ガンマタイプのt分布に従う乱数発生器のファクトリ.
  * 
  * @author Matsuura Y.
- * @version 22.0
+ * @version 22.1
  */
 public final class NormalGammaBasedTDistRndFactory extends SkeletalTDistributionRndFactory {
 
@@ -38,7 +38,7 @@ public final class NormalGammaBasedTDistRndFactory extends SkeletalTDistribution
     }
 
     @Override
-    protected TDistributionRnd createInstanceOf(double nu) {
+    protected TDistributionRndSealed createInstanceOf(double nu) {
         return new NormalGammaBasedTDistRnd(nu, this.exponentiation, this.normalRndFactory, this.gammaRndFactory);
     }
 }

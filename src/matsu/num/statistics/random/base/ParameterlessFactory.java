@@ -28,16 +28,16 @@ public abstract class ParameterlessFactory<T> {
     private final String instanceName;
 
     /**
-     * 乱数生成器を紐づけて, ファクトリを生成する.
+     * 乱数発生器を紐づけて, ファクトリを生成する.
      * 
      * <p>
      * このファクトリインスタンスの文字列表現を渡すと, {@link #toString()} でそれが返るようになる. <br>
      * {@code null} や空文字を与えた場合は適当に修正される.
      * </p>
      * 
-     * @param rnd 乱数生成器
+     * @param rnd 乱数発生器
      * @param instanceName このファクトリインスタンスの文字列表現
-     * @throws NullPointerException 乱数生成器がnullの場合
+     * @throws NullPointerException 乱数発生器がnullの場合
      */
     protected ParameterlessFactory(T rnd, String instanceName) {
         super();

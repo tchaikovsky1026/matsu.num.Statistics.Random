@@ -5,28 +5,28 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.10.25
+ * 2024.11.9
  */
 package matsu.num.statistics.random.levy;
 
 import matsu.num.statistics.random.base.ParameterlessFactory;
 
 /**
- * {@link LevyRnd.Factory} の実装.
+ * {@link LevyRndSealed.FactorySealed} の実装.
  * 
  * @author Matsuura Y.
- * @version 22.0
+ * @version 22.1
  */
 final class LevyRndFactory
-        extends ParameterlessFactory<LevyRnd> implements LevyRnd.Factory {
+        extends ParameterlessFactory<LevyRndSealed> implements LevyRndSealed.FactorySealed {
 
     /**
-     * 乱数生成器を紐づけて, ファクトリを生成する.
+     * 乱数発生器を紐づけて, ファクトリを生成する.
      * 
-     * @param rnd 乱数生成器
-     * @throws NullPointerException 乱数生成器がnullの場合
+     * @param rnd 乱数発生器
+     * @throws NullPointerException 乱数発生器がnullの場合
      */
-    LevyRndFactory(LevyRnd rnd) {
+    LevyRndFactory(LevyRndSealed rnd) {
         super(rnd, "LevyRnd.Factory");
     }
 }

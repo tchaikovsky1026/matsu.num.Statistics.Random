@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.10.25
+ * 2024.11.9
  */
 package matsu.num.statistics.random.cauchy;
 
@@ -23,7 +23,7 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.0
+ * @version 22.1
  */
 public final class ZiggCauchyRnd extends SkeletalCauchyRnd {
 
@@ -112,13 +112,13 @@ public final class ZiggCauchyRnd extends SkeletalCauchyRnd {
     }
 
     /**
-     * {@link CauchyRnd} を生成するファクトリを生成する.
+     * {@link CauchyRndSealed} を生成するファクトリを生成する.
      * 
      * @param exponentiation 指数関数計算器
      * @return Cauchy乱数のファクトリ
      * @throws NullPointerException 引数にnullが含まれる場合
      */
-    public static CauchyRnd.Factory createFactory(Exponentiation exponentiation) {
+    public static CauchyRndSealed.FactorySealed createFactory(Exponentiation exponentiation) {
         return new CauchyRndFactory(new ZiggCauchyRnd(exponentiation));
     }
 }

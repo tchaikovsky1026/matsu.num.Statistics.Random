@@ -5,17 +5,17 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.10.26
+ * 2024.11.9
  */
 package matsu.num.statistics.random.weibull;
 
 /**
- * {@link WeibullRnd} の骨格実装.
+ * {@link WeibullRndSealed} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.0
+ * @version 22.1
  */
-abstract class SkeletalWeibullRnd implements WeibullRnd {
+abstract class SkeletalWeibullRnd implements WeibullRndSealed {
 
     protected final double k;
 

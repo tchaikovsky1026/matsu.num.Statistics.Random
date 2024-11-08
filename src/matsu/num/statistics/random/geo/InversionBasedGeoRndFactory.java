@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.10.25
+ * 2024.11.9
  */
 package matsu.num.statistics.random.geo;
 
@@ -18,7 +18,7 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * 逆関数法に基づく, 幾何分布に従う乱数発生器のファクトリ.
  * 
  * @author Matsuura Y.
- * @version 22.0
+ * @version 22.1
  */
 public final class InversionBasedGeoRndFactory extends SkeletalGeometricRndFactory {
 
@@ -32,7 +32,7 @@ public final class InversionBasedGeoRndFactory extends SkeletalGeometricRndFacto
     }
 
     @Override
-    protected GeometricRnd createInstanceOf(double p) {
+    protected GeometricRndSealed createInstanceOf(double p) {
         return new InversionBasedGeoRnd(p, this.exponentiation, this.exponentialRndFactory);
     }
 }

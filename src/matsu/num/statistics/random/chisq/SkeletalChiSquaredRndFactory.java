@@ -5,17 +5,17 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.10.25
+ * 2024.11.9
  */
 package matsu.num.statistics.random.chisq;
 
 /**
- * {@link ChiSquaredRnd.Factory} の骨格実装.
+ * {@link ChiSquaredRndSealed.FactorySealed} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.0
+ * @version 22.1
  */
-abstract class SkeletalChiSquaredRndFactory implements ChiSquaredRnd.Factory {
+abstract class SkeletalChiSquaredRndFactory implements ChiSquaredRndSealed.FactorySealed {
 
     /**
      * 唯一のコンストラクタ.
@@ -25,7 +25,7 @@ abstract class SkeletalChiSquaredRndFactory implements ChiSquaredRnd.Factory {
     }
 
     @Override
-    public final ChiSquaredRnd instanceOf(double k) {
+    public final ChiSquaredRndSealed instanceOf(double k) {
         if (!matsu.num.statistics.random.ChiSquaredRnd.acceptsParameter(k)) {
             throw new IllegalArgumentException(
                     String.format("パラメータ不正:k=%s", k));
@@ -46,7 +46,7 @@ abstract class SkeletalChiSquaredRndFactory implements ChiSquaredRnd.Factory {
      * @param k 自由度
      * @return 自由度が <i>k</i> のカイ二乗分布乱数発生器インスタンス
      */
-    protected abstract ChiSquaredRnd createInstanceOf(double k);
+    protected abstract ChiSquaredRndSealed createInstanceOf(double k);
 
     @Override
     public String toString() {

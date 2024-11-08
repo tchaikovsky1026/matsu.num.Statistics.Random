@@ -5,9 +5,11 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.10.25
+ * 2024.11.9
  */
 package matsu.num.statistics.random;
+
+import matsu.num.statistics.random.fdist.FDistributionRndSealed;
 
 /**
  * <p>
@@ -49,10 +51,10 @@ package matsu.num.statistics.random;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.0
+ * @version 22.1
  */
 public sealed interface FDistributionRnd
-        extends FloatingRandomGenerator permits matsu.num.statistics.random.fdist.FDistributionRnd {
+        extends FloatingRandomGenerator permits FDistributionRndSealed {
 
     /**
      * 扱うことができる自由度の最小値.
@@ -101,7 +103,8 @@ public sealed interface FDistributionRnd
     /**
      * {@link FDistributionRnd} のファクトリ.
      */
-    public static sealed interface Factory permits matsu.num.statistics.random.fdist.FDistributionRnd.Factory {
+    public static sealed interface Factory
+            extends RndFactory permits FDistributionRndSealed.FactorySealed {
 
         /**
          * <p>

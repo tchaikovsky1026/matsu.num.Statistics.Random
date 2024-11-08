@@ -5,17 +5,17 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.10.26
+ * 2024.11.9
  */
 package matsu.num.statistics.random.voigt;
 
 /**
- * {@link VoigtRnd} の骨格実装.
+ * {@link VoigtRndSealed} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.0
+ * @version 22.1
  */
-abstract class SkeletalVoigtRnd implements VoigtRnd {
+abstract class SkeletalVoigtRnd implements VoigtRndSealed {
 
     protected final double alpha;
 

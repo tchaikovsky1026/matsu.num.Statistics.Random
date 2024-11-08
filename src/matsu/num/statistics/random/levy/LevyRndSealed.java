@@ -5,19 +5,21 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.10.25
+ * 2024.11.9
  */
 package matsu.num.statistics.random.levy;
+
+import matsu.num.statistics.random.LevyRnd;
 
 /**
  * {@link matsu.num.statistics.random.LevyRnd} をシールするための非公開インターフェース.
  * 
  * @author Matsuura Y.
- * @version 22.0
+ * @version 22.1
  */
-public non-sealed interface LevyRnd extends matsu.num.statistics.random.LevyRnd {
+public non-sealed interface LevyRndSealed extends LevyRnd {
 
-    public static non-sealed interface Factory extends matsu.num.statistics.random.LevyRnd.Factory {
+    public static non-sealed interface FactorySealed extends LevyRnd.Factory {
 
     }
 }

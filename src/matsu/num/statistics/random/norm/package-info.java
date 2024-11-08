@@ -1,4 +1,4 @@
 /**
- * Ziggurat法による正規乱数生成器を扱う.
+ * Ziggurat法による正規乱数発生器を扱う.
  */
 package matsu.num.statistics.random.norm;

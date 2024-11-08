@@ -16,7 +16,7 @@ import matsu.num.statistics.random.NormalRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
- * Marsaglia-Tsangの方法に基づく, 形状パラメータが1より小さいときの乱数生成器の実装. <br>
+ * Marsaglia-Tsangの方法に基づく, 形状パラメータが1より小さいときの乱数発生器の実装. <br>
  * X～Gamma(k+1),Y～Beta(k+1,1)のとき(XY)～Gamma(k)となることを利用する.
  * 
  * @author Matsuura Y.

@@ -5,17 +5,17 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.10.26
+ * 2024.11.9
  */
 package matsu.num.statistics.random.weibull;
 
 /**
- * {@link WeibullRnd.Factory} の骨格実装.
+ * {@link WeibullRndSealed.FactorySealed} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.0
+ * @version 22.1
  */
-abstract class SkeletalWeibullRndFactory implements WeibullRnd.Factory {
+abstract class SkeletalWeibullRndFactory implements WeibullRndSealed.FactorySealed {
 
     /**
      * 唯一のコンストラクタ.
@@ -25,7 +25,7 @@ abstract class SkeletalWeibullRndFactory implements WeibullRnd.Factory {
     }
 
     @Override
-    public final WeibullRnd instanceOf(double k) {
+    public final WeibullRndSealed instanceOf(double k) {
         if (!matsu.num.statistics.random.WeibullRnd.acceptsParameter(k)) {
             throw new IllegalArgumentException(
                     String.format(
@@ -47,7 +47,7 @@ abstract class SkeletalWeibullRndFactory implements WeibullRnd.Factory {
      * @param k 形状パラメータ
      * @return 形状パラメータが <i>k</i> のWeibull分布乱数発生器インスタンス
      */
-    protected abstract WeibullRnd createInstanceOf(double k);
+    protected abstract WeibullRndSealed createInstanceOf(double k);
 
     @Override
     public String toString() {

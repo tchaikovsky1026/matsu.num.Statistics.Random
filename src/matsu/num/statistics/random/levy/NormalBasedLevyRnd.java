@@ -42,7 +42,7 @@ public final class NormalBasedLevyRnd extends SkeletalLevyRnd {
     /**
      * {@link LevyRnd} を生成するファクトリを生成する.
      * 
-     * @param normalRndFactory 正規乱数生成器のファクトリ
+     * @param normalRndFactory 正規乱数発生器のファクトリ
      * @return Levy乱数のファクトリ
      * @throws NullPointerException 引数にnullが含まれる場合
      */

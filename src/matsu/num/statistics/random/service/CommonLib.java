@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2024.11.8
  */
 package matsu.num.statistics.random.service;
 
@@ -20,12 +20,16 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * </p>
  * 
  * <p>
- * デフォルトインスタンスの生成は {@link #defaultImplemented()} で可能だが,
- * その他はビルダを使用する.
+ * デフォルトのライブラリを扱うインスタンスの取得は {@link #defaultImplemented()} で可能だが,
+ * その他のインスタンスはビルダ ({@link Builder}) を用いて生成する.
+ * </p>
+ * 
+ * <p>
+ * <i>コンストラクタが公開されていないので, 外部からの継承は不可.</i>
  * </p>
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.1
  */
 public abstract class CommonLib {
 
@@ -63,14 +67,48 @@ public abstract class CommonLib {
     }
 
     /**
+     * -
+     * 
+     * @return -
+     * @throws CloneNotSupportedException 常に
+     * @deprecated Clone不可
+     */
+    @Deprecated
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        throw new CloneNotSupportedException();
+    }
+
+    /**
      * <p>
-     * {@link CommonLib} のイミュータブルビルダ.
+     * {@link CommonLib} のイミュータブルなビルダ.
      * </p>
      * 
      * <p>
-     * ビルダ生成時には, デフォルトとなるライブラリがセットされている. <br>
-     * 個別のライブラリに置き換える場合は専用のメソッドを用いる.
+     * 基本となるビルダインスタンスは, {@link #implementedInit()} により取得する. <br>
+     * このビルダインスタンスにはデフォルトとなるライブラリがセットされている. <br>
+     * 個別のライブラリに置き換える場合は専用のメソッドを用いる. <br>
+     * ただし, ビルダインスタンスはイミュータブルであるため, 戻り値を受け取る必要がある.
      * </p>
+     * 
+     * <p>
+     * 使用例は以下である
+     * (メソッド名は適宜読み替える).
+     * </p>
+     * 
+     * 
+     * <blockquote>
+     * 
+     * <pre>
+     * // 基本となるビルダインスタンスの取得
+     * CommonLib.Builder builder =　CommonLib.Builder.implementedInit();　
+     * // 個別のライブラリで置き換えた新しいビルダインスタンスを受け取る
+     * builder = builder.replacedX(myXLibrary);
+     * // ライブラリのビルド
+     * CommonLib lib = builder.build();
+     * </pre>
+     * 
+     * </blockquote>
      */
     public static final class Builder {
 
@@ -145,9 +183,9 @@ public abstract class CommonLib {
         }
 
         /**
-         * デフォルトのライブラリが入った状態を初期状態として, ビルダを返す.
+         * デフォルトのライブラリが入った状態のビルダインスタンスを返す.
          * 
-         * @return 初期ビルダ
+         * @return ビルダインスタンス
          */
         public static Builder implementedInit() {
             return DEFAULT_BUILDER;

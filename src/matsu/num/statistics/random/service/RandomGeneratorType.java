@@ -5,23 +5,38 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2024.11.8
  */
 package matsu.num.statistics.random.service;
 
 import java.util.Objects;
 import java.util.function.Function;
 
+import matsu.num.statistics.random.RndFactory;
+
 /**
  * <p>
- * このモジュールが提供する乱数生成器のタイプ.
+ * このモジュールが提供する乱数発生器のタイプ.
+ * </p>
+ * 
+ * <p>
+ * {@link RandomGeneratorType} のインスタンスは,
+ * 各種乱数発生器のファクトリを取得するために
+ * {@link RandomGeneratorFactoryProvider#get(RandomGeneratorType)}
+ * に渡される. <br>
+ * インスタンスはシングルトンとして用意されており, {@link GeneratorTypes} クラス内に
+ * {@code static} 定数として用意されている.
+ * </p>
+ * 
+ * <p>
+ * <i>コンストラクタやファクトリメソッドは公開されておらず, 外部からインスタンス化することはできない.</i>
  * </p>
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.1
  * @param <T> このタイプが返却する乱数発生器ファクトリの型
  */
-public final class RandomGeneratorType<T> {
+public final class RandomGeneratorType<T extends RndFactory> {
 
     private final String typeName;
     private final Class<T> factoryClass;

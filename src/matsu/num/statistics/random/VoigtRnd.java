@@ -5,9 +5,11 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.10.26
+ * 2024.11.9
  */
 package matsu.num.statistics.random;
+
+import matsu.num.statistics.random.voigt.VoigtRndSealed;
 
 /**
  * <p>
@@ -59,10 +61,10 @@ package matsu.num.statistics.random;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.0
+ * @version 22.1
  */
 public sealed interface VoigtRnd
-        extends FloatingRandomGenerator permits matsu.num.statistics.random.voigt.VoigtRnd {
+        extends FloatingRandomGenerator permits VoigtRndSealed {
 
     /**
      * パラメータ <i>&alpha;</i> の最小値.
@@ -99,7 +101,8 @@ public sealed interface VoigtRnd
     /**
      * {@link VoigtRnd} のファクトリ.
      */
-    public static sealed interface Factory permits matsu.num.statistics.random.voigt.VoigtRnd.Factory {
+    public static sealed interface Factory
+            extends RndFactory permits VoigtRndSealed.FactorySealed {
 
         /**
          * <p>

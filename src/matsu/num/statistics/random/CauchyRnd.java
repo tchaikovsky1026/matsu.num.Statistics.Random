@@ -5,9 +5,11 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.27
+ * 2024.11.9
  */
 package matsu.num.statistics.random;
+
+import matsu.num.statistics.random.cauchy.CauchyRndSealed;
 
 /**
  * <p>
@@ -35,9 +37,9 @@ package matsu.num.statistics.random;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.1
  */
-public sealed interface CauchyRnd extends FloatingRandomGenerator permits matsu.num.statistics.random.cauchy.CauchyRnd {
+public sealed interface CauchyRnd extends FloatingRandomGenerator permits CauchyRndSealed {
 
     /**
      * <p>
@@ -62,7 +64,8 @@ public sealed interface CauchyRnd extends FloatingRandomGenerator permits matsu.
     /**
      * {@link CauchyRnd} のファクトリ.
      */
-    public static sealed interface Factory permits matsu.num.statistics.random.cauchy.CauchyRnd.Factory {
+    public static sealed interface Factory
+            extends RndFactory permits CauchyRndSealed.FactorySealed {
 
         /**
          * <p>
