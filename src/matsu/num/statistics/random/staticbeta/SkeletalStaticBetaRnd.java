@@ -13,14 +13,15 @@ import java.util.Objects;
 import java.util.function.BiFunction;
 
 import matsu.num.statistics.random.BaseRandom;
+import matsu.num.statistics.random.StaticBetaRnd;
 
 /**
- * {@link StaticBetaRndSealed} の骨格実装.
+ * {@link StaticBetaRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-abstract class SkeletalStaticBetaRnd implements StaticBetaRndSealed {
+public abstract non-sealed class SkeletalStaticBetaRnd implements StaticBetaRnd {
 
     private static final BiFunction<Double, Double, IllegalArgumentException> exceptionGetter =
             (a, b) -> new IllegalArgumentException(String.format("パラメータ不正:a=%s, b=%s", a, b));
@@ -28,7 +29,7 @@ abstract class SkeletalStaticBetaRnd implements StaticBetaRndSealed {
     /**
      * 唯一のコンストラクタ.
      */
-    protected SkeletalStaticBetaRnd() {
+    SkeletalStaticBetaRnd() {
         super();
     }
 
@@ -84,7 +85,7 @@ abstract class SkeletalStaticBetaRnd implements StaticBetaRndSealed {
      * @param b 形状パラメータ
      * @return 形状パラメータが (<i>a</i>, <i>b</i>) のベータプライム分布に従う乱数の値
      */
-    protected abstract double calcNextBetaPrime(BaseRandom random, double a, double b);
+    abstract double calcNextBetaPrime(BaseRandom random, double a, double b);
 
     @Override
     public String toString() {

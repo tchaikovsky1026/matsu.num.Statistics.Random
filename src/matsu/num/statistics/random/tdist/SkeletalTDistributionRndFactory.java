@@ -9,24 +9,26 @@
  */
 package matsu.num.statistics.random.tdist;
 
+import matsu.num.statistics.random.TDistributionRnd;
+
 /**
- * {@link TDistributionRndSealed.FactorySealed} の骨格実装.
+ * {@link matsu.num.statistics.random.TDistributionRnd.Factory} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-abstract class SkeletalTDistributionRndFactory implements TDistributionRndSealed.FactorySealed {
+public abstract non-sealed class SkeletalTDistributionRndFactory implements TDistributionRnd.Factory {
 
     /**
-     * 唯一のコンストラクタ.
+     * 唯一の外部に公開されないコンストラクタ.
      */
-    protected SkeletalTDistributionRndFactory() {
+    SkeletalTDistributionRndFactory() {
         super();
     }
 
     @Override
-    public final TDistributionRndSealed instanceOf(double nu) {
-        if (!matsu.num.statistics.random.TDistributionRnd.acceptsParameter(nu)) {
+    public final TDistributionRnd instanceOf(double nu) {
+        if (!TDistributionRnd.acceptsParameter(nu)) {
             throw new IllegalArgumentException(String.format("パラメータ不正:nu=%s", nu));
         }
 
@@ -45,7 +47,7 @@ abstract class SkeletalTDistributionRndFactory implements TDistributionRndSealed
      * @param nu 自由度
      * @return 自由度が <i>&nu;</i> のStudent-t分布乱数発生器インスタンス
      */
-    protected abstract TDistributionRndSealed createInstanceOf(double nu);
+    abstract TDistributionRnd createInstanceOf(double nu);
 
     @Override
     public String toString() {

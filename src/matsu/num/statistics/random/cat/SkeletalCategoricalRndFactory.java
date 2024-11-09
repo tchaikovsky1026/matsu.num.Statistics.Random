@@ -12,15 +12,16 @@ package matsu.num.statistics.random.cat;
 import java.util.Objects;
 import java.util.function.Function;
 
+import matsu.num.statistics.random.CategoricalRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
- * {@link CategoricalRndSealed.FactorySealed} の骨格実装.
+ * {@link matsu.num.statistics.random.CategoricalRnd.Factory} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-abstract class SkeletalCategoricalRndFactory implements CategoricalRndSealed.FactorySealed {
+public abstract non-sealed class SkeletalCategoricalRndFactory implements CategoricalRnd.Factory {
 
     private static final Function<double[], IllegalArgumentException> exceptionGetter =
             values -> new IllegalArgumentException(String.format("パラメータ不正: size=%s", values.length));
@@ -28,12 +29,12 @@ abstract class SkeletalCategoricalRndFactory implements CategoricalRndSealed.Fac
     private final Exponentiation exponentiation;
 
     /**
-     * 唯一のコンストラクタ. <br>
+     * 唯一の外部に公開されないコンストラクタ. <br>
      * 引数のnullチェックは行われていない.
      * 
      * @param exponentiation 指数関数の計算器
      */
-    protected SkeletalCategoricalRndFactory(Exponentiation exponentiation) {
+    SkeletalCategoricalRndFactory(Exponentiation exponentiation) {
         super();
 
         assert Objects.nonNull(exponentiation) : "null";
@@ -42,8 +43,8 @@ abstract class SkeletalCategoricalRndFactory implements CategoricalRndSealed.Fac
     }
 
     @Override
-    public CategoricalRndSealed instanceOf(double[] probability) {
-        if (!matsu.num.statistics.random.CategoricalRnd.acceptsSizeOf(probability)) {
+    public CategoricalRnd instanceOf(double[] probability) {
+        if (!CategoricalRnd.acceptsSizeOf(probability)) {
             throw exceptionGetter.apply(probability);
         }
 
@@ -54,8 +55,8 @@ abstract class SkeletalCategoricalRndFactory implements CategoricalRndSealed.Fac
     }
 
     @Override
-    public CategoricalRndSealed instanceOfExp(double[] logProbability) {
-        if (!matsu.num.statistics.random.CategoricalRnd.acceptsSizeOf(logProbability)) {
+    public CategoricalRnd instanceOfExp(double[] logProbability) {
+        if (!CategoricalRnd.acceptsSizeOf(logProbability)) {
             throw exceptionGetter.apply(logProbability);
         }
 
@@ -90,7 +91,7 @@ abstract class SkeletalCategoricalRndFactory implements CategoricalRndSealed.Fac
      * @param probability 確率値の配列(各値は0以上であり総和が1)
      * @return 値配列に比例するカテゴリカル分布乱数発生器インスタンス
      */
-    protected abstract CategoricalRndSealed createInstanceOf(double[] probability);
+    abstract CategoricalRnd createInstanceOf(double[] probability);
 
     @Override
     public String toString() {

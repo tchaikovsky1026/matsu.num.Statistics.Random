@@ -9,18 +9,20 @@
  */
 package matsu.num.statistics.random.exp;
 
+import matsu.num.statistics.random.ExponentialRnd;
+
 /**
- * {@link ExponentialRndSealed} の骨格実装.
+ * {@link ExponentialRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-abstract class SkeletalExponentialRnd implements ExponentialRndSealed {
+public abstract non-sealed class SkeletalExponentialRnd implements ExponentialRnd {
 
     /**
-     * 唯一のコンストラクタ.
+     * 唯一の外部に公開されないコンストラクタ.
      */
-    protected SkeletalExponentialRnd() {
+    SkeletalExponentialRnd() {
         super();
     }
 

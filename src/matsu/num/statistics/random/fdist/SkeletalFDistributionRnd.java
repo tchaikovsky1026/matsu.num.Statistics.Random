@@ -9,29 +9,30 @@
  */
 package matsu.num.statistics.random.fdist;
 
+import matsu.num.statistics.random.FDistributionRnd;
+
 /**
- * {@link FDistributionRndSealed} の骨格実装.
+ * {@link FDistributionRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-abstract class SkeletalFDistributionRnd implements FDistributionRndSealed {
+public abstract non-sealed class SkeletalFDistributionRnd implements FDistributionRnd {
 
-    protected final double d1;
-    protected final double d2;
+    final double d1;
+    final double d2;
 
     /**
-     * 唯一のコンストラクタ. <br>
+     * 唯一の外部に公開されないコンストラクタ. <br>
      * 与えるパラメータについて, バリデーションは行われていないことに注意.
      * 
      * @param d1 分子自由度
      * @param d2 分母自由度
      */
-    public SkeletalFDistributionRnd(double d1, double d2) {
+    SkeletalFDistributionRnd(double d1, double d2) {
         super();
 
-        assert matsu.num.statistics.random.FDistributionRnd
-                .acceptsParameters(d1, d2) : "パラメータ不正";
+        assert FDistributionRnd.acceptsParameters(d1, d2) : "パラメータ不正";
 
         this.d1 = d1;
         this.d2 = d2;

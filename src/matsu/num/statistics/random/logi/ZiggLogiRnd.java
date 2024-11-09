@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2024.11.9
  */
 package matsu.num.statistics.random.logi;
 
@@ -24,7 +24,7 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * この乱数発生器はZiggurat法により実装されている.
  *
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.2
  */
 public final class ZiggLogiRnd extends SkeletalLogisticRnd {
 
@@ -114,7 +114,7 @@ public final class ZiggLogiRnd extends SkeletalLogisticRnd {
     }
 
     /**
-     * {@link LogisticRnd} を生成するファクトリを生成する.
+     * {@link matsu.num.statistics.random.LogisticRnd.Factory} を生成する.
      * 
      * @param exponentiation 指数関数計算器
      * @param exponentialRndFactory 正規乱数発生器のファクトリ

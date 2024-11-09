@@ -9,26 +9,28 @@
  */
 package matsu.num.statistics.random.poi;
 
+import matsu.num.statistics.random.PoissonRnd;
+
 /**
- * {@link PoissonRndSealed} の骨格実装.
+ * {@link PoissonRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-abstract class SkeletalPoissonRnd implements PoissonRndSealed {
+public abstract non-sealed class SkeletalPoissonRnd implements PoissonRnd {
 
-    protected final double lambda;
+    final double lambda;
 
     /**
-     * 唯一のコンストラクタ. <br>
+     * 唯一の外部に公開されないコンストラクタ. <br>
      * 与えるパラメータについて, バリデーションは行われていないことに注意.
      * 
      * @param lambda パラメータ
      */
-    protected SkeletalPoissonRnd(double lambda) {
+    SkeletalPoissonRnd(double lambda) {
         super();
 
-        assert matsu.num.statistics.random.PoissonRnd.acceptsParameter(lambda) : "パラメータ不正";
+        assert PoissonRnd.acceptsParameter(lambda) : "パラメータ不正";
 
         this.lambda = lambda;
     }

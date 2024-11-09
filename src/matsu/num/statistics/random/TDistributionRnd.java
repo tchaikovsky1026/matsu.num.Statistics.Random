@@ -9,7 +9,8 @@
  */
 package matsu.num.statistics.random;
 
-import matsu.num.statistics.random.tdist.TDistributionRndSealed;
+import matsu.num.statistics.random.tdist.SkeletalTDistributionRnd;
+import matsu.num.statistics.random.tdist.SkeletalTDistributionRndFactory;
 
 /**
  * <p>
@@ -41,10 +42,10 @@ import matsu.num.statistics.random.tdist.TDistributionRndSealed;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
 public sealed interface TDistributionRnd
-        extends FloatingRandomGenerator permits TDistributionRndSealed {
+        extends FloatingRandomGenerator permits SkeletalTDistributionRnd {
 
     /**
      * 扱うことができる自由度の最小値.
@@ -82,7 +83,7 @@ public sealed interface TDistributionRnd
      * {@link TDistributionRnd} のファクトリ.
      */
     public static sealed interface Factory
-            extends RndFactory permits TDistributionRndSealed.FactorySealed {
+            extends RndFactory permits SkeletalTDistributionRndFactory {
 
         /**
          * <p>

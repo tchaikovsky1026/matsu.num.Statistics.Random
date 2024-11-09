@@ -12,13 +12,14 @@ package matsu.num.statistics.random.geo;
 import java.util.Objects;
 
 import matsu.num.statistics.random.ExponentialRnd;
+import matsu.num.statistics.random.GeometricRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
  * 逆関数法に基づく, 幾何分布に従う乱数発生器のファクトリ.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
 public final class InversionBasedGeoRndFactory extends SkeletalGeometricRndFactory {
 
@@ -32,7 +33,7 @@ public final class InversionBasedGeoRndFactory extends SkeletalGeometricRndFacto
     }
 
     @Override
-    protected GeometricRndSealed createInstanceOf(double p) {
+    GeometricRnd createInstanceOf(double p) {
         return new InversionBasedGeoRnd(p, this.exponentiation, this.exponentialRndFactory);
     }
 }

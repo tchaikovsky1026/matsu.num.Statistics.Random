@@ -9,26 +9,28 @@
  */
 package matsu.num.statistics.random.weibull;
 
+import matsu.num.statistics.random.WeibullRnd;
+
 /**
- * {@link WeibullRndSealed} の骨格実装.
+ * {@link WeibullRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-abstract class SkeletalWeibullRnd implements WeibullRndSealed {
+public abstract non-sealed class SkeletalWeibullRnd implements WeibullRnd {
 
-    protected final double k;
+    final double k;
 
     /**
-     * 唯一のコンストラクタ. <br>
+     * 唯一の外部に公開されないコンストラクタ. <br>
      * 与える形状パラメータについて, バリデーションは行われていないことに注意.
      * 
      * @param k 形状パラメータ
      */
-    protected SkeletalWeibullRnd(double k) {
+    SkeletalWeibullRnd(double k) {
         super();
 
-        assert matsu.num.statistics.random.WeibullRnd.acceptsParameter(k) : "パラメータ不正";
+        assert WeibullRnd.acceptsParameter(k) : "パラメータ不正";
 
         this.k = k;
     }

@@ -10,23 +10,24 @@
 package matsu.num.statistics.random.cauchy;
 
 import matsu.num.statistics.random.BaseRandom;
+import matsu.num.statistics.random.CauchyRnd;
 import matsu.num.statistics.random.TDistributionRnd;
 import matsu.num.statistics.random.tdist.SkeletalTDistributionRnd;
 
 /**
- * {@link CauchyRndSealed} の骨格実装.
+ * {@link CauchyRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-abstract class SkeletalCauchyRnd implements CauchyRndSealed {
+public abstract non-sealed class SkeletalCauchyRnd implements CauchyRnd {
 
     private final TDistributionRnd tdistView;
 
     /**
-     * 唯一のコンストラクタ.
+     * 唯一の外部に公開されないコンストラクタ.
      */
-    protected SkeletalCauchyRnd() {
+    SkeletalCauchyRnd() {
         super();
 
         this.tdistView = new TDistView();

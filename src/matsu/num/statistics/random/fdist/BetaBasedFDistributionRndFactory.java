@@ -12,12 +12,13 @@ package matsu.num.statistics.random.fdist;
 import java.util.Objects;
 
 import matsu.num.statistics.random.BetaRnd;
+import matsu.num.statistics.random.FDistributionRnd;
 
 /**
- * このパッケージに用意された {@link FDistributionRndSealed} 実装のインスタンス生成を扱う.
+ * このパッケージに用意された {@link FDistributionRnd} 実装のインスタンス生成を扱う.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
 public final class BetaBasedFDistributionRndFactory extends SkeletalFDistributionRndFactory {
 
@@ -29,7 +30,7 @@ public final class BetaBasedFDistributionRndFactory extends SkeletalFDistributio
     }
 
     @Override
-    protected FDistributionRndSealed createInstanceOf(double d1, double d2) {
+    FDistributionRnd createInstanceOf(double d1, double d2) {
         return new BetaBasedFDistributionRnd(d1, d2, this.betaRndFactory);
     }
 }

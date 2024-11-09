@@ -9,7 +9,8 @@
  */
 package matsu.num.statistics.random;
 
-import matsu.num.statistics.random.weibull.WeibullRndSealed;
+import matsu.num.statistics.random.weibull.SkeletalWeibullRnd;
+import matsu.num.statistics.random.weibull.SkeletalWeibullRndFactory;
 
 /**
  * <p>
@@ -48,10 +49,10 @@ import matsu.num.statistics.random.weibull.WeibullRndSealed;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
 public sealed interface WeibullRnd
-        extends FloatingRandomGenerator permits WeibullRndSealed {
+        extends FloatingRandomGenerator permits SkeletalWeibullRnd {
 
     /**
      * 扱うことができる形状パラメータの最小値.
@@ -89,7 +90,7 @@ public sealed interface WeibullRnd
      * {@link WeibullRnd} のファクトリ.
      */
     public static sealed interface Factory
-            extends RndFactory permits WeibullRndSealed.FactorySealed {
+            extends RndFactory permits SkeletalWeibullRndFactory {
 
         /**
          * <p>

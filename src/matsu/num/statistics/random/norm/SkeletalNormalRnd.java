@@ -9,18 +9,20 @@
  */
 package matsu.num.statistics.random.norm;
 
+import matsu.num.statistics.random.NormalRnd;
+
 /**
- * {@link NormalRndSealed} の骨格実装.
+ * {@link NormalRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-abstract class SkeletalNormalRnd implements NormalRndSealed {
+public abstract non-sealed class SkeletalNormalRnd implements NormalRnd {
 
     /**
      * 唯一のコンストラクタ.
      */
-    protected SkeletalNormalRnd() {
+    SkeletalNormalRnd() {
         super();
     }
 

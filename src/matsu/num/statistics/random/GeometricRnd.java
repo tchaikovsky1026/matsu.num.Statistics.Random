@@ -9,7 +9,8 @@
  */
 package matsu.num.statistics.random;
 
-import matsu.num.statistics.random.geo.GeometricRndSealed;
+import matsu.num.statistics.random.geo.SkeletalGeometricRnd;
+import matsu.num.statistics.random.geo.SkeletalGeometricRndFactory;
 
 /**
  * <p>
@@ -49,7 +50,7 @@ import matsu.num.statistics.random.geo.GeometricRndSealed;
  * @version 22.1
  */
 public sealed interface GeometricRnd
-        extends IntegerRandomGenerator permits GeometricRndSealed {
+        extends IntegerRandomGenerator permits SkeletalGeometricRnd {
 
     /**
      * 扱うことができる成功確率の最小値.
@@ -87,7 +88,7 @@ public sealed interface GeometricRnd
      * {@link GeometricRnd} のファクトリ.
      */
     public static sealed interface Factory
-            extends RndFactory permits GeometricRndSealed.FactorySealed {
+            extends RndFactory permits SkeletalGeometricRndFactory {
 
         /**
          * <p>

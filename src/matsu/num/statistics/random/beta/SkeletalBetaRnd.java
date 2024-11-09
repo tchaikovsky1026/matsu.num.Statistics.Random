@@ -9,28 +9,30 @@
  */
 package matsu.num.statistics.random.beta;
 
+import matsu.num.statistics.random.BetaRnd;
+
 /**
- * {@link BetaRndSealed} の骨格実装.
+ * {@link BetaRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-abstract class SkeletalBetaRnd implements BetaRndSealed {
+public abstract non-sealed class SkeletalBetaRnd implements BetaRnd {
 
-    protected final double a;
-    protected final double b;
+    final double a;
+    final double b;
 
     /**
-     * 唯一のコンストラクタ. <br>
+     * 唯一の外部に公開されないコンストラクタ. <br>
      * 与える形状パラメータについて, バリデーションは行われていないことに注意.
      * 
      * @param a 形状パラメータa
      * @param b 形状パラメータb
      */
-    protected SkeletalBetaRnd(double a, double b) {
+    SkeletalBetaRnd(double a, double b) {
         super();
 
-        assert matsu.num.statistics.random.BetaRnd.acceptsParameters(a, b) : "パラメータ不正";
+        assert BetaRnd.acceptsParameters(a, b) : "パラメータ不正";
 
         this.a = a;
         this.b = b;

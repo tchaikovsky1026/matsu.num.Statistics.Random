@@ -9,26 +9,29 @@
  */
 package matsu.num.statistics.random.tdist;
 
+import matsu.num.statistics.random.TDistributionRnd;
+
 /**
- * {@link TDistributionRndSealed} の骨格実装.
+ * {@link TDistributionRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-public abstract class SkeletalTDistributionRnd implements TDistributionRndSealed {
+public abstract non-sealed class SkeletalTDistributionRnd implements TDistributionRnd {
 
     protected final double nu;
 
     /**
      * 唯一のコンストラクタ. <br>
-     * 与えるパラメータについて, バリデーションは行われていないことに注意.
+     * 与えるパラメータについて, バリデーションは行われていないので,
+     * このままモジュール外に公開してはいけない.
      * 
      * @param nu 自由度
      */
     protected SkeletalTDistributionRnd(double nu) {
         super();
 
-        assert matsu.num.statistics.random.TDistributionRnd.acceptsParameter(nu) : "パラメータ不正";
+        assert TDistributionRnd.acceptsParameter(nu) : "パラメータ不正";
 
         this.nu = nu;
     }

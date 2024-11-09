@@ -9,26 +9,28 @@
  */
 package matsu.num.statistics.random.geo;
 
+import matsu.num.statistics.random.GeometricRnd;
+
 /**
- * {@link GeometricRndSealed} の骨格実装.
+ * {@link GeometricRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-abstract class SkeletalGeometricRnd implements GeometricRndSealed {
+public abstract non-sealed class SkeletalGeometricRnd implements GeometricRnd {
 
-    protected final double p;
+    final double p;
 
     /**
-     * 唯一のコンストラクタ. <br>
+     * 唯一の外部に公開されないコンストラクタ. <br>
      * 与えるパラメータについて, バリデーションは行われていないことに注意.
      * 
      * @param p 成功確率
      */
-    protected SkeletalGeometricRnd(double p) {
+    SkeletalGeometricRnd(double p) {
         super();
 
-        assert matsu.num.statistics.random.GeometricRnd.acceptsParameter(p) : "パラメータ不正";
+        assert GeometricRnd.acceptsParameter(p) : "パラメータ不正";
 
         this.p = p;
     }

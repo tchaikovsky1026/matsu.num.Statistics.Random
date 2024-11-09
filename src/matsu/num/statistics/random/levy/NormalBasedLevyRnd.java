@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.27
+ * 2024.11.9
  */
 package matsu.num.statistics.random.levy;
 
@@ -17,7 +17,7 @@ import matsu.num.statistics.random.NormalRnd;
  * 標準正規分布を用いた, 標準L&eacute;vy乱数発生器.
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.2
  */
 public final class NormalBasedLevyRnd extends SkeletalLevyRnd {
 
@@ -40,7 +40,7 @@ public final class NormalBasedLevyRnd extends SkeletalLevyRnd {
     }
 
     /**
-     * {@link LevyRnd} を生成するファクトリを生成する.
+     * {@link matsu.num.statistics.random.LevyRnd.Factory} を生成する.
      * 
      * @param normalRndFactory 正規乱数発生器のファクトリ
      * @return Levy乱数のファクトリ

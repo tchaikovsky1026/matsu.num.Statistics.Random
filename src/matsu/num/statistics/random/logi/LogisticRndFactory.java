@@ -9,24 +9,26 @@
  */
 package matsu.num.statistics.random.logi;
 
+import matsu.num.statistics.random.LogisticRnd;
 import matsu.num.statistics.random.base.ParameterlessFactory;
 
 /**
- * {@link LogisticRndSealed.FactorySealed} の実装.
+ * {@link matsu.num.statistics.random.LogisticRnd.Factory} の実装.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-final class LogisticRndFactory
-        extends ParameterlessFactory<LogisticRndSealed> implements LogisticRndSealed.FactorySealed {
+public final class LogisticRndFactory
+        extends ParameterlessFactory<LogisticRnd> implements LogisticRnd.Factory {
 
     /**
+     * 唯一の外部に公開されないコンストラクタ. <br>
      * 乱数発生器を紐づけて, ファクトリを生成する.
      * 
      * @param rnd 乱数発生器
      * @throws NullPointerException 乱数発生器がnullの場合
      */
-    LogisticRndFactory(LogisticRndSealed rnd) {
+    LogisticRndFactory(LogisticRnd rnd) {
         super(rnd, "LogisticRnd.Factory");
     }
 }

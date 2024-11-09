@@ -12,6 +12,7 @@ package matsu.num.statistics.random.cauchy;
 import java.util.Objects;
 
 import matsu.num.statistics.random.BaseRandom;
+import matsu.num.statistics.random.CauchyRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
@@ -23,7 +24,7 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
 public final class ZiggCauchyRnd extends SkeletalCauchyRnd {
 
@@ -112,13 +113,13 @@ public final class ZiggCauchyRnd extends SkeletalCauchyRnd {
     }
 
     /**
-     * {@link CauchyRndSealed} を生成するファクトリを生成する.
+     * {@link matsu.num.statistics.random.CauchyRnd.Factory} を生成する.
      * 
      * @param exponentiation 指数関数計算器
      * @return Cauchy乱数のファクトリ
      * @throws NullPointerException 引数にnullが含まれる場合
      */
-    public static CauchyRndSealed.FactorySealed createFactory(Exponentiation exponentiation) {
+    public static CauchyRnd.Factory createFactory(Exponentiation exponentiation) {
         return new CauchyRndFactory(new ZiggCauchyRnd(exponentiation));
     }
 }

@@ -9,26 +9,28 @@
  */
 package matsu.num.statistics.random.chisq;
 
+import matsu.num.statistics.random.ChiSquaredRnd;
+
 /**
- * {@link ChiSquaredRndSealed} の骨格実装.
+ * {@link ChiSquaredRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-abstract class SkeletalChiSquaredRnd implements ChiSquaredRndSealed {
+public abstract non-sealed class SkeletalChiSquaredRnd implements ChiSquaredRnd {
 
-    protected final double k;
+    final double k;
 
     /**
-     * 唯一のコンストラクタ. <br>
+     * 唯一の外部に公開されないコンストラクタ. <br>
      * 与えるパラメータについて, バリデーションは行われていないことに注意.
      * 
      * @param k 自由度
      */
-    protected SkeletalChiSquaredRnd(double k) {
+    SkeletalChiSquaredRnd(double k) {
         super();
 
-        assert matsu.num.statistics.random.ChiSquaredRnd.acceptsParameter(k) : "パラメータ不正";
+        assert ChiSquaredRnd.acceptsParameter(k) : "パラメータ不正";
 
         this.k = k;
     }
@@ -43,5 +45,4 @@ abstract class SkeletalChiSquaredRnd implements ChiSquaredRndSealed {
         return String.format(
                 "ChiSquaredRnd(%s)", this.degreesOfFreedom());
     }
-
 }

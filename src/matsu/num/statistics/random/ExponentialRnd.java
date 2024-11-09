@@ -9,7 +9,8 @@
  */
 package matsu.num.statistics.random;
 
-import matsu.num.statistics.random.exp.ExponentialRndSealed;
+import matsu.num.statistics.random.exp.ExponentialRndFactory;
+import matsu.num.statistics.random.exp.SkeletalExponentialRnd;
 
 /**
  * <p>
@@ -42,16 +43,16 @@ import matsu.num.statistics.random.exp.ExponentialRndSealed;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
 public sealed interface ExponentialRnd
-        extends FloatingRandomGenerator permits ExponentialRndSealed {
+        extends FloatingRandomGenerator permits SkeletalExponentialRnd {
 
     /**
      * {@link ExponentialRnd} のファクトリ.
      */
     public static sealed interface Factory
-            extends RndFactory permits ExponentialRndSealed.FactorySealed {
+            extends RndFactory permits ExponentialRndFactory {
 
         /**
          * <p>

@@ -9,26 +9,28 @@
  */
 package matsu.num.statistics.random.voigt;
 
+import matsu.num.statistics.random.VoigtRnd;
+
 /**
- * {@link VoigtRndSealed} の骨格実装.
+ * {@link VoigtRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-abstract class SkeletalVoigtRnd implements VoigtRndSealed {
+public abstract non-sealed class SkeletalVoigtRnd implements VoigtRnd {
 
-    protected final double alpha;
+    final double alpha;
 
     /**
-     * 唯一のコンストラクタ. <br>
+     * 唯一の外部に公開されないコンストラクタ. <br>
      * 与えるパラメータについて, バリデーションは行われていないことに注意.
      * 
      * @param alpha パラメータ
      */
-    protected SkeletalVoigtRnd(double alpha) {
+    SkeletalVoigtRnd(double alpha) {
         super();
 
-        assert matsu.num.statistics.random.VoigtRnd.acceptsParameter(alpha) : "パラメータ不正";
+        assert VoigtRnd.acceptsParameter(alpha) : "パラメータ不正";
 
         this.alpha = alpha;
     }

@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2024.11.9
  */
 package matsu.num.statistics.random.staticbeta;
 
@@ -17,7 +17,7 @@ import matsu.num.statistics.random.StaticGammaRnd;
  * Marsaglia-Tsangの方法に基づく, ガンマ乱数のstaticな発生器.
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.2
  */
 public final class GammaBasedStaticBetaRnd extends SkeletalStaticBetaRnd {
 
@@ -37,7 +37,7 @@ public final class GammaBasedStaticBetaRnd extends SkeletalStaticBetaRnd {
     }
 
     @Override
-    protected double calcNextBetaPrime(BaseRandom random, double a, double b) {
+    double calcNextBetaPrime(BaseRandom random, double a, double b) {
 
         double u1 = this.staticGammaRnd.nextRandom(random, a);
         double u2 = this.staticGammaRnd.nextRandom(random, b);
@@ -46,7 +46,7 @@ public final class GammaBasedStaticBetaRnd extends SkeletalStaticBetaRnd {
     }
 
     /**
-     * {@link StaticBetaRnd} を生成するファクトリを生成する.
+     * {@link matsu.num.statistics.random.StaticBetaRnd.Factory} を生成する.
      * 
      * @param staticGammaRndFactory StaticGamma乱数のファクトリ
      * @return StaticBeta乱数のファクトリ

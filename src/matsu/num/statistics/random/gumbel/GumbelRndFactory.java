@@ -9,25 +9,27 @@
  */
 package matsu.num.statistics.random.gumbel;
 
+import matsu.num.statistics.random.GumbelRnd;
 import matsu.num.statistics.random.base.ParameterlessFactory;
 
 /**
- * {@link GumbelRndSealed.FactorySealed} の実装.
+ * {@link matsu.num.statistics.random.GumbelRnd.Factory} の実装.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-final class GumbelRndFactory
-        extends ParameterlessFactory<GumbelRndSealed> implements GumbelRndSealed.FactorySealed {
+public final class GumbelRndFactory
+        extends ParameterlessFactory<GumbelRnd> implements GumbelRnd.Factory {
 
     /**
+     * 唯一の外部に公開されないコンストラクタ. <br>
      * 乱数発生器を紐づけて, ファクトリを生成する. <br>
      * {@code null} を渡してはいけない.
      * 
      * @param rnd 乱数発生器
      * @throws NullPointerException 乱数発生器がnullの場合
      */
-    GumbelRndFactory(GumbelRndSealed rnd) {
+    GumbelRndFactory(GumbelRnd rnd) {
         super(rnd, "GumbelRnd.Factory");
     }
 }

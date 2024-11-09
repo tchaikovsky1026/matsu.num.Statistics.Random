@@ -9,7 +9,8 @@
  */
 package matsu.num.statistics.random;
 
-import matsu.num.statistics.random.levy.LevyRndSealed;
+import matsu.num.statistics.random.levy.LevyRndFactory;
+import matsu.num.statistics.random.levy.SkeletalLevyRnd;
 
 /**
  * <p>
@@ -41,14 +42,14 @@ import matsu.num.statistics.random.levy.LevyRndSealed;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-public sealed interface LevyRnd extends FloatingRandomGenerator permits LevyRndSealed {
+public sealed interface LevyRnd extends FloatingRandomGenerator permits SkeletalLevyRnd {
 
     /**
      * {@link LevyRnd} のファクトリ.
      */
-    public static sealed interface Factory extends RndFactory permits LevyRndSealed.FactorySealed {
+    public static sealed interface Factory extends RndFactory permits LevyRndFactory {
 
         /**
          * <p>

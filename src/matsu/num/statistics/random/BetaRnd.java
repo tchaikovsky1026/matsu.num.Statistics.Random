@@ -9,7 +9,8 @@
  */
 package matsu.num.statistics.random;
 
-import matsu.num.statistics.random.beta.BetaRndSealed;
+import matsu.num.statistics.random.beta.SkeletalBetaRnd;
+import matsu.num.statistics.random.beta.SkeletalBetaRndFactory;
 
 /**
  * <p>
@@ -67,10 +68,10 @@ import matsu.num.statistics.random.beta.BetaRndSealed;
  * </p>
  *
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
 public sealed interface BetaRnd
-        extends FloatingRandomGenerator permits BetaRndSealed {
+        extends FloatingRandomGenerator permits SkeletalBetaRnd {
 
     /**
      * 扱うことができる形状パラメータの最小値.
@@ -128,7 +129,7 @@ public sealed interface BetaRnd
     /**
      * {@link BetaRnd} のファクトリ.
      */
-    public static sealed interface Factory extends RndFactory permits BetaRndSealed.FactorySealed {
+    public static sealed interface Factory extends RndFactory permits SkeletalBetaRndFactory {
 
         /**
          * <p>

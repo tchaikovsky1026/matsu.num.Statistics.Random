@@ -9,29 +9,31 @@
  */
 package matsu.num.statistics.random.cat;
 
+import matsu.num.statistics.random.CategoricalRnd;
+
 /**
- * {@link CategoricalRndSealed} の骨格実装.
+ * {@link CategoricalRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-abstract class SkeletalCategoricalRnd implements CategoricalRndSealed {
+public abstract non-sealed class SkeletalCategoricalRnd implements CategoricalRnd {
     /**
      * カテゴリの数. <br>
      * カテゴリ数が n のとき, 0, 1, ... , n - 1 の値をとる乱数を生成する.
      */
-    protected final int catSize;
+    final int catSize;
 
     /**
-     * 唯一のコンストラクタ. <br>
+     * 唯一の外部に公開されないコンストラクタ. <br>
      * 与えるパラメータのバリデーションは行われていない.
      * 
      * @param catSize カテゴリサイズ
      */
-    protected SkeletalCategoricalRnd(int catSize) {
+    SkeletalCategoricalRnd(int catSize) {
         super();
 
-        assert matsu.num.statistics.random.CategoricalRnd.acceptsSizeOf(new double[catSize]);
+        assert CategoricalRnd.acceptsSizeOf(new double[catSize]);
 
         this.catSize = catSize;
     }

@@ -9,7 +9,8 @@
  */
 package matsu.num.statistics.random;
 
-import matsu.num.statistics.random.staticgamma.StaticGammaRndSealed;
+import matsu.num.statistics.random.staticgamma.SkeletalStaticGammaRnd;
+import matsu.num.statistics.random.staticgamma.StaticGammaRndFactory;
 
 /**
  * <p>
@@ -50,9 +51,9 @@ import matsu.num.statistics.random.staticgamma.StaticGammaRndSealed;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-public sealed interface StaticGammaRnd extends Rnd permits StaticGammaRndSealed {
+public sealed interface StaticGammaRnd extends Rnd permits SkeletalStaticGammaRnd {
 
     /**
      * 扱うことができる形状パラメータの最小値.
@@ -98,7 +99,7 @@ public sealed interface StaticGammaRnd extends Rnd permits StaticGammaRndSealed 
      * {@link StaticGammaRnd} のファクトリ.
      */
     public static sealed interface Factory
-            extends RndFactory permits StaticGammaRndSealed.FactorySealed {
+            extends RndFactory permits StaticGammaRndFactory {
 
         /**
          * <p>
@@ -108,6 +109,5 @@ public sealed interface StaticGammaRnd extends Rnd permits StaticGammaRndSealed 
          * @return Staticガンマ乱数発生器インスタンス
          */
         public abstract StaticGammaRnd instance();
-
     }
 }

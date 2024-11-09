@@ -11,13 +11,14 @@ package matsu.num.statistics.random.chisq;
 
 import java.util.Objects;
 
+import matsu.num.statistics.random.ChiSquaredRnd;
 import matsu.num.statistics.random.GammaRnd;
 
 /**
- * このパッケージに用意された {@link ChiSquaredRndSealed} 実装のインスタンス生成を扱う.
+ * ガンマ分布乱数器を利用した {@link ChiSquaredRnd} 実装のインスタンス生成を扱う.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
 public final class GammaTypeChiSquaredRndFactory extends SkeletalChiSquaredRndFactory {
 
@@ -28,7 +29,7 @@ public final class GammaTypeChiSquaredRndFactory extends SkeletalChiSquaredRndFa
     }
 
     @Override
-    protected ChiSquaredRndSealed createInstanceOf(double k) {
+    ChiSquaredRnd createInstanceOf(double k) {
         return new GammaTypeChiSquaredRnd(k, this.gammaRndFactory);
     }
 }

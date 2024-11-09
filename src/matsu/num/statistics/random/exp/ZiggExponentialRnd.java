@@ -23,7 +23,7 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * </p>
  *
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
 public final class ZiggExponentialRnd extends SkeletalExponentialRnd {
 
@@ -100,7 +100,7 @@ public final class ZiggExponentialRnd extends SkeletalExponentialRnd {
     }
 
     /**
-     * {@link ZiggExponentialRnd} を生成するファクトリを生成する.
+     * {@link matsu.num.statistics.random.ExponentialRnd.Factory} を生成する.
      * 
      * @param exponentiation 指数関数計算器
      * @return 指数乱数のファクトリ

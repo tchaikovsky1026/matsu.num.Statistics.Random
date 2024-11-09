@@ -9,7 +9,8 @@
  */
 package matsu.num.statistics.random;
 
-import matsu.num.statistics.random.staticbeta.StaticBetaRndSealed;
+import matsu.num.statistics.random.staticbeta.SkeletalStaticBetaRnd;
+import matsu.num.statistics.random.staticbeta.StaticBetaRndFactory;
 
 /**
  * <p>
@@ -68,9 +69,9 @@ import matsu.num.statistics.random.staticbeta.StaticBetaRndSealed;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-public sealed interface StaticBetaRnd extends Rnd permits StaticBetaRndSealed {
+public sealed interface StaticBetaRnd extends Rnd permits SkeletalStaticBetaRnd {
 
     /**
      * 扱うことができる形状パラメータの最小値.
@@ -138,7 +139,7 @@ public sealed interface StaticBetaRnd extends Rnd permits StaticBetaRndSealed {
      * {@link StaticBetaRnd} のファクトリ.
      */
     public static sealed interface Factory
-            extends RndFactory permits StaticBetaRndSealed.FactorySealed {
+            extends RndFactory permits StaticBetaRndFactory {
 
         /**
          * <p>

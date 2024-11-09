@@ -9,24 +9,26 @@
  */
 package matsu.num.statistics.random.geo;
 
+import matsu.num.statistics.random.GeometricRnd;
+
 /**
- * {@link GeometricRndSealed.FactorySealed} の骨格実装
+ * {@link matsu.num.statistics.random.GeometricRnd.Factory} の骨格実装
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-abstract class SkeletalGeometricRndFactory implements GeometricRndSealed.FactorySealed {
+public abstract non-sealed class SkeletalGeometricRndFactory implements GeometricRnd.Factory {
 
     /**
      * 唯一のコンストラクタ.
      */
-    protected SkeletalGeometricRndFactory() {
+    SkeletalGeometricRndFactory() {
         super();
     }
 
     @Override
-    public final GeometricRndSealed instanceOf(double p) {
-        if (!matsu.num.statistics.random.GeometricRnd.acceptsParameter(p)) {
+    public final GeometricRnd instanceOf(double p) {
+        if (!GeometricRnd.acceptsParameter(p)) {
             throw new IllegalArgumentException(String.format("パラメータ不正:p=%s", p));
         }
 
@@ -45,7 +47,7 @@ abstract class SkeletalGeometricRndFactory implements GeometricRndSealed.Factory
      * @param p 成功確率
      * @return 成功確率がpの幾何分布乱数発生器インスタンス
      */
-    protected abstract GeometricRndSealed createInstanceOf(double p);
+    abstract GeometricRnd createInstanceOf(double p);
 
     @Override
     public String toString() {

@@ -9,7 +9,8 @@
  */
 package matsu.num.statistics.random;
 
-import matsu.num.statistics.random.poi.PoissonRndSealed;
+import matsu.num.statistics.random.poi.SkeletalPoissonRnd;
+import matsu.num.statistics.random.poi.SkeletalPoissonRndFactory;
 
 /**
  * <p>
@@ -51,10 +52,10 @@ import matsu.num.statistics.random.poi.PoissonRndSealed;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
 public sealed interface PoissonRnd
-        extends IntegerRandomGenerator permits PoissonRndSealed {
+        extends IntegerRandomGenerator permits SkeletalPoissonRnd {
 
     /**
      * 扱うことができるパラメータの最小値.
@@ -92,7 +93,7 @@ public sealed interface PoissonRnd
      * {@link PoissonRnd} のファクトリ.
      */
     public static sealed interface Factory
-            extends RndFactory permits PoissonRndSealed.FactorySealed {
+            extends RndFactory permits SkeletalPoissonRndFactory {
 
         /**
          * <p>

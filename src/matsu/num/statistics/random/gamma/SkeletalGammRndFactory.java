@@ -9,24 +9,26 @@
  */
 package matsu.num.statistics.random.gamma;
 
+import matsu.num.statistics.random.GammaRnd;
+
 /**
  * {@link matsu.num.statistics.random.GammaRnd.Factory} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-abstract class SkeletalGammRndFactory implements GammaRndSealed.FactorySealed {
+public abstract non-sealed class SkeletalGammRndFactory implements GammaRnd.Factory {
 
     /**
-     * 唯一のコンストラクタ.
+     * 唯一の外部に公開されないコンストラクタ.
      */
-    protected SkeletalGammRndFactory() {
+    SkeletalGammRndFactory() {
         super();
     }
 
     @Override
-    public final GammaRndSealed instanceOf(double k) {
-        if (!matsu.num.statistics.random.GammaRnd.acceptsParameter(k)) {
+    public final GammaRnd instanceOf(double k) {
+        if (!GammaRnd.acceptsParameter(k)) {
             throw new IllegalArgumentException(String.format("パラメータ不正:k=%s", k));
         }
 
@@ -45,7 +47,7 @@ abstract class SkeletalGammRndFactory implements GammaRndSealed.FactorySealed {
      * @param k 形状パラメータ
      * @return 形状パラメータが <i>k</i> のガンマ分布乱数発生器インスタンス
      */
-    protected abstract GammaRndSealed createInstanceOf(double k);
+    abstract GammaRnd createInstanceOf(double k);
 
     @Override
     public String toString() {

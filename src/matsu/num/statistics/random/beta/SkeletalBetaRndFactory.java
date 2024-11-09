@@ -15,14 +15,14 @@ import matsu.num.statistics.random.BetaRnd;
  * {@link matsu.num.statistics.random.BetaRnd.Factory} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-abstract class SkeletalBetaRndFactory implements matsu.num.statistics.random.beta.BetaRndSealed.FactorySealed {
+public abstract non-sealed class SkeletalBetaRndFactory implements BetaRnd.Factory {
 
     /**
-     * 唯一のコンストラクタ.
+     * 唯一の外部に公開されないコンストラクタ.
      */
-    protected SkeletalBetaRndFactory() {
+    SkeletalBetaRndFactory() {
         super();
     }
 
@@ -49,7 +49,7 @@ abstract class SkeletalBetaRndFactory implements matsu.num.statistics.random.bet
      * @param b 形状パラメータ
      * @return 形状パラメータが (<i>a</i>, <i>b</i>) のベータ分布乱数発生器インスタンス
      */
-    protected abstract BetaRnd createInstanceOf(double a, double b);
+    abstract BetaRnd createInstanceOf(double a, double b);
 
     @Override
     public String toString() {

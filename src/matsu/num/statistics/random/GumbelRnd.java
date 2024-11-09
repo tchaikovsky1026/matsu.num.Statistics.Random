@@ -9,7 +9,8 @@
  */
 package matsu.num.statistics.random;
 
-import matsu.num.statistics.random.gumbel.GumbelRndSealed;
+import matsu.num.statistics.random.gumbel.GumbelRndFactory;
+import matsu.num.statistics.random.gumbel.SkeletalGumbelRnd;
 
 /**
  * <p>
@@ -32,15 +33,15 @@ import matsu.num.statistics.random.gumbel.GumbelRndSealed;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-public sealed interface GumbelRnd extends FloatingRandomGenerator permits GumbelRndSealed {
+public sealed interface GumbelRnd extends FloatingRandomGenerator permits SkeletalGumbelRnd {
 
     /**
      * {@link GumbelRnd} のファクトリ.
      */
     public static sealed interface Factory
-            extends RndFactory permits GumbelRndSealed.FactorySealed {
+            extends RndFactory permits GumbelRndFactory {
 
         /**
          * <p>

@@ -9,24 +9,26 @@
  */
 package matsu.num.statistics.random.poi;
 
+import matsu.num.statistics.random.PoissonRnd;
+
 /**
- * {@link PoissonRndSealed.FactorySealed} の骨格実装.
+ * {@link matsu.num.statistics.random.PoissonRnd.Factory} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-abstract class SkeletalPoissonRndFactory implements PoissonRndSealed.FactorySealed {
+public abstract non-sealed class SkeletalPoissonRndFactory implements PoissonRnd.Factory {
 
     /**
-     * 唯一のコンストラクタ.
+     * 唯一の外部に公開されないコンストラクタ.
      */
-    protected SkeletalPoissonRndFactory() {
+    SkeletalPoissonRndFactory() {
         super();
     }
 
     @Override
-    public final PoissonRndSealed instanceOf(double lambda) {
-        if (!matsu.num.statistics.random.PoissonRnd.acceptsParameter(lambda)) {
+    public final PoissonRnd instanceOf(double lambda) {
+        if (!PoissonRnd.acceptsParameter(lambda)) {
             throw new IllegalArgumentException(String.format("パラメータ不正:lambda=%s", lambda));
         }
 
@@ -45,7 +47,7 @@ abstract class SkeletalPoissonRndFactory implements PoissonRndSealed.FactorySeal
      * @param lambda パラメータ
      * @return パラメータが <i>&lambda;</i> のPoisson分布乱数発生器インスタンス
      */
-    protected abstract PoissonRndSealed createInstanceOf(double lambda);
+    abstract PoissonRnd createInstanceOf(double lambda);
 
     @Override
     public String toString() {

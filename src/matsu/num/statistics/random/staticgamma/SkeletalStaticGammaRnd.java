@@ -12,19 +12,20 @@ package matsu.num.statistics.random.staticgamma;
 import java.util.Objects;
 
 import matsu.num.statistics.random.BaseRandom;
+import matsu.num.statistics.random.StaticGammaRnd;
 
 /**
- * {@link StaticGammaRndSealed} の骨格実装.
+ * {@link StaticGammaRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-abstract class SkeletalStaticGammaRnd implements StaticGammaRndSealed {
+public abstract non-sealed class SkeletalStaticGammaRnd implements StaticGammaRnd {
 
     /**
      * 唯一のコンストラクタ.
      */
-    protected SkeletalStaticGammaRnd() {
+    SkeletalStaticGammaRnd() {
         super();
     }
 
@@ -52,7 +53,7 @@ abstract class SkeletalStaticGammaRnd implements StaticGammaRndSealed {
      * @param k 形状パラメータ
      * @return 形状パラメータが <i>k</i> の標準ガンマ分布に従う乱数の値
      */
-    protected abstract double calcNextGamma(BaseRandom random, double k);
+    abstract double calcNextGamma(BaseRandom random, double k);
 
     @Override
     public String toString() {

@@ -9,7 +9,8 @@
  */
 package matsu.num.statistics.random;
 
-import matsu.num.statistics.random.cauchy.CauchyRndSealed;
+import matsu.num.statistics.random.cauchy.CauchyRndFactory;
+import matsu.num.statistics.random.cauchy.SkeletalCauchyRnd;
 
 /**
  * <p>
@@ -37,9 +38,9 @@ import matsu.num.statistics.random.cauchy.CauchyRndSealed;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-public sealed interface CauchyRnd extends FloatingRandomGenerator permits CauchyRndSealed {
+public sealed interface CauchyRnd extends FloatingRandomGenerator permits SkeletalCauchyRnd {
 
     /**
      * <p>
@@ -65,7 +66,7 @@ public sealed interface CauchyRnd extends FloatingRandomGenerator permits Cauchy
      * {@link CauchyRnd} のファクトリ.
      */
     public static sealed interface Factory
-            extends RndFactory permits CauchyRndSealed.FactorySealed {
+            extends RndFactory permits CauchyRndFactory {
 
         /**
          * <p>
@@ -75,6 +76,5 @@ public sealed interface CauchyRnd extends FloatingRandomGenerator permits Cauchy
          * @return 標準Cauchy分布乱数発生器インスタンス
          */
         public abstract CauchyRnd instance();
-
     }
 }

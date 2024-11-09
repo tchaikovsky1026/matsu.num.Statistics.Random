@@ -9,18 +9,20 @@
  */
 package matsu.num.statistics.random.levy;
 
+import matsu.num.statistics.random.LevyRnd;
+
 /**
- * {@link LevyRndSealed} の骨格実装.
+ * {@link LevyRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-abstract class SkeletalLevyRnd implements LevyRndSealed {
+public abstract non-sealed class SkeletalLevyRnd implements LevyRnd {
 
     /**
-     * 唯一のコンストラクタ.
+     * 唯一の外部に公開されないコンストラクタ.
      */
-    protected SkeletalLevyRnd() {
+    SkeletalLevyRnd() {
         super();
     }
 

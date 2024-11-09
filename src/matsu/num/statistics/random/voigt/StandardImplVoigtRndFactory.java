@@ -13,12 +13,13 @@ import java.util.Objects;
 
 import matsu.num.statistics.random.CauchyRnd;
 import matsu.num.statistics.random.NormalRnd;
+import matsu.num.statistics.random.VoigtRnd;
 
 /**
  * VoigtRndのスタンダード実装のファクトリ.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
 public final class StandardImplVoigtRndFactory extends SkeletalVoigtRndFactory {
 
@@ -32,7 +33,7 @@ public final class StandardImplVoigtRndFactory extends SkeletalVoigtRndFactory {
     }
 
     @Override
-    protected VoigtRndSealed createInstanceOf(double alpha) {
+    VoigtRnd createInstanceOf(double alpha) {
         return new StandardImplVoigtRnd(alpha, this.normalRndFactory, this.cauchyRndFactory);
     }
 }

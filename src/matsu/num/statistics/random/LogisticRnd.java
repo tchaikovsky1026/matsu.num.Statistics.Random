@@ -9,7 +9,8 @@
  */
 package matsu.num.statistics.random;
 
-import matsu.num.statistics.random.logi.LogisticRndSealed;
+import matsu.num.statistics.random.logi.LogisticRndFactory;
+import matsu.num.statistics.random.logi.SkeletalLogisticRnd;
 
 /**
  * <p>
@@ -35,16 +36,16 @@ import matsu.num.statistics.random.logi.LogisticRndSealed;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
 public sealed interface LogisticRnd
-        extends FloatingRandomGenerator permits LogisticRndSealed {
+        extends FloatingRandomGenerator permits SkeletalLogisticRnd {
 
     /**
      * {@link LogisticRnd} のファクトリ.
      */
     public static sealed interface Factory
-            extends RndFactory permits LogisticRndSealed.FactorySealed {
+            extends RndFactory permits LogisticRndFactory {
 
         /**
          * <p>

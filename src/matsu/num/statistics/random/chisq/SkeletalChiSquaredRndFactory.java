@@ -9,24 +9,26 @@
  */
 package matsu.num.statistics.random.chisq;
 
+import matsu.num.statistics.random.ChiSquaredRnd;
+
 /**
- * {@link ChiSquaredRndSealed.FactorySealed} の骨格実装.
+ * {@link matsu.num.statistics.random.ChiSquaredRnd.Factory} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-abstract class SkeletalChiSquaredRndFactory implements ChiSquaredRndSealed.FactorySealed {
+public abstract non-sealed class SkeletalChiSquaredRndFactory implements ChiSquaredRnd.Factory {
 
     /**
-     * 唯一のコンストラクタ.
+     * 唯一の外部に公開されないコンストラクタ.
      */
     protected SkeletalChiSquaredRndFactory() {
         super();
     }
 
     @Override
-    public final ChiSquaredRndSealed instanceOf(double k) {
-        if (!matsu.num.statistics.random.ChiSquaredRnd.acceptsParameter(k)) {
+    public final ChiSquaredRnd instanceOf(double k) {
+        if (!ChiSquaredRnd.acceptsParameter(k)) {
             throw new IllegalArgumentException(
                     String.format("パラメータ不正:k=%s", k));
         }
@@ -46,7 +48,7 @@ abstract class SkeletalChiSquaredRndFactory implements ChiSquaredRndSealed.Facto
      * @param k 自由度
      * @return 自由度が <i>k</i> のカイ二乗分布乱数発生器インスタンス
      */
-    protected abstract ChiSquaredRndSealed createInstanceOf(double k);
+    abstract ChiSquaredRnd createInstanceOf(double k);
 
     @Override
     public String toString() {

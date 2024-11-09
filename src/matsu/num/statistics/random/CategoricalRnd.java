@@ -9,7 +9,8 @@
  */
 package matsu.num.statistics.random;
 
-import matsu.num.statistics.random.cat.CategoricalRndSealed;
+import matsu.num.statistics.random.cat.SkeletalCategoricalRnd;
+import matsu.num.statistics.random.cat.SkeletalCategoricalRndFactory;
 
 /**
  * <p>
@@ -45,10 +46,10 @@ import matsu.num.statistics.random.cat.CategoricalRndSealed;
  * </p>
  *
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
 public sealed interface CategoricalRnd
-        extends IntegerRandomGenerator permits CategoricalRndSealed {
+        extends IntegerRandomGenerator permits SkeletalCategoricalRnd {
 
     /**
      * <p>
@@ -83,7 +84,7 @@ public sealed interface CategoricalRnd
      * {@link CategoricalRnd} のファクトリ.
      */
     public static sealed interface Factory
-            extends RndFactory permits CategoricalRndSealed.FactorySealed {
+            extends RndFactory permits SkeletalCategoricalRndFactory {
 
         /**
          * <p>

@@ -9,18 +9,20 @@
  */
 package matsu.num.statistics.random.gumbel;
 
+import matsu.num.statistics.random.GumbelRnd;
+
 /**
- * {@link GumbelRndSealed} の骨格実装.
+ * {@link GumbelRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-abstract class SkeletalGumbelRnd implements GumbelRndSealed {
+public abstract non-sealed class SkeletalGumbelRnd implements GumbelRnd {
 
     /**
-     * 唯一のコンストラクタ.
+     * 唯一の外部に公開されないコンストラクタ.
      */
-    protected SkeletalGumbelRnd() {
+    SkeletalGumbelRnd() {
         super();
     }
 

@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.26
+ * 2024.11.9
  */
 package matsu.num.statistics.random.norm;
 
@@ -20,7 +20,7 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * Ziggurat法により実装された標準正規分布に従う乱数発生器.
  *
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.2
  */
 public final class ZiggNormalRnd extends SkeletalNormalRnd {
 
@@ -112,7 +112,7 @@ public final class ZiggNormalRnd extends SkeletalNormalRnd {
     }
 
     /**
-     * {@link ZiggNormalRnd} を生成するファクトリを生成する.
+     * {@link matsu.num.statistics.random.NormalRnd.Factory} を生成する.
      * 
      * @param exponentiation 指数関数計算器
      * @param exponentialRndFactory 指数乱数発生器のファクトリ

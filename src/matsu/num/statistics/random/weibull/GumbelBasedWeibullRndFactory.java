@@ -12,13 +12,14 @@ package matsu.num.statistics.random.weibull;
 import java.util.Objects;
 
 import matsu.num.statistics.random.GumbelRnd;
+import matsu.num.statistics.random.WeibullRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
  * 標準Gumbelベースの標準Weibull分布乱数発生器のファクトリ.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
 public final class GumbelBasedWeibullRndFactory extends SkeletalWeibullRndFactory {
 
@@ -32,7 +33,7 @@ public final class GumbelBasedWeibullRndFactory extends SkeletalWeibullRndFactor
     }
 
     @Override
-    protected WeibullRndSealed createInstanceOf(double k) {
+    WeibullRnd createInstanceOf(double k) {
         return new GumbelBasedWeibullRnd(k, this.exponentiation, this.gumbelRndFactory);
     }
 }

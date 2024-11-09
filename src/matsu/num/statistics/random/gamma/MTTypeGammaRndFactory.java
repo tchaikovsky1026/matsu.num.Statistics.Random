@@ -12,6 +12,7 @@ package matsu.num.statistics.random.gamma;
 import java.util.Objects;
 
 import matsu.num.statistics.random.ExponentialRnd;
+import matsu.num.statistics.random.GammaRnd;
 import matsu.num.statistics.random.NormalRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
 
@@ -19,11 +20,11 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * Marsaglia-Tsangに基づく, ガンマ乱数発生器のファクトリ.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
 public final class MTTypeGammaRndFactory extends SkeletalGammRndFactory {
 
-    private final GammaRndSealed gammaRndAt1;
+    private final GammaRnd gammaRndAt1;
 
     private final Exponentiation exponentiation;
     private final ExponentialRnd.Factory exponentialRndFactory;
@@ -41,7 +42,7 @@ public final class MTTypeGammaRndFactory extends SkeletalGammRndFactory {
     }
 
     @Override
-    protected GammaRndSealed createInstanceOf(double k) {
+    GammaRnd createInstanceOf(double k) {
         //MarsagliaTsangに基づく乱数発生器
         if (k < 1) {
             return new MTTypeGammaRndUnder1(

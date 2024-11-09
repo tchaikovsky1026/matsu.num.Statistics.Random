@@ -9,7 +9,8 @@
  */
 package matsu.num.statistics.random;
 
-import matsu.num.statistics.random.gamma.GammaRndSealed;
+import matsu.num.statistics.random.gamma.SkeletalGammRndFactory;
+import matsu.num.statistics.random.gamma.SkeletalGammaRnd;
 
 /**
  * <p>
@@ -48,10 +49,10 @@ import matsu.num.statistics.random.gamma.GammaRndSealed;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
 public sealed interface GammaRnd
-        extends FloatingRandomGenerator permits GammaRndSealed {
+        extends FloatingRandomGenerator permits SkeletalGammaRnd {
 
     /**
      * 扱うことができる形状パラメータの最小値.
@@ -89,7 +90,7 @@ public sealed interface GammaRnd
      * {@link GammaRnd} のファクトリ.
      */
     public static sealed interface Factory
-            extends RndFactory permits GammaRndSealed.FactorySealed {
+            extends RndFactory permits SkeletalGammRndFactory {
 
         /**
          * <p>

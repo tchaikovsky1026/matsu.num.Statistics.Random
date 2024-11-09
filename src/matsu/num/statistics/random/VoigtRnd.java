@@ -9,7 +9,8 @@
  */
 package matsu.num.statistics.random;
 
-import matsu.num.statistics.random.voigt.VoigtRndSealed;
+import matsu.num.statistics.random.voigt.SkeletalVoigtRnd;
+import matsu.num.statistics.random.voigt.SkeletalVoigtRndFactory;
 
 /**
  * <p>
@@ -61,10 +62,10 @@ import matsu.num.statistics.random.voigt.VoigtRndSealed;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
 public sealed interface VoigtRnd
-        extends FloatingRandomGenerator permits VoigtRndSealed {
+        extends FloatingRandomGenerator permits SkeletalVoigtRnd {
 
     /**
      * パラメータ <i>&alpha;</i> の最小値.
@@ -102,7 +103,7 @@ public sealed interface VoigtRnd
      * {@link VoigtRnd} のファクトリ.
      */
     public static sealed interface Factory
-            extends RndFactory permits VoigtRndSealed.FactorySealed {
+            extends RndFactory permits SkeletalVoigtRndFactory {
 
         /**
          * <p>

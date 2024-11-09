@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.24
+ * 2024.11.9
  */
 package matsu.num.statistics.random.beta;
 
@@ -18,7 +18,7 @@ import matsu.num.statistics.random.GammaRnd;
  * ガンマ乱数発生器に基づくベータ乱数発生器のファクトリ.
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.2
  */
 public final class GammaBasedBetaRndFactory extends SkeletalBetaRndFactory {
 
@@ -29,7 +29,7 @@ public final class GammaBasedBetaRndFactory extends SkeletalBetaRndFactory {
     }
 
     @Override
-    protected BetaRnd createInstanceOf(double a, double b) {
+    BetaRnd createInstanceOf(double a, double b) {
         return new GammaBasedBetaRnd(a, b, this.gammaRndFactory);
     }
 }

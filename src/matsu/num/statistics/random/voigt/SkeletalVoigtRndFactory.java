@@ -9,24 +9,26 @@
  */
 package matsu.num.statistics.random.voigt;
 
+import matsu.num.statistics.random.VoigtRnd;
+
 /**
- * {@link VoigtRndSealed.FactorySealed} クラスの骨格実装.
+ * {@link matsu.num.statistics.random.VoigtRnd.Factory} クラスの骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-abstract class SkeletalVoigtRndFactory implements VoigtRndSealed.FactorySealed {
+public abstract non-sealed class SkeletalVoigtRndFactory implements VoigtRnd.Factory {
 
     /**
-     * 唯一のコンストラクタ.
+     * 唯一の外部に公開されないコンストラクタ.
      */
-    protected SkeletalVoigtRndFactory() {
+    SkeletalVoigtRndFactory() {
         super();
     }
 
     @Override
-    public final VoigtRndSealed instanceOf(double alpha) {
-        if (!matsu.num.statistics.random.VoigtRnd.acceptsParameter(alpha)) {
+    public final VoigtRnd instanceOf(double alpha) {
+        if (!VoigtRnd.acceptsParameter(alpha)) {
             throw new IllegalArgumentException(String.format("alphaが不正:%s", alpha));
         }
 
@@ -45,7 +47,7 @@ abstract class SkeletalVoigtRndFactory implements VoigtRndSealed.FactorySealed {
      * @param alpha パラメータ
      * @return パラメータ <i>&alpha;</i> のVoigt分布乱数発生器
      */
-    protected abstract VoigtRndSealed createInstanceOf(double alpha);
+    abstract VoigtRnd createInstanceOf(double alpha);
 
     @Override
     public String toString() {

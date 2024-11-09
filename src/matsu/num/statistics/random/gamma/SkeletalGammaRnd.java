@@ -9,26 +9,28 @@
  */
 package matsu.num.statistics.random.gamma;
 
+import matsu.num.statistics.random.GammaRnd;
+
 /**
- * {@link GammaRndSealed} の骨格実装.
+ * {@link GammaRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-abstract class SkeletalGammaRnd implements GammaRndSealed {
+public abstract non-sealed class SkeletalGammaRnd implements GammaRnd {
 
-    protected final double k;
+    final double k;
 
     /**
-     * 唯一のコンストラクタ. <br>
+     * 唯一の外部に公開されないコンストラクタ. <br>
      * 与える形状パラメータについて, バリデーションは行われていないことに注意.
      * 
      * @param k 形状パラメータ
      */
-    protected SkeletalGammaRnd(double k) {
+    SkeletalGammaRnd(double k) {
         super();
 
-        assert matsu.num.statistics.random.GammaRnd.acceptsParameter(k) : "パラメータ不正";
+        assert GammaRnd.acceptsParameter(k) : "パラメータ不正";
 
         this.k = k;
     }

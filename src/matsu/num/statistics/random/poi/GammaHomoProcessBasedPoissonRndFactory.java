@@ -12,13 +12,14 @@ package matsu.num.statistics.random.poi;
 import java.util.Objects;
 
 import matsu.num.statistics.random.GammaRnd;
+import matsu.num.statistics.random.PoissonRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
  * ガンマ分布乱数発生器を利用した, Poisson分布に従う乱数発生器のファクトリ.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
 public final class GammaHomoProcessBasedPoissonRndFactory extends SkeletalPoissonRndFactory {
 
@@ -42,7 +43,7 @@ public final class GammaHomoProcessBasedPoissonRndFactory extends SkeletalPoisso
     }
 
     @Override
-    protected PoissonRndSealed createInstanceOf(double lambda) {
+    PoissonRnd createInstanceOf(double lambda) {
         return new GammaHomoProcessBasedPoissonRnd(lambda, this.gammaRnds, this.exponentiation);
     }
 }

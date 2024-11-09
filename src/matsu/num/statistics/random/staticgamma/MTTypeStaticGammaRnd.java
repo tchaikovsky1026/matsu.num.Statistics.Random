@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2024.11.9
  */
 package matsu.num.statistics.random.staticgamma;
 
@@ -21,7 +21,7 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * Marsaglia-Tsangの方法に基づく, ガンマ乱数のstaticな発生器.
  * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.2
  */
 public final class MTTypeStaticGammaRnd extends SkeletalStaticGammaRnd {
 
@@ -39,7 +39,7 @@ public final class MTTypeStaticGammaRnd extends SkeletalStaticGammaRnd {
     }
 
     @Override
-    protected double calcNextGamma(BaseRandom random, double k) {
+    double calcNextGamma(BaseRandom random, double k) {
         if (k == 1) {
             return this.expRnd.nextRandom(random);
         }
@@ -73,7 +73,7 @@ public final class MTTypeStaticGammaRnd extends SkeletalStaticGammaRnd {
     }
 
     /**
-     * {@link StaticGammaRnd} を生成するファクトリを生成する.
+     * {@link matsu.num.statistics.random.StaticGammaRnd.Factory} を生成する.
      * 
      * @param exponentiation 指数関数計算器
      * @param exponentialRndFactory 指数乱数発生器のファクトリ

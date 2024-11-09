@@ -9,7 +9,8 @@
  */
 package matsu.num.statistics.random;
 
-import matsu.num.statistics.random.norm.NormalRndSealed;
+import matsu.num.statistics.random.norm.NormalRndFactory;
+import matsu.num.statistics.random.norm.SkeletalNormalRnd;
 
 /**
  * <p>
@@ -32,15 +33,15 @@ import matsu.num.statistics.random.norm.NormalRndSealed;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-public sealed interface NormalRnd extends FloatingRandomGenerator permits NormalRndSealed {
+public sealed interface NormalRnd extends FloatingRandomGenerator permits SkeletalNormalRnd {
 
     /**
      * {@link NormalRnd} のファクトリ.
      */
     public static sealed interface Factory
-            extends RndFactory permits NormalRndSealed.FactorySealed {
+            extends RndFactory permits NormalRndFactory {
 
         /**
          * <p>

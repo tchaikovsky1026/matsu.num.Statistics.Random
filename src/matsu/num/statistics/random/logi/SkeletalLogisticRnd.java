@@ -9,18 +9,20 @@
  */
 package matsu.num.statistics.random.logi;
 
+import matsu.num.statistics.random.LogisticRnd;
+
 /**
- * {@link LogisticRndSealed} の骨格実装.
+ * {@link LogisticRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-abstract class SkeletalLogisticRnd implements LogisticRndSealed {
+public abstract non-sealed class SkeletalLogisticRnd implements LogisticRnd {
 
     /**
      * 唯一のコンストラクタ.
      */
-    protected SkeletalLogisticRnd() {
+    SkeletalLogisticRnd() {
         super();
     }
 

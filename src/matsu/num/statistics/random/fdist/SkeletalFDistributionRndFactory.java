@@ -9,24 +9,26 @@
  */
 package matsu.num.statistics.random.fdist;
 
+import matsu.num.statistics.random.FDistributionRnd;
+
 /**
- * {@link FDistributionRndSealed.FactorySealed} の骨格実装.
+ * {@link matsu.num.statistics.random.FDistributionRnd.Factory} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
-abstract class SkeletalFDistributionRndFactory implements FDistributionRndSealed.FactorySealed {
+public abstract non-sealed class SkeletalFDistributionRndFactory implements FDistributionRnd.Factory {
 
     /**
-     * 唯一のコンストラクタ.
+     * 唯一の外部に公開されないコンストラクタ.
      */
-    protected SkeletalFDistributionRndFactory() {
+    SkeletalFDistributionRndFactory() {
         super();
     }
 
     @Override
-    public final FDistributionRndSealed instanceOf(double d1, double d2) {
-        if (!matsu.num.statistics.random.FDistributionRnd.acceptsParameters(d1, d2)) {
+    public final FDistributionRnd instanceOf(double d1, double d2) {
+        if (!FDistributionRnd.acceptsParameters(d1, d2)) {
             throw new IllegalArgumentException(
                     String.format(
                             "パラメータ不正:d1 = %s, d2 = %s", d1, d2));
@@ -49,7 +51,7 @@ abstract class SkeletalFDistributionRndFactory implements FDistributionRndSealed
      * @return 自由度が (<i>d</i><sub>1</sub>, <i>d</i><sub>2</sub>)
      *             のF分布乱数発生器インスタンス
      */
-    protected abstract FDistributionRndSealed createInstanceOf(double d1, double d2);
+    abstract FDistributionRnd createInstanceOf(double d1, double d2);
 
     @Override
     public String toString() {

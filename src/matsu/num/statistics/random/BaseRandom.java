@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.29
+ * 2024.11.9
  */
 package matsu.num.statistics.random;
 
@@ -16,8 +16,14 @@ import java.util.function.Supplier;
  * このモジュールが提供する機能で使用する基本乱数発生器を扱う.
  * </p>
  * 
+ * <p>
+ * 基本的なインスタンスは, このインターフェース内に定義された
+ * {@code static} ファクトリメソッドにより得られる. <br>
+ * また, 必要ならば独自に {@code implement} して使用しても良い.
+ * </p>
+ * 
  * @author Matsuura Y.
- * @version 21.0
+ * @version 22.2
  */
 public interface BaseRandom {
 
@@ -113,12 +119,12 @@ public interface BaseRandom {
 
     /**
      * <p>
-     * 内部で競合が発生しないように完全に分離された {@link BaseRandom} インスタンスを返す.
+     * スレッド間で競合が発生しないような {@link BaseRandom} インスタンスを返す.
      * </p>
      * 
      * <p>
-     * このインスタンスの内部ではスレッド間の競合が発生しないように分離されている. <br>
-     * よって, このインスタンス自体は複数スレッドで共有できる.
+     * このインスタンスはスレッド間の競合が発生しないように実装されている. <br>
+     * よって, このインスタンス自体は複数スレッドで共有されたとしても, 適切に動作する.
      * </p>
      * 
      * <p>

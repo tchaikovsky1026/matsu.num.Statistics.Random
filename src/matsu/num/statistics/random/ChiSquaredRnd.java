@@ -9,7 +9,8 @@
  */
 package matsu.num.statistics.random;
 
-import matsu.num.statistics.random.chisq.ChiSquaredRndSealed;
+import matsu.num.statistics.random.chisq.SkeletalChiSquaredRnd;
+import matsu.num.statistics.random.chisq.SkeletalChiSquaredRndFactory;
 
 /**
  * <p>
@@ -49,10 +50,10 @@ import matsu.num.statistics.random.chisq.ChiSquaredRndSealed;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
 public sealed interface ChiSquaredRnd
-        extends FloatingRandomGenerator permits ChiSquaredRndSealed {
+        extends FloatingRandomGenerator permits SkeletalChiSquaredRnd {
 
     /**
      * 扱うことができる自由度の最小値.
@@ -90,7 +91,7 @@ public sealed interface ChiSquaredRnd
      * {@link ChiSquaredRnd} のファクトリ.
      */
     public static sealed interface Factory
-            extends RndFactory permits ChiSquaredRndSealed.FactorySealed {
+            extends RndFactory permits SkeletalChiSquaredRndFactory {
 
         /**
          * <p>
