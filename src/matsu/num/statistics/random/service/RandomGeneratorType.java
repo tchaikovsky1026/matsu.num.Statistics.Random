@@ -24,7 +24,7 @@ import matsu.num.statistics.random.RndFactory;
  * 各種乱数発生器のファクトリを取得するために
  * {@link RandomGeneratorFactoryProvider#get(RandomGeneratorType)}
  * に渡される. <br>
- * インスタンスはシングルトンとして用意されており, {@link GeneratorTypes} クラス内に
+ * インスタンスは {@link GeneratorTypes} クラス内に
  * {@code static} 定数として用意されている.
  * </p>
  * 

@@ -23,8 +23,7 @@ final class BaseRandomHelper {
 
     /**
      * {@link ThreadLocalRandom} の呼び出しをラップした {@link BaseRandom} インスタンス.
-     * <br>
-     * シングルトンである.
+     * {@link ThreadLocalRandom} の外側では状態を持たないので使いまわし可能.
      */
     static final BaseRandom THREAD_SEPARATED_RANDOM = new RandomFromGetter(ThreadLocalRandom::current);
 

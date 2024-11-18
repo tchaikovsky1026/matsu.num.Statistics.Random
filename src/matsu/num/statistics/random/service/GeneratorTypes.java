@@ -53,7 +53,7 @@ import matsu.num.statistics.random.weibull.GumbelBasedWeibullRndFactory;
 
 /**
  * <p>
- * このモジュールが管理する {@link RandomGeneratorType} のシングルトンインスタンスを公開するユーティリティクラス. <br>
+ * このモジュールが管理する {@link RandomGeneratorType} の定数インスタンスの列挙を公開するユーティリティクラス. <br>
  * {@link RandomGeneratorType} インスタンスは全てこのクラス内に定義されている.
  * </p>
  * 

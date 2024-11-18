@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.8
+ * 2024.11.18
  */
 package matsu.num.statistics.random.service;
 
@@ -29,7 +29,7 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.1
+ * @version 22.2
  */
 public abstract class CommonLib {
 
@@ -141,6 +141,15 @@ public abstract class CommonLib {
         }
 
         /**
+         * デフォルトのライブラリが入った状態のビルダインスタンスを返す.
+         * 
+         * @return ビルダインスタンス
+         */
+        public static Builder implementedInit() {
+            return DEFAULT_BUILDER;
+        }
+
+        /**
          * <p>
          * 自身の指数関数計算器を引数のものに置き換え, 新しいビルダインスタンスとして返す. <br>
          * 新しいインスタンスであるため, 戻り値を無視してはいけない.
@@ -183,12 +192,16 @@ public abstract class CommonLib {
         }
 
         /**
-         * デフォルトのライブラリが入った状態のビルダインスタンスを返す.
+         * -
          * 
-         * @return ビルダインスタンス
+         * @return -
+         * @throws CloneNotSupportedException 常に
+         * @deprecated Clone不可
          */
-        public static Builder implementedInit() {
-            return DEFAULT_BUILDER;
+        @Deprecated
+        @Override
+        protected Object clone() throws CloneNotSupportedException {
+            throw new CloneNotSupportedException();
         }
 
         /**
