@@ -1,7 +1,5 @@
 /**
- * <p>
  * 確率分布に従う乱数を扱うモジュール.
- * </p>
  * 
  * <p>
  * このモジュールの主要なパッケージは, {@link matsu.num.statistics.random} パッケージと
@@ -28,11 +26,11 @@
  * </p>
  * 
  * <p>
- * <i>必須モジュール:</i>
+ * <i>依存モジュール:</i> <br>
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.2
+ * @version 23.0
  */
 module matsu.num.statistics.Random {
 
