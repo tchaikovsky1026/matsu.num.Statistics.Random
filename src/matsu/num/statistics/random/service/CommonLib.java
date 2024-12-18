@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.18
+ * 2024.12.17
  */
 package matsu.num.statistics.random.service;
 
@@ -14,10 +14,8 @@ import java.util.Objects;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
- * <p>
  * このモジュールで使うライブラリを管理する概念. <br>
  * イミュータブルである.
- * </p>
  * 
  * <p>
  * デフォルトのライブラリを扱うインスタンスの取得は {@link #defaultImplemented()} で可能だが,
@@ -25,11 +23,13 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * </p>
  * 
  * <p>
+ * <u>
  * <i>コンストラクタが公開されていないので, 外部からの継承は不可.</i>
+ * </u>
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.2
+ * @version 23.1
  */
 public abstract class CommonLib {
 
@@ -75,20 +75,28 @@ public abstract class CommonLib {
      */
     @Deprecated
     @Override
-    protected Object clone() throws CloneNotSupportedException {
+    protected final Object clone() throws CloneNotSupportedException {
         throw new CloneNotSupportedException();
     }
 
     /**
-     * <p>
+     * オーバーライド不可.
+     */
+    @Deprecated
+    @Override
+    protected final void finalize() throws Throwable {
+        super.finalize();
+    }
+
+    /**
      * {@link CommonLib} のイミュータブルなビルダ.
-     * </p>
      * 
      * <p>
      * 基本となるビルダインスタンスは, {@link #implementedInit()} により取得する. <br>
      * このビルダインスタンスにはデフォルトとなるライブラリがセットされている. <br>
      * 個別のライブラリに置き換える場合は専用のメソッドを用いる. <br>
-     * ただし, ビルダインスタンスはイミュータブルであるため, 戻り値を受け取る必要がある.
+     * ただし, ビルダインスタンスはイミュータブルであるため, 戻り値を受け取る必要がある
+     * (ただし, メソッドチェーンは書ける).
      * </p>
      * 
      * <p>
@@ -108,7 +116,15 @@ public abstract class CommonLib {
      * CommonLib lib = builder.build();
      * </pre>
      * 
+     * <pre>
+     * // メソッドチェーンを用いたビルド
+     * CommonLib lib = CommonLib.Builder.implementedInit()
+     *         .replacedX(myXLibrary)
+     *         .build();
+     * </pre>
+     * 
      * </blockquote>
+     * 
      */
     public static final class Builder {
 
@@ -150,10 +166,8 @@ public abstract class CommonLib {
         }
 
         /**
-         * <p>
          * 自身の指数関数計算器を引数のものに置き換え, 新しいビルダインスタンスとして返す. <br>
          * 新しいインスタンスであるため, 戻り値を無視してはいけない.
-         * </p>
          * 
          * @param newExponentiation 指数関数計算器
          * @return 置き換え後の新しいビルダ
@@ -189,19 +203,6 @@ public abstract class CommonLib {
         @Override
         public String toString() {
             return "LibBuilder";
-        }
-
-        /**
-         * -
-         * 
-         * @return -
-         * @throws CloneNotSupportedException 常に
-         * @deprecated Clone不可
-         */
-        @Deprecated
-        @Override
-        protected Object clone() throws CloneNotSupportedException {
-            throw new CloneNotSupportedException();
         }
 
         /**

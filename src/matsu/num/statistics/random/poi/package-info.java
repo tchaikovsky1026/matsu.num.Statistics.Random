@@ -1,4 +1,4 @@
 /**
- * Poisson乱数発生器の実装を扱う. 
+ * Poisson乱数発生器の実装を扱う.
  */
 package matsu.num.statistics.random.poi;
