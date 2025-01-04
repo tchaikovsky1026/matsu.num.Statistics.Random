@@ -31,9 +31,9 @@
  * </p>
  * 
  * @author Matsuura Y.
- * @version 23.1
+ * @version 24.0
  */
-module matsu.num.statistics.Random {
+module matsu.num.Statistics.Random {
 
     exports matsu.num.statistics.random;
     exports matsu.num.statistics.random.lib;
