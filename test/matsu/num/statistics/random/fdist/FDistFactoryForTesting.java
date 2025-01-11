@@ -13,8 +13,11 @@ import matsu.num.statistics.random.beta.BetaFactoryForTesting;
 
 /**
  * テストクラスで使用する {@link matsu.num.statistics.random.FDistributionRnd.Factory}.
+ * 
+ * @deprecated このクラスは使用されていない.
  */
 @Ignore
+@Deprecated
 public final class FDistFactoryForTesting {
 
     public static final FDistributionRnd.Factory FACTORY =

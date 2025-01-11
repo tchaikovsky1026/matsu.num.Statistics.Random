@@ -14,8 +14,11 @@ import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
 /**
  * テストクラスで使用する {@link matsu.num.statistics.random.PoissonRnd.Factory}.
+ * 
+ * @deprecated このクラスは使用されていない.
  */
 @Ignore
+@Deprecated
 public final class PoissonFactoryForTesting {
 
     public static final PoissonRnd.Factory FACTORY =

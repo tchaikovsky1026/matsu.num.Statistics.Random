@@ -13,8 +13,11 @@ import matsu.num.statistics.random.gamma.GammaFactoryForTesting;
 
 /**
  * テストクラスで使用する {@link matsu.num.statistics.random.ChiSquaredRnd.Factory}.
+ * 
+ * @deprecated このクラスは使用されていない.
  */
 @Ignore
+@Deprecated
 public final class ChiSqFactoryForTesting {
 
     public static final ChiSquaredRnd.Factory FACTORY =

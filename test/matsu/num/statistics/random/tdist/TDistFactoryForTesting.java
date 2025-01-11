@@ -15,8 +15,11 @@ import matsu.num.statistics.random.norm.NormalFactoryForTesting;
 
 /**
  * テストクラスで使用する {@link matsu.num.statistics.random.TDistributionRnd.Factory}.
+ * 
+ * @deprecated このクラスは使用されていない.
  */
 @Ignore
+@Deprecated
 public final class TDistFactoryForTesting {
 
     public static final TDistributionRnd.Factory FACTORY =

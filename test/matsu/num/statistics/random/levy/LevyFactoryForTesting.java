@@ -13,8 +13,11 @@ import matsu.num.statistics.random.norm.NormalFactoryForTesting;
 
 /**
  * テストクラスで使用する {@link matsu.num.statistics.random.LevyRnd.Factory}.
+ * 
+ * @deprecated このクラスは使用されていない.
  */
 @Ignore
+@Deprecated
 public final class LevyFactoryForTesting {
 
     public static final LevyRnd.Factory FACTORY =

@@ -14,8 +14,11 @@ import matsu.num.statistics.random.norm.NormalFactoryForTesting;
 
 /**
  * テストクラスで使用する {@link matsu.num.statistics.random.VoigtRnd.Factory}.
+ * 
+ * @deprecated このクラスは使用されていない.
  */
 @Ignore
+@Deprecated
 public final class VoigtFactoryForTesting {
 
     public static final VoigtRnd.Factory FACTORY =

@@ -14,8 +14,11 @@ import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
 /**
  * テストクラスで使用する {@link matsu.num.statistics.random.WeibullRnd.Factory}.
+ * 
+ * @deprecated このクラスは使用されていない.
  */
 @Ignore
+@Deprecated
 public final class WeibullFactoryForTesting {
 
     public static final WeibullRnd.Factory FACTORY =
