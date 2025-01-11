@@ -38,7 +38,7 @@
  * </p>
  * 
  * @author Matsuura Y.
- * @version 24.0
+ * @version 24.1
  */
 module matsu.num.Statistics.Random {
 
