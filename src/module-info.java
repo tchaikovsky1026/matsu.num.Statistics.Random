@@ -1,3 +1,10 @@
+/*
+ * Copyright © 2024 Matsuura Y.
+ * 
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
+ */
+
 /**
  * 確率分布に従う乱数を扱うモジュール.
  * 

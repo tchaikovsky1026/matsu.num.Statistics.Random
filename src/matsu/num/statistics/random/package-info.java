@@ -1,3 +1,10 @@
+/*
+ * Copyright © 2024 Matsuura Y.
+ * 
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
+ */
+
 /**
  * 乱数発生器に関する型を定義するパッケージ.
  * 

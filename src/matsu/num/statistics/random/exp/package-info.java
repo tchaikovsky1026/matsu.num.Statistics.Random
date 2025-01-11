@@ -1,4 +1,11 @@
+/*
+ * Copyright © 2024 Matsuura Y.
+ * 
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
+ */
+
 /**
- * 指数乱数発生器の実装を扱う.
+ * 標準指数乱数発生器の実装を扱う.
  */
 package matsu.num.statistics.random.exp;
