@@ -19,7 +19,7 @@ import org.junit.runner.RunWith;
  * {@link BetaBasedIntegerRndTesting} クラスのテスト.
  */
 @RunWith(Enclosed.class)
-public class BetaBasedIntegerRndTestingTest {
+final class BetaBasedIntegerRndTestingTest {
 
     public static class 離散一様分布を用いたフレームワークテスト {
 
