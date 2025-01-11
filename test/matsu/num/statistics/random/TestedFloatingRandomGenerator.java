@@ -10,9 +10,6 @@ import org.junit.Ignore;
 
 /**
  * テストを行う浮動小数点数乱数発生器.
- *
- * @author Matsuura Y.
- * @version 9.0
  */
 @Ignore
 public interface TestedFloatingRandomGenerator {

@@ -10,9 +10,6 @@ import org.junit.Ignore;
 
 /**
  * 連続分布乱数発生器のテスティングフレームワークインターフェース.
- *
- * @author Matsuura Y.
- * @version 9.0
  */
 @Ignore
 public interface FloatingRandomGeneratorTestingFramework {

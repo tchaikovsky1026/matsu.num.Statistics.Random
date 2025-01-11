@@ -13,6 +13,9 @@ import matsu.num.statistics.random.exp.ExponentialFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
 import matsu.num.statistics.random.norm.NormalFactoryForTesting;
 
+/**
+ * テストクラスで使用する {@link matsu.num.statistics.random.GammaRnd.Factory}.
+ */
 @Ignore
 public final class GammaFactoryForTesting {
 

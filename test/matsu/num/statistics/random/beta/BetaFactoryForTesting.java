@@ -11,6 +11,9 @@ import org.junit.Ignore;
 import matsu.num.statistics.random.BetaRnd;
 import matsu.num.statistics.random.gamma.GammaFactoryForTesting;
 
+/**
+ * テストクラスで使用する {@link matsu.num.statistics.random.BetaRnd.Factory}.
+ */
 @Ignore
 public final class BetaFactoryForTesting {
 

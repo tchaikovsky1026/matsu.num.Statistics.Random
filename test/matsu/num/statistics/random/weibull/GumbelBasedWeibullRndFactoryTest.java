@@ -26,9 +26,7 @@ import matsu.num.statistics.random.gumbel.GumbelFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
 /**
- * {@link GumbelBasedWeibullRndFactory}クラスのテスト.
- *
- * @author Matsuura Y.
+ * {@link GumbelBasedWeibullRndFactory} クラスのテスト.
  */
 @RunWith(Enclosed.class)
 final class GumbelBasedWeibullRndFactoryTest {

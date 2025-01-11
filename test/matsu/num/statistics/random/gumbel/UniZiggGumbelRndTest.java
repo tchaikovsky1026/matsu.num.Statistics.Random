@@ -21,9 +21,7 @@ import matsu.num.statistics.random.exp.ExponentialFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
 /**
- * {@link GumbelRndFactory}クラスのテスト.
- *
- * @author Matsuura Y.
+ * {@link GumbelRndFactory} クラスのテスト.
  */
 @RunWith(Enclosed.class)
 final class UniZiggGumbelRndTest {

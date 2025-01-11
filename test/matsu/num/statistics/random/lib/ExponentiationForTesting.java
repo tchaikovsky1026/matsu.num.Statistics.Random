@@ -8,6 +8,9 @@ package matsu.num.statistics.random.lib;
 
 import org.junit.Ignore;
 
+/**
+ * テストクラスで使用する {@link matsu.num.statistics.random.lib.Exponentiation}.
+ */
 @Ignore
 public final class ExponentiationForTesting implements Exponentiation {
 

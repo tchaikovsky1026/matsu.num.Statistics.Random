@@ -11,6 +11,9 @@ import org.junit.Ignore;
 import matsu.num.statistics.random.LevyRnd;
 import matsu.num.statistics.random.norm.NormalFactoryForTesting;
 
+/**
+ * テストクラスで使用する {@link matsu.num.statistics.random.LevyRnd.Factory}.
+ */
 @Ignore
 public final class LevyFactoryForTesting {
 

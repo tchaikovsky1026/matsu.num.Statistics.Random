@@ -26,9 +26,7 @@ import matsu.num.statistics.random.exp.ExponentialFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
 /**
- * {@link InversionBasedGeoRndFactory}クラスのテスト.
- *
- * @author Matsuura Y.
+ * {@link InversionBasedGeoRndFactory} クラスのテスト.
  */
 @RunWith(Enclosed.class)
 final class InversionBasedGeoRndFactoryTest {

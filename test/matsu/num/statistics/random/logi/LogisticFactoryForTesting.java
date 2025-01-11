@@ -12,6 +12,9 @@ import matsu.num.statistics.random.LogisticRnd;
 import matsu.num.statistics.random.exp.ExponentialFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
+/**
+ * テストクラスで使用する {@link matsu.num.statistics.random.LogisticRnd.Factory}.
+ */
 @Ignore
 public final class LogisticFactoryForTesting {
 

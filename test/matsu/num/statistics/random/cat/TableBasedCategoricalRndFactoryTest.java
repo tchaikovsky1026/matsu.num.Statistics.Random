@@ -21,9 +21,7 @@ import matsu.num.statistics.random.TestedIntegerRandomGenerator;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
 /**
- * {@link TableBasedCategoricalRndFactory}クラスのテスト.
- *
- * @author Matsuura Y.
+ * {@link TableBasedCategoricalRndFactory} クラスのテスト.
  */
 @RunWith(Enclosed.class)
 final class TableBasedCategoricalRndFactoryTest {

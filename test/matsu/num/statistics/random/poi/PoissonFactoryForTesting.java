@@ -12,6 +12,9 @@ import matsu.num.statistics.random.PoissonRnd;
 import matsu.num.statistics.random.gamma.GammaFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
+/**
+ * テストクラスで使用する {@link matsu.num.statistics.random.PoissonRnd.Factory}.
+ */
 @Ignore
 public final class PoissonFactoryForTesting {
 

@@ -11,6 +11,9 @@ import org.junit.Ignore;
 import matsu.num.statistics.random.StaticBetaRnd;
 import matsu.num.statistics.random.staticgamma.StaticGammaFactoryForTesting;
 
+/**
+ * テストクラスで使用する {@link matsu.num.statistics.random.StaticGammaRnd.Factory}.
+ */
 @Ignore
 public final class StaticBetaFactoryForTesting {
 

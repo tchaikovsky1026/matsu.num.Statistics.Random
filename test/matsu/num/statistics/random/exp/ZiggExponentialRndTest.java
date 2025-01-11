@@ -21,8 +21,6 @@ import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
 /**
  * {@link ZiggExponentialRnd} クラスのテスト.
- *
- * @author Matsuura Y.
  */
 @RunWith(Enclosed.class)
 final class ZiggExponentialRndTest {

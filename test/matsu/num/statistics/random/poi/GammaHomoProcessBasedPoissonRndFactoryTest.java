@@ -26,9 +26,7 @@ import matsu.num.statistics.random.gamma.GammaFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
 /**
- * {@link GammaHomoProcessBasedPoissonRndFactory}クラスのテスト.
- *
- * @author Matsuura Y.
+ * {@link GammaHomoProcessBasedPoissonRndFactory} クラスのテスト.
  */
 @RunWith(Enclosed.class)
 final class GammaHomoProcessBasedPoissonRndFactoryTest {

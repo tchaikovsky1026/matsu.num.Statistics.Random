@@ -25,9 +25,7 @@ import matsu.num.statistics.random.TestedFloatingRandomGenerator;
 import matsu.num.statistics.random.beta.BetaFactoryForTesting;
 
 /**
- * {@link BetaBasedFDistributionRndFactory}クラスのテスト.
- *
- * @author Matsuura Y.
+ * {@link BetaBasedFDistributionRndFactory} クラスのテスト.
  */
 @RunWith(Enclosed.class)
 final class BetaBasedFDistributionRndFactoryTest {

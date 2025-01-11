@@ -26,9 +26,7 @@ import matsu.num.statistics.random.cauchy.CauchyFactoryForTesting;
 import matsu.num.statistics.random.norm.NormalFactoryForTesting;
 
 /**
- * {@link StandardImplVoigtRndFactory}クラスのテスト.
- * 
- * @author Matsuura Y.
+ * {@link StandardImplVoigtRndFactory} クラスのテスト.
  */
 @RunWith(Enclosed.class)
 final class StandardImplVoigtRndFactoryTest {

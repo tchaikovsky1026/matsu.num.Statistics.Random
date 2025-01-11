@@ -16,10 +16,7 @@ import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
 
 /**
- * {@link BetaBasedFloatingRndTesting}のテスト.
- *
- * @author Matsuura Y.
- * @version 9.0
+ * {@link BetaBasedFloatingRndTesting} のテスト.
  */
 @RunWith(Enclosed.class)
 public class BetaBasedFloatingRndTestingTest {

@@ -12,6 +12,9 @@ import matsu.num.statistics.random.WeibullRnd;
 import matsu.num.statistics.random.gumbel.GumbelFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
+/**
+ * テストクラスで使用する {@link matsu.num.statistics.random.WeibullRnd.Factory}.
+ */
 @Ignore
 public final class WeibullFactoryForTesting {
 

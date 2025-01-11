@@ -12,6 +12,9 @@ import matsu.num.statistics.random.VoigtRnd;
 import matsu.num.statistics.random.cauchy.CauchyFactoryForTesting;
 import matsu.num.statistics.random.norm.NormalFactoryForTesting;
 
+/**
+ * テストクラスで使用する {@link matsu.num.statistics.random.VoigtRnd.Factory}.
+ */
 @Ignore
 public final class VoigtFactoryForTesting {
 

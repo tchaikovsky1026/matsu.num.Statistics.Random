@@ -19,8 +19,6 @@ import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
  * {@linkplain CommonLibDefaultHolder} クラスのテスト.
- * 
- * @author Matsuura Y.
  */
 @RunWith(Enclosed.class)
 public class CommonLibDefaultHolderTest {

@@ -16,10 +16,7 @@ import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
 
 /**
- * {@link BetaBasedIntegerRndTesting}クラスのテスト.
- *
- * @author Matsuura Y.
- * @version 9.0
+ * {@link BetaBasedIntegerRndTesting} クラスのテスト.
  */
 @RunWith(Enclosed.class)
 public class BetaBasedIntegerRndTestingTest {

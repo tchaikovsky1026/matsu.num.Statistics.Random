@@ -25,9 +25,7 @@ import matsu.num.statistics.random.TestedFloatingRandomGenerator;
 import matsu.num.statistics.random.gamma.GammaFactoryForTesting;
 
 /**
- * {@link GammaBasedBetaRndFactory}クラスのテスト.
- *
- * @author Matsuura Y.
+ * {@link GammaBasedBetaRndFactory} クラスのテスト.
  */
 @RunWith(Enclosed.class)
 final class GammaBasedBetaRndFactoryTest {

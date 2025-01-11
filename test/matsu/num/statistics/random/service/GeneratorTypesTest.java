@@ -49,8 +49,6 @@ import matsu.num.statistics.random.WeibullRnd;
 
 /**
  * {@linkplain RandomGeneratorFactoryProvider} のテスト.
- * 
- * @author Matsuura Y.
  */
 @RunWith(Enclosed.class)
 public class GeneratorTypesTest {

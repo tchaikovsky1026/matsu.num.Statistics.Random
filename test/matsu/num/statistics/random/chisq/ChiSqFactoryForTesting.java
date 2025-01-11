@@ -11,6 +11,9 @@ import org.junit.Ignore;
 import matsu.num.statistics.random.ChiSquaredRnd;
 import matsu.num.statistics.random.gamma.GammaFactoryForTesting;
 
+/**
+ * テストクラスで使用する {@link matsu.num.statistics.random.ChiSquaredRnd.Factory}.
+ */
 @Ignore
 public final class ChiSqFactoryForTesting {
 

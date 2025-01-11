@@ -20,9 +20,7 @@ import matsu.num.statistics.random.TestedFloatingRandomGenerator;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
 /**
- * {@link ZiggCauchyRnd}クラスのテスト.
- * 
- * @author Matsuura Y.
+ * {@link ZiggCauchyRnd} クラスのテスト.
  */
 @RunWith(Enclosed.class)
 final class ZiggCauchyRndTest {

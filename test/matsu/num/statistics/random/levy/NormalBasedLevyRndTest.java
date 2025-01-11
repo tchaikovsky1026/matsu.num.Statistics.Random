@@ -20,9 +20,7 @@ import matsu.num.statistics.random.TestedFloatingRandomGenerator;
 import matsu.num.statistics.random.norm.NormalFactoryForTesting;
 
 /**
- * {@link NormalBasedLevyRnd}クラスのテスト.
- * 
- * @author Matsuura Y.
+ * {@link NormalBasedLevyRnd} クラスのテスト.
  */
 @RunWith(Enclosed.class)
 final class NormalBasedLevyRndTest {

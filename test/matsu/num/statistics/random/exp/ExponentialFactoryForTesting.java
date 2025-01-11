@@ -11,6 +11,9 @@ import org.junit.Ignore;
 import matsu.num.statistics.random.ExponentialRnd;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
+/**
+ * テストクラスで使用する {@link matsu.num.statistics.random.ExponentialRnd.Factory}.
+ */
 @Ignore
 public final class ExponentialFactoryForTesting {
 

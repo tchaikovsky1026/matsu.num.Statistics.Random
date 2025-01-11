@@ -11,6 +11,9 @@ import org.junit.Ignore;
 import matsu.num.statistics.random.FDistributionRnd;
 import matsu.num.statistics.random.beta.BetaFactoryForTesting;
 
+/**
+ * テストクラスで使用する {@link matsu.num.statistics.random.FDistributionRnd.Factory}.
+ */
 @Ignore
 public final class FDistFactoryForTesting {
 

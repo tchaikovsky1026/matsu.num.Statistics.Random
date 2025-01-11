@@ -10,9 +10,6 @@ import org.junit.Ignore;
 
 /**
  * Gumbel分布のUnimodal-Zigguratを実行するためのパラメータを計算するヘルパ.
- * 
- * @author Matsuura Y.
- * @version 17.5
  */
 @Ignore
 final class ParameterPreperationHelper {

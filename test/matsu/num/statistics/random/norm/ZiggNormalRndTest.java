@@ -21,9 +21,7 @@ import matsu.num.statistics.random.exp.ExponentialFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
 /**
- * {@link ZiggNormalRndFactory}クラスのテスト.
- *
- * @author Matsuura Y.
+ * {@link ZiggNormalRndFactory} クラスのテスト.
  */
 @RunWith(Enclosed.class)
 final class ZiggNormalRndTest {

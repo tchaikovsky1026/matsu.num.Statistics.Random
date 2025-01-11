@@ -19,9 +19,7 @@ import matsu.num.statistics.random.exp.ExponentialFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
 /**
- * {@link ZiggLogiRnd}クラスのテスト.
- *
- * @author Matsuura Y.
+ * {@link ZiggLogiRnd} クラスのテスト.
  */
 final class ZiggLogiRndTest {
 

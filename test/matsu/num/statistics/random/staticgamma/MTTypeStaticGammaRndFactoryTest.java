@@ -27,9 +27,7 @@ import matsu.num.statistics.random.lib.ExponentiationForTesting;
 import matsu.num.statistics.random.norm.NormalFactoryForTesting;
 
 /**
- * {@link MTTypeStaticGammaRnd}クラスのテスト.
- * 
- * @author Matsuura Y.
+ * {@link MTTypeStaticGammaRnd} クラスのテスト.
  */
 @RunWith(Enclosed.class)
 final class MTTypeStaticGammaRndFactoryTest {
