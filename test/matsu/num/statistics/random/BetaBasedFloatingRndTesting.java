@@ -1,5 +1,8 @@
 /*
- * 2023.1.24
+ * Copyright © 2024 Matsuura Y.
+ * 
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
  */
 package matsu.num.statistics.random;
 
@@ -67,12 +70,13 @@ final class BetaBasedFloatingRndTesting implements FloatingRandomGeneratorTestin
             double analyticalProbability = testedGenerator.cumulativeProbability(samples[index]);
 
             if (!(min <= analyticalProbability && analyticalProbability <= max)) {
-                throw new AssertionError(String.format(
-                        "乱数発生に異常あり:"
-                                + "index=%dの値は%.16G, その期待する累積確率は%.5fであるが, "
-                                + "累積確率の許容値は[%.5f,%.5f]である.",
-                        index, samples[index], analyticalProbability,
-                        min, max));
+                throw new AssertionError(
+                        String.format(
+                                "乱数発生に異常あり:"
+                                        + "index=%dの値は%.16G, その期待する累積確率は%.5fであるが, "
+                                        + "累積確率の許容値は[%.5f,%.5f]である.",
+                                index, samples[index], analyticalProbability,
+                                min, max));
             }
         }
 

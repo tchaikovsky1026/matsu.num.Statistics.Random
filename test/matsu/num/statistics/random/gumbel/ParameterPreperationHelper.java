@@ -1,5 +1,8 @@
-/**
- * 2024.1.9
+/*
+ * Copyright © 2024 Matsuura Y.
+ * 
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
  */
 package matsu.num.statistics.random.gumbel;
 
@@ -195,7 +198,7 @@ final class ParameterPreperationHelper {
         static double invFunc_m(double f) {
             return -Math.log(-lambertWm(-f));
         }
-        
+
         /**
          * ランベルトW関数の主枝:W_0.
          */

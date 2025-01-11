@@ -1,8 +1,15 @@
+/*
+ * Copyright © 2024 Matsuura Y.
+ * 
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
+ */
 package matsu.num.statistics.random;
 
 import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;

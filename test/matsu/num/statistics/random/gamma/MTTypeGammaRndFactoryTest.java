@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2024 Matsuura Y.
+ * 
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
+ */
 package matsu.num.statistics.random.gamma;
 
 import static matsu.num.statistics.random.GammaRnd.*;
@@ -47,7 +53,7 @@ final class MTTypeGammaRndFactoryTest {
             assertThat(GammaRnd.acceptsParameter(UPPER_LIMIT_SHAPE_PARAMETER), is(true));
             FACTORY.instanceOf(UPPER_LIMIT_SHAPE_PARAMETER);
         }
-        
+
         @Test(expected = IllegalArgumentException.class)
         public void test_境界最小値外() {
             double k = Math.nextDown(LOWER_LIMIT_SHAPE_PARAMETER);

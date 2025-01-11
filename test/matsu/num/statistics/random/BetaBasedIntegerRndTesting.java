@@ -1,5 +1,9 @@
 /*
- * 2023.1.25
+ * /*
+ * Copyright © 2024 Matsuura Y.
+ * 
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
  */
 package matsu.num.statistics.random;
 
@@ -73,12 +77,13 @@ final class BetaBasedIntegerRndTesting implements IntegerRandomGeneratorTestingF
             double analyticalProbabilityOneBelow = testedGenerator.cumulativeProbabilityOneBelow(samples[index]);
 
             if (!(min <= analyticalProbability && analyticalProbabilityOneBelow <= max)) {
-                throw new AssertionError(String.format(
-                        "乱数発生に異常あり:"
-                                + "index=%dの値は%d, その期待する累積確率は[%.5f,%.5f]であるが, "
-                                + "この区間は累積確率の許容値[%.5f,%.5f]に含まれていない.",
-                        index, samples[index], analyticalProbabilityOneBelow, analyticalProbability,
-                        min, max));
+                throw new AssertionError(
+                        String.format(
+                                "乱数発生に異常あり:"
+                                        + "index=%dの値は%d, その期待する累積確率は[%.5f,%.5f]であるが, "
+                                        + "この区間は累積確率の許容値[%.5f,%.5f]に含まれていない.",
+                                index, samples[index], analyticalProbabilityOneBelow, analyticalProbability,
+                                min, max));
             }
         }
 
