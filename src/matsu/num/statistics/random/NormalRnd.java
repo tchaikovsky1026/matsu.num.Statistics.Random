@@ -33,7 +33,6 @@ import matsu.num.statistics.random.norm.SkeletalNormalRnd;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public sealed interface NormalRnd extends FloatingRandomGenerator permits SkeletalNormalRnd {
 

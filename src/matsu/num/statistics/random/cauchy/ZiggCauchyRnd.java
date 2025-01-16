@@ -24,7 +24,6 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public final class ZiggCauchyRnd extends SkeletalCauchyRnd {
 

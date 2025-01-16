@@ -15,7 +15,6 @@ import matsu.num.statistics.random.FDistributionRnd;
  * {@link matsu.num.statistics.random.FDistributionRnd.Factory} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public abstract non-sealed class SkeletalFDistributionRndFactory implements FDistributionRnd.Factory {
 

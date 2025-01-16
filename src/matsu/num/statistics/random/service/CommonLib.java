@@ -29,7 +29,6 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 23.1
  */
 public abstract class CommonLib {
 

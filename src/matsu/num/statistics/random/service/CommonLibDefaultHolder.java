@@ -15,7 +15,6 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * {@link CommonLib} のデフォルト実装のホルダ.
  * 
  * @author Matsuura Y.
- * @version 20.0
  */
 final class CommonLibDefaultHolder {
 

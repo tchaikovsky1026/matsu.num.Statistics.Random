@@ -62,7 +62,6 @@ import matsu.num.statistics.random.voigt.SkeletalVoigtRndFactory;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public sealed interface VoigtRnd
         extends FloatingRandomGenerator permits SkeletalVoigtRnd {

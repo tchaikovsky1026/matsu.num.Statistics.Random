@@ -33,7 +33,6 @@ import matsu.num.statistics.random.RndFactory;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.1
  * @param <T> このタイプが返却する乱数発生器ファクトリの型
  */
 public final class RandomGeneratorType<T extends RndFactory> {

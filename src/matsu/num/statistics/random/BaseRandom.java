@@ -23,7 +23,6 @@ import java.util.function.Supplier;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public interface BaseRandom {
 

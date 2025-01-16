@@ -27,7 +27,6 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * </p>
  *
  * @author Matsuura Y.
- * @version 21.0
  * @deprecated {@link UniZiggGumbelRnd}を推奨する.
  */
 @Deprecated

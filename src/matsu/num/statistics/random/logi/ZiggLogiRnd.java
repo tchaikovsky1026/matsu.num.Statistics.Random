@@ -24,7 +24,6 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * この乱数発生器はZiggurat法により実装されている.
  *
  * @author Matsuura Y.
- * @version 22.2
  */
 public final class ZiggLogiRnd extends SkeletalLogisticRnd {
 

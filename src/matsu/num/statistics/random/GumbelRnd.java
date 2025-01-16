@@ -33,7 +33,6 @@ import matsu.num.statistics.random.gumbel.SkeletalGumbelRnd;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public sealed interface GumbelRnd extends FloatingRandomGenerator permits SkeletalGumbelRnd {
 

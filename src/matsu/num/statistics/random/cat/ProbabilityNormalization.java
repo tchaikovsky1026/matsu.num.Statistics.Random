@@ -13,7 +13,6 @@ package matsu.num.statistics.random.cat;
  * 0以上の有限値を持つ配列を総和が1dになるように規格化するためのユーティリティクラス.
  * 
  * @author Matsuura Y.
- * @version 21.0
  */
 final class ProbabilityNormalization {
 

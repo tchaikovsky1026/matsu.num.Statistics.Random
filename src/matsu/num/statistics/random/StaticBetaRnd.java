@@ -69,7 +69,6 @@ import matsu.num.statistics.random.staticbeta.StaticBetaRndFactory;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public sealed interface StaticBetaRnd extends Rnd permits SkeletalStaticBetaRnd {
 

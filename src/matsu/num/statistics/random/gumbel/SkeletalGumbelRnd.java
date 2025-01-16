@@ -15,7 +15,6 @@ import matsu.num.statistics.random.GumbelRnd;
  * {@link GumbelRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public abstract non-sealed class SkeletalGumbelRnd implements GumbelRnd {
 

@@ -20,7 +20,6 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * Marsaglia-Tsangに基づく, ガンマ乱数発生器のファクトリ.
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public final class MTTypeGammaRndFactory extends SkeletalGammRndFactory {
 

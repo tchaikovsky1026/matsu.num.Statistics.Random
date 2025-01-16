@@ -17,7 +17,6 @@ import matsu.num.statistics.random.NormalRnd;
  * VoigtRndのスタンダードな実装.
  * 
  * @author Matsuura Y.
- * @version 21.0
  */
 final class StandardImplVoigtRnd extends SkeletalVoigtRnd {
 

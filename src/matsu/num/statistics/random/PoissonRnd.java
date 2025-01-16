@@ -52,7 +52,6 @@ import matsu.num.statistics.random.poi.SkeletalPoissonRndFactory;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public sealed interface PoissonRnd
         extends IntegerRandomGenerator permits SkeletalPoissonRnd {

@@ -19,7 +19,6 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * 逆関数法に基づく, 幾何分布に従う乱数発生器のファクトリ.
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public final class InversionBasedGeoRndFactory extends SkeletalGeometricRndFactory {
 

@@ -17,7 +17,6 @@ import java.util.function.Supplier;
  * {@link BaseRandom} のヘルパ.
  * 
  * @author Matsuura Y.
- * @version 20.0
  */
 final class BaseRandomHelper {
 

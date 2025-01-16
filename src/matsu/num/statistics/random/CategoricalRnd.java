@@ -46,7 +46,6 @@ import matsu.num.statistics.random.cat.SkeletalCategoricalRndFactory;
  * </p>
  *
  * @author Matsuura Y.
- * @version 22.2
  */
 public sealed interface CategoricalRnd
         extends IntegerRandomGenerator permits SkeletalCategoricalRnd {

@@ -22,7 +22,6 @@ package matsu.num.statistics.random;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.1
  */
 public interface Rnd {
 

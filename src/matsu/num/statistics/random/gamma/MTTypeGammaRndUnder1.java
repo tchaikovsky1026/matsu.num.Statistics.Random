@@ -20,7 +20,6 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * X～Gamma(k+1),Y～Beta(k+1,1)のとき(XY)～Gamma(k)となることを利用する.
  * 
  * @author Matsuura Y.
- * @version 21.0
  */
 final class MTTypeGammaRndUnder1 extends SkeletalGammaRnd {
 

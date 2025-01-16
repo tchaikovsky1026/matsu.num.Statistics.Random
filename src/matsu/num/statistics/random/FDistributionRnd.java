@@ -52,7 +52,6 @@ import matsu.num.statistics.random.fdist.SkeletalFDistributionRndFactory;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public sealed interface FDistributionRnd
         extends FloatingRandomGenerator permits SkeletalFDistributionRnd {

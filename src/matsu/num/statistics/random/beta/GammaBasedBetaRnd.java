@@ -16,7 +16,6 @@ import matsu.num.statistics.random.GammaRnd;
  * ガンマ分布乱数器を利用した, ベータ分布に従う乱数発生器.
  *
  * @author Matsuura Y.
- * @version 21.0
  */
 final class GammaBasedBetaRnd extends SkeletalBetaRnd {
 

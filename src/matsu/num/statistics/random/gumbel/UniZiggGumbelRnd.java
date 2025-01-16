@@ -20,7 +20,6 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * 単峰分布タイプのZiggurat法により実装された, 標準Gumbel分布に従う乱数発生器.
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public final class UniZiggGumbelRnd extends SkeletalGumbelRnd {
 

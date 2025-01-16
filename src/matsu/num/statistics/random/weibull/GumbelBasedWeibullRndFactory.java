@@ -19,7 +19,6 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * 標準Gumbelベースの標準Weibull分布乱数発生器のファクトリ.
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public final class GumbelBasedWeibullRndFactory extends SkeletalWeibullRndFactory {
 

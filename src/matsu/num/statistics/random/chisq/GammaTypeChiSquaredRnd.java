@@ -20,7 +20,6 @@ import matsu.num.statistics.random.GammaRnd;
  * </p>
  *
  * @author Matsuura Y.
- * @version 21.0
  */
 final class GammaTypeChiSquaredRnd extends SkeletalChiSquaredRnd {
 

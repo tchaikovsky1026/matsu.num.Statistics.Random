@@ -16,7 +16,6 @@ import matsu.num.statistics.random.base.ParameterlessFactory;
  * {@link matsu.num.statistics.random.StaticGammaRnd.Factory} の実装.
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public final class StaticGammaRndFactory
         extends ParameterlessFactory<StaticGammaRnd> implements StaticGammaRnd.Factory {

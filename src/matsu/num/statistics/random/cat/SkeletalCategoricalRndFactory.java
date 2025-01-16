@@ -19,7 +19,6 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * {@link matsu.num.statistics.random.CategoricalRnd.Factory} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public abstract non-sealed class SkeletalCategoricalRndFactory implements CategoricalRnd.Factory {
 

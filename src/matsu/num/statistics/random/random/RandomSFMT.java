@@ -15,7 +15,6 @@ import java.util.Random;
  * SIMD-oriented 高速メルセンヌツイスタ(SFMT19937)の実装.
  *
  * @author Matsuura Y.
- * @version 20.0
  * @deprecated このクラスはどこからも使われていないので非推奨に.
  */
 @Deprecated

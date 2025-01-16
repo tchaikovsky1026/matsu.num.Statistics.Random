@@ -15,7 +15,6 @@ import matsu.num.statistics.random.WeibullRnd;
  * {@link matsu.num.statistics.random.WeibullRnd.Factory} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public abstract non-sealed class SkeletalWeibullRndFactory implements WeibullRnd.Factory {
 

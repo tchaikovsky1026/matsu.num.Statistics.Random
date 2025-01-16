@@ -43,7 +43,6 @@ import matsu.num.statistics.random.exp.SkeletalExponentialRnd;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public sealed interface ExponentialRnd
         extends FloatingRandomGenerator permits SkeletalExponentialRnd {

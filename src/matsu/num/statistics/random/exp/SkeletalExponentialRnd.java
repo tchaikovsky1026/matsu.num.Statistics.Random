@@ -15,7 +15,6 @@ import matsu.num.statistics.random.ExponentialRnd;
  * {@link ExponentialRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public abstract non-sealed class SkeletalExponentialRnd implements ExponentialRnd {
 

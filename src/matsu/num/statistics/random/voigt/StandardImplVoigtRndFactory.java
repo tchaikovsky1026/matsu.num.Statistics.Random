@@ -19,7 +19,6 @@ import matsu.num.statistics.random.VoigtRnd;
  * VoigtRndのスタンダード実装のファクトリ.
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public final class StandardImplVoigtRndFactory extends SkeletalVoigtRndFactory {
 

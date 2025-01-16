@@ -17,7 +17,6 @@ import matsu.num.statistics.random.NormalRnd;
  * 標準正規分布を用いた, 標準L&eacute;vy乱数発生器.
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public final class NormalBasedLevyRnd extends SkeletalLevyRnd {
 

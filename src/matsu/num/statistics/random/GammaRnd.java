@@ -49,7 +49,6 @@ import matsu.num.statistics.random.gamma.SkeletalGammaRnd;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public sealed interface GammaRnd
         extends FloatingRandomGenerator permits SkeletalGammaRnd {

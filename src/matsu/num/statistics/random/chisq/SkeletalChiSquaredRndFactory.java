@@ -15,7 +15,6 @@ import matsu.num.statistics.random.ChiSquaredRnd;
  * {@link matsu.num.statistics.random.ChiSquaredRnd.Factory} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public abstract non-sealed class SkeletalChiSquaredRndFactory implements ChiSquaredRnd.Factory {
 

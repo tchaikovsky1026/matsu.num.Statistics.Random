@@ -17,7 +17,6 @@ import matsu.num.statistics.random.BaseRandom;
  * テーブル法に基づく, カテゴリカル分布に従う乱数発生器の実装.
  *
  * @author Matsuura Y.
- * @version 21.0
  */
 final class TableBasedCategoricalRnd extends SkeletalCategoricalRnd {
 

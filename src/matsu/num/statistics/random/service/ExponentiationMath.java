@@ -16,7 +16,6 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * {@link CommonLib} のデフォルトライブラリとして使用される.
  * 
  * @author Matsuura Y.
- * @version 22.1
  */
 final class ExponentiationMath implements Exponentiation {
 

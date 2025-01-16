@@ -19,7 +19,6 @@ import java.util.Objects;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 21.0
  * @param <T> このファクトリが扱う乱数発生器の型
  */
 public abstract class ParameterlessFactory<T> {

@@ -17,7 +17,6 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * 逆関数法に基づく, 幾何分布に従う乱数発生器を扱う.
  * 
  * @author Matsuura Y.
- * @version 21.0
  */
 final class InversionBasedGeoRnd extends SkeletalGeometricRnd {
 

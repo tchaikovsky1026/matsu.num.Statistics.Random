@@ -15,7 +15,6 @@ import matsu.num.statistics.random.VoigtRnd;
  * {@link matsu.num.statistics.random.VoigtRnd.Factory} クラスの骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public abstract non-sealed class SkeletalVoigtRndFactory implements VoigtRnd.Factory {
 

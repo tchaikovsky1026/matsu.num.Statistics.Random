@@ -17,7 +17,6 @@ import matsu.num.statistics.random.StaticGammaRnd;
  * Marsaglia-Tsangの方法に基づく, ガンマ乱数のstaticな発生器.
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public final class GammaBasedStaticBetaRnd extends SkeletalStaticBetaRnd {
 

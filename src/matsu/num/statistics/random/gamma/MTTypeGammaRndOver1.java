@@ -18,7 +18,6 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * Marsaglia-Tsangの方法に基づく, 形状パラメータが1より大きいときの乱数発生器の実装.
  * 
  * @author Matsuura Y.
- * @version 21.0
  */
 final class MTTypeGammaRndOver1 extends SkeletalGammaRnd {
 

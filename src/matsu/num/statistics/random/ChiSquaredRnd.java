@@ -50,7 +50,6 @@ import matsu.num.statistics.random.chisq.SkeletalChiSquaredRndFactory;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public sealed interface ChiSquaredRnd
         extends FloatingRandomGenerator permits SkeletalChiSquaredRnd {

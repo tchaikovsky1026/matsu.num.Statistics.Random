@@ -15,7 +15,6 @@ import java.util.Random;
  * メルセンヌツイスタ(MT19937)の実装.
  *
  * @author Matsuura Y.
- * @version 20.0
  * @deprecated このクラスはどこからも使われていないので非推奨に.
  */
 @Deprecated

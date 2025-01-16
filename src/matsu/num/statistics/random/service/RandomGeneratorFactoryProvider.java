@@ -32,7 +32,6 @@ import matsu.num.statistics.random.RndFactory;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.1
  */
 public final class RandomGeneratorFactoryProvider {
 

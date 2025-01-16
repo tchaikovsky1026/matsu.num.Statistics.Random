@@ -58,7 +58,6 @@ import matsu.num.statistics.random.weibull.GumbelBasedWeibullRndFactory;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.1
  */
 public final class GeneratorTypes {
 

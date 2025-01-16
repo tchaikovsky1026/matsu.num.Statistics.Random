@@ -18,7 +18,6 @@ import matsu.num.statistics.random.GammaRnd;
  * ガンマ乱数発生器に基づくベータ乱数発生器のファクトリ.
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public final class GammaBasedBetaRndFactory extends SkeletalBetaRndFactory {
 

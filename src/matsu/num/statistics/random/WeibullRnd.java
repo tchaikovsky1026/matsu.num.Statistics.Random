@@ -49,7 +49,6 @@ import matsu.num.statistics.random.weibull.SkeletalWeibullRndFactory;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public sealed interface WeibullRnd
         extends FloatingRandomGenerator permits SkeletalWeibullRnd {

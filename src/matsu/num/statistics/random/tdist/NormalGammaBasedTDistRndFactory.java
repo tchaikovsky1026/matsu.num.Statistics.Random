@@ -20,7 +20,6 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * 正規ガンマタイプのt分布に従う乱数発生器のファクトリ.
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public final class NormalGammaBasedTDistRndFactory extends SkeletalTDistributionRndFactory {
 

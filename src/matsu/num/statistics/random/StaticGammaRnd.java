@@ -51,7 +51,6 @@ import matsu.num.statistics.random.staticgamma.StaticGammaRndFactory;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public sealed interface StaticGammaRnd extends Rnd permits SkeletalStaticGammaRnd {
 

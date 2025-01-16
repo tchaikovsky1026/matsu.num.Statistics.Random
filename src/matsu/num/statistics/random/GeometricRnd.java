@@ -47,7 +47,6 @@ import matsu.num.statistics.random.geo.SkeletalGeometricRndFactory;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.1
  */
 public sealed interface GeometricRnd
         extends IntegerRandomGenerator permits SkeletalGeometricRnd {

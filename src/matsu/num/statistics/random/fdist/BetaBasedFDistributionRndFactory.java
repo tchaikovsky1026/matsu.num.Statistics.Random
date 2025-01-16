@@ -18,7 +18,6 @@ import matsu.num.statistics.random.FDistributionRnd;
  * このパッケージに用意された {@link FDistributionRnd} 実装のインスタンス生成を扱う.
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public final class BetaBasedFDistributionRndFactory extends SkeletalFDistributionRndFactory {
 

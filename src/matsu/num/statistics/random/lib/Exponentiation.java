@@ -53,7 +53,6 @@ package matsu.num.statistics.random.lib;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 23.1
  */
 public interface Exponentiation {
 

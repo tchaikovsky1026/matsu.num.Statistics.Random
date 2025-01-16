@@ -68,7 +68,6 @@ import matsu.num.statistics.random.beta.SkeletalBetaRndFactory;
  * </p>
  *
  * @author Matsuura Y.
- * @version 22.2
  */
 public sealed interface BetaRnd
         extends FloatingRandomGenerator permits SkeletalBetaRnd {

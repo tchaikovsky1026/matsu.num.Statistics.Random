@@ -42,7 +42,6 @@ import matsu.num.statistics.random.levy.SkeletalLevyRnd;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public sealed interface LevyRnd extends FloatingRandomGenerator permits SkeletalLevyRnd {
 

@@ -15,7 +15,6 @@ import matsu.num.statistics.random.LogisticRnd;
  * {@link LogisticRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public abstract non-sealed class SkeletalLogisticRnd implements LogisticRnd {
 

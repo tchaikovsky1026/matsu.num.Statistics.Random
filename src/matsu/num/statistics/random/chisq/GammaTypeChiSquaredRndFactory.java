@@ -18,7 +18,6 @@ import matsu.num.statistics.random.GammaRnd;
  * ガンマ分布乱数器を利用した {@link ChiSquaredRnd} 実装のインスタンス生成を扱う.
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public final class GammaTypeChiSquaredRndFactory extends SkeletalChiSquaredRndFactory {
 

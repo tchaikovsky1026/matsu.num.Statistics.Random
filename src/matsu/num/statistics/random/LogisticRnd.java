@@ -36,7 +36,6 @@ import matsu.num.statistics.random.logi.SkeletalLogisticRnd;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public sealed interface LogisticRnd
         extends FloatingRandomGenerator permits SkeletalLogisticRnd {

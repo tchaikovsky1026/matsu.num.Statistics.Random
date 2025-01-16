@@ -19,7 +19,6 @@ import matsu.num.statistics.random.StaticBetaRnd;
  * {@link StaticBetaRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public abstract non-sealed class SkeletalStaticBetaRnd implements StaticBetaRnd {
 

@@ -18,7 +18,6 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * テーブル法に基づく, カテゴリカル分布に従う乱数発生器のファクトリ.
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public final class TableBasedCategoricalRndFactory extends SkeletalCategoricalRndFactory {
 

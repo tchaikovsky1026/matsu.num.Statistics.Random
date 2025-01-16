@@ -15,7 +15,6 @@ import matsu.num.statistics.random.GammaRnd;
  * {@link GammaRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public abstract non-sealed class SkeletalGammaRnd implements GammaRnd {
 

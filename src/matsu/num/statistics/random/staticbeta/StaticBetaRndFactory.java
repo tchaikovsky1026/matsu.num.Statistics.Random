@@ -16,7 +16,6 @@ import matsu.num.statistics.random.base.ParameterlessFactory;
  * {@link matsu.num.statistics.random.StaticBetaRnd.Factory} の実装.
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public final class StaticBetaRndFactory
         extends ParameterlessFactory<StaticBetaRnd> implements StaticBetaRnd.Factory {

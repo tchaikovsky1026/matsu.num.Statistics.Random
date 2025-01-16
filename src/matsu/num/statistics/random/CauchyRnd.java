@@ -38,7 +38,6 @@ import matsu.num.statistics.random.cauchy.SkeletalCauchyRnd;
  * </p>
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public sealed interface CauchyRnd extends FloatingRandomGenerator permits SkeletalCauchyRnd {
 

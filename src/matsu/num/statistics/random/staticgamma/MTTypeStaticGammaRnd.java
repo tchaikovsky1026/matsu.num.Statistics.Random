@@ -21,7 +21,6 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * Marsaglia-Tsangの方法に基づく, ガンマ乱数のstaticな発生器.
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public final class MTTypeStaticGammaRnd extends SkeletalStaticGammaRnd {
 

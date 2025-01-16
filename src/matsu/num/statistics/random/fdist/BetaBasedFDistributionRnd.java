@@ -16,7 +16,6 @@ import matsu.num.statistics.random.BetaRnd;
  * ベータプライム乱数器を利用した, F分布に従う乱数発生器.
  *
  * @author Matsuura Y.
- * @version 21.0
  */
 final class BetaBasedFDistributionRnd extends SkeletalFDistributionRnd {
 

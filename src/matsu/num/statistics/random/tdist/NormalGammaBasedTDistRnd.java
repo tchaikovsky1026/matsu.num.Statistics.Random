@@ -18,7 +18,6 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * 正規分布とガンマ分布乱数発生器を利用した, t分布に従う乱数発生器を扱う.
  *
  * @author Matsuura Y.
- * @version 21.0
  */
 final class NormalGammaBasedTDistRnd extends SkeletalTDistributionRnd {
 

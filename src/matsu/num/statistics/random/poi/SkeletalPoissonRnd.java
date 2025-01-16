@@ -15,7 +15,6 @@ import matsu.num.statistics.random.PoissonRnd;
  * {@link PoissonRnd} の骨格実装.
  * 
  * @author Matsuura Y.
- * @version 22.2
  */
 public abstract non-sealed class SkeletalPoissonRnd implements PoissonRnd {
 
