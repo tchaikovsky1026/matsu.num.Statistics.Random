@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.5.5
  */
 package matsu.num.statistics.random.fdist;
 
@@ -16,7 +16,7 @@ import matsu.num.statistics.random.FDistributionRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract non-sealed class SkeletalFDistributionRnd implements FDistributionRnd {
+abstract class SkeletalFDistributionRnd implements FDistributionRnd {
 
     final double d1;
     final double d2;

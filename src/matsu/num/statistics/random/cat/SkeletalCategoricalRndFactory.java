@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.5.5
  */
 package matsu.num.statistics.random.cat;
 
@@ -20,7 +20,7 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * 
  * @author Matsuura Y.
  */
-public abstract non-sealed class SkeletalCategoricalRndFactory implements CategoricalRnd.Factory {
+abstract class SkeletalCategoricalRndFactory implements CategoricalRnd.Factory {
 
     private static final Function<double[], IllegalArgumentException> exceptionGetter =
             values -> new IllegalArgumentException(String.format("パラメータ不正: size=%s", values.length));

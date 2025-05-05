@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.5.5
  */
 package matsu.num.statistics.random.cat;
 
@@ -16,7 +16,7 @@ import matsu.num.statistics.random.CategoricalRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract non-sealed class SkeletalCategoricalRnd implements CategoricalRnd {
+abstract class SkeletalCategoricalRnd implements CategoricalRnd {
     /**
      * カテゴリの数. <br>
      * カテゴリ数が n のとき, 0, 1, ... , n - 1 の値をとる乱数を生成する.

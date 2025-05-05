@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.5.5
  */
 package matsu.num.statistics.random.weibull;
 
@@ -16,7 +16,7 @@ import matsu.num.statistics.random.WeibullRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract non-sealed class SkeletalWeibullRnd implements WeibullRnd {
+abstract class SkeletalWeibullRnd implements WeibullRnd {
 
     final double k;
 

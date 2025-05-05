@@ -5,21 +5,16 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.5.5
  */
 package matsu.num.statistics.random;
 
 /**
  * 乱数発生器であることを表明するマーカーインターフェース.
  * 
- * <p>
- * <i>
- * <u>
- * このインターフェースは型を公開するためのものである. <br>
- * 外部で実装することは不可.
- * </u>
- * </i>
- * </p>
+ * @implSpec
+ *               このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
+ *               モジュール外で実装してはいけない.
  * 
  * @author Matsuura Y.
  */

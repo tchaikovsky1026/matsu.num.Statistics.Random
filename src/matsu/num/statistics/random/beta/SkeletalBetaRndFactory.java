@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.5.5
  */
 package matsu.num.statistics.random.beta;
 
@@ -16,7 +16,7 @@ import matsu.num.statistics.random.BetaRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract non-sealed class SkeletalBetaRndFactory implements BetaRnd.Factory {
+abstract class SkeletalBetaRndFactory implements BetaRnd.Factory {
 
     /**
      * 唯一の外部に公開されないコンストラクタ.
