@@ -73,7 +73,6 @@ final class ZiggCauchyRndTest {
             System.out.println(TEST_CLASS.getName());
             System.out.println(FACTORY);
             System.out.println(FACTORY.instance());
-            System.out.println(FACTORY.instance().asTDistributionRnd());
             System.out.println();
         }
     }
