@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.5.5
  */
 package matsu.num.statistics.random.cauchy;
 
@@ -19,7 +19,7 @@ import matsu.num.statistics.random.tdist.SkeletalTDistributionRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract non-sealed class SkeletalCauchyRnd implements CauchyRnd {
+public abstract class SkeletalCauchyRnd implements CauchyRnd {
 
     private final TDistributionRnd tdistView;
 

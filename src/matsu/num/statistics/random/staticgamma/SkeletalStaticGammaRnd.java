@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.5.5
  */
 package matsu.num.statistics.random.staticgamma;
 
@@ -19,7 +19,7 @@ import matsu.num.statistics.random.StaticGammaRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract non-sealed class SkeletalStaticGammaRnd implements StaticGammaRnd {
+public abstract class SkeletalStaticGammaRnd implements StaticGammaRnd {
 
     /**
      * 唯一のコンストラクタ.

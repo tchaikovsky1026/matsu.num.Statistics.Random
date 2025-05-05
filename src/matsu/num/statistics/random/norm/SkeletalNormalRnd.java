@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.5.5
  */
 package matsu.num.statistics.random.norm;
 
@@ -16,7 +16,7 @@ import matsu.num.statistics.random.NormalRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract non-sealed class SkeletalNormalRnd implements NormalRnd {
+public abstract class SkeletalNormalRnd implements NormalRnd {
 
     /**
      * 唯一のコンストラクタ.

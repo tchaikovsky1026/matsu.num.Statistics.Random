@@ -5,12 +5,9 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.5.5
  */
 package matsu.num.statistics.random;
-
-import matsu.num.statistics.random.cat.SkeletalCategoricalRnd;
-import matsu.num.statistics.random.cat.SkeletalCategoricalRndFactory;
 
 /**
  * <p>
@@ -35,20 +32,13 @@ import matsu.num.statistics.random.cat.SkeletalCategoricalRndFactory;
  * <li>P(<i>k</i>) = 0 &emsp; (otherwise)</li>
  * </ul>
  * 
+ * @implSpec
+ *               このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
+ *               モジュール外で実装してはいけない.
  * 
- * <p>
- * <i>
- * <u>
- * このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
- * 外部で実装することは不可.
- * </u>
- * </i>
- * </p>
- *
  * @author Matsuura Y.
  */
-public sealed interface CategoricalRnd
-        extends IntegerRandomGenerator permits SkeletalCategoricalRnd {
+public interface CategoricalRnd extends IntegerRandomGenerator {
 
     /**
      * <p>
@@ -81,9 +71,12 @@ public sealed interface CategoricalRnd
 
     /**
      * {@link CategoricalRnd} のファクトリ.
+     * 
+     * @implSpec
+     *               このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
+     *               モジュール外で実装してはいけない.
      */
-    public static sealed interface Factory
-            extends RndFactory permits SkeletalCategoricalRndFactory {
+    public static interface Factory extends RndFactory {
 
         /**
          * <p>

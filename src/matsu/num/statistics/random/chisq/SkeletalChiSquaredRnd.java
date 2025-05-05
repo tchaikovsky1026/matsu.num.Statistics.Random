@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.5.5
  */
 package matsu.num.statistics.random.chisq;
 
@@ -16,7 +16,7 @@ import matsu.num.statistics.random.ChiSquaredRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract non-sealed class SkeletalChiSquaredRnd implements ChiSquaredRnd {
+public abstract class SkeletalChiSquaredRnd implements ChiSquaredRnd {
 
     final double k;
 

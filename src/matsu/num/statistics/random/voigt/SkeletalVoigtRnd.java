@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.5.5
  */
 package matsu.num.statistics.random.voigt;
 
@@ -16,7 +16,7 @@ import matsu.num.statistics.random.VoigtRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract non-sealed class SkeletalVoigtRnd implements VoigtRnd {
+public abstract class SkeletalVoigtRnd implements VoigtRnd {
 
     final double alpha;
 

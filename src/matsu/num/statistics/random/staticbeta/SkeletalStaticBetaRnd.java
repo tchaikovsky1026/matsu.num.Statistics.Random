@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.5.5
  */
 package matsu.num.statistics.random.staticbeta;
 
@@ -20,7 +20,7 @@ import matsu.num.statistics.random.StaticBetaRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract non-sealed class SkeletalStaticBetaRnd implements StaticBetaRnd {
+public abstract class SkeletalStaticBetaRnd implements StaticBetaRnd {
 
     private static final BiFunction<Double, Double, IllegalArgumentException> exceptionGetter =
             (a, b) -> new IllegalArgumentException(String.format("パラメータ不正:a=%s, b=%s", a, b));

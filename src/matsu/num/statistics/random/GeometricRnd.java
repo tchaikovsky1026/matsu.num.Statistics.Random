@@ -5,12 +5,9 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.5.5
  */
 package matsu.num.statistics.random;
-
-import matsu.num.statistics.random.geo.SkeletalGeometricRnd;
-import matsu.num.statistics.random.geo.SkeletalGeometricRndFactory;
 
 /**
  * <p>
@@ -36,20 +33,13 @@ import matsu.num.statistics.random.geo.SkeletalGeometricRndFactory;
  * 扱うことができる成功確率 <i>p</i> は, {@code 1.0E-7 <= p <= 1.0} である.
  * </p>
  *
- *
- * <p>
- * <i>
- * <u>
- * このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
- * 外部で実装することは不可.
- * </u>
- * </i>
- * </p>
+ * @implSpec
+ *               このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
+ *               モジュール外で実装してはいけない.
  * 
  * @author Matsuura Y.
  */
-public sealed interface GeometricRnd
-        extends IntegerRandomGenerator permits SkeletalGeometricRnd {
+public interface GeometricRnd extends IntegerRandomGenerator {
 
     /**
      * 扱うことができる成功確率の最小値.
@@ -85,9 +75,12 @@ public sealed interface GeometricRnd
 
     /**
      * {@link GeometricRnd} のファクトリ.
+     * 
+     * @implSpec
+     *               このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
+     *               モジュール外で実装してはいけない.
      */
-    public static sealed interface Factory
-            extends RndFactory permits SkeletalGeometricRndFactory {
+    public static interface Factory extends RndFactory {
 
         /**
          * <p>

@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.5.5
  */
 package matsu.num.statistics.random.gamma;
 
@@ -16,7 +16,7 @@ import matsu.num.statistics.random.GammaRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract non-sealed class SkeletalGammaRnd implements GammaRnd {
+public abstract class SkeletalGammaRnd implements GammaRnd {
 
     final double k;
 

@@ -5,12 +5,9 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.5.5
  */
 package matsu.num.statistics.random;
-
-import matsu.num.statistics.random.cauchy.CauchyRndFactory;
-import matsu.num.statistics.random.cauchy.SkeletalCauchyRnd;
 
 /**
  * <p>
@@ -27,19 +24,13 @@ import matsu.num.statistics.random.cauchy.SkeletalCauchyRnd;
  * 標準Cauchy分布は自由度1のStudent-t分布に一致する.
  * </p>
  * 
- * 
- * <p>
- * <i>
- * <u>
- * このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
- * 外部で実装することは不可.
- * </u>
- * </i>
- * </p>
+ * @implSpec
+ *               このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
+ *               モジュール外で実装してはいけない.
  * 
  * @author Matsuura Y.
  */
-public sealed interface CauchyRnd extends FloatingRandomGenerator permits SkeletalCauchyRnd {
+public interface CauchyRnd extends FloatingRandomGenerator {
 
     /**
      * <p>
@@ -63,9 +54,12 @@ public sealed interface CauchyRnd extends FloatingRandomGenerator permits Skelet
 
     /**
      * {@link CauchyRnd} のファクトリ.
+     * 
+     * @implSpec
+     *               このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
+     *               モジュール外で実装してはいけない.
      */
-    public static sealed interface Factory
-            extends RndFactory permits CauchyRndFactory {
+    public static interface Factory extends RndFactory {
 
         /**
          * <p>

@@ -5,12 +5,9 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.5.5
  */
 package matsu.num.statistics.random;
-
-import matsu.num.statistics.random.staticgamma.SkeletalStaticGammaRnd;
-import matsu.num.statistics.random.staticgamma.StaticGammaRndFactory;
 
 /**
  * <p>
@@ -40,19 +37,13 @@ import matsu.num.statistics.random.staticgamma.StaticGammaRndFactory;
  * である.
  * </p>
  * 
- * 
- * <p>
- * <i>
- * <u>
- * このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
- * 外部で実装することは不可.
- * </u>
- * </i>
- * </p>
+ * @implSpec
+ *               このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
+ *               モジュール外で実装してはいけない.
  * 
  * @author Matsuura Y.
  */
-public sealed interface StaticGammaRnd extends Rnd permits SkeletalStaticGammaRnd {
+public interface StaticGammaRnd extends Rnd {
 
     /**
      * 扱うことができる形状パラメータの最小値.
@@ -96,9 +87,12 @@ public sealed interface StaticGammaRnd extends Rnd permits SkeletalStaticGammaRn
 
     /**
      * {@link StaticGammaRnd} のファクトリ.
+     * 
+     * @implSpec
+     *               このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
+     *               モジュール外で実装してはいけない.
      */
-    public static sealed interface Factory
-            extends RndFactory permits StaticGammaRndFactory {
+    public static interface Factory extends RndFactory {
 
         /**
          * <p>
