@@ -16,7 +16,7 @@ import matsu.num.statistics.random.WeibullRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract class SkeletalWeibullRnd implements WeibullRnd {
+abstract class SkeletalWeibullRnd implements WeibullRnd {
 
     final double k;
 

@@ -16,7 +16,7 @@ import matsu.num.statistics.random.LevyRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract class SkeletalLevyRnd implements LevyRnd {
+abstract class SkeletalLevyRnd implements LevyRnd {
 
     /**
      * 唯一の外部に公開されないコンストラクタ.

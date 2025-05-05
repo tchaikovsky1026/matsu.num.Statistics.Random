@@ -16,7 +16,7 @@ import matsu.num.statistics.random.GeometricRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract class SkeletalGeometricRndFactory implements GeometricRnd.Factory {
+abstract class SkeletalGeometricRndFactory implements GeometricRnd.Factory {
 
     /**
      * 唯一のコンストラクタ.

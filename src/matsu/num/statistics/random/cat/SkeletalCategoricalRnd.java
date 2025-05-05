@@ -16,7 +16,7 @@ import matsu.num.statistics.random.CategoricalRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract class SkeletalCategoricalRnd implements CategoricalRnd {
+abstract class SkeletalCategoricalRnd implements CategoricalRnd {
     /**
      * カテゴリの数. <br>
      * カテゴリ数が n のとき, 0, 1, ... , n - 1 の値をとる乱数を生成する.

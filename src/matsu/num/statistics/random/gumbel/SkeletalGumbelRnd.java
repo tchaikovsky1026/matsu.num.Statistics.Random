@@ -16,7 +16,7 @@ import matsu.num.statistics.random.GumbelRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract class SkeletalGumbelRnd implements GumbelRnd {
+abstract class SkeletalGumbelRnd implements GumbelRnd {
 
     /**
      * 唯一の外部に公開されないコンストラクタ.

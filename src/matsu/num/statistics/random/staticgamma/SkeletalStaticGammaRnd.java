@@ -19,7 +19,7 @@ import matsu.num.statistics.random.StaticGammaRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract class SkeletalStaticGammaRnd implements StaticGammaRnd {
+abstract class SkeletalStaticGammaRnd implements StaticGammaRnd {
 
     /**
      * 唯一のコンストラクタ.

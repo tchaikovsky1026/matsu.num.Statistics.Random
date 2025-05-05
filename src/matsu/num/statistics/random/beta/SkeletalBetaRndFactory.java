@@ -16,7 +16,7 @@ import matsu.num.statistics.random.BetaRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract class SkeletalBetaRndFactory implements BetaRnd.Factory {
+abstract class SkeletalBetaRndFactory implements BetaRnd.Factory {
 
     /**
      * 唯一の外部に公開されないコンストラクタ.

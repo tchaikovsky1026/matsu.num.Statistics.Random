@@ -16,7 +16,7 @@ import matsu.num.statistics.random.VoigtRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract class SkeletalVoigtRnd implements VoigtRnd {
+abstract class SkeletalVoigtRnd implements VoigtRnd {
 
     final double alpha;
 

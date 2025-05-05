@@ -16,7 +16,7 @@ import matsu.num.statistics.random.LogisticRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract class SkeletalLogisticRnd implements LogisticRnd {
+abstract class SkeletalLogisticRnd implements LogisticRnd {
 
     /**
      * 唯一のコンストラクタ.

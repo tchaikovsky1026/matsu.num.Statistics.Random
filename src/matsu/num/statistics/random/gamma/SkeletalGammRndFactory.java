@@ -16,7 +16,7 @@ import matsu.num.statistics.random.GammaRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract class SkeletalGammRndFactory implements GammaRnd.Factory {
+abstract class SkeletalGammRndFactory implements GammaRnd.Factory {
 
     /**
      * 唯一の外部に公開されないコンストラクタ.

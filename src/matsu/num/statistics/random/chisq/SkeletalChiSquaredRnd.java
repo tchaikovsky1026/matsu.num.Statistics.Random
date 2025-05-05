@@ -16,7 +16,7 @@ import matsu.num.statistics.random.ChiSquaredRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract class SkeletalChiSquaredRnd implements ChiSquaredRnd {
+abstract class SkeletalChiSquaredRnd implements ChiSquaredRnd {
 
     final double k;
 

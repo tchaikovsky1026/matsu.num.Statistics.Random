@@ -19,7 +19,7 @@ import matsu.num.statistics.random.tdist.SkeletalTDistributionRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract class SkeletalCauchyRnd implements CauchyRnd {
+abstract class SkeletalCauchyRnd implements CauchyRnd {
 
     private final TDistributionRnd tdistView;
 

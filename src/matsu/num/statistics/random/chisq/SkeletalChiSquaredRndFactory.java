@@ -16,7 +16,7 @@ import matsu.num.statistics.random.ChiSquaredRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract class SkeletalChiSquaredRndFactory implements ChiSquaredRnd.Factory {
+abstract class SkeletalChiSquaredRndFactory implements ChiSquaredRnd.Factory {
 
     /**
      * 唯一の外部に公開されないコンストラクタ.

@@ -16,7 +16,7 @@ import matsu.num.statistics.random.TDistributionRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract class SkeletalTDistributionRndFactory implements TDistributionRnd.Factory {
+abstract class SkeletalTDistributionRndFactory implements TDistributionRnd.Factory {
 
     /**
      * 唯一の外部に公開されないコンストラクタ.

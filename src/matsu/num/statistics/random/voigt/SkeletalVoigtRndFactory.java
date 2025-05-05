@@ -16,7 +16,7 @@ import matsu.num.statistics.random.VoigtRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract class SkeletalVoigtRndFactory implements VoigtRnd.Factory {
+abstract class SkeletalVoigtRndFactory implements VoigtRnd.Factory {
 
     /**
      * 唯一の外部に公開されないコンストラクタ.

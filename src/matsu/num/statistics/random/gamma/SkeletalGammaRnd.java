@@ -16,7 +16,7 @@ import matsu.num.statistics.random.GammaRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract class SkeletalGammaRnd implements GammaRnd {
+abstract class SkeletalGammaRnd implements GammaRnd {
 
     final double k;
 

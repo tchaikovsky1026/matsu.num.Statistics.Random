@@ -16,7 +16,7 @@ import matsu.num.statistics.random.GeometricRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract class SkeletalGeometricRnd implements GeometricRnd {
+abstract class SkeletalGeometricRnd implements GeometricRnd {
 
     final double p;
 

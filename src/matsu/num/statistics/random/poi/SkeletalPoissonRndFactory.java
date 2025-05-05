@@ -16,7 +16,7 @@ import matsu.num.statistics.random.PoissonRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract class SkeletalPoissonRndFactory implements PoissonRnd.Factory {
+abstract class SkeletalPoissonRndFactory implements PoissonRnd.Factory {
 
     /**
      * 唯一の外部に公開されないコンストラクタ.

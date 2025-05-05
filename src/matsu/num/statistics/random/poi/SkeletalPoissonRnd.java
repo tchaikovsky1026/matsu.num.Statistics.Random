@@ -16,7 +16,7 @@ import matsu.num.statistics.random.PoissonRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract class SkeletalPoissonRnd implements PoissonRnd {
+abstract class SkeletalPoissonRnd implements PoissonRnd {
 
     final double lambda;
 

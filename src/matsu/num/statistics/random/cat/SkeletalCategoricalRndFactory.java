@@ -20,7 +20,7 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * 
  * @author Matsuura Y.
  */
-public abstract class SkeletalCategoricalRndFactory implements CategoricalRnd.Factory {
+abstract class SkeletalCategoricalRndFactory implements CategoricalRnd.Factory {
 
     private static final Function<double[], IllegalArgumentException> exceptionGetter =
             values -> new IllegalArgumentException(String.format("パラメータ不正: size=%s", values.length));

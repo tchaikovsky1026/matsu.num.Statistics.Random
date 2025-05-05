@@ -20,7 +20,7 @@ import matsu.num.statistics.random.StaticBetaRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract class SkeletalStaticBetaRnd implements StaticBetaRnd {
+abstract class SkeletalStaticBetaRnd implements StaticBetaRnd {
 
     private static final BiFunction<Double, Double, IllegalArgumentException> exceptionGetter =
             (a, b) -> new IllegalArgumentException(String.format("パラメータ不正:a=%s, b=%s", a, b));

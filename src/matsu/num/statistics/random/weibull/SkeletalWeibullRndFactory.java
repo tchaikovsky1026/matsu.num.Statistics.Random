@@ -16,7 +16,7 @@ import matsu.num.statistics.random.WeibullRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract class SkeletalWeibullRndFactory implements WeibullRnd.Factory {
+abstract class SkeletalWeibullRndFactory implements WeibullRnd.Factory {
 
     /**
      * 唯一の外部に公開されないコンストラクタ.

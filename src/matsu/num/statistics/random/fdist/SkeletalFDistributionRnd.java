@@ -16,7 +16,7 @@ import matsu.num.statistics.random.FDistributionRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract class SkeletalFDistributionRnd implements FDistributionRnd {
+abstract class SkeletalFDistributionRnd implements FDistributionRnd {
 
     final double d1;
     final double d2;

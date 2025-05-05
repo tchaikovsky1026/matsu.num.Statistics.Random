@@ -16,7 +16,7 @@ import matsu.num.statistics.random.BetaRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract class SkeletalBetaRnd implements BetaRnd {
+abstract class SkeletalBetaRnd implements BetaRnd {
 
     final double a;
     final double b;

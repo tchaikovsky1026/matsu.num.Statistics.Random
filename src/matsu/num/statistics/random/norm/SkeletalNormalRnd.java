@@ -16,7 +16,7 @@ import matsu.num.statistics.random.NormalRnd;
  * 
  * @author Matsuura Y.
  */
-public abstract class SkeletalNormalRnd implements NormalRnd {
+abstract class SkeletalNormalRnd implements NormalRnd {
 
     /**
      * 唯一のコンストラクタ.
