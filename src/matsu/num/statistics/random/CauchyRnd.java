@@ -49,7 +49,12 @@ public interface CauchyRnd extends FloatingRandomGenerator {
      * </p>
      * 
      * @return 標準Cauchy分布と同等な, 自由度1のStudent-t分布
+     * @deprecated
+     *                 このメソッドは version 26 以降削除予定である. <br>
+     *                 モジュール外では, ビューの変更 (型変換) を行うのは不適切である. <br>
+     *                 (「クライアントが依存するインターフェースはクライアントが定めなければならない」)
      */
+    @Deprecated(forRemoval = true)
     public abstract TDistributionRnd asTDistributionRnd();
 
     /**

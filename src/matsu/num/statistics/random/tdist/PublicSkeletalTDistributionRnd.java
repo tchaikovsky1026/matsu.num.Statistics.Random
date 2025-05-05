@@ -9,16 +9,22 @@
  */
 package matsu.num.statistics.random.tdist;
 
+import matsu.num.statistics.random.CauchyRnd;
 import matsu.num.statistics.random.TDistributionRnd;
 
 /**
  * {@link TDistributionRnd} の骨格実装.
  * 
  * @author Matsuura Y.
+ * @deprecated
+ *                 このクラスは {@link CauchyRnd#asTDistributionRnd()}
+ *                 を実装するために用意されたクラスであり,
+ *                 そのメソッドが削除される version 26 以降で削除予定である.
  */
-abstract class SkeletalTDistributionRnd implements TDistributionRnd {
+@Deprecated(forRemoval = true)
+public abstract class PublicSkeletalTDistributionRnd implements TDistributionRnd {
 
-    final double nu;
+    protected final double nu;
 
     /**
      * 唯一のコンストラクタ. <br>
@@ -27,7 +33,7 @@ abstract class SkeletalTDistributionRnd implements TDistributionRnd {
      * 
      * @param nu 自由度
      */
-    SkeletalTDistributionRnd(double nu) {
+    protected PublicSkeletalTDistributionRnd(double nu) {
         super();
 
         assert TDistributionRnd.acceptsParameter(nu) : "パラメータ不正";
