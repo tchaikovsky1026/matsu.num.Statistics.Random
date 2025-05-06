@@ -35,7 +35,7 @@ import matsu.num.statistics.random.WeibullRnd;
 import matsu.num.statistics.random.beta.GammaBasedBetaRnd;
 import matsu.num.statistics.random.cat.TableBasedCategoricalRnd;
 import matsu.num.statistics.random.cauchy.ZiggCauchyRnd;
-import matsu.num.statistics.random.chisq.GammaTypeChiSquaredRndFactory;
+import matsu.num.statistics.random.chisq.GammaTypeChiSquaredRnd;
 import matsu.num.statistics.random.exp.ZiggExponentialRnd;
 import matsu.num.statistics.random.fdist.BetaBasedFDistributionRndFactory;
 import matsu.num.statistics.random.gamma.MTTypeGammaRndFactory;
@@ -156,7 +156,7 @@ public final class GeneratorTypes {
 
         CHI_SQUARED_RND = new RandomGeneratorType<>(
                 "CHI_SQUARED_RND", ChiSquaredRnd.Factory.class,
-                p -> new GammaTypeChiSquaredRndFactory(p.get(GeneratorTypes.GAMMA_RND)));
+                p -> GammaTypeChiSquaredRnd.createFactory(p.get(GeneratorTypes.GAMMA_RND)));
         list.add(CHI_SQUARED_RND);
 
         EXPONENTIAL_RND = new RandomGeneratorType<>(
