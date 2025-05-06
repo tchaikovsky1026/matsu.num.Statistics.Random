@@ -5,14 +5,13 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.5.5
+ * 2025.5.6
  */
 package matsu.num.statistics.random.cauchy;
 
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.CauchyRnd;
 import matsu.num.statistics.random.TDistributionRnd;
-import matsu.num.statistics.random.tdist.PublicSkeletalTDistributionRnd;
 
 /**
  * {@link CauchyRnd} の骨格実装.
@@ -45,14 +44,23 @@ abstract class SkeletalCauchyRnd implements CauchyRnd {
     /**
      * Cauchy分布のt分布としてのビューを扱うクラス.
      */
-    @SuppressWarnings("removal")
-    private final class TDistView extends PublicSkeletalTDistributionRnd {
+    private final class TDistView implements TDistributionRnd {
 
         /**
          * 唯一のコンストラクタ.
          */
         TDistView() {
-            super(1d);
+        }
+
+        @Override
+        public final double degreesOfFreedom() {
+            return 1d;
+        }
+
+        @Override
+        public String toString() {
+            return String.format(
+                    "TDistRnd(%s)", this.degreesOfFreedom());
         }
 
         @Override
