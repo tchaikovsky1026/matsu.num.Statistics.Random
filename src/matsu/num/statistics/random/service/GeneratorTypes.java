@@ -141,12 +141,12 @@ public final class GeneratorTypes {
 
         BETA_RND = new RandomGeneratorType<>(
                 "BETA_RND", BetaRnd.Factory.class,
-                p -> GammaBasedBetaRnd.factory(p.get(GeneratorTypes.GAMMA_RND)));
+                p -> GammaBasedBetaRnd.createFactory(p.get(GeneratorTypes.GAMMA_RND)));
         list.add(BETA_RND);
 
         CATEGORICAL_RND = new RandomGeneratorType<>(
                 "CATEGORICAL_RND", CategoricalRnd.Factory.class,
-                p -> TableBasedCategoricalRnd.factory(p.lib().exponentiation()));
+                p -> TableBasedCategoricalRnd.createFactory(p.lib().exponentiation()));
         list.add(CATEGORICAL_RND);
 
         CAUCHY_RND = new RandomGeneratorType<>(

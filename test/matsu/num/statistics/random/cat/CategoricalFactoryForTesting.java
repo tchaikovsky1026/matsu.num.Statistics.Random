@@ -21,7 +21,7 @@ import matsu.num.statistics.random.lib.ExponentiationForTesting;
 public final class CategoricalFactoryForTesting {
 
     public static final CategoricalRnd.Factory FACTORY =
-            TableBasedCategoricalRnd.factory(ExponentiationForTesting.INSTANCE);
+            TableBasedCategoricalRnd.createFactory(ExponentiationForTesting.INSTANCE);
 
     private CategoricalFactoryForTesting() {
     }

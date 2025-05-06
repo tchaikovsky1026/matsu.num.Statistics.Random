@@ -32,7 +32,7 @@ final class GammaBasedBetaRndTest {
 
     public static final Class<?> TEST_CLASS = GammaBasedBetaRnd.class;
     private static final BetaRnd.Factory FACTORY =
-            GammaBasedBetaRnd.factory(GammaFactoryForTesting.FACTORY);
+            GammaBasedBetaRnd.createFactory(GammaFactoryForTesting.FACTORY);
 
     public static class ファクトリの境界値テスト {
 

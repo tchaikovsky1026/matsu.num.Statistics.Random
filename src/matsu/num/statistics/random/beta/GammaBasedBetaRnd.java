@@ -59,11 +59,11 @@ public final class GammaBasedBetaRnd extends SkeletalBetaRnd {
     /**
      * ガンマ乱数発生器に基づくベータ乱数発生器のファクトリ.
      * 
-     * @param gammaRndFactory ガンマ乱数生成器
-     * @return ベータ乱数生成器
+     * @param gammaRndFactory ガンマ乱数生成器ファクトリ
+     * @return ベータ乱数生成器ファクトリ
      * @throws NullPointerException 引数がnullの場合
      */
-    public static BetaRnd.Factory factory(GammaRnd.Factory gammaRndFactory) {
+    public static BetaRnd.Factory createFactory(GammaRnd.Factory gammaRndFactory) {
         return new Factory(Objects.requireNonNull(gammaRndFactory));
     }
 

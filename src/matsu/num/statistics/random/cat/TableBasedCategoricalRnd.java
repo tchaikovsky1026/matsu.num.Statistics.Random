@@ -170,10 +170,10 @@ public final class TableBasedCategoricalRnd extends SkeletalCategoricalRnd {
      * テーブル法に基づく, カテゴリカル分布に従う乱数発生器のファクトリ.
      * 
      * @param exponentiation 指数関数の計算器
-     * @return 乱数発生器
+     * @return 乱数発生器ファクトリ
      * @throws NullPointerException 引数がnullの場合
      */
-    public static CategoricalRnd.Factory factory(Exponentiation exponentiation) {
+    public static CategoricalRnd.Factory createFactory(Exponentiation exponentiation) {
         return new Factory(Objects.requireNonNull(exponentiation));
     }
 
