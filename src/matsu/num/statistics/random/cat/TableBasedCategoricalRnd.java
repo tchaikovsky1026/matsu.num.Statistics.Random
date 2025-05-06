@@ -5,20 +5,23 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2025.5.6
  */
 package matsu.num.statistics.random.cat;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 import matsu.num.statistics.random.BaseRandom;
+import matsu.num.statistics.random.CategoricalRnd;
+import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
  * テーブル法に基づく, カテゴリカル分布に従う乱数発生器の実装.
  *
  * @author Matsuura Y.
  */
-final class TableBasedCategoricalRnd extends SkeletalCategoricalRnd {
+public final class TableBasedCategoricalRnd extends SkeletalCategoricalRnd {
 
     private static final int N_MAX_BIT = 16;
     private static final int N_START_BIT = 10;
@@ -43,7 +46,7 @@ final class TableBasedCategoricalRnd extends SkeletalCategoricalRnd {
      * 
      * @param probability 正当な規格化された確率, 上書きされる
      */
-    TableBasedCategoricalRnd(double[] probability) {
+    private TableBasedCategoricalRnd(double[] probability) {
         super(probability.length);
 
         //メインテーブルのサイズを決定し,代入
@@ -161,5 +164,28 @@ final class TableBasedCategoricalRnd extends SkeletalCategoricalRnd {
         }
 
         return 1 << nBit;
+    }
+
+    /**
+     * テーブル法に基づく, カテゴリカル分布に従う乱数発生器のファクトリ.
+     * 
+     * @param exponentiation 指数関数の計算器
+     * @return 乱数発生器
+     * @throws NullPointerException 引数がnullの場合
+     */
+    public static CategoricalRnd.Factory factory(Exponentiation exponentiation) {
+        return new Factory(Objects.requireNonNull(exponentiation));
+    }
+
+    private static final class Factory extends SkeletalCategoricalRnd.Factory {
+
+        Factory(Exponentiation exponentiation) {
+            super(exponentiation);
+        }
+
+        @Override
+        CategoricalRnd createInstanceOf(double[] probability) {
+            return new TableBasedCategoricalRnd(probability);
+        }
     }
 }
