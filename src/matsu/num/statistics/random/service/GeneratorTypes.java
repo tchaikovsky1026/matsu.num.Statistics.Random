@@ -32,7 +32,7 @@ import matsu.num.statistics.random.StaticGammaRnd;
 import matsu.num.statistics.random.TDistributionRnd;
 import matsu.num.statistics.random.VoigtRnd;
 import matsu.num.statistics.random.WeibullRnd;
-import matsu.num.statistics.random.beta.GammaBasedBetaRndFactory;
+import matsu.num.statistics.random.beta.GammaBasedBetaRnd;
 import matsu.num.statistics.random.cat.TableBasedCategoricalRndFactory;
 import matsu.num.statistics.random.cauchy.ZiggCauchyRnd;
 import matsu.num.statistics.random.chisq.GammaTypeChiSquaredRndFactory;
@@ -141,7 +141,7 @@ public final class GeneratorTypes {
 
         BETA_RND = new RandomGeneratorType<>(
                 "BETA_RND", BetaRnd.Factory.class,
-                p -> new GammaBasedBetaRndFactory(p.get(GeneratorTypes.GAMMA_RND)));
+                p -> GammaBasedBetaRnd.factory(p.get(GeneratorTypes.GAMMA_RND)));
         list.add(BETA_RND);
 
         CATEGORICAL_RND = new RandomGeneratorType<>(

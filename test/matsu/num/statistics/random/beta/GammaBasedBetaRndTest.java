@@ -25,14 +25,14 @@ import matsu.num.statistics.random.TestedFloatingRandomGenerator;
 import matsu.num.statistics.random.gamma.GammaFactoryForTesting;
 
 /**
- * {@link GammaBasedBetaRndFactory} クラスのテスト.
+ * {@link GammaBasedBetaRnd} クラスのテスト.
  */
 @RunWith(Enclosed.class)
-final class GammaBasedBetaRndFactoryTest {
+final class GammaBasedBetaRndTest {
 
-    public static final Class<?> TEST_CLASS = GammaBasedBetaRndFactory.class;
+    public static final Class<?> TEST_CLASS = GammaBasedBetaRnd.class;
     private static final BetaRnd.Factory FACTORY =
-            new GammaBasedBetaRndFactory(GammaFactoryForTesting.FACTORY);
+            GammaBasedBetaRnd.factory(GammaFactoryForTesting.FACTORY);
 
     public static class ファクトリの境界値テスト {
 
