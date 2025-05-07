@@ -39,7 +39,7 @@ import matsu.num.statistics.random.chisq.GammaTypeChiSquaredRnd;
 import matsu.num.statistics.random.exp.ZiggExponentialRnd;
 import matsu.num.statistics.random.fdist.BetaBasedFDistributionRnd;
 import matsu.num.statistics.random.gamma.MTTypeGammaRndFactory;
-import matsu.num.statistics.random.geo.InversionBasedGeoRndFactory;
+import matsu.num.statistics.random.geo.InversionBasedGeoRnd;
 import matsu.num.statistics.random.gumbel.UniZiggGumbelRnd;
 import matsu.num.statistics.random.levy.NormalBasedLevyRnd;
 import matsu.num.statistics.random.logi.ZiggLogiRnd;
@@ -178,7 +178,7 @@ public final class GeneratorTypes {
 
         GEOMETRIC_RND = new RandomGeneratorType<>(
                 "GEOMETRIC_RND", GeometricRnd.Factory.class,
-                p -> new InversionBasedGeoRndFactory(
+                p -> InversionBasedGeoRnd.createFactory(
                         p.lib().exponentiation(), p.get(GeneratorTypes.EXPONENTIAL_RND)));
         list.add(GEOMETRIC_RND);
 

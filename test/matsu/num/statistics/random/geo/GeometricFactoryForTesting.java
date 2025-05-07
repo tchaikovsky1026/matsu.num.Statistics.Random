@@ -22,7 +22,7 @@ import matsu.num.statistics.random.lib.ExponentiationForTesting;
 public final class GeometricFactoryForTesting {
 
     public static final GeometricRnd.Factory FACTORY =
-            new InversionBasedGeoRndFactory(
+            InversionBasedGeoRnd.createFactory(
                     ExponentiationForTesting.INSTANCE, ExponentialFactoryForTesting.FACTORY);
 
     private GeometricFactoryForTesting() {
