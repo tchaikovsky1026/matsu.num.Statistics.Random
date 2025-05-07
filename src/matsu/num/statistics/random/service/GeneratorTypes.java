@@ -171,7 +171,7 @@ public final class GeneratorTypes {
 
         GAMMA_RND = new RandomGeneratorType<>(
                 "GAMMA_RND", GammaRnd.Factory.class,
-                p -> new MTTypeGammaRndFactory(
+                p -> MTTypeGammaRndFactory.create(
                         p.lib().exponentiation(),
                         p.get(GeneratorTypes.EXPONENTIAL_RND), p.get(GeneratorTypes.NORMAL_RND)));
         list.add(GAMMA_RND);

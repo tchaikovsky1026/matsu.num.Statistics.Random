@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.5.7
  */
 package matsu.num.statistics.random.gamma;
 
@@ -21,7 +21,7 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * 
  * @author Matsuura Y.
  */
-public final class MTTypeGammaRndFactory extends SkeletalGammRndFactory {
+public final class MTTypeGammaRndFactory extends SkeletalGammaRnd.Factory {
 
     private final GammaRnd gammaRndAt1;
 
@@ -29,7 +29,7 @@ public final class MTTypeGammaRndFactory extends SkeletalGammRndFactory {
     private final ExponentialRnd.Factory exponentialRndFactory;
     private final NormalRnd.Factory normalRndFactory;
 
-    public MTTypeGammaRndFactory(
+    private MTTypeGammaRndFactory(
             Exponentiation exponentiation,
             ExponentialRnd.Factory exponentialRndFactory, NormalRnd.Factory normalRndFactory) {
 
@@ -52,5 +52,20 @@ public final class MTTypeGammaRndFactory extends SkeletalGammRndFactory {
         }
 
         return new MTTypeGammaRndOver1(k, this.exponentiation, this.normalRndFactory);
+    }
+
+    /**
+     * Marsaglia-Tsangに基づく {@link GammaRnd} のファクトリインスタンスを生成する.
+     * 
+     * @param exponentiation 指数関数の計算
+     * @param exponentialRndFactory 指数乱数生成器のファクトリ
+     * @param normalRndFactory 正規乱数生成器のファクトリ
+     * @return 乱数生成器ファクトリ
+     * @throws NullPointerException 引数にnullが含まれる場合
+     */
+    public static GammaRnd.Factory create(
+            Exponentiation exponentiation,
+            ExponentialRnd.Factory exponentialRndFactory, NormalRnd.Factory normalRndFactory) {
+        return new MTTypeGammaRndFactory(exponentiation, exponentialRndFactory, normalRndFactory);
     }
 }
