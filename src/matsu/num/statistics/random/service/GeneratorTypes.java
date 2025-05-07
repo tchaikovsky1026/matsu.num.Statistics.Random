@@ -37,7 +37,7 @@ import matsu.num.statistics.random.cat.TableBasedCategoricalRnd;
 import matsu.num.statistics.random.cauchy.ZiggCauchyRnd;
 import matsu.num.statistics.random.chisq.GammaTypeChiSquaredRnd;
 import matsu.num.statistics.random.exp.ZiggExponentialRnd;
-import matsu.num.statistics.random.fdist.BetaBasedFDistributionRndFactory;
+import matsu.num.statistics.random.fdist.BetaBasedFDistributionRnd;
 import matsu.num.statistics.random.gamma.MTTypeGammaRndFactory;
 import matsu.num.statistics.random.geo.InversionBasedGeoRndFactory;
 import matsu.num.statistics.random.gumbel.UniZiggGumbelRnd;
@@ -166,7 +166,7 @@ public final class GeneratorTypes {
 
         F_DISTRIBUTION_RND = new RandomGeneratorType<>(
                 "F_DISTRIBUTION_RND", FDistributionRnd.Factory.class,
-                p -> new BetaBasedFDistributionRndFactory(p.get(GeneratorTypes.BETA_RND)));
+                p -> BetaBasedFDistributionRnd.createFactory(p.get(GeneratorTypes.BETA_RND)));
         list.add(F_DISTRIBUTION_RND);
 
         GAMMA_RND = new RandomGeneratorType<>(

@@ -25,14 +25,14 @@ import matsu.num.statistics.random.TestedFloatingRandomGenerator;
 import matsu.num.statistics.random.beta.BetaFactoryForTesting;
 
 /**
- * {@link BetaBasedFDistributionRndFactory} クラスのテスト.
+ * {@link BetaBasedFDistributionRnd} クラスのテスト.
  */
 @RunWith(Enclosed.class)
 final class BetaBasedFDistributionRndFactoryTest {
 
-    public static final Class<?> TEST_CLASS = BetaBasedFDistributionRndFactory.class;
+    public static final Class<?> TEST_CLASS = BetaBasedFDistributionRnd.class;
     private static final FDistributionRnd.Factory FACTORY =
-            new BetaBasedFDistributionRndFactory(BetaFactoryForTesting.FACTORY);
+            BetaBasedFDistributionRnd.createFactory(BetaFactoryForTesting.FACTORY);
 
     public static class ファクトリの境界値テスト {
 
