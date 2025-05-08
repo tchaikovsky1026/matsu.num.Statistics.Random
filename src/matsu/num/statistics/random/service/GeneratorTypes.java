@@ -49,7 +49,7 @@ import matsu.num.statistics.random.staticbeta.GammaBasedStaticBetaRnd;
 import matsu.num.statistics.random.staticgamma.MTTypeStaticGammaRnd;
 import matsu.num.statistics.random.tdist.NormalGammaBasedTDistRnd;
 import matsu.num.statistics.random.voigt.StandardImplVoigtRnd;
-import matsu.num.statistics.random.weibull.GumbelBasedWeibullRndFactory;
+import matsu.num.statistics.random.weibull.GumbelBasedWeibullRnd;
 
 /**
  * <p>
@@ -238,7 +238,7 @@ public final class GeneratorTypes {
 
         WEIBULL_RND = new RandomGeneratorType<>(
                 "WEIBULL_RND", WeibullRnd.Factory.class,
-                p -> new GumbelBasedWeibullRndFactory(
+                p -> GumbelBasedWeibullRnd.createFactory(
                         p.lib().exponentiation(), p.get(GeneratorTypes.GUMBEL_RND)));
         list.add(WEIBULL_RND);
 

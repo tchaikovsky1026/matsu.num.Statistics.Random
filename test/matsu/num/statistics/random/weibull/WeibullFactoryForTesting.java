@@ -22,7 +22,7 @@ import matsu.num.statistics.random.lib.ExponentiationForTesting;
 public final class WeibullFactoryForTesting {
 
     public static final WeibullRnd.Factory FACTORY =
-            new GumbelBasedWeibullRndFactory(
+            GumbelBasedWeibullRnd.createFactory(
                     ExponentiationForTesting.INSTANCE, GumbelFactoryForTesting.FACTORY);
 
     private WeibullFactoryForTesting() {
