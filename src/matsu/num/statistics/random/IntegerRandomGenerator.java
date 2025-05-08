@@ -26,7 +26,7 @@ package matsu.num.statistics.random;
  *
  * @author Matsuura Y.
  */
-public interface IntegerRandomGenerator extends Rnd {
+interface IntegerRandomGenerator extends Rnd {
 
     /**
      * <p>
