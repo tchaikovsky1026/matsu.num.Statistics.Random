@@ -21,7 +21,7 @@ import matsu.num.statistics.random.gamma.GammaFactoryForTesting;
 public final class ChiSqFactoryForTesting {
 
     public static final ChiSquaredRnd.Factory FACTORY =
-            new GammaTypeChiSquaredRndFactory(GammaFactoryForTesting.FACTORY);
+            GammaTypeChiSquaredRnd.createFactory(GammaFactoryForTesting.FACTORY);
 
     private ChiSqFactoryForTesting() {
     }

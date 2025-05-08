@@ -22,7 +22,7 @@ import matsu.num.statistics.random.lib.ExponentiationForTesting;
 public final class PoissonFactoryForTesting {
 
     public static final PoissonRnd.Factory FACTORY =
-            new GammaHomoProcessBasedPoissonRndFactory(
+            GammaHomoProcessBasedPoissonRnd.createFactory(
                     ExponentiationForTesting.INSTANCE, GammaFactoryForTesting.FACTORY);
 
     private PoissonFactoryForTesting() {

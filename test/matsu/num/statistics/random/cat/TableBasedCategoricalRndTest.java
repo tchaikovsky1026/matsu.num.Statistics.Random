@@ -21,14 +21,14 @@ import matsu.num.statistics.random.TestedIntegerRandomGenerator;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
 /**
- * {@link TableBasedCategoricalRndFactory} クラスのテスト.
+ * {@link TableBasedCategoricalRnd} クラスのテスト.
  */
 @RunWith(Enclosed.class)
-final class TableBasedCategoricalRndFactoryTest {
+final class TableBasedCategoricalRndTest {
 
-    public static final Class<?> TEST_CLASS = TableBasedCategoricalRndFactory.class;
+    public static final Class<?> TEST_CLASS = TableBasedCategoricalRnd.class;
     private static final CategoricalRnd.Factory FACTORY =
-            new TableBasedCategoricalRndFactory(ExponentiationForTesting.INSTANCE);
+            TableBasedCategoricalRnd.createFactory(ExponentiationForTesting.INSTANCE);
 
     public static class 生成に関する {
 

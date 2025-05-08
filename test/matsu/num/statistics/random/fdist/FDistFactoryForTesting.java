@@ -21,7 +21,7 @@ import matsu.num.statistics.random.beta.BetaFactoryForTesting;
 public final class FDistFactoryForTesting {
 
     public static final FDistributionRnd.Factory FACTORY =
-            new BetaBasedFDistributionRndFactory(BetaFactoryForTesting.FACTORY);
+            BetaBasedFDistributionRnd.createFactory(BetaFactoryForTesting.FACTORY);
 
     private FDistFactoryForTesting() {
     }

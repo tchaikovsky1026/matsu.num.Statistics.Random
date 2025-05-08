@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.8
+ * 2025.5.8
  */
 package matsu.num.statistics.random.service;
 
@@ -32,24 +32,24 @@ import matsu.num.statistics.random.StaticGammaRnd;
 import matsu.num.statistics.random.TDistributionRnd;
 import matsu.num.statistics.random.VoigtRnd;
 import matsu.num.statistics.random.WeibullRnd;
-import matsu.num.statistics.random.beta.GammaBasedBetaRndFactory;
-import matsu.num.statistics.random.cat.TableBasedCategoricalRndFactory;
+import matsu.num.statistics.random.beta.GammaBasedBetaRnd;
+import matsu.num.statistics.random.cat.TableBasedCategoricalRnd;
 import matsu.num.statistics.random.cauchy.ZiggCauchyRnd;
-import matsu.num.statistics.random.chisq.GammaTypeChiSquaredRndFactory;
+import matsu.num.statistics.random.chisq.GammaTypeChiSquaredRnd;
 import matsu.num.statistics.random.exp.ZiggExponentialRnd;
-import matsu.num.statistics.random.fdist.BetaBasedFDistributionRndFactory;
+import matsu.num.statistics.random.fdist.BetaBasedFDistributionRnd;
 import matsu.num.statistics.random.gamma.MTTypeGammaRndFactory;
-import matsu.num.statistics.random.geo.InversionBasedGeoRndFactory;
+import matsu.num.statistics.random.geo.InversionBasedGeoRnd;
 import matsu.num.statistics.random.gumbel.UniZiggGumbelRnd;
 import matsu.num.statistics.random.levy.NormalBasedLevyRnd;
 import matsu.num.statistics.random.logi.ZiggLogiRnd;
 import matsu.num.statistics.random.norm.ZiggNormalRnd;
-import matsu.num.statistics.random.poi.GammaHomoProcessBasedPoissonRndFactory;
+import matsu.num.statistics.random.poi.GammaHomoProcessBasedPoissonRnd;
 import matsu.num.statistics.random.staticbeta.GammaBasedStaticBetaRnd;
 import matsu.num.statistics.random.staticgamma.MTTypeStaticGammaRnd;
-import matsu.num.statistics.random.tdist.NormalGammaBasedTDistRndFactory;
-import matsu.num.statistics.random.voigt.StandardImplVoigtRndFactory;
-import matsu.num.statistics.random.weibull.GumbelBasedWeibullRndFactory;
+import matsu.num.statistics.random.tdist.NormalGammaBasedTDistRnd;
+import matsu.num.statistics.random.voigt.StandardImplVoigtRnd;
+import matsu.num.statistics.random.weibull.GumbelBasedWeibullRnd;
 
 /**
  * <p>
@@ -141,12 +141,12 @@ public final class GeneratorTypes {
 
         BETA_RND = new RandomGeneratorType<>(
                 "BETA_RND", BetaRnd.Factory.class,
-                p -> new GammaBasedBetaRndFactory(p.get(GeneratorTypes.GAMMA_RND)));
+                p -> GammaBasedBetaRnd.createFactory(p.get(GeneratorTypes.GAMMA_RND)));
         list.add(BETA_RND);
 
         CATEGORICAL_RND = new RandomGeneratorType<>(
                 "CATEGORICAL_RND", CategoricalRnd.Factory.class,
-                p -> new TableBasedCategoricalRndFactory(p.lib().exponentiation()));
+                p -> TableBasedCategoricalRnd.createFactory(p.lib().exponentiation()));
         list.add(CATEGORICAL_RND);
 
         CAUCHY_RND = new RandomGeneratorType<>(
@@ -156,7 +156,7 @@ public final class GeneratorTypes {
 
         CHI_SQUARED_RND = new RandomGeneratorType<>(
                 "CHI_SQUARED_RND", ChiSquaredRnd.Factory.class,
-                p -> new GammaTypeChiSquaredRndFactory(p.get(GeneratorTypes.GAMMA_RND)));
+                p -> GammaTypeChiSquaredRnd.createFactory(p.get(GeneratorTypes.GAMMA_RND)));
         list.add(CHI_SQUARED_RND);
 
         EXPONENTIAL_RND = new RandomGeneratorType<>(
@@ -166,19 +166,19 @@ public final class GeneratorTypes {
 
         F_DISTRIBUTION_RND = new RandomGeneratorType<>(
                 "F_DISTRIBUTION_RND", FDistributionRnd.Factory.class,
-                p -> new BetaBasedFDistributionRndFactory(p.get(GeneratorTypes.BETA_RND)));
+                p -> BetaBasedFDistributionRnd.createFactory(p.get(GeneratorTypes.BETA_RND)));
         list.add(F_DISTRIBUTION_RND);
 
         GAMMA_RND = new RandomGeneratorType<>(
                 "GAMMA_RND", GammaRnd.Factory.class,
-                p -> new MTTypeGammaRndFactory(
+                p -> MTTypeGammaRndFactory.create(
                         p.lib().exponentiation(),
                         p.get(GeneratorTypes.EXPONENTIAL_RND), p.get(GeneratorTypes.NORMAL_RND)));
         list.add(GAMMA_RND);
 
         GEOMETRIC_RND = new RandomGeneratorType<>(
                 "GEOMETRIC_RND", GeometricRnd.Factory.class,
-                p -> new InversionBasedGeoRndFactory(
+                p -> InversionBasedGeoRnd.createFactory(
                         p.lib().exponentiation(), p.get(GeneratorTypes.EXPONENTIAL_RND)));
         list.add(GEOMETRIC_RND);
 
@@ -207,7 +207,7 @@ public final class GeneratorTypes {
 
         POISSON_RND = new RandomGeneratorType<>(
                 "POISSON_RND", PoissonRnd.Factory.class,
-                p -> new GammaHomoProcessBasedPoissonRndFactory(
+                p -> GammaHomoProcessBasedPoissonRnd.createFactory(
                         p.lib().exponentiation(), p.get(GeneratorTypes.GAMMA_RND)));
         list.add(POISSON_RND);
 
@@ -225,20 +225,20 @@ public final class GeneratorTypes {
 
         T_DISTRIBUTION_RND = new RandomGeneratorType<>(
                 "T_DISTRIBUTION_RND", TDistributionRnd.Factory.class,
-                p -> new NormalGammaBasedTDistRndFactory(
+                p -> NormalGammaBasedTDistRnd.createFactory(
                         p.lib().exponentiation(),
                         p.get(GeneratorTypes.NORMAL_RND), p.get(GeneratorTypes.GAMMA_RND)));
         list.add(T_DISTRIBUTION_RND);
 
         VOIGT_RND = new RandomGeneratorType<>(
                 "VOIGT_RND", VoigtRnd.Factory.class,
-                p -> new StandardImplVoigtRndFactory(
+                p -> StandardImplVoigtRnd.createFactory(
                         p.get(GeneratorTypes.NORMAL_RND), p.get(GeneratorTypes.CAUCHY_RND)));
         list.add(VOIGT_RND);
 
         WEIBULL_RND = new RandomGeneratorType<>(
                 "WEIBULL_RND", WeibullRnd.Factory.class,
-                p -> new GumbelBasedWeibullRndFactory(
+                p -> GumbelBasedWeibullRnd.createFactory(
                         p.lib().exponentiation(), p.get(GeneratorTypes.GUMBEL_RND)));
         list.add(WEIBULL_RND);
 

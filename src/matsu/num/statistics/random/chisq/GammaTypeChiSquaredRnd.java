@@ -5,11 +5,14 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2025.5.6
  */
 package matsu.num.statistics.random.chisq;
 
+import java.util.Objects;
+
 import matsu.num.statistics.random.BaseRandom;
+import matsu.num.statistics.random.ChiSquaredRnd;
 import matsu.num.statistics.random.GammaRnd;
 
 /**
@@ -21,11 +24,11 @@ import matsu.num.statistics.random.GammaRnd;
  *
  * @author Matsuura Y.
  */
-final class GammaTypeChiSquaredRnd extends SkeletalChiSquaredRnd {
+public final class GammaTypeChiSquaredRnd extends SkeletalChiSquaredRnd {
 
     private final GammaRnd gammaRnd;
 
-    GammaTypeChiSquaredRnd(double k, GammaRnd.Factory gammaRndBuilder) {
+    private GammaTypeChiSquaredRnd(double k, GammaRnd.Factory gammaRndBuilder) {
         super(k);
 
         this.gammaRnd = gammaRndBuilder.instanceOf(k * 0.5);
@@ -34,5 +37,30 @@ final class GammaTypeChiSquaredRnd extends SkeletalChiSquaredRnd {
     @Override
     public final double nextRandom(BaseRandom random) {
         return this.gammaRnd.nextRandom(random) * 2;
+    }
+
+    /**
+     * ガンマ分布乱数器を利用した {@link ChiSquaredRnd} 実装のインスタンス生成を扱う.
+     * 
+     * @param gammaRndFactory ガンマ乱数生成器のファクトリ
+     * @return 乱数生成器ファクトリ
+     * @throws NullPointerException 引数にnullが含まれる場合
+     */
+    public static ChiSquaredRnd.Factory createFactory(GammaRnd.Factory gammaRndFactory) {
+        return new Factory(Objects.requireNonNull(gammaRndFactory));
+    }
+
+    private static final class Factory extends SkeletalChiSquaredRnd.Factory {
+
+        private final GammaRnd.Factory gammaRndFactory;
+
+        Factory(GammaRnd.Factory gammaRndFactory) {
+            this.gammaRndFactory = gammaRndFactory;
+        }
+
+        @Override
+        ChiSquaredRnd createInstanceOf(double k) {
+            return new GammaTypeChiSquaredRnd(k, this.gammaRndFactory);
+        }
     }
 }

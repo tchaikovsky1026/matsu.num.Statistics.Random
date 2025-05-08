@@ -5,11 +5,14 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.24
+ * 2025.5.6
  */
 package matsu.num.statistics.random.beta;
 
+import java.util.Objects;
+
 import matsu.num.statistics.random.BaseRandom;
+import matsu.num.statistics.random.BetaRnd;
 import matsu.num.statistics.random.GammaRnd;
 
 /**
@@ -17,7 +20,7 @@ import matsu.num.statistics.random.GammaRnd;
  *
  * @author Matsuura Y.
  */
-final class GammaBasedBetaRnd extends SkeletalBetaRnd {
+public final class GammaBasedBetaRnd extends SkeletalBetaRnd {
 
     private final GammaRnd gammaRndA;
     private final GammaRnd gammaRndB;
@@ -30,7 +33,7 @@ final class GammaBasedBetaRnd extends SkeletalBetaRnd {
      * @param a 形状パラメータa
      * @param b 形状パラメータb
      */
-    GammaBasedBetaRnd(double a, double b, GammaRnd.Factory gammaRndFactory) {
+    private GammaBasedBetaRnd(double a, double b, GammaRnd.Factory gammaRndFactory) {
         super(a, b);
 
         this.gammaRndA = gammaRndFactory.instanceOf(a);
@@ -51,5 +54,33 @@ final class GammaBasedBetaRnd extends SkeletalBetaRnd {
         double u2 = this.gammaRndB.nextRandom(random);
         double out = u1 / u2;
         return Double.isFinite(out) ? out : 0;
+    }
+
+    /**
+     * ガンマ乱数発生器に基づくベータ乱数発生器のファクトリ.
+     * 
+     * @param gammaRndFactory ガンマ乱数生成器ファクトリ
+     * @return ベータ乱数生成器ファクトリ
+     * @throws NullPointerException 引数がnullの場合
+     */
+    public static BetaRnd.Factory createFactory(GammaRnd.Factory gammaRndFactory) {
+        return new Factory(Objects.requireNonNull(gammaRndFactory));
+    }
+
+    /**
+     * ガンマ乱数発生器に基づくベータ乱数発生器のファクトリ.
+     */
+    private static final class Factory extends SkeletalBetaRnd.Factory {
+
+        private final GammaRnd.Factory gammaRndFactory;
+
+        Factory(GammaRnd.Factory gammaRndFactory) {
+            this.gammaRndFactory = gammaRndFactory;
+        }
+
+        @Override
+        BetaRnd createInstanceOf(double a, double b) {
+            return new GammaBasedBetaRnd(a, b, this.gammaRndFactory);
+        }
     }
 }

@@ -34,7 +34,7 @@ final class MTTypeGammaRndFactoryTest {
 
     public static final Class<?> TEST_CLASS = MTTypeGammaRndFactory.class;
     private static final GammaRnd.Factory FACTORY =
-            new MTTypeGammaRndFactory(
+            MTTypeGammaRndFactory.create(
                     ExponentiationForTesting.INSTANCE,
                     ExponentialFactoryForTesting.FACTORY, NormalFactoryForTesting.FACTORY);
 

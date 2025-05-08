@@ -5,12 +5,15 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2025.5.8
  */
 package matsu.num.statistics.random.weibull;
 
+import java.util.Objects;
+
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.GumbelRnd;
+import matsu.num.statistics.random.WeibullRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
@@ -18,14 +21,14 @@ import matsu.num.statistics.random.lib.Exponentiation;
  *
  * @author Matsuura Y.
  */
-final class GumbelBasedWeibullRnd extends SkeletalWeibullRnd {
+public final class GumbelBasedWeibullRnd extends SkeletalWeibullRnd {
 
     private final double invK;
 
     private final Exponentiation exponentiation;
     private final GumbelRnd gumRnd;
 
-    GumbelBasedWeibullRnd(double k,
+    private GumbelBasedWeibullRnd(double k,
             Exponentiation exponentiation, GumbelRnd.Factory gumbelRndFactory) {
         super(k);
 
@@ -37,5 +40,38 @@ final class GumbelBasedWeibullRnd extends SkeletalWeibullRnd {
     @Override
     public double nextRandom(BaseRandom random) {
         return exponentiation.exp(-this.gumRnd.nextRandom(random) * this.invK);
+    }
+
+    /**
+     * 標準Gumbelベースの {@link WeibullRnd} のファクトリインスタンスを生成する.
+     * 
+     * @param exponentiation 指数関数の計算
+     * @param gumbelRndFactory Gumbel乱数生成器のファクトリ
+     * @return 乱数生成器ファクトリ
+     * @throws NullPointerException 引数にnullが含まれる場合
+     */
+    public static WeibullRnd.Factory createFactory(
+            Exponentiation exponentiation, GumbelRnd.Factory gumbelRndFactory) {
+
+        return new Factory(
+                Objects.requireNonNull(exponentiation),
+                Objects.requireNonNull(gumbelRndFactory));
+    }
+
+    private static final class Factory extends SkeletalWeibullRnd.Factory {
+
+        private final Exponentiation exponentiation;
+        private final GumbelRnd.Factory gumbelRndFactory;
+
+        Factory(Exponentiation exponentiation, GumbelRnd.Factory gumbelRndFactory) {
+            super();
+            this.exponentiation = Objects.requireNonNull(exponentiation);
+            this.gumbelRndFactory = Objects.requireNonNull(gumbelRndFactory);
+        }
+
+        @Override
+        WeibullRnd createInstanceOf(double k) {
+            return new GumbelBasedWeibullRnd(k, this.exponentiation, this.gumbelRndFactory);
+        }
     }
 }
