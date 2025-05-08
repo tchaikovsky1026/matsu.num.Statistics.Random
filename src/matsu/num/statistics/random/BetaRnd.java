@@ -56,7 +56,7 @@ package matsu.num.statistics.random;
  *
  * @implSpec
  *               このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
- *               モジュール外で実装してはいけない.
+ *               モジュール外で継承・実装してはいけない.
  *
  * @author Matsuura Y.
  */
@@ -97,7 +97,7 @@ public interface BetaRnd extends FloatingRandomGenerator {
      * 
      * @param random 基本乱数発生器
      * @return ベータプライム分布に従う乱数の値
-     * @throws NullPointerException 引数にnullが含まれる場合
+     * @throws NullPointerException 引数がnullの場合
      */
     public abstract double nextBetaPrime(BaseRandom random);
 
