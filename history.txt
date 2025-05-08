@@ -1,10 +1,5 @@
-develop:
-sealedの解除.
-CauchyRndのasTDistributionRndを削除予定に.
-非公開・非推奨のrandomパッケージを削除.
-非公開パッケージのクラス構造のリファクタ.
-
 25:
+25.1.0: リファクタリング(クラス構造, sealed修飾の削除). CauchyRndのasTDistributionRndを削除予定. 非公開・非推奨のrandomパッケージを削除.
 25.0.0: Semantic versioning.
 
 24:
