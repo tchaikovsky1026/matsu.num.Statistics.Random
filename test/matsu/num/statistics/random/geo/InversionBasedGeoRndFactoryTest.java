@@ -26,14 +26,14 @@ import matsu.num.statistics.random.exp.ExponentialFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
 /**
- * {@link InversionBasedGeoRndFactory} クラスのテスト.
+ * {@link InversionBasedGeoRnd} クラスのテスト.
  */
 @RunWith(Enclosed.class)
 final class InversionBasedGeoRndFactoryTest {
 
-    public static final Class<?> TEST_CLASS = InversionBasedGeoRndFactory.class;
+    public static final Class<?> TEST_CLASS = InversionBasedGeoRnd.class;
     private static final GeometricRnd.Factory FACTORY =
-            new InversionBasedGeoRndFactory(
+            InversionBasedGeoRnd.createFactory(
                     ExponentiationForTesting.INSTANCE, ExponentialFactoryForTesting.FACTORY);
 
     public static class ファクトリの境界値テスト {

@@ -5,12 +5,9 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.5.5
  */
 package matsu.num.statistics.random;
-
-import matsu.num.statistics.random.norm.NormalRndFactory;
-import matsu.num.statistics.random.norm.SkeletalNormalRnd;
 
 /**
  * <p>
@@ -22,25 +19,22 @@ import matsu.num.statistics.random.norm.SkeletalNormalRnd;
  * P(<i>x</i>) &prop; exp(-<i>x</i><sup>2</sup> / 2)
  * </p>
  *
- *
- * <p>
- * <i>
- * <u>
- * このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
- * 外部で実装することは不可.
- * </u>
- * </i>
- * </p>
+ * @implSpec
+ *               このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
+ *               モジュール外で継承・実装してはいけない.
  * 
  * @author Matsuura Y.
  */
-public sealed interface NormalRnd extends FloatingRandomGenerator permits SkeletalNormalRnd {
+public interface NormalRnd extends FloatingRandomGenerator {
 
     /**
      * {@link NormalRnd} のファクトリ.
+     * 
+     * @implSpec
+     *               このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
+     *               モジュール外で実装してはいけない.
      */
-    public static sealed interface Factory
-            extends RndFactory permits NormalRndFactory {
+    public static interface Factory extends RndFactory {
 
         /**
          * <p>

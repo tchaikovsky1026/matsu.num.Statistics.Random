@@ -26,14 +26,14 @@ import matsu.num.statistics.random.gumbel.GumbelFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
 /**
- * {@link GumbelBasedWeibullRndFactory} クラスのテスト.
+ * {@link GumbelBasedWeibullRnd} クラスのテスト.
  */
 @RunWith(Enclosed.class)
 final class GumbelBasedWeibullRndFactoryTest {
 
-    public static final Class<?> TEST_CLASS = GumbelBasedWeibullRndFactory.class;
+    public static final Class<?> TEST_CLASS = GumbelBasedWeibullRnd.class;
     private static final WeibullRnd.Factory FACTORY =
-            new GumbelBasedWeibullRndFactory(
+            GumbelBasedWeibullRnd.createFactory(
                     ExponentiationForTesting.INSTANCE, GumbelFactoryForTesting.FACTORY);
 
     public static class ファクトリの境界値テスト {

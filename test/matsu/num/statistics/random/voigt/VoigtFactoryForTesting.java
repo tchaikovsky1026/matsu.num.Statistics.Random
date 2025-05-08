@@ -22,7 +22,7 @@ import matsu.num.statistics.random.norm.NormalFactoryForTesting;
 public final class VoigtFactoryForTesting {
 
     public static final VoigtRnd.Factory FACTORY =
-            new StandardImplVoigtRndFactory(
+            StandardImplVoigtRnd.createFactory(
                     NormalFactoryForTesting.FACTORY, CauchyFactoryForTesting.FACTORY);
 
     private VoigtFactoryForTesting() {

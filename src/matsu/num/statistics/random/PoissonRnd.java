@@ -5,12 +5,9 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.5.5
  */
 package matsu.num.statistics.random;
-
-import matsu.num.statistics.random.poi.SkeletalPoissonRnd;
-import matsu.num.statistics.random.poi.SkeletalPoissonRndFactory;
 
 /**
  * <p>
@@ -41,20 +38,13 @@ import matsu.num.statistics.random.poi.SkeletalPoissonRndFactory;
  * である.
  * </p>
  * 
- * 
- * <p>
- * <i>
- * <u>
- * このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
- * 外部で実装することは不可.
- * </u>
- * </i>
- * </p>
+ * @implSpec
+ *               このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
+ *               モジュール外で継承・実装してはいけない.
  * 
  * @author Matsuura Y.
  */
-public sealed interface PoissonRnd
-        extends IntegerRandomGenerator permits SkeletalPoissonRnd {
+public interface PoissonRnd extends IntegerRandomGenerator {
 
     /**
      * 扱うことができるパラメータの最小値.
@@ -90,9 +80,12 @@ public sealed interface PoissonRnd
 
     /**
      * {@link PoissonRnd} のファクトリ.
+     * 
+     * @implSpec
+     *               このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
+     *               モジュール外で実装してはいけない.
      */
-    public static sealed interface Factory
-            extends RndFactory permits SkeletalPoissonRndFactory {
+    public static interface Factory extends RndFactory {
 
         /**
          * <p>

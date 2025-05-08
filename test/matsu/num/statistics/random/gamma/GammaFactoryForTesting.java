@@ -20,7 +20,7 @@ import matsu.num.statistics.random.norm.NormalFactoryForTesting;
 public final class GammaFactoryForTesting {
 
     public static final GammaRnd.Factory FACTORY =
-            new MTTypeGammaRndFactory(
+            MTTypeGammaRndFactory.create(
                     ExponentiationForTesting.INSTANCE,
                     ExponentialFactoryForTesting.FACTORY, NormalFactoryForTesting.FACTORY);
 

@@ -18,7 +18,7 @@ import matsu.num.statistics.random.gamma.GammaFactoryForTesting;
 public final class BetaFactoryForTesting {
 
     public static final BetaRnd.Factory FACTORY =
-            new GammaBasedBetaRndFactory(GammaFactoryForTesting.FACTORY);
+            GammaBasedBetaRnd.createFactory(GammaFactoryForTesting.FACTORY);
 
     private BetaFactoryForTesting() {
     }

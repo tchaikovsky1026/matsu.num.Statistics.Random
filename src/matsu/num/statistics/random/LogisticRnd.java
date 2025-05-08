@@ -5,12 +5,9 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.5.5
  */
 package matsu.num.statistics.random;
-
-import matsu.num.statistics.random.logi.LogisticRndFactory;
-import matsu.num.statistics.random.logi.SkeletalLogisticRnd;
 
 /**
  * <p>
@@ -25,26 +22,22 @@ import matsu.num.statistics.random.logi.SkeletalLogisticRnd;
  * (1 + exp(-<i>x</i>))<sup>2</sup>
  * </p>
  *
- *
- * <p>
- * <i>
- * <u>
- * このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
- * 外部で実装することは不可.
- * </u>
- * </i>
- * </p>
+ * @implSpec
+ *               このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
+ *               モジュール外で継承・実装してはいけない.
  * 
  * @author Matsuura Y.
  */
-public sealed interface LogisticRnd
-        extends FloatingRandomGenerator permits SkeletalLogisticRnd {
+public interface LogisticRnd extends FloatingRandomGenerator {
 
     /**
      * {@link LogisticRnd} のファクトリ.
+     * 
+     * @implSpec
+     *               このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
+     *               モジュール外で実装してはいけない.
      */
-    public static sealed interface Factory
-            extends RndFactory permits LogisticRndFactory {
+    public static interface Factory extends RndFactory {
 
         /**
          * <p>

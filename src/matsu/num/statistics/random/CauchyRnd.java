@@ -5,12 +5,9 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.5.5
  */
 package matsu.num.statistics.random;
-
-import matsu.num.statistics.random.cauchy.CauchyRndFactory;
-import matsu.num.statistics.random.cauchy.SkeletalCauchyRnd;
 
 /**
  * <p>
@@ -27,19 +24,13 @@ import matsu.num.statistics.random.cauchy.SkeletalCauchyRnd;
  * 標準Cauchy分布は自由度1のStudent-t分布に一致する.
  * </p>
  * 
- * 
- * <p>
- * <i>
- * <u>
- * このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
- * 外部で実装することは不可.
- * </u>
- * </i>
- * </p>
+ * @implSpec
+ *               このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
+ *               モジュール外で継承・実装してはいけない.
  * 
  * @author Matsuura Y.
  */
-public sealed interface CauchyRnd extends FloatingRandomGenerator permits SkeletalCauchyRnd {
+public interface CauchyRnd extends FloatingRandomGenerator {
 
     /**
      * <p>
@@ -58,14 +49,22 @@ public sealed interface CauchyRnd extends FloatingRandomGenerator permits Skelet
      * </p>
      * 
      * @return 標準Cauchy分布と同等な, 自由度1のStudent-t分布
+     * @deprecated
+     *                 このメソッドは version 26 以降削除予定である. <br>
+     *                 モジュール外では, ビューの変更 (型変換) を行うのは不適切である. <br>
+     *                 (「クライアントが依存するインターフェースはクライアントが定めなければならない」)
      */
+    @Deprecated(forRemoval = true)
     public abstract TDistributionRnd asTDistributionRnd();
 
     /**
      * {@link CauchyRnd} のファクトリ.
+     * 
+     * @implSpec
+     *               このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
+     *               モジュール外で実装してはいけない.
      */
-    public static sealed interface Factory
-            extends RndFactory permits CauchyRndFactory {
+    public static interface Factory extends RndFactory {
 
         /**
          * <p>

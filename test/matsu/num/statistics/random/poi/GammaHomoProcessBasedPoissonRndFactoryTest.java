@@ -26,14 +26,14 @@ import matsu.num.statistics.random.gamma.GammaFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
 /**
- * {@link GammaHomoProcessBasedPoissonRndFactory} クラスのテスト.
+ * {@link GammaHomoProcessBasedPoissonRnd} クラスのテスト.
  */
 @RunWith(Enclosed.class)
 final class GammaHomoProcessBasedPoissonRndFactoryTest {
 
-    public static final Class<?> TEST_CLASS = GammaHomoProcessBasedPoissonRndFactory.class;
+    public static final Class<?> TEST_CLASS = GammaHomoProcessBasedPoissonRnd.class;
     private static final PoissonRnd.Factory FACTORY =
-            new GammaHomoProcessBasedPoissonRndFactory(
+            GammaHomoProcessBasedPoissonRnd.createFactory(
                     ExponentiationForTesting.INSTANCE, GammaFactoryForTesting.FACTORY);
 
     public static class ファクトリの境界値テスト {

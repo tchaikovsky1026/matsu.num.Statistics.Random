@@ -5,12 +5,9 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.5.5
  */
 package matsu.num.statistics.random;
-
-import matsu.num.statistics.random.tdist.SkeletalTDistributionRnd;
-import matsu.num.statistics.random.tdist.SkeletalTDistributionRndFactory;
 
 /**
  * <p>
@@ -31,20 +28,13 @@ import matsu.num.statistics.random.tdist.SkeletalTDistributionRndFactory;
  * である.
  * </p>
  *
- *
- * <p>
- * <i>
- * <u>
- * このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
- * 外部で実装することは不可.
- * </u>
- * </i>
- * </p>
+ * @implSpec
+ *               このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
+ *               モジュール外で継承・実装してはいけない.
  * 
  * @author Matsuura Y.
  */
-public sealed interface TDistributionRnd
-        extends FloatingRandomGenerator permits SkeletalTDistributionRnd {
+public interface TDistributionRnd extends FloatingRandomGenerator {
 
     /**
      * 扱うことができる自由度の最小値.
@@ -80,9 +70,12 @@ public sealed interface TDistributionRnd
 
     /**
      * {@link TDistributionRnd} のファクトリ.
+     * 
+     * @implSpec
+     *               このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
+     *               モジュール外で実装してはいけない.
      */
-    public static sealed interface Factory
-            extends RndFactory permits SkeletalTDistributionRndFactory {
+    public static interface Factory extends RndFactory {
 
         /**
          * <p>

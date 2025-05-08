@@ -25,14 +25,14 @@ import matsu.num.statistics.random.TestedFloatingRandomGenerator;
 import matsu.num.statistics.random.gamma.GammaFactoryForTesting;
 
 /**
- * {@link GammaTypeChiSquaredRndFactory} クラスのテスト.
+ * {@link GammaTypeChiSquaredRnd} クラスのテスト.
  */
 @RunWith(Enclosed.class)
-final class GammaTypeChiSquaredRndFactoryTest {
+final class GammaTypeChiSquaredRndTest {
 
-    public static final Class<?> TEST_CLASS = GammaTypeChiSquaredRndFactory.class;
+    public static final Class<?> TEST_CLASS = GammaTypeChiSquaredRnd.class;
     private static final ChiSquaredRnd.Factory FACTORY =
-            new GammaTypeChiSquaredRndFactory(GammaFactoryForTesting.FACTORY);
+            GammaTypeChiSquaredRnd.createFactory(GammaFactoryForTesting.FACTORY);
 
     public static class ファクトリの境界値テスト {
 

@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.5.6
  */
 package matsu.num.statistics.random.cauchy;
 
@@ -17,7 +17,7 @@ import matsu.num.statistics.random.base.ParameterlessFactory;
  * 
  * @author Matsuura Y.
  */
-public final class CauchyRndFactory
+final class CauchyRndFactory
         extends ParameterlessFactory<CauchyRnd> implements CauchyRnd.Factory {
 
     /**

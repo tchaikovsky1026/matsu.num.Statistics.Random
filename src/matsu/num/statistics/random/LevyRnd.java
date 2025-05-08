@@ -5,12 +5,9 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.5.5
  */
 package matsu.num.statistics.random;
-
-import matsu.num.statistics.random.levy.LevyRndFactory;
-import matsu.num.statistics.random.levy.SkeletalLevyRnd;
 
 /**
  * <p>
@@ -31,24 +28,22 @@ import matsu.num.statistics.random.levy.SkeletalLevyRnd;
  * <li>P(<i>x</i>) = 0 &emsp; (otherwise)</li>
  * </ul>
  * 
- * 
- * <p>
- * <i>
- * <u>
- * このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
- * 外部で実装することは不可.
- * </u>
- * </i>
- * </p>
+ * @implSpec
+ *               このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
+ *               モジュール外で継承・実装してはいけない.
  * 
  * @author Matsuura Y.
  */
-public sealed interface LevyRnd extends FloatingRandomGenerator permits SkeletalLevyRnd {
+public interface LevyRnd extends FloatingRandomGenerator {
 
     /**
      * {@link LevyRnd} のファクトリ.
+     * 
+     * @implSpec
+     *               このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
+     *               モジュール外で実装してはいけない.
      */
-    public static sealed interface Factory extends RndFactory permits LevyRndFactory {
+    public static interface Factory extends RndFactory {
 
         /**
          * <p>

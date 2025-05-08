@@ -5,12 +5,15 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2025.5.7
  */
 package matsu.num.statistics.random.poi;
 
+import java.util.Objects;
+
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.GammaRnd;
+import matsu.num.statistics.random.PoissonRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
@@ -18,13 +21,13 @@ import matsu.num.statistics.random.lib.Exponentiation;
  *
  * @author Matsuura Y.
  */
-final class GammaHomoProcessBasedPoissonRnd extends SkeletalPoissonRnd {
+public final class GammaHomoProcessBasedPoissonRnd extends SkeletalPoissonRnd {
 
     /**
      * lambdaの範囲を網羅できるための, ガンマ乱数の形状パラメータのビット数. <br>
      * 1,2,4,...,2^20までで, 20.
      */
-    static final int GAMMA_RND_BIT = 20;
+    private static final int GAMMA_RND_BIT = 20;
 
     /**
      * 形状パラメータが1, 2, 4, ... のガンマ乱数発生器. <br>
@@ -40,7 +43,7 @@ final class GammaHomoProcessBasedPoissonRnd extends SkeletalPoissonRnd {
      *
      * @param lambda パラメータ
      */
-    GammaHomoProcessBasedPoissonRnd(double lambda, GammaRnd[] gammaRnds, Exponentiation exponentiation) {
+    private GammaHomoProcessBasedPoissonRnd(double lambda, GammaRnd[] gammaRnds, Exponentiation exponentiation) {
         super(lambda);
 
         this.gammaRnds = gammaRnds;
@@ -112,6 +115,49 @@ final class GammaHomoProcessBasedPoissonRnd extends SkeletalPoissonRnd {
                 shift += k;
             }
         }
-
     }
+
+    /**
+     * ガンマ分布乱数発生器を利用した {@link PoissonRnd} のファクトリインスタンスを生成する.
+     * 
+     * @param exponentiation 指数関数の計算
+     * @param gammaRndFactory ガンマ乱数生成器のファクトリ
+     * @return 乱数生成器ファクトリ
+     * @throws NullPointerException 引数にnullが含まれる場合
+     */
+    public static PoissonRnd.Factory createFactory(
+            Exponentiation exponentiation, GammaRnd.Factory gammaRndFactory) {
+
+        return new Factory(
+                Objects.requireNonNull(exponentiation),
+                Objects.requireNonNull(gammaRndFactory));
+    }
+
+    private static final class Factory extends SkeletalPoissonRnd.Factory {
+
+        /**
+         * 形状パラメータが1, 2, 4, ... のガンマ乱数発生器.
+         */
+        private final GammaRnd[] gammaRnds;
+
+        private final Exponentiation exponentiation;
+
+        Factory(Exponentiation exponentiation, GammaRnd.Factory gammaRndFactory) {
+            super();
+
+            this.exponentiation = exponentiation;
+            this.gammaRnds = new GammaRnd[GammaHomoProcessBasedPoissonRnd.GAMMA_RND_BIT + 1];
+            int k = 1;
+            for (int i = 0; i < GammaHomoProcessBasedPoissonRnd.GAMMA_RND_BIT + 1; i++) {
+                gammaRnds[i] = gammaRndFactory.instanceOf(k);
+                k = k * 2;
+            }
+        }
+
+        @Override
+        PoissonRnd createInstanceOf(double lambda) {
+            return new GammaHomoProcessBasedPoissonRnd(lambda, this.gammaRnds, this.exponentiation);
+        }
+    }
+
 }
