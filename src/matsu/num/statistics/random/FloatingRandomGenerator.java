@@ -26,7 +26,7 @@ package matsu.num.statistics.random;
  *
  * @author Matsuura Y.
  */
-public interface FloatingRandomGenerator extends Rnd {
+interface FloatingRandomGenerator extends Rnd {
 
     /**
      * <p>
