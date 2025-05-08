@@ -76,7 +76,7 @@ public interface BaseRandom {
      * 
      * @param random ラップされるインスタンス
      * @return ラップされた {@link BaseRandom}
-     * @throws NullPointerException 引数にnullが含まれる場合
+     * @throws NullPointerException 引数がnullの場合
      */
     public static BaseRandom of(java.util.random.RandomGenerator random) {
         return new BaseRandomHelper.RandomImpl(random);
@@ -109,7 +109,7 @@ public interface BaseRandom {
      * 
      * @param getter {@code java.util.random.RandomGenerator} を呼び出すためのサプライヤ
      * @return 乱数生成のたびにサプライヤから呼び出すように振る舞う {@link BaseRandom}
-     * @throws NullPointerException 引数にnullが含まれる場合
+     * @throws NullPointerException 引数がnullの場合
      */
     public static BaseRandom fromGetter(Supplier<? extends java.util.random.RandomGenerator> getter) {
         //ここでNullPointerExを発生させる可能性がある

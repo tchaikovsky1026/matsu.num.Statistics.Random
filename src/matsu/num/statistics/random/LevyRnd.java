@@ -30,7 +30,7 @@ package matsu.num.statistics.random;
  * 
  * @implSpec
  *               このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
- *               モジュール外で実装してはいけない.
+ *               モジュール外で継承・実装してはいけない.
  * 
  * @author Matsuura Y.
  */

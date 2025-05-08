@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.5.5
+ * 2025.5.8
  */
 package matsu.num.statistics.random;
 
@@ -34,7 +34,7 @@ package matsu.num.statistics.random;
  * 
  * @implSpec
  *               このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
- *               モジュール外で実装してはいけない.
+ *               モジュール外で継承・実装してはいけない.
  * 
  * @author Matsuura Y.
  */
@@ -63,7 +63,7 @@ public interface CategoricalRnd extends IntegerRandomGenerator {
      * 
      * @param probabilityValues 値配列
      * @return 値配列が適合する場合はtrue (配列のlengthが1以上の場合である)
-     * @throws NullPointerException 引数にnulが含まれる場合
+     * @throws NullPointerException 引数がnullの場合
      */
     public static boolean acceptsSizeOf(double[] probabilityValues) {
         return probabilityValues.length >= 1;
@@ -96,7 +96,7 @@ public interface CategoricalRnd extends IntegerRandomGenerator {
          * @param probability 確率値の配列(定数倍の不定性は許される)
          * @return 値配列に比例するカテゴリカル分布乱数発生器インスタンス
          * @throws IllegalArgumentException 値配列がacceptされない場合
-         * @throws NullPointerException 引数にnulが含まれる場合
+         * @throws NullPointerException 引数がnullの場合
          */
         public abstract CategoricalRnd instanceOf(double[] probability);
 
@@ -118,7 +118,7 @@ public interface CategoricalRnd extends IntegerRandomGenerator {
          * @param logProbability 確率値のlogの配列(定数オフセットの不定性は許される)
          * @return 値配列にのexp比例するカテゴリカル分布乱数発生器インスタンス
          * @throws IllegalArgumentException 値配列がacceptされない場合
-         * @throws NullPointerException 引数にnulが含まれる場合
+         * @throws NullPointerException 引数がnullの場合
          */
         public abstract CategoricalRnd instanceOfExp(double[] logProbability);
     }
