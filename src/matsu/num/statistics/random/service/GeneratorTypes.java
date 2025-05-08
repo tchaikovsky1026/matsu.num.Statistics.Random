@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.5.7
+ * 2025.5.8
  */
 package matsu.num.statistics.random.service;
 
@@ -47,7 +47,7 @@ import matsu.num.statistics.random.norm.ZiggNormalRnd;
 import matsu.num.statistics.random.poi.GammaHomoProcessBasedPoissonRnd;
 import matsu.num.statistics.random.staticbeta.GammaBasedStaticBetaRnd;
 import matsu.num.statistics.random.staticgamma.MTTypeStaticGammaRnd;
-import matsu.num.statistics.random.tdist.NormalGammaBasedTDistRndFactory;
+import matsu.num.statistics.random.tdist.NormalGammaBasedTDistRnd;
 import matsu.num.statistics.random.voigt.StandardImplVoigtRndFactory;
 import matsu.num.statistics.random.weibull.GumbelBasedWeibullRndFactory;
 
@@ -225,7 +225,7 @@ public final class GeneratorTypes {
 
         T_DISTRIBUTION_RND = new RandomGeneratorType<>(
                 "T_DISTRIBUTION_RND", TDistributionRnd.Factory.class,
-                p -> new NormalGammaBasedTDistRndFactory(
+                p -> NormalGammaBasedTDistRnd.createFactory(
                         p.lib().exponentiation(),
                         p.get(GeneratorTypes.NORMAL_RND), p.get(GeneratorTypes.GAMMA_RND)));
         list.add(T_DISTRIBUTION_RND);

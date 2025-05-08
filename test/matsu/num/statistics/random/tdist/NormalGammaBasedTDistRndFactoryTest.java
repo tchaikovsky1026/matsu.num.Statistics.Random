@@ -27,14 +27,14 @@ import matsu.num.statistics.random.lib.ExponentiationForTesting;
 import matsu.num.statistics.random.norm.NormalFactoryForTesting;
 
 /**
- * {@link NormalGammaBasedTDistRndFactory} クラスのテスト.
+ * {@link NormalGammaBasedTDistRnd} クラスのテスト.
  */
 @RunWith(Enclosed.class)
 final class NormalGammaBasedTDistRndFactoryTest {
 
-    public static final Class<?> TEST_CLASS = NormalGammaBasedTDistRndFactory.class;
+    public static final Class<?> TEST_CLASS = NormalGammaBasedTDistRnd.class;
     private static final TDistributionRnd.Factory FACTORY =
-            new NormalGammaBasedTDistRndFactory(
+            NormalGammaBasedTDistRnd.createFactory(
                     ExponentiationForTesting.INSTANCE,
                     NormalFactoryForTesting.FACTORY,
                     GammaFactoryForTesting.FACTORY);

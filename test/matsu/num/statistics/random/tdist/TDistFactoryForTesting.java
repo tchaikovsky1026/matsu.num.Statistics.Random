@@ -23,7 +23,7 @@ import matsu.num.statistics.random.norm.NormalFactoryForTesting;
 public final class TDistFactoryForTesting {
 
     public static final TDistributionRnd.Factory FACTORY =
-            new NormalGammaBasedTDistRndFactory(
+            NormalGammaBasedTDistRnd.createFactory(
                     ExponentiationForTesting.INSTANCE,
                     NormalFactoryForTesting.FACTORY,
                     GammaFactoryForTesting.FACTORY);
