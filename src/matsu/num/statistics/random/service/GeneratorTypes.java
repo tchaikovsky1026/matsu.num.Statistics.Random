@@ -48,7 +48,7 @@ import matsu.num.statistics.random.poi.GammaHomoProcessBasedPoissonRnd;
 import matsu.num.statistics.random.staticbeta.GammaBasedStaticBetaRnd;
 import matsu.num.statistics.random.staticgamma.MTTypeStaticGammaRnd;
 import matsu.num.statistics.random.tdist.NormalGammaBasedTDistRnd;
-import matsu.num.statistics.random.voigt.StandardImplVoigtRndFactory;
+import matsu.num.statistics.random.voigt.StandardImplVoigtRnd;
 import matsu.num.statistics.random.weibull.GumbelBasedWeibullRndFactory;
 
 /**
@@ -232,7 +232,7 @@ public final class GeneratorTypes {
 
         VOIGT_RND = new RandomGeneratorType<>(
                 "VOIGT_RND", VoigtRnd.Factory.class,
-                p -> new StandardImplVoigtRndFactory(
+                p -> StandardImplVoigtRnd.createFactory(
                         p.get(GeneratorTypes.NORMAL_RND), p.get(GeneratorTypes.CAUCHY_RND)));
         list.add(VOIGT_RND);
 
