@@ -52,7 +52,7 @@ abstract class SkeletalBinomialRnd implements BinomialRnd {
     /**
      * {@link BinomialRnd.Factory} の骨格実装.
      */
-    abstract class Factory implements BinomialRnd.Factory {
+    static abstract class Factory implements BinomialRnd.Factory {
 
         /**
          * 唯一の外部に公開されないコンストラクタ.
