@@ -62,7 +62,7 @@ final class Power2BinomialRndHelper {
         }
 
         int power2_N_minus_1 = (n + 1) >> 1;
-        int N_minus_1 = Power2.log2(power2_N_minus_1);
+        int N_minus_1 = Power2.floorLog2(power2_N_minus_1);
 
         GammaRnd gammaRnd = this.gammaRnds[N_minus_1];
         double u1 = gammaRnd.nextRandom(random) + Double.MIN_NORMAL;

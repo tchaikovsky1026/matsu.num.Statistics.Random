@@ -30,10 +30,10 @@ final class Power2 {
     }
 
     /**
-     * 整数nに対する log <sub>2</sub> n を計算する. <br>
+     * 整数nに対する floor(log <sub>2</sub> n) を計算する. <br>
      * nは1以上でなければならない.
      */
-    static int log2(int n) {
+    static int floorLog2(int n) {
         return 31 - Integer.numberOfLeadingZeros(n);
     }
 }
