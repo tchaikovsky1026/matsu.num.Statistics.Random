@@ -78,4 +78,15 @@ final class DirichletBasedBinomialRndTest {
             System.out.println();
         }
     }
+
+    public static class toString表示 {
+
+        @Test
+        public void test_toString() {
+            System.out.println(TEST_CLASS.getName());
+            System.out.println(FACTORY);
+            System.out.println(FACTORY.instanceOf(20, 0.3));
+            System.out.println();
+        }
+    }
 }
