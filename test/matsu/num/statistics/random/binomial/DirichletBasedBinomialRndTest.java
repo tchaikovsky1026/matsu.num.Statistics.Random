@@ -6,6 +6,9 @@
  */
 package matsu.num.statistics.random.binomial;
 
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
+
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.experimental.theories.DataPoints;
@@ -51,6 +54,48 @@ final class DirichletBasedBinomialRndTest {
                     IntegerRandomGeneratorTestingFramework.instanceOf(
                             new TestedBinomialRandomGenerator(parameter.createFrom(FACTORY)));
             framework.test();
+        }
+    }
+
+    @RunWith(Theories.class)
+    public static class 成功確率0に関するテスト {
+
+        @DataPoints
+        public static int[] trialsList = {
+                0, 1, 2, 10, 31, 100
+        };
+
+        @Theory
+        public void test(int trials) {
+            BinomialRnd binomialRnd = FACTORY.instanceOf(trials, 0d);
+            BaseRandom random = BaseRandom.threadSeparatedRandom();
+
+            final int iteration = 100;
+            for (int c = 0; c < iteration; c++) {
+                int u = binomialRnd.nextRandom(random);
+                assertThat(u, is(0));
+            }
+        }
+    }
+
+    @RunWith(Theories.class)
+    public static class 成功確率1に関するテスト {
+
+        @DataPoints
+        public static int[] trialsList = {
+                0, 1, 2, 10, 31, 100
+        };
+
+        @Theory
+        public void test(int trials) {
+            BinomialRnd binomialRnd = FACTORY.instanceOf(trials, 1d);
+            BaseRandom random = BaseRandom.threadSeparatedRandom();
+
+            final int iteration = 100;
+            for (int c = 0; c < iteration; c++) {
+                int u = binomialRnd.nextRandom(random);
+                assertThat(u, is(binomialRnd.numberOfTrials()));
+            }
         }
     }
 
