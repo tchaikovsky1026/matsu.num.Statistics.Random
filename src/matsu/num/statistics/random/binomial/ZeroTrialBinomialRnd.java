@@ -18,7 +18,9 @@ import matsu.num.statistics.random.BaseRandom;
  * 試行回数が0である二項分布乱数発生器を表現する.
  * 
  * @author Matsuura Y.
+ * @deprecated このクラスは使用されていない, 削除しても良い
  */
+@Deprecated
 final class ZeroTrialBinomialRnd extends SkeletalBinomialRnd {
 
     /**
