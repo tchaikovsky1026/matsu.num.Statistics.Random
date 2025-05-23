@@ -13,11 +13,8 @@ import matsu.num.statistics.random.staticgamma.StaticGammaFactoryForTesting;
 
 /**
  * テストクラスで使用する {@link matsu.num.statistics.random.StaticGammaRnd.Factory}.
- * 
- * @deprecated このクラスは使用されていない.
  */
 @Ignore
-@Deprecated
 public final class StaticBetaFactoryForTesting {
 
     public static final StaticBetaRnd.Factory FACTORY =
