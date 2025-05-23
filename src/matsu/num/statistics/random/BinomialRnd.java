@@ -26,7 +26,7 @@ package matsu.num.statistics.random;
  * <i>n</i>! / (<i>k</i>! (<i>n</i> - <i>k</i>)!)
  * <i>p</i><sup><i>k</i></sup>
  * (1 - <i>p</i>)<sup><i>n</i> - <i>k</i></sup>
- * &emsp; (0 &le; <i>k</i> &le; <i>n</i>)
+ * &emsp; (<i>k</i> = 0, 1, ..., <i>n</i>)
  * </li>
  * 
  * <li>P(<i>k</i>) = 0 &emsp; (otherwise)</li>
