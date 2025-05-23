@@ -29,7 +29,9 @@ import matsu.num.statistics.random.RndFactory;
  * </p>
  * 
  * <p>
- * <i>コンストラクタやファクトリメソッドは公開されておらず, 外部からインスタンス化することはできない.</i>
+ * <u><i>
+ * コンストラクタやファクトリメソッドは公開されておらず, 外部からインスタンス化することはできない.
+ * </i></u>
  * </p>
  * 
  * @author Matsuura Y.
@@ -72,8 +74,6 @@ public final class RandomGeneratorType<T extends RndFactory> {
 
     /**
      * このタイプの文字列表現を返す.
-     * 
-     * @return タイプの文字列表現
      */
     @Override
     public final String toString() {
