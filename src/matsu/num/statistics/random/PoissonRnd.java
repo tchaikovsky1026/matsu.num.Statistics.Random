@@ -26,7 +26,7 @@ package matsu.num.statistics.random;
  * <i>&lambda;</i><sup><i>k</i></sup>
  * /
  * <i>k</i>!
- * &emsp; (<i>k</i> &ge; 0)
+ * &emsp; (<i>k</i> = 0, 1, ...)
  * </li>
  * 
  * <li>P(<i>k</i>) = 0 &emsp; (otherwise)</li>
