@@ -24,7 +24,7 @@ final class Power2BinomialRndHelper {
     private final int naiveThrehold;
     private final NaiveBinomialRndHelper naiveBinomialRndHelper;
 
-    private final GammaRnd[] gammaRnds;
+    private final GammaRndPower2Storage gammaRndPower2Storage;
 
     /**
      * 非公開のコンストラクタ.
@@ -40,14 +40,14 @@ final class Power2BinomialRndHelper {
     Power2BinomialRndHelper(
             int naiveThrehold,
             NaiveBinomialRndHelper naiveBinomialRndHelper,
-            GammaRnd[] gammaRnds) {
+            GammaRndPower2Storage gammaRndPower2Storage) {
 
         assert naiveThrehold >= 2 : "2以上でない";
         assert Power2.isPowerOf2(naiveThrehold) : "2の累乗でない";
 
         this.naiveThrehold = naiveThrehold;
         this.naiveBinomialRndHelper = naiveBinomialRndHelper;
-        this.gammaRnds = gammaRnds;
+        this.gammaRndPower2Storage = gammaRndPower2Storage;
     }
 
     /**
@@ -64,7 +64,7 @@ final class Power2BinomialRndHelper {
         int power2_N_minus_1 = (n + 1) >> 1;
         int N_minus_1 = Power2.floorLog2(power2_N_minus_1);
 
-        GammaRnd gammaRnd = this.gammaRnds[N_minus_1];
+        GammaRnd gammaRnd = this.gammaRndPower2Storage.getAt(N_minus_1);
         double u1 = gammaRnd.nextRandom(random) + Double.MIN_NORMAL;
         double u2 = gammaRnd.nextRandom(random) + Double.MIN_NORMAL;
         double w = u1 + u2;

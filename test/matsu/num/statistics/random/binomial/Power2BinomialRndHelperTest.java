@@ -14,7 +14,6 @@ import org.junit.runner.RunWith;
 
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.BinomialRnd;
-import matsu.num.statistics.random.GammaRnd;
 import matsu.num.statistics.random.IntegerRandomGeneratorTestingFramework;
 import matsu.num.statistics.random.gamma.GammaFactoryForTesting;
 
@@ -71,17 +70,8 @@ final class Power2BinomialRndHelperTest {
 
         private static final class BinomialImpl extends SkeletalBinomialRnd {
 
-            private static final GammaRnd[] GAMMA_RNDS;
-
-            static {
-                GAMMA_RNDS = new GammaRnd[25];
-
-                int n = 1;
-                for (int i = 0; i < GAMMA_RNDS.length; i++) {
-                    GAMMA_RNDS[i] = GammaFactoryForTesting.FACTORY.instanceOf(n);
-                    n *= 2;
-                }
-            }
+            private static final GammaRndPower2Storage gammaRndPower2Storage =
+                    GammaRndPower2Storage.create(25, GammaFactoryForTesting.FACTORY);
 
             private final Power2BinomialRndHelper helper;
 
@@ -90,7 +80,7 @@ final class Power2BinomialRndHelperTest {
                 this.helper = new Power2BinomialRndHelper(
                         32,
                         new NaiveBinomialRndHelper(),
-                        GAMMA_RNDS);
+                        gammaRndPower2Storage);
             }
 
             @Override

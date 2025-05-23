@@ -64,12 +64,10 @@ public final class DirichletBasedBinomialRnd extends SkeletalBinomialRnd {
 
     /**
      * 指定したパラメータの二項分布乱数発生器インスタンスを構築する.
-     * 
-     * @param allPower2GammaRndsList [sGamma(1), sGamma(2), sGamma(4), ...]
      */
     private DirichletBasedBinomialRnd(
             int n, double p,
-            GammaRnd[] allPower2GammaRndsList, GammaRnd.Factory gammaRndFactory,
+            GammaRndPower2Storage gammaRndPower2Storage, GammaRnd.Factory gammaRndFactory,
             NaiveBinomialRndHelper naiveBinomialRnd, Power2BinomialRndHelper power2BinomialRnd) {
         super(n, p);
 
@@ -80,7 +78,7 @@ public final class DirichletBasedBinomialRnd extends SkeletalBinomialRnd {
         this.power2_a = Power2.expandBinary(n + 1 - this.m0);
         this.gammaRnds_power2_a = Arrays.stream(this.power2_a)
                 .map(Power2::floorLog2)
-                .mapToObj(a -> allPower2GammaRndsList[a])
+                .mapToObj(a -> gammaRndPower2Storage.getAt(a))
                 .toArray(GammaRnd[]::new);
         this.cumulative_power2_a_excludingSelf =
                 calc_intCumulative_excludingSelf(this.power2_a);
@@ -160,10 +158,7 @@ public final class DirichletBasedBinomialRnd extends SkeletalBinomialRnd {
 
         private final GammaRnd.Factory gammaRndFactory;
 
-        /**
-         * 形状パラメータが1, 2, 4, ... のガンマ乱数発生器.
-         */
-        private final GammaRnd[] gammaRnds_power2;
+        private final GammaRndPower2Storage gammaRndPower2Storage;
 
         private final NaiveBinomialRndHelper naiveBinomialRnd;
         private final Power2BinomialRndHelper power2BinomialRnd;
@@ -173,23 +168,19 @@ public final class DirichletBasedBinomialRnd extends SkeletalBinomialRnd {
 
             this.gammaRndFactory = gammaRndFactory;
 
-            this.gammaRnds_power2 = new GammaRnd[GAMMA_RND_BIT + 1];
-            int k = 1;
-            for (int i = 0; i < GAMMA_RND_BIT + 1; i++) {
-                gammaRnds_power2[i] = gammaRndFactory.instanceOf(k);
-                k *= 2;
-            }
+            this.gammaRndPower2Storage = GammaRndPower2Storage.create(
+                    GAMMA_RND_BIT + 1, gammaRndFactory);
 
             this.naiveBinomialRnd = new NaiveBinomialRndHelper();
             this.power2BinomialRnd = new Power2BinomialRndHelper(
-                    THRESHOLD_M, naiveBinomialRnd, gammaRnds_power2);
+                    THRESHOLD_M, naiveBinomialRnd, gammaRndPower2Storage);
         }
 
         @Override
         BinomialRnd createInstanceOf(int n, double p) {
             return new DirichletBasedBinomialRnd(
                     n, p,
-                    gammaRnds_power2, gammaRndFactory,
+                    gammaRndPower2Storage, gammaRndFactory,
                     naiveBinomialRnd, power2BinomialRnd);
         }
     }
