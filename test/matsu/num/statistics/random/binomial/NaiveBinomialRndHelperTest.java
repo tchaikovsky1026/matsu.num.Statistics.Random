@@ -6,6 +6,7 @@
  */
 package matsu.num.statistics.random.binomial;
 
+import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.experimental.theories.DataPoints;
 import org.junit.experimental.theories.Theories;
@@ -21,6 +22,8 @@ import matsu.num.statistics.random.IntegerRandomGeneratorTestingFramework;
  */
 @RunWith(Enclosed.class)
 final class NaiveBinomialRndHelperTest {
+
+    public static final Class<?> TEST_CLASS = NaiveBinomialRndHelper.class;
 
     private static final BinomialRnd.Factory FACTORY = new Factory();
 
@@ -46,6 +49,30 @@ final class NaiveBinomialRndHelperTest {
                     IntegerRandomGeneratorTestingFramework.instanceOf(
                             new TestedBinomialRandomGenerator(parameter.createFrom(FACTORY)));
             framework.test();
+        }
+    }
+
+    public static class 計算時間評価 {
+
+        @Test
+        public void test_乱数生成の実行() {
+            int iteration = 1_000;
+            BinomialRnd binomialRnd = FACTORY.instanceOf(1_000, 0.5);
+            BaseRandom random = BaseRandom.threadSeparatedRandom();
+
+            System.out.println(TEST_CLASS.getName() + ": speed measurement");
+            System.out.println(binomialRnd);
+
+            for (int c = 0; c < 5; c++) {
+                long startMills = System.currentTimeMillis();
+                for (int i = 0; i < iteration; i++) {
+                    binomialRnd.nextRandom(random);
+                }
+                long endMills = System.currentTimeMillis();
+                System.out.println((endMills - startMills) * 1E3 / iteration + " us");
+            }
+
+            System.out.println();
         }
     }
 
