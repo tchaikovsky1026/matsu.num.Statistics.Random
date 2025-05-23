@@ -33,4 +33,9 @@ final class BinomialParameters {
     BinomialRnd createFrom(BinomialRnd.Factory factory) {
         return factory.instanceOf(n, p);
     }
+
+    @Override
+    public String toString() {
+        return "BinomialParameter(n = %s, p = %s)".formatted(n, p);
+    }
 }

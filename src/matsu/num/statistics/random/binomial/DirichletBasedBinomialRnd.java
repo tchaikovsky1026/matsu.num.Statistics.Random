@@ -10,6 +10,8 @@
  */
 package matsu.num.statistics.random.binomial;
 
+import java.util.Arrays;
+
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.BinomialRnd;
 import matsu.num.statistics.random.GammaRnd;
@@ -44,14 +46,6 @@ public final class DirichletBasedBinomialRnd extends SkeletalBinomialRnd {
      */
     private static final int M0_BIT_MASK = THRESHOLD_M - 1;
 
-    private final GammaRnd.Factory gammaRndFactory;
-
-    /**
-     * 形状パラメータが1, 2, 4, ... のガンマ乱数発生器. <br>
-     * 最大は 2^20 = 1_048_576 (GAMMA_RND_BIT = 20)
-     */
-    private final GammaRnd[] gammaRnds_power2;
-
     private final NaiveBinomialRndHelper naiveBinomialRnd;
     private final Power2BinomialRndHelper power2BinomialRnd;
 
@@ -65,38 +59,59 @@ public final class DirichletBasedBinomialRnd extends SkeletalBinomialRnd {
     private final int m0;
     private final int[] power2_a;
     private final int[] cumulative_power2_a_excludingSelf;
+    private final GammaRnd[] gammaRnds_power2_a;
+    private final ExtendedErlangRndHelper m0RndHelper;
 
     /**
      * 指定したパラメータの二項分布乱数発生器インスタンスを構築する.
+     * 
+     * @param allPower2GammaRndsList [sGamma(1), sGamma(2), sGamma(4), ...]
      */
     private DirichletBasedBinomialRnd(
             int n, double p,
-            GammaRnd[] gammaRnds_power2, GammaRnd.Factory gammaRndFactory,
+            GammaRnd[] allPower2GammaRndsList, GammaRnd.Factory gammaRndFactory,
             NaiveBinomialRndHelper naiveBinomialRnd, Power2BinomialRndHelper power2BinomialRnd) {
         super(n, p);
 
-        this.gammaRnds_power2 = gammaRnds_power2;
-        this.gammaRndFactory = gammaRndFactory;
         this.naiveBinomialRnd = naiveBinomialRnd;
         this.power2BinomialRnd = power2BinomialRnd;
 
-        this.m0 = n & M0_BIT_MASK;
-        this.power2_a = Power2.expandBinary(n - this.m0);
+        this.m0 = (n + 1) & M0_BIT_MASK;
+        this.power2_a = Power2.expandBinary(n + 1 - this.m0);
+        this.gammaRnds_power2_a = Arrays.stream(this.power2_a)
+                .map(Power2::floorLog2)
+                .mapToObj(a -> allPower2GammaRndsList[a])
+                .toArray(GammaRnd[]::new);
         this.cumulative_power2_a_excludingSelf =
-                calc_cumulative_power2_a_excludingSelf(this.power2_a);
-
+                calc_intCumulative_excludingSelf(this.power2_a);
+        this.m0RndHelper = ExtendedErlangRndHelper.create(m0, gammaRndFactory);
     }
 
     /**
-     * [0, 2^a1, 2^a1+2^a2, ...]
+     * [0, x0, x0+x1, ...]
      * を計算する.
      */
-    private static int[] calc_cumulative_power2_a_excludingSelf(int[] power2_a) {
-        int[] out = new int[power2_a.length];
+    private static int[] calc_intCumulative_excludingSelf(int[] x) {
+        int[] out = new int[x.length];
         int sum = 0;
-        for (int i = 0; i < power2_a.length; i++) {
+        for (int i = 0; i < x.length; i++) {
             out[i] = sum;
-            sum += power2_a[i];
+            sum += x[i];
+        }
+
+        return out;
+    }
+
+    /**
+     * [x0, x0+x1, ...]
+     * を計算する.
+     */
+    private static double[] calc_doubleCumulative(double[] x) {
+        double[] out = new double[x.length];
+        double sum = 0;
+        for (int i = 0; i < x.length; i++) {
+            sum += x[i];
+            out[i] = sum;
         }
 
         return out;
@@ -104,7 +119,29 @@ public final class DirichletBasedBinomialRnd extends SkeletalBinomialRnd {
 
     @Override
     public int nextRandom(BaseRandom random) {
-        throw new AssertionError("TODO");
+        double[] u = new double[this.gammaRnds_power2_a.length + 1];
+        u[0] = this.m0RndHelper.next(random) + Double.MIN_NORMAL;
+        for (int k = 1; k < u.length; k++) {
+            u[k] = this.gammaRnds_power2_a[k - 1].nextRandom(random) + Double.MIN_NORMAL;
+        }
+
+        double[] cumulativeU = calc_doubleCumulative(u);
+        double y = cumulativeU[cumulativeU.length - 1] * p;
+
+        int k;
+        for (k = 0; k < cumulativeU.length; k++) {
+            if (cumulativeU[k] >= y) {
+                break;
+            }
+        }
+
+        return k == 0
+                ? this.naiveBinomialRnd.next(m0 - 1, y / u[0], random)
+                : m0 + this.cumulative_power2_a_excludingSelf[k - 1]
+                        + this.power2BinomialRnd.next(
+                                this.power2_a[k - 1] - 1,
+                                (y - cumulativeU[k - 1]) / u[k],
+                                random);
     }
 
     /**
@@ -140,7 +177,7 @@ public final class DirichletBasedBinomialRnd extends SkeletalBinomialRnd {
             int k = 1;
             for (int i = 0; i < GAMMA_RND_BIT + 1; i++) {
                 gammaRnds_power2[i] = gammaRndFactory.instanceOf(k);
-                k = k * 2;
+                k *= 2;
             }
 
             this.naiveBinomialRnd = new NaiveBinomialRndHelper();
