@@ -6,7 +6,7 @@
  */
 
 /*
- * 2025.5.13
+ * 2025.5.23
  */
 package matsu.num.statistics.random.binomial;
 
@@ -117,6 +117,12 @@ public final class DirichletBasedBinomialRnd extends SkeletalBinomialRnd {
 
     @Override
     public int nextRandom(BaseRandom random) {
+
+        // Dirichlet分布が必要ない場合は省略する
+        if (this.gammaRnds_power2_a.length == 0) {
+            return this.naiveBinomialRnd.next(m0 - 1, p, random);
+        }
+
         double[] u = new double[this.gammaRnds_power2_a.length + 1];
         u[0] = this.m0RndHelper.next(random) + Double.MIN_NORMAL;
         for (int k = 1; k < u.length; k++) {
