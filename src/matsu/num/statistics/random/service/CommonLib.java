@@ -47,9 +47,7 @@ public abstract class CommonLib {
     abstract Exponentiation exponentiation();
 
     /**
-     * このライブラリの文字列表現.
-     * 
-     * @return 文字列表現
+     * このライブラリの文字列表現を返す.
      */
     @Override
     public String toString() {
@@ -195,9 +193,7 @@ public abstract class CommonLib {
         }
 
         /**
-         * このインスタンスの文字列表現
-         * 
-         * @return 文字列表現
+         * このインスタンスの文字列表現を返す.
          */
         @Override
         public String toString() {
