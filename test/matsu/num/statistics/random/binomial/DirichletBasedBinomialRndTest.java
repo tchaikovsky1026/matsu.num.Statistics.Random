@@ -66,12 +66,13 @@ final class DirichletBasedBinomialRndTest {
             System.out.println(binomialRnd);
 
             for (int c = 0; c < 5; c++) {
-                long startMills = System.currentTimeMillis();
+                long startMills = System.nanoTime();
                 for (int i = 0; i < iteration; i++) {
                     binomialRnd.nextRandom(random);
                 }
-                long endMills = System.currentTimeMillis();
-                System.out.println((endMills - startMills) * 1E3 / iteration + " us");
+                long endMills = System.nanoTime();
+                System.out.println(
+                        "%.3f us".formatted((endMills - startMills) * 1E-3 / iteration));
             }
 
             System.out.println();
