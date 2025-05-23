@@ -56,7 +56,7 @@ final class NaiveBinomialRndHelperTest {
 
         @Test
         public void test_乱数生成の実行() {
-            int iteration = 1_000;
+            int iteration = 100;
             BinomialRnd binomialRnd = FACTORY.instanceOf(1_000, 0.5);
             BaseRandom random = BaseRandom.threadSeparatedRandom();
 

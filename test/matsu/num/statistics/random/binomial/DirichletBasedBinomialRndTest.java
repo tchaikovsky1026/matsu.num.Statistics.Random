@@ -6,6 +6,9 @@
  */
 package matsu.num.statistics.random.binomial;
 
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
+
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.experimental.theories.DataPoints;
@@ -34,15 +37,22 @@ final class DirichletBasedBinomialRndTest {
 
         @DataPoints
         public static BinomialParameters[] parameters = {
-                new BinomialParameters(10, 0.1),
-                new BinomialParameters(31, 0.1),
-                new BinomialParameters(100, 0.1),
+                new BinomialParameters(1, 0.01),
+                new BinomialParameters(10, 0.01),
+                new BinomialParameters(31, 0.01),
+                new BinomialParameters(100, 0.01),
+                new BinomialParameters(1, 0.3),
                 new BinomialParameters(10, 0.3),
                 new BinomialParameters(31, 0.3),
                 new BinomialParameters(100, 0.3),
+                new BinomialParameters(1, 0.7),
                 new BinomialParameters(10, 0.7),
                 new BinomialParameters(31, 0.7),
-                new BinomialParameters(100, 0.7)
+                new BinomialParameters(100, 0.7),
+                new BinomialParameters(1, 0.99),
+                new BinomialParameters(10, 0.99),
+                new BinomialParameters(31, 0.99),
+                new BinomialParameters(100, 0.99)
         };
 
         @Theory
@@ -54,11 +64,65 @@ final class DirichletBasedBinomialRndTest {
         }
     }
 
+    @RunWith(Theories.class)
+    public static class 成功確率0に関するテスト {
+
+        @DataPoints
+        public static int[] trialsList = {
+                0, 1, 2, 10, 31, 100
+        };
+
+        @Theory
+        public void test(int trials) {
+            BinomialRnd binomialRnd = FACTORY.instanceOf(trials, 0d);
+            BaseRandom random = BaseRandom.threadSeparatedRandom();
+
+            final int iteration = 100;
+            for (int c = 0; c < iteration; c++) {
+                int u = binomialRnd.nextRandom(random);
+                assertThat(u, is(0));
+            }
+        }
+    }
+
+    @RunWith(Theories.class)
+    public static class 成功確率1に関するテスト {
+
+        @DataPoints
+        public static int[] trialsList = {
+                0, 1, 2, 10, 31, 100
+        };
+
+        @Theory
+        public void test(int trials) {
+            BinomialRnd binomialRnd = FACTORY.instanceOf(trials, 1d);
+            BaseRandom random = BaseRandom.threadSeparatedRandom();
+
+            final int iteration = 100;
+            for (int c = 0; c < iteration; c++) {
+                int u = binomialRnd.nextRandom(random);
+                assertThat(u, is(binomialRnd.numberOfTrials()));
+            }
+        }
+    }
+
+    public static class 試行回数0に関するテスト {
+
+        @Test
+        public void test() {
+            BinomialRnd binomialRnd = FACTORY.instanceOf(0, 0.5d);
+            BaseRandom random = BaseRandom.threadSeparatedRandom();
+
+            int u = binomialRnd.nextRandom(random);
+            assertThat(u, is(0));
+        }
+    }
+
     public static class 大きいnに対する計算時間評価 {
 
         @Test
         public void test_乱数生成の実行() {
-            int iteration = 10_000;
+            int iteration = 1_000;
             BinomialRnd binomialRnd = FACTORY.instanceOf(1_000_000, 0.5);
             BaseRandom random = BaseRandom.threadSeparatedRandom();
 
