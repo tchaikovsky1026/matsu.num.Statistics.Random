@@ -15,6 +15,7 @@ import java.util.Collections;
 import java.util.List;
 
 import matsu.num.statistics.random.BetaRnd;
+import matsu.num.statistics.random.BinomialRnd;
 import matsu.num.statistics.random.CategoricalRnd;
 import matsu.num.statistics.random.CauchyRnd;
 import matsu.num.statistics.random.ChiSquaredRnd;
@@ -33,6 +34,7 @@ import matsu.num.statistics.random.TDistributionRnd;
 import matsu.num.statistics.random.VoigtRnd;
 import matsu.num.statistics.random.WeibullRnd;
 import matsu.num.statistics.random.beta.GammaBasedBetaRnd;
+import matsu.num.statistics.random.binomial.DirichletBasedBinomialRnd;
 import matsu.num.statistics.random.cat.TableBasedCategoricalRnd;
 import matsu.num.statistics.random.cauchy.ZiggCauchyRnd;
 import matsu.num.statistics.random.chisq.GammaTypeChiSquaredRnd;
@@ -67,6 +69,10 @@ public final class GeneratorTypes {
      * ベータ分布に従う乱数を表す.
      */
     public static final RandomGeneratorType<BetaRnd.Factory> BETA_RND;
+    /**
+     * 二項分布に従う乱数を表す.
+     */
+    public static final RandomGeneratorType<BinomialRnd.Factory> BINOMIAL_RND;
     /**
      * カテゴリカル分布に従う乱数を表す.
      */
@@ -143,6 +149,11 @@ public final class GeneratorTypes {
                 "BETA_RND", BetaRnd.Factory.class,
                 p -> GammaBasedBetaRnd.createFactory(p.get(GeneratorTypes.GAMMA_RND)));
         list.add(BETA_RND);
+
+        BINOMIAL_RND = new RandomGeneratorType<>(
+                "BINOMIAL_RND", BinomialRnd.Factory.class,
+                p -> DirichletBasedBinomialRnd.createFactory(p.get(GeneratorTypes.GAMMA_RND)));
+        list.add(BINOMIAL_RND);
 
         CATEGORICAL_RND = new RandomGeneratorType<>(
                 "CATEGORICAL_RND", CategoricalRnd.Factory.class,
