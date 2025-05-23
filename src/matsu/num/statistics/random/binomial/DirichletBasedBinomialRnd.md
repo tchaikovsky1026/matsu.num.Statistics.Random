@@ -8,7 +8,7 @@ $n$を非負整数, $p$を$0 \le p \le 1$の実数とする.
 $Z$を
 
 ```math
-Z = \text{「$X_0 + \cdots + X_k \ge p$となる最小の$k$」}
+Z = ( X_0 + \cdots + X_k \ge p \text{となる最小の} k)
 ```
 
 とすれば, $Z\sim\mathrm{Bin}(n,p)$である.
