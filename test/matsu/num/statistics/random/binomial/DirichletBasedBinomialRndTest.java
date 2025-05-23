@@ -37,15 +37,22 @@ final class DirichletBasedBinomialRndTest {
 
         @DataPoints
         public static BinomialParameters[] parameters = {
-                new BinomialParameters(10, 0.1),
-                new BinomialParameters(31, 0.1),
-                new BinomialParameters(100, 0.1),
+                new BinomialParameters(1, 0.01),
+                new BinomialParameters(10, 0.01),
+                new BinomialParameters(31, 0.01),
+                new BinomialParameters(100, 0.01),
+                new BinomialParameters(1, 0.3),
                 new BinomialParameters(10, 0.3),
                 new BinomialParameters(31, 0.3),
                 new BinomialParameters(100, 0.3),
+                new BinomialParameters(1, 0.7),
                 new BinomialParameters(10, 0.7),
                 new BinomialParameters(31, 0.7),
-                new BinomialParameters(100, 0.7)
+                new BinomialParameters(100, 0.7),
+                new BinomialParameters(1, 0.99),
+                new BinomialParameters(10, 0.99),
+                new BinomialParameters(31, 0.99),
+                new BinomialParameters(100, 0.99)
         };
 
         @Theory
@@ -99,11 +106,23 @@ final class DirichletBasedBinomialRndTest {
         }
     }
 
+    public static class 試行回数0に関するテスト {
+
+        @Test
+        public void test() {
+            BinomialRnd binomialRnd = FACTORY.instanceOf(0, 0.5d);
+            BaseRandom random = BaseRandom.threadSeparatedRandom();
+
+            int u = binomialRnd.nextRandom(random);
+            assertThat(u, is(0));
+        }
+    }
+
     public static class 大きいnに対する計算時間評価 {
 
         @Test
         public void test_乱数生成の実行() {
-            int iteration = 10_000;
+            int iteration = 1_000;
             BinomialRnd binomialRnd = FACTORY.instanceOf(1_000_000, 0.5);
             BaseRandom random = BaseRandom.threadSeparatedRandom();
 
