@@ -65,6 +65,18 @@ final class GammaHomoProcessBasedPoissonRndFactoryTest {
         }
     }
 
+    public static class Lambda0に関するテスト {
+
+        @Test
+        public void test() {
+            PoissonRnd poissonRnd = FACTORY.instanceOf(0d);
+            BaseRandom random = BaseRandom.threadSeparatedRandom();
+
+            int u = poissonRnd.nextRandom(random);
+            assertThat(u, is(0));
+        }
+    }
+
     public static class Lambda10のテスト {
 
         private IntegerRandomGeneratorTestingFramework framework;
