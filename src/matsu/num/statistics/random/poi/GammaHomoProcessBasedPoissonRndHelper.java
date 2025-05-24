@@ -86,7 +86,8 @@ public final class GammaHomoProcessBasedPoissonRndHelper {
         int shift = 0;
         while (true) {
             if (z < 4) {
-                return shift + byExpMethod(random, z);
+                shift += byExpMethod(random, z);
+                break;
             }
 
             // (z/2)を超えない最大の2の累乗数
@@ -96,11 +97,17 @@ public final class GammaHomoProcessBasedPoissonRndHelper {
                     Power2Util.floorLog2(intTestKmin))
                     .nextRandom(random);
             if (uGamma > z) {
-                return shift + byDirichletMethod(random, intTestKmin, z, uGamma);
+                shift += byDirichletMethod(random, intTestKmin, z, uGamma);
+                break;
             }
             z -= uGamma;
             shift += intTestKmin;
         }
+
+        // shift < 0 の場合, オーバーフローしたと思われる
+        return shift < 0
+                ? 0
+                : shift;
     }
 
     /**
