@@ -15,6 +15,8 @@ import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.GammaRnd;
 import matsu.num.statistics.random.PoissonRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
+import matsu.num.statistics.random.util.GammaRndPower2Storage;
+import matsu.num.statistics.random.util.Power2Util;
 
 /**
  * ガンマ分布乱数発生器を利用した, Poisson分布に従う乱数発生器を扱う.
@@ -30,10 +32,9 @@ public final class GammaHomoProcessBasedPoissonRnd extends SkeletalPoissonRnd {
     private static final int GAMMA_RND_BIT = 20;
 
     /**
-     * 形状パラメータが1, 2, 4, ... のガンマ乱数発生器. <br>
      * 最大は 2^20 = 1_048_576 (GAMMA_RND_BIT = 20)
      */
-    private final GammaRnd[] gammaRnds;
+    private final GammaRndPower2Storage gammaRndPower2Storages;
 
     private final Exponentiation exponentiation;
 
@@ -43,10 +44,12 @@ public final class GammaHomoProcessBasedPoissonRnd extends SkeletalPoissonRnd {
      *
      * @param lambda パラメータ
      */
-    private GammaHomoProcessBasedPoissonRnd(double lambda, GammaRnd[] gammaRnds, Exponentiation exponentiation) {
+    private GammaHomoProcessBasedPoissonRnd(
+            double lambda,
+            GammaRndPower2Storage gammaRndPower2Storages, Exponentiation exponentiation) {
         super(lambda);
 
-        this.gammaRnds = gammaRnds;
+        this.gammaRndPower2Storages = gammaRndPower2Storages;
         this.exponentiation = exponentiation;
     }
 
@@ -59,7 +62,9 @@ public final class GammaHomoProcessBasedPoissonRnd extends SkeletalPoissonRnd {
                 return shift + byExpMethod(random, z);
             }
             int intTestKmin = Integer.highestOneBit((int) z >> 1);
-            double uGamma = gammaRnds[31 - Integer.numberOfLeadingZeros(intTestKmin)].nextRandom(random);
+            double uGamma = this.gammaRndPower2Storages.getAt(
+                    Power2Util.floorLog2(intTestKmin))
+                    .nextRandom(random);
             if (uGamma > z) {
                 return shift + byDirichletMethod(random, intTestKmin, z, uGamma);
             }
@@ -101,7 +106,7 @@ public final class GammaHomoProcessBasedPoissonRnd extends SkeletalPoissonRnd {
             //kを更新
             k = k >> 1;
             kBit--;
-            GammaRnd gRndK = gammaRnds[kBit];
+            GammaRnd gRndK = this.gammaRndPower2Storages.getAt(kBit);
             final double u1 = gRndK.nextRandom(random);
             final double u2 = gRndK.nextRandom(random);
             final double u12 = u1 + u2 + 1E-100;
@@ -138,7 +143,7 @@ public final class GammaHomoProcessBasedPoissonRnd extends SkeletalPoissonRnd {
         /**
          * 形状パラメータが1, 2, 4, ... のガンマ乱数発生器.
          */
-        private final GammaRnd[] gammaRnds;
+        private final GammaRndPower2Storage gammaRndPower2Storages;
 
         private final Exponentiation exponentiation;
 
@@ -146,18 +151,15 @@ public final class GammaHomoProcessBasedPoissonRnd extends SkeletalPoissonRnd {
             super();
 
             this.exponentiation = exponentiation;
-            this.gammaRnds = new GammaRnd[GammaHomoProcessBasedPoissonRnd.GAMMA_RND_BIT + 1];
-            int k = 1;
-            for (int i = 0; i < GammaHomoProcessBasedPoissonRnd.GAMMA_RND_BIT + 1; i++) {
-                gammaRnds[i] = gammaRndFactory.instanceOf(k);
-                k = k * 2;
-            }
+            this.gammaRndPower2Storages = GammaRndPower2Storage.create(
+                    GAMMA_RND_BIT + 1, gammaRndFactory);
         }
 
         @Override
         PoissonRnd createInstanceOf(double lambda) {
-            return new GammaHomoProcessBasedPoissonRnd(lambda, this.gammaRnds, this.exponentiation);
+            return new GammaHomoProcessBasedPoissonRnd(
+                    lambda,
+                    this.gammaRndPower2Storages, this.exponentiation);
         }
     }
-
 }
