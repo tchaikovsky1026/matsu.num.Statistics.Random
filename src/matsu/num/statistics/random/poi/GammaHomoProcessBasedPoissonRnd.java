@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.5.7
+ * 2025.5.24
  */
 package matsu.num.statistics.random.poi;
 

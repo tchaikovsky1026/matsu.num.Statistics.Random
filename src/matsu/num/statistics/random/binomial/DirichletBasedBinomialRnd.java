@@ -15,6 +15,7 @@ import java.util.Arrays;
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.BinomialRnd;
 import matsu.num.statistics.random.GammaRnd;
+import matsu.num.statistics.random.util.GammaRndPower2Storage;
 
 /**
  * Dirichlet 分布乱数を使用した, 二項分布に従う乱数発生を扱う. <br>

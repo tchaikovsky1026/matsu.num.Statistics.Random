@@ -12,6 +12,7 @@ package matsu.num.statistics.random.binomial;
 
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.GammaRnd;
+import matsu.num.statistics.random.util.GammaRndPower2Storage;
 
 /**
  * 試行回数が (2<sup>N</sup> - 1) 型の二項乱数生成のヘルパ. <br>

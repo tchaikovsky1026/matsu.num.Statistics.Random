@@ -6,9 +6,9 @@
  */
 
 /*
- * 2025.5.23
+ * 2025.5.24
  */
-package matsu.num.statistics.random.binomial;
+package matsu.num.statistics.random.util;
 
 import matsu.num.statistics.random.GammaRnd;
 
@@ -16,11 +16,12 @@ import matsu.num.statistics.random.GammaRnd;
  * 2の累乗の階乗パラメータを持った標準ガンマ乱数のストレージ. <br>
  * n をサイズとして, <br>
  * [1, 2, 4, ..., 2<sup>n - 1</sup>] <br>
- * の形状パラメータを扱える.
+ * の形状パラメータを扱える. <br>
+ * 0 &le; n &le; 30 でなければならない.
  * 
  * @author Matsuura Y.
  */
-final class GammaRndPower2Storage {
+public final class GammaRndPower2Storage {
 
     private final GammaRnd[] gammaRnds;
 
@@ -42,7 +43,7 @@ final class GammaRndPower2Storage {
      * @return 乱数生成器
      * @throws IndexOutOfBoundsException index が不正の場合
      */
-    GammaRnd getAt(int index) {
+    public GammaRnd getAt(int index) {
         if (!(0 <= index && index < gammaRnds.length)) {
             throw new IndexOutOfBoundsException();
         }
@@ -59,7 +60,11 @@ final class GammaRndPower2Storage {
      * @throws IllegalArgumentException sizeが負の場合
      * @throws NullPointerException 引数にullが含まれる場合
      */
-    static GammaRndPower2Storage create(int size, GammaRnd.Factory gammaRndFactory) {
+    public static GammaRndPower2Storage create(int size, GammaRnd.Factory gammaRndFactory) {
+        if (!(0 <= size && size < 31)) {
+            throw new IllegalArgumentException("sizeが不適: size=" + size);
+        }
+
         return new GammaRndPower2Storage(size, gammaRndFactory);
     }
 }
