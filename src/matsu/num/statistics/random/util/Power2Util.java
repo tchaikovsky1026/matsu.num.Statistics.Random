@@ -7,16 +7,16 @@
 /*
  * 2025.5.22
  */
-package matsu.num.statistics.random.binomial;
+package matsu.num.statistics.random.util;
 
 /**
  * 2のべき乗の整数に関する計算補助.
  * 
  * @author Matsuura Y.
  */
-final class Power2 {
+public final class Power2Util {
 
-    private Power2() {
+    private Power2Util() {
         //インスタンス化不可
         throw new AssertionError();
     }
@@ -24,16 +24,30 @@ final class Power2 {
     /**
      * 整数が2の累乗かどうかを判定する. <br>
      * nは1以上でなければならない.
+     * 
+     * @param n n
+     * @return 2の累乗ならtrue
+     * @throws IllegalArgumentException nが1以上でない場合
      */
-    static boolean isPowerOf2(int n) {
+    public static boolean isPowerOf2(int n) {
+        if (n < 1) {
+            throw new IllegalArgumentException("nが1以上でない: n=" + n);
+        }
         return (n & (n - 1)) == 0;
     }
 
     /**
      * 整数nに対する floor(log <sub>2</sub> n) を計算する. <br>
      * nは1以上でなければならない.
+     * 
+     * @param n n
+     * @return floor(log <sub>2</sub> n)
+     * @throws IllegalArgumentException nが1以上でない場合
      */
-    static int floorLog2(int n) {
+    public static int floorLog2(int n) {
+        if (n < 1) {
+            throw new IllegalArgumentException("nが1以上でない: n=" + n);
+        }
         return 31 - Integer.numberOfLeadingZeros(n);
     }
 
@@ -41,9 +55,15 @@ final class Power2 {
      * 与えた整数を2進展開し, 各要素を詰めた配列を返す. <br>
      * 例えば, n = 5 ならば [1, 4] <br>
      * nは0以上でなければならない.
+     * 
+     * @param n n
+     * @return 配列
+     * @throws IllegalArgumentException nが0以上でない場合
      */
-    static int[] expandBinary(int n) {
-        assert n >= 0;
+    public static int[] expandBinary(int n) {
+        if (n < 0) {
+            throw new IllegalArgumentException("nが0以上でない: n=" + n);
+        }
 
         int[] out = new int[Integer.bitCount(n)];
 

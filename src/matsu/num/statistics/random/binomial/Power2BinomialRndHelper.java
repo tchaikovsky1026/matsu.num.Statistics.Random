@@ -13,6 +13,7 @@ package matsu.num.statistics.random.binomial;
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.GammaRnd;
 import matsu.num.statistics.random.util.GammaRndPower2Storage;
+import matsu.num.statistics.random.util.Power2Util;
 
 /**
  * 試行回数が (2<sup>N</sup> - 1) 型の二項乱数生成のヘルパ. <br>
@@ -44,7 +45,7 @@ final class Power2BinomialRndHelper {
             GammaRndPower2Storage gammaRndPower2Storage) {
 
         assert naiveThrehold >= 2 : "2以上でない";
-        assert Power2.isPowerOf2(naiveThrehold) : "2の累乗でない";
+        assert Power2Util.isPowerOf2(naiveThrehold) : "2の累乗でない";
 
         this.naiveThrehold = naiveThrehold;
         this.naiveBinomialRndHelper = naiveBinomialRndHelper;
@@ -56,14 +57,14 @@ final class Power2BinomialRndHelper {
      * (n = 2<sup>N</sup> - 1)と書けなければならない.
      */
     int next(int n, double p, BaseRandom random) {
-        assert Power2.isPowerOf2(n + 1) : "2の累乗でない";
+        assert Power2Util.isPowerOf2(n + 1) : "2の累乗でない";
 
         if (n < this.naiveThrehold) {
             return this.naiveBinomialRndHelper.next(n, p, random);
         }
 
         int power2_N_minus_1 = (n + 1) >> 1;
-        int N_minus_1 = Power2.floorLog2(power2_N_minus_1);
+        int N_minus_1 = Power2Util.floorLog2(power2_N_minus_1);
 
         GammaRnd gammaRnd = this.gammaRndPower2Storage.getAt(N_minus_1);
         double u1 = gammaRnd.nextRandom(random) + Double.MIN_NORMAL;
