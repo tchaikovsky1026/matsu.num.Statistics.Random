@@ -6,7 +6,7 @@
  */
 
 /*
- * 2025.5.13
+ * 2025.5.23
  */
 package matsu.num.statistics.random.binomial;
 
@@ -15,6 +15,8 @@ import java.util.Arrays;
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.BinomialRnd;
 import matsu.num.statistics.random.GammaRnd;
+import matsu.num.statistics.random.util.GammaRndPower2Storage;
+import matsu.num.statistics.random.util.Power2Util;
 
 /**
  * Dirichlet 分布乱数を使用した, 二項分布に従う乱数発生を扱う. <br>
@@ -75,9 +77,9 @@ public final class DirichletBasedBinomialRnd extends SkeletalBinomialRnd {
         this.power2BinomialRnd = power2BinomialRnd;
 
         this.m0 = (n + 1) & M0_BIT_MASK;
-        this.power2_a = Power2.expandBinary(n + 1 - this.m0);
+        this.power2_a = Power2Util.expandBinary(n + 1 - this.m0);
         this.gammaRnds_power2_a = Arrays.stream(this.power2_a)
-                .map(Power2::floorLog2)
+                .map(Power2Util::floorLog2)
                 .mapToObj(a -> gammaRndPower2Storage.getAt(a))
                 .toArray(GammaRnd[]::new);
         this.cumulative_power2_a_excludingSelf =
@@ -117,6 +119,12 @@ public final class DirichletBasedBinomialRnd extends SkeletalBinomialRnd {
 
     @Override
     public int nextRandom(BaseRandom random) {
+
+        // Dirichlet分布が必要ない場合は省略する
+        if (this.gammaRnds_power2_a.length == 0) {
+            return this.naiveBinomialRnd.next(m0 - 1, p, random);
+        }
+
         double[] u = new double[this.gammaRnds_power2_a.length + 1];
         u[0] = this.m0RndHelper.next(random) + Double.MIN_NORMAL;
         for (int k = 1; k < u.length; k++) {

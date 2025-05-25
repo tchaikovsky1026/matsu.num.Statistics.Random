@@ -16,6 +16,7 @@ import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.BinomialRnd;
 import matsu.num.statistics.random.IntegerRandomGeneratorTestingFramework;
 import matsu.num.statistics.random.gamma.GammaFactoryForTesting;
+import matsu.num.statistics.random.util.GammaRndPower2Storage;
 
 /**
  * {@link NaiveBinomialRndHelper} クラスのテスト.
