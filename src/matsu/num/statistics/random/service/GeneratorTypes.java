@@ -26,6 +26,7 @@ import matsu.num.statistics.random.GeometricRnd;
 import matsu.num.statistics.random.GumbelRnd;
 import matsu.num.statistics.random.LevyRnd;
 import matsu.num.statistics.random.LogisticRnd;
+import matsu.num.statistics.random.NegativeBinomialRnd;
 import matsu.num.statistics.random.NormalRnd;
 import matsu.num.statistics.random.PoissonRnd;
 import matsu.num.statistics.random.StaticBetaRnd;
@@ -45,6 +46,7 @@ import matsu.num.statistics.random.geo.InversionBasedGeoRnd;
 import matsu.num.statistics.random.gumbel.UniZiggGumbelRnd;
 import matsu.num.statistics.random.levy.NormalBasedLevyRnd;
 import matsu.num.statistics.random.logi.ZiggLogiRnd;
+import matsu.num.statistics.random.negbinomial.GammaPoissonBasedNegativeBinomialRnd;
 import matsu.num.statistics.random.norm.ZiggNormalRnd;
 import matsu.num.statistics.random.poi.GammaHomoProcessBasedPoissonRnd;
 import matsu.num.statistics.random.staticbeta.GammaBasedStaticBetaRnd;
@@ -113,6 +115,10 @@ public final class GeneratorTypes {
      * 標準ロジスティック分布に従う乱数を表す.
      */
     public static final RandomGeneratorType<LogisticRnd.Factory> LOGISTIC_RND;
+    /**
+     * 負の二項分布に従う乱数を表す.
+     */
+    public static final RandomGeneratorType<NegativeBinomialRnd.Factory> NEGATIVE_BINOMIAL_RND;
     /**
      * 標準正規分布に従う乱数を表す.
      */
@@ -209,6 +215,12 @@ public final class GeneratorTypes {
                 p -> ZiggLogiRnd.createFactory(
                         p.lib().exponentiation(), p.get(GeneratorTypes.EXPONENTIAL_RND)));
         list.add(LOGISTIC_RND);
+
+        NEGATIVE_BINOMIAL_RND = new RandomGeneratorType<>(
+                "NEGATIVE_BINOMIAL_RND", NegativeBinomialRnd.Factory.class,
+                p -> GammaPoissonBasedNegativeBinomialRnd.createFactory(
+                        p.lib().exponentiation(), p.get(GeneratorTypes.GAMMA_RND)));
+        list.add(NEGATIVE_BINOMIAL_RND);
 
         NORMAL_RND = new RandomGeneratorType<>(
                 "NORMAL_RND", NormalRnd.Factory.class,
