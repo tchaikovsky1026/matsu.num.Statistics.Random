@@ -14,6 +14,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import matsu.num.statistics.random.ArcsineRnd;
 import matsu.num.statistics.random.BetaRnd;
 import matsu.num.statistics.random.BinomialRnd;
 import matsu.num.statistics.random.CategoricalRnd;
@@ -34,6 +35,7 @@ import matsu.num.statistics.random.StaticGammaRnd;
 import matsu.num.statistics.random.TDistributionRnd;
 import matsu.num.statistics.random.VoigtRnd;
 import matsu.num.statistics.random.WeibullRnd;
+import matsu.num.statistics.random.arcsin.InversionBasedArcsineRnd;
 import matsu.num.statistics.random.beta.GammaBasedBetaRnd;
 import matsu.num.statistics.random.binomial.DirichletBasedBinomialRnd;
 import matsu.num.statistics.random.cat.TableBasedCategoricalRnd;
@@ -67,6 +69,10 @@ public final class GeneratorTypes {
 
     private static final Collection<RandomGeneratorType<?>> values;
 
+    /**
+     * 逆正弦分布に従う乱数を表す.
+     */
+    public static final RandomGeneratorType<ArcsineRnd.Factory> ARCSINE_RND;
     /**
      * ベータ分布に従う乱数を表す.
      */
@@ -150,6 +156,11 @@ public final class GeneratorTypes {
 
     static {
         List<RandomGeneratorType<?>> list = new ArrayList<>();
+
+        ARCSINE_RND = new RandomGeneratorType<>(
+                "ARCSINE_RND", ArcsineRnd.Factory.class,
+                p -> InversionBasedArcsineRnd.createFactory());
+        list.add(ARCSINE_RND);
 
         BETA_RND = new RandomGeneratorType<>(
                 "BETA_RND", BetaRnd.Factory.class,
