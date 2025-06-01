@@ -16,6 +16,7 @@ import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.ExponentialRnd;
 import matsu.num.statistics.random.FloatingRandomGeneratorTestingFramework;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
+import matsu.num.statistics.random.speedutil.SpeedTestExecutor;
 
 /**
  * {@link ZiggExponentialRnd} クラスのテスト.
@@ -48,26 +49,13 @@ final class ZiggExponentialRndTest {
 
         @Test
         public void test_乱数生成の実行() {
-            System.gc();
+            var testRnd = FACTORY.instance();
+            BaseRandom baseRandom = BaseRandom.threadSeparatedRandom();
 
-            int iteration = 50_000_000;
-            ExponentialRnd binomialRnd = FACTORY.instance();
-            BaseRandom random = BaseRandom.threadSeparatedRandom();
-
-            System.out.println(TEST_CLASS.getName() + ": speed measurement");
-            System.out.println(binomialRnd);
-
-            for (int c = 0; c < 5; c++) {
-                long startMills = System.nanoTime();
-                for (int i = 0; i < iteration; i++) {
-                    binomialRnd.nextRandom(random);
-                }
-                long endMills = System.nanoTime();
-                System.out.println(
-                        "%.3f ns".formatted((double) (endMills - startMills) / iteration));
-            }
-
-            System.out.println();
+            var executor = new SpeedTestExecutor(
+                    TEST_CLASS, testRnd, 50_000_000,
+                    () -> testRnd.nextRandom(baseRandom));
+            executor.execute();
         }
     }
 

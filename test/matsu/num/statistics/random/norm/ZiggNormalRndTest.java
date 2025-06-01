@@ -17,6 +17,7 @@ import matsu.num.statistics.random.FloatingRandomGeneratorTestingFramework;
 import matsu.num.statistics.random.NormalRnd;
 import matsu.num.statistics.random.exp.ExponentialFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
+import matsu.num.statistics.random.speedutil.SpeedTestExecutor;
 
 /**
  * {@link ZiggNormalRndFactory} クラスのテスト.
@@ -51,26 +52,14 @@ final class ZiggNormalRndTest {
 
         @Test
         public void test_乱数生成の実行() {
-            System.gc();
 
-            int iteration = 50_000_000;
-            NormalRnd normalRnd = FACTORY.instance();
-            BaseRandom random = BaseRandom.threadSeparatedRandom();
+            var testRnd = FACTORY.instance();
+            BaseRandom baseRandom = BaseRandom.threadSeparatedRandom();
 
-            System.out.println(TEST_CLASS.getName() + ": speed measurement");
-            System.out.println(normalRnd);
-
-            for (int c = 0; c < 5; c++) {
-                long startMills = System.nanoTime();
-                for (int i = 0; i < iteration; i++) {
-                    normalRnd.nextRandom(random);
-                }
-                long endMills = System.nanoTime();
-                System.out.println(
-                        "%.3f ns".formatted((double) (endMills - startMills) / iteration));
-            }
-
-            System.out.println();
+            var executor = new SpeedTestExecutor(
+                    TEST_CLASS, testRnd, 50_000_000,
+                    () -> testRnd.nextRandom(baseRandom));
+            executor.execute();
         }
     }
 
