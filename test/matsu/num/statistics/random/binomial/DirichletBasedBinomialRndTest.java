@@ -9,6 +9,7 @@ package matsu.num.statistics.random.binomial;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.experimental.theories.DataPoints;
@@ -118,11 +119,14 @@ final class DirichletBasedBinomialRndTest {
         }
     }
 
-    public static class 大きいnに対する計算時間評価 {
+    @Ignore
+    public static class 計算時間評価 {
 
         @Test
         public void test_乱数生成の実行() {
-            int iteration = 1_000;
+            System.gc();
+
+            int iteration = 200_000;
             BinomialRnd binomialRnd = FACTORY.instanceOf(1_000_000, 0.5);
             BaseRandom random = BaseRandom.threadSeparatedRandom();
 

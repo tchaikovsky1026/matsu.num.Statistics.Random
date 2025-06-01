@@ -6,6 +6,7 @@
  */
 package matsu.num.statistics.random.binomial;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.experimental.theories.DataPoints;
@@ -52,11 +53,14 @@ final class NaiveBinomialRndHelperTest {
         }
     }
 
+    @Ignore
     public static class 計算時間評価 {
 
         @Test
         public void test_乱数生成の実行() {
-            int iteration = 100;
+            System.gc();
+
+            int iteration = 50_000;
             BinomialRnd binomialRnd = FACTORY.instanceOf(1_000, 0.5);
             BaseRandom random = BaseRandom.threadSeparatedRandom();
 
