@@ -35,7 +35,7 @@ import matsu.num.statistics.random.StaticGammaRnd;
 import matsu.num.statistics.random.TDistributionRnd;
 import matsu.num.statistics.random.VoigtRnd;
 import matsu.num.statistics.random.WeibullRnd;
-import matsu.num.statistics.random.arcsin.InversionBasedArcsineRnd;
+import matsu.num.statistics.random.arcsin.ZigguratArcsineRnd;
 import matsu.num.statistics.random.beta.GammaBasedBetaRnd;
 import matsu.num.statistics.random.binomial.DirichletBasedBinomialRnd;
 import matsu.num.statistics.random.cat.TableBasedCategoricalRnd;
@@ -159,7 +159,7 @@ public final class GeneratorTypes {
 
         ARCSINE_RND = new RandomGeneratorType<>(
                 "ARCSINE_RND", ArcsineRnd.Factory.class,
-                p -> InversionBasedArcsineRnd.createFactory());
+                p -> ZigguratArcsineRnd.createFactory(p.lib().exponentiation()));
         list.add(ARCSINE_RND);
 
         BETA_RND = new RandomGeneratorType<>(
