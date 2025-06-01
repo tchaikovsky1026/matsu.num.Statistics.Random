@@ -20,6 +20,7 @@ import matsu.num.statistics.random.FloatingRandomGeneratorTestingFramework;
  * 
  * @author Matsuura Y.
  */
+@SuppressWarnings("deprecation")
 @RunWith(Enclosed.class)
 final class InversionBasedArcsineRndTest {
 

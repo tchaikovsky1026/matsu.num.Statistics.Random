@@ -17,7 +17,9 @@ import matsu.num.statistics.random.BaseRandom;
  * 逆関数法による, 逆正弦乱数発生器.
  * 
  * @author Matsuura Y.
+ * @deprecated このクラスは使用されていない
  */
+@Deprecated
 public final class InversionBasedArcsineRnd extends SkeletalArcsineRnd {
 
     /**
