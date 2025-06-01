@@ -4,10 +4,6 @@
  * This software is released under the MIT License.
  * http://opensource.org/licenses/mit-license.php
  */
-
-/*
- * 2025.6.1
- */
 package matsu.num.statistics.random.arcsin;
 
 import org.junit.Ignore;
