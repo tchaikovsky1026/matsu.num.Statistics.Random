@@ -6,6 +6,8 @@
  */
 package matsu.num.statistics.random.exp;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -55,6 +57,18 @@ final class ZiggExponentialRndTest {
             var executor = new SpeedTestExecutor(
                     TEST_CLASS, testRnd, 50_000_000,
                     () -> testRnd.nextRandom(baseRandom));
+            executor.execute();
+        }
+    }
+
+    @Ignore
+    public static class Java標準ライブラリの計算時間評価 {
+
+        @Test
+        public void test_乱数生成の実行() {
+            var executor = new SpeedTestExecutor(
+                    TEST_CLASS, "ThreadLocalRandom.nextExponential", 50_000_000,
+                    () -> ThreadLocalRandom.current().nextExponential());
             executor.execute();
         }
     }
