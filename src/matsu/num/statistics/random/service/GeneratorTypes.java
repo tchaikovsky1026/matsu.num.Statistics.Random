@@ -35,6 +35,7 @@ import matsu.num.statistics.random.StaticGammaRnd;
 import matsu.num.statistics.random.TDistributionRnd;
 import matsu.num.statistics.random.VoigtRnd;
 import matsu.num.statistics.random.WeibullRnd;
+import matsu.num.statistics.random.ZetaRnd;
 import matsu.num.statistics.random.arcsin.ZigguratArcsineRnd;
 import matsu.num.statistics.random.beta.GammaBasedBetaRnd;
 import matsu.num.statistics.random.binomial.DirichletBasedBinomialRnd;
@@ -153,6 +154,13 @@ public final class GeneratorTypes {
      * 標準Weibull分布に従う乱数を表す.
      */
     public static final RandomGeneratorType<WeibullRnd.Factory> WEIBULL_RND;
+    /**
+     * 標準Weibull分布に従う乱数を表す.
+     * 
+     * @deprecated まだ提供されていない. ファクトリを get しようとすると, 例外がスローされる.
+     */
+    @Deprecated
+    public static final RandomGeneratorType<ZetaRnd.Factory> ZETA_RND;
 
     static {
         List<RandomGeneratorType<?>> list = new ArrayList<>();
@@ -274,6 +282,13 @@ public final class GeneratorTypes {
                 "WEIBULL_RND", WeibullRnd.Factory.class,
                 p -> GumbelBasedWeibullRnd.createFactory(
                         p.lib().exponentiation(), p.get(GeneratorTypes.GUMBEL_RND)));
+        list.add(WEIBULL_RND);
+
+        ZETA_RND = new RandomGeneratorType<>(
+                "ZETA_RND", ZetaRnd.Factory.class,
+                p -> {
+                    throw new UnsupportedOperationException("提供されていない");
+                });
         list.add(WEIBULL_RND);
 
         values = Collections.unmodifiableList(list);
