@@ -21,6 +21,7 @@ import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.BinomialRnd;
 import matsu.num.statistics.random.IntegerRandomGeneratorTestingFramework;
 import matsu.num.statistics.random.gamma.GammaFactoryForTesting;
+import matsu.num.statistics.random.speedutil.SpeedTestExecutor;
 
 /**
  * {@link DirichletBasedBinomialRnd} クラスのテスト.
@@ -124,26 +125,13 @@ final class DirichletBasedBinomialRndTest {
 
         @Test
         public void test_乱数生成の実行() {
-            System.gc();
+            var testRnd = FACTORY.instanceOf(1_000_000, 0.5);
+            BaseRandom baseRandom = BaseRandom.threadSeparatedRandom();
 
-            int iteration = 200_000;
-            BinomialRnd binomialRnd = FACTORY.instanceOf(1_000_000, 0.5);
-            BaseRandom random = BaseRandom.threadSeparatedRandom();
-
-            System.out.println(TEST_CLASS.getName() + ": speed measurement");
-            System.out.println(binomialRnd);
-
-            for (int c = 0; c < 5; c++) {
-                long startMills = System.nanoTime();
-                for (int i = 0; i < iteration; i++) {
-                    binomialRnd.nextRandom(random);
-                }
-                long endMills = System.nanoTime();
-                System.out.println(
-                        "%.3f us".formatted((endMills - startMills) * 1E-3 / iteration));
-            }
-
-            System.out.println();
+            var executor = new SpeedTestExecutor(
+                    TEST_CLASS, testRnd, 500_000,
+                    () -> testRnd.nextRandom(baseRandom));
+            executor.execute();
         }
     }
 

@@ -6,9 +6,10 @@
  */
 package matsu.num.statistics.random.exp;
 
-import java.util.Objects;
+import java.util.concurrent.ThreadLocalRandom;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
@@ -16,8 +17,8 @@ import org.junit.runner.RunWith;
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.ExponentialRnd;
 import matsu.num.statistics.random.FloatingRandomGeneratorTestingFramework;
-import matsu.num.statistics.random.TestedFloatingRandomGenerator;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
+import matsu.num.statistics.random.speedutil.SpeedTestExecutor;
 
 /**
  * {@link ZiggExponentialRnd} クラスのテスト.
@@ -29,40 +30,46 @@ final class ZiggExponentialRndTest {
     private static final ExponentialRnd.Factory FACTORY =
             ZiggExponentialRnd.createFactory(ExponentiationForTesting.INSTANCE);
 
-    public static class 指数乱数のテスト {
+    public static class 乱数のテスト {
 
         private FloatingRandomGeneratorTestingFramework framework;
 
         @Before
         public void before() {
             framework = FloatingRandomGeneratorTestingFramework
-                    .instanceOf(new TestedExp(BaseRandom.threadSeparatedRandom()));
+                    .instanceOf(new TestedExponentialRandomGenerator(FACTORY.instance()));
         }
 
         @Test
         public void test() {
             framework.test();
         }
+    }
 
-        private static final class TestedExp implements TestedFloatingRandomGenerator {
+    @Ignore
+    public static class 計算時間評価 {
 
-            private final BaseRandom random;
-            private final ExponentialRnd exponentialRnd = FACTORY.instance();
+        @Test
+        public void test_乱数生成の実行() {
+            var testRnd = FACTORY.instance();
+            BaseRandom baseRandom = BaseRandom.threadSeparatedRandom();
 
-            public TestedExp(BaseRandom random) {
-                this.random = Objects.requireNonNull(random);
-            }
+            var executor = new SpeedTestExecutor(
+                    TEST_CLASS, testRnd, 50_000_000,
+                    () -> testRnd.nextRandom(baseRandom));
+            executor.execute();
+        }
+    }
 
-            @Override
-            public double newValue() {
-                return exponentialRnd.nextRandom(random);
-            }
+    @Ignore
+    public static class Java標準ライブラリの計算時間評価 {
 
-            @Override
-            public double cumulativeProbability(double arg) {
-                return 1 - Math.exp(-arg);
-            }
-
+        @Test
+        public void test_乱数生成の実行() {
+            var executor = new SpeedTestExecutor(
+                    TEST_CLASS, "ThreadLocalRandom.nextExponential", 50_000_000,
+                    () -> ThreadLocalRandom.current().nextExponential());
+            executor.execute();
         }
     }
 
