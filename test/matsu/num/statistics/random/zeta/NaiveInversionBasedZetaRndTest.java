@@ -48,7 +48,7 @@ final class NaiveInversionBasedZetaRndTest {
         public void test_toString() {
             System.out.println(TEST_CLASS.getName());
             System.out.println(FACTORY);
-            System.out.println(FACTORY.instanceOf(1.2));
+            System.out.println(FACTORY.instanceOf(2));
             System.out.println();
         }
     }
