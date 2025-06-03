@@ -71,7 +71,7 @@ public final class RejectionSamplingZetaRnd extends SkeletalZetaRnd {
             double u = random.nextDouble();
 
             if (u <= cw ||
-                    u * (1 - exponentiation.exp(-s_minus_1 * exponentiation.log(1d + w))) <= cw) {
+                    u * (1 - exponentiation.pow(1 + w, -s_minus_1)) <= cw) {
                 return y;
             }
         }

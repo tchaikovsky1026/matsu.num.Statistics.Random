@@ -44,6 +44,11 @@ final class ExponentiationMath implements Exponentiation {
     }
 
     @Override
+    public double pow(double a, double b) {
+        return Math.pow(a, b);
+    }
+
+    @Override
     public double sqrt(double x) {
         return Math.sqrt(x);
     }
