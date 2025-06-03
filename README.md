@@ -27,6 +27,7 @@
         - 幾何分布
         - 負の二項分布
         - Poisson 分布
+        - Yule-Simon 分布
         - ゼータ分布
 
 ## History
