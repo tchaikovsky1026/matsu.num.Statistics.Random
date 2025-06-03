@@ -60,10 +60,11 @@ public final class RejectionSamplingZetaRnd extends SkeletalZetaRnd {
     public int nextRandom(BaseRandom random) {
         while (true) {
             double z = exponentiation.exp(exponentialRnd.nextRandom(random) * inv_s_minus_1);
-            int y = !(z <= Integer.MAX_VALUE)
-                    ? 1
-                    : (int) z;
+            if (z > Integer.MAX_VALUE) {
+                continue;
+            }
 
+            int y = (int) z;
             double w = 1d / y;
             double cw = c * w;
 

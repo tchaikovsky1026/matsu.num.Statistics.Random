@@ -31,7 +31,7 @@ package matsu.num.statistics.random;
  * </ul>
  * 
  * <p>
- * 扱うことができるパラメータ <i>s</i> は, {@code 2.0 <= s <= 100.0} である.
+ * 扱うことができるパラメータ <i>s</i> は, {@code 1.25 <= s <= 100.0} である.
  * </p>
  *
  * @implSpec
@@ -45,7 +45,7 @@ public interface ZetaRnd extends IntegerRandomGenerator {
     /**
      * 扱うことができるパラメータの最小値.
      */
-    public static final double LOWER_LIMIT_S = 2d;
+    public static final double LOWER_LIMIT_S = 1.25d;
 
     /**
      * 扱うことができるパラメータの最大値.

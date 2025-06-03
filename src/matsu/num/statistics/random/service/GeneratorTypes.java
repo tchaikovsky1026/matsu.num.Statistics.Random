@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.5.8
+ * 2025.6.3
  */
 package matsu.num.statistics.random.service;
 
@@ -156,7 +156,7 @@ public final class GeneratorTypes {
      */
     public static final RandomGeneratorType<WeibullRnd.Factory> WEIBULL_RND;
     /**
-     * 標準Weibull分布に従う乱数を表す.
+     * ゼータ分布に従う乱数を表す.
      */
     public static final RandomGeneratorType<ZetaRnd.Factory> ZETA_RND;
 
