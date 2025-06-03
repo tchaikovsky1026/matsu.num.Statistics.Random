@@ -27,6 +27,7 @@
         - 幾何分布
         - 負の二項分布
         - Poisson 分布
+        - ゼータ分布
 
 ## History
 更新履歴は history.txt を参照のこと.
