@@ -17,7 +17,9 @@ import matsu.num.statistics.random.ZetaRnd;
  * 素朴な逆関数法によるゼータ乱数生成器を扱う.
  * 
  * @author Matsuura Y.
+ * @deprecated このクラスは往路ダクトコード内で使用されていない
  */
+@Deprecated
 public final class NaiveInversionBasedZetaRnd
         extends SkeletalZetaRnd {
 

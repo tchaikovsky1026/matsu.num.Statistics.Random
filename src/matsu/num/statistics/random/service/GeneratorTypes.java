@@ -57,7 +57,7 @@ import matsu.num.statistics.random.staticgamma.MTTypeStaticGammaRnd;
 import matsu.num.statistics.random.tdist.NormalGammaBasedTDistRnd;
 import matsu.num.statistics.random.voigt.StandardImplVoigtRnd;
 import matsu.num.statistics.random.weibull.GumbelBasedWeibullRnd;
-import matsu.num.statistics.random.zeta.NaiveInversionBasedZetaRnd;
+import matsu.num.statistics.random.zeta.RejectionSamplingZetaRnd;
 
 /**
  * <p>
@@ -284,7 +284,9 @@ public final class GeneratorTypes {
 
         ZETA_RND = new RandomGeneratorType<>(
                 "ZETA_RND", ZetaRnd.Factory.class,
-                p -> NaiveInversionBasedZetaRnd.createFactory());
+                p -> RejectionSamplingZetaRnd.createFactory(
+                        p.lib().exponentiation(),
+                        p.get(GeneratorTypes.EXPONENTIAL_RND)));
         list.add(ZETA_RND);
 
         values = Collections.unmodifiableList(list);

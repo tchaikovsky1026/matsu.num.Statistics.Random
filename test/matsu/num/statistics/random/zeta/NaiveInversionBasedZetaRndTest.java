@@ -23,6 +23,7 @@ import matsu.num.statistics.random.speedutil.SpeedTestExecutor;
  * {@link NaiveInversionBasedZetaRnd} のテスト.
  */
 @RunWith(Enclosed.class)
+@SuppressWarnings("deprecation")
 final class NaiveInversionBasedZetaRndTest {
 
     public static final Class<?> TEST_CLASS = NaiveInversionBasedZetaRnd.class;
