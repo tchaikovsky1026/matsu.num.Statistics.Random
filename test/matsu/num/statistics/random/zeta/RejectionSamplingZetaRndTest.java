@@ -6,6 +6,7 @@
  */
 package matsu.num.statistics.random.zeta;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.experimental.theories.DataPoints;
@@ -13,10 +14,12 @@ import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
 
+import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.IntegerRandomGeneratorTestingFramework;
 import matsu.num.statistics.random.ZetaRnd;
 import matsu.num.statistics.random.exp.ExponentialFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
+import matsu.num.statistics.random.speedutil.SpeedTestExecutor;
 
 /**
  * {@link RejectionSamplingZetaRnd} のテスト.
@@ -35,7 +38,7 @@ final class RejectionSamplingZetaRndTest {
     public static class 乱数のテスト {
 
         @DataPoints
-        public static double[] s_values = { 2, 3, 4, 10 };
+        public static double[] s_values = { 1.25, 1.5, 2, 3, 4, 10 };
 
         @Theory
         public void test_s_2(double s) {
@@ -43,6 +46,22 @@ final class RejectionSamplingZetaRndTest {
                     IntegerRandomGeneratorTestingFramework.instanceOf(
                             new TestedZetaRandomGenerator(FACTORY.instanceOf(s)));
             framework.test();
+        }
+    }
+
+    @Ignore
+    public static class 計算時間評価 {
+
+        @Test
+        public void test_乱数生成の実行_s_1_5() {
+
+            var testRnd = FACTORY.instanceOf(1.5);
+            BaseRandom baseRandom = BaseRandom.threadSeparatedRandom();
+
+            var executor = new SpeedTestExecutor(
+                    TEST_CLASS, testRnd, 2_000_000,
+                    () -> testRnd.nextRandom(baseRandom));
+            executor.execute();
         }
     }
 
