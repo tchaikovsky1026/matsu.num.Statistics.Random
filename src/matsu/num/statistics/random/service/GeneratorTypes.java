@@ -57,6 +57,7 @@ import matsu.num.statistics.random.staticgamma.MTTypeStaticGammaRnd;
 import matsu.num.statistics.random.tdist.NormalGammaBasedTDistRnd;
 import matsu.num.statistics.random.voigt.StandardImplVoigtRnd;
 import matsu.num.statistics.random.weibull.GumbelBasedWeibullRnd;
+import matsu.num.statistics.random.zeta.NaiveInversionBasedZetaRnd;
 
 /**
  * <p>
@@ -156,10 +157,7 @@ public final class GeneratorTypes {
     public static final RandomGeneratorType<WeibullRnd.Factory> WEIBULL_RND;
     /**
      * 標準Weibull分布に従う乱数を表す.
-     * 
-     * @deprecated まだ提供されていない. ファクトリを get しようとすると, 例外がスローされる.
      */
-    @Deprecated
     public static final RandomGeneratorType<ZetaRnd.Factory> ZETA_RND;
 
     static {
@@ -286,10 +284,8 @@ public final class GeneratorTypes {
 
         ZETA_RND = new RandomGeneratorType<>(
                 "ZETA_RND", ZetaRnd.Factory.class,
-                p -> {
-                    throw new UnsupportedOperationException("提供されていない");
-                });
-        list.add(WEIBULL_RND);
+                p -> NaiveInversionBasedZetaRnd.createFactory());
+        list.add(ZETA_RND);
 
         values = Collections.unmodifiableList(list);
     }
