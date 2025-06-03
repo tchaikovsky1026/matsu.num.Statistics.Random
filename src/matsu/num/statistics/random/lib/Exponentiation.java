@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.12.18
+ * 2025.6.3
  */
 package matsu.num.statistics.random.lib;
 
@@ -79,6 +79,18 @@ public interface Exponentiation {
      * @return ln(1 + <i>x</i>)
      */
     public abstract double log1p(double x);
+
+    /**
+     * <i>a</i> の <i>b</i> 乗
+     * (<i>a</i><sup><i>b</i></sup>) を返す.
+     * 
+     * @param a 底
+     * @param b 指数
+     * @return <i>a</i><sup><i>b</i></sup>
+     */
+    public default double pow(double a, double b) {
+        return this.exp(b * this.log(a));
+    }
 
     /**
      * 正の平方根を返す.
