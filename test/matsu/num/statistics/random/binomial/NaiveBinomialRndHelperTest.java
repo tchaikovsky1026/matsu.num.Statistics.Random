@@ -6,6 +6,7 @@
  */
 package matsu.num.statistics.random.binomial;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.experimental.theories.DataPoints;
@@ -16,6 +17,7 @@ import org.junit.runner.RunWith;
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.BinomialRnd;
 import matsu.num.statistics.random.IntegerRandomGeneratorTestingFramework;
+import matsu.num.statistics.random.speedutil.SpeedTestExecutor;
 
 /**
  * {@link NaiveBinomialRndHelper} クラスのテスト.
@@ -52,28 +54,18 @@ final class NaiveBinomialRndHelperTest {
         }
     }
 
+    @Ignore
     public static class 計算時間評価 {
 
         @Test
         public void test_乱数生成の実行() {
-            int iteration = 100;
-            BinomialRnd binomialRnd = FACTORY.instanceOf(1_000, 0.5);
-            BaseRandom random = BaseRandom.threadSeparatedRandom();
+            var testRnd = FACTORY.instanceOf(1_000, 0.5);
+            BaseRandom baseRandom = BaseRandom.threadSeparatedRandom();
 
-            System.out.println(TEST_CLASS.getName() + ": speed measurement");
-            System.out.println(binomialRnd);
-
-            for (int c = 0; c < 5; c++) {
-                long startMills = System.nanoTime();
-                for (int i = 0; i < iteration; i++) {
-                    binomialRnd.nextRandom(random);
-                }
-                long endMills = System.nanoTime();
-                System.out.println(
-                        "%.3f us".formatted((endMills - startMills) * 1E-3 / iteration));
-            }
-
-            System.out.println();
+            var executor = new SpeedTestExecutor(
+                    TEST_CLASS, testRnd, 50_000,
+                    () -> testRnd.nextRandom(baseRandom));
+            executor.execute();
         }
     }
 

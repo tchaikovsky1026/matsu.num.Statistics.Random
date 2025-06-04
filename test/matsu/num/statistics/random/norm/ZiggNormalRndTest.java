@@ -6,9 +6,10 @@
  */
 package matsu.num.statistics.random.norm;
 
-import java.util.Objects;
+import java.util.concurrent.ThreadLocalRandom;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
@@ -16,9 +17,9 @@ import org.junit.runner.RunWith;
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.FloatingRandomGeneratorTestingFramework;
 import matsu.num.statistics.random.NormalRnd;
-import matsu.num.statistics.random.TestedFloatingRandomGenerator;
 import matsu.num.statistics.random.exp.ExponentialFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
+import matsu.num.statistics.random.speedutil.SpeedTestExecutor;
 
 /**
  * {@link ZiggNormalRndFactory} クラスのテスト.
@@ -32,58 +33,47 @@ final class ZiggNormalRndTest {
                     ExponentiationForTesting.INSTANCE,
                     ExponentialFactoryForTesting.FACTORY);
 
-    public static class 正規乱数のテスト {
+    public static class 乱数のテスト {
 
         private FloatingRandomGeneratorTestingFramework framework;
 
         @Before
         public void before() {
             framework = FloatingRandomGeneratorTestingFramework
-                    .instanceOf(new TestedNormal(BaseRandom.threadSeparatedRandom()));
+                    .instanceOf(new TestedNormalRandomGenerator(FACTORY.instance()));
         }
 
         @Test
         public void test() {
             framework.test();
         }
+    }
 
-        /**
-         * 正規乱数発生器の変則型のテスタ. <br>
-         * 正規分布は累積分布関数の計算が厄介であるので, カイ二乗分布に帰着させる. <br>
-         * <br>
-         * X,Yが標準正規分布に従うとき, {@literal  Z = X^2 + Y^2}は自由度2のカイ二乗分布に従う. <br>
-         * 符号テストも行いたいので, <br>
-         * {@literal Z = sig(XY) * (X^2 + Y^2)} <br>
-         * とする. <br>
-         * Zの累積分布関数は, <br>
-         * {@literal (1/2)exp(-|z|/2) (z < 0)} <br>
-         * {@literal 1 - (1/2)exp(-|z|/2) (z > 0)} <br>
-         */
-        private static final class TestedNormal implements TestedFloatingRandomGenerator {
+    @Ignore
+    public static class 計算時間評価 {
 
-            private final BaseRandom random;
-            private final NormalRnd normalRnd = FACTORY.instance();
+        @Test
+        public void test_乱数生成の実行() {
 
-            public TestedNormal(BaseRandom random) {
-                this.random = Objects.requireNonNull(random);
-            }
+            var testRnd = FACTORY.instance();
+            BaseRandom baseRandom = BaseRandom.threadSeparatedRandom();
 
-            @Override
-            public double newValue() {
-                double x = normalRnd.nextRandom(random);
-                double y = normalRnd.nextRandom(random);
+            var executor = new SpeedTestExecutor(
+                    TEST_CLASS, testRnd, 50_000_000,
+                    () -> testRnd.nextRandom(baseRandom));
+            executor.execute();
+        }
+    }
 
-                return Math.signum(x * y) * (x * x + y * y);
-            }
+    @Ignore
+    public static class Java標準ライブラリの計算時間評価 {
 
-            @Override
-            public double cumulativeProbability(double arg) {
-                if (arg < 0) {
-                    return 0.5 * Math.exp(-Math.abs(arg) * 0.5);
-                }
-                return 1 - 0.5 * Math.exp(-Math.abs(arg) * 0.5);
-            }
-
+        @Test
+        public void test_乱数生成の実行() {
+            var executor = new SpeedTestExecutor(
+                    TEST_CLASS, "ThreadLocalRandom.nextGaussian", 50_000_000,
+                    () -> ThreadLocalRandom.current().nextGaussian());
+            executor.execute();
         }
     }
 

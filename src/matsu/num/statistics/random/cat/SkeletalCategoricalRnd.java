@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.5.6
+ * 2025.6.3
  */
 package matsu.num.statistics.random.cat;
 
@@ -77,7 +77,7 @@ abstract class SkeletalCategoricalRnd implements CategoricalRnd {
         }
 
         @Override
-        public CategoricalRnd instanceOf(double[] probability) {
+        public final CategoricalRnd instanceOf(double[] probability) {
             if (!CategoricalRnd.acceptsSizeOf(probability)) {
                 throw exceptionGetter.apply(probability);
             }
@@ -89,7 +89,7 @@ abstract class SkeletalCategoricalRnd implements CategoricalRnd {
         }
 
         @Override
-        public CategoricalRnd instanceOfExp(double[] logProbability) {
+        public final CategoricalRnd instanceOfExp(double[] logProbability) {
             if (!CategoricalRnd.acceptsSizeOf(logProbability)) {
                 throw exceptionGetter.apply(logProbability);
             }

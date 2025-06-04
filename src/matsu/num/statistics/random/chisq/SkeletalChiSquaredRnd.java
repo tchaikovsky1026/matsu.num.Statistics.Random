@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.5.5
+ * 2025.6.3
  */
 package matsu.num.statistics.random.chisq;
 
@@ -55,7 +55,7 @@ abstract class SkeletalChiSquaredRnd implements ChiSquaredRnd {
         /**
          * 唯一の外部に公開されないコンストラクタ.
          */
-        protected Factory() {
+        Factory() {
             super();
         }
 

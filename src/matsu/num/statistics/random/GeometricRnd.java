@@ -16,7 +16,7 @@ package matsu.num.statistics.random;
  * 
  * <p>
  * 幾何分布の確率質量関数 P(<i>k</i>) は次のとおりである
- * (<i>p</i>は成功確率).
+ * (<i>p</i> は成功確率).
  * </p>
  * 
  * <ul>
@@ -93,7 +93,7 @@ public interface GeometricRnd extends IntegerRandomGenerator {
          * </p>
          *
          * @param p 成功確率
-         * @return 成功確率がpの幾何分布乱数発生器インスタンス
+         * @return 成功確率が p の幾何分布乱数発生器インスタンス
          * @throws IllegalArgumentException パラメータがacceptされない場合
          */
         public GeometricRnd instanceOf(double p);

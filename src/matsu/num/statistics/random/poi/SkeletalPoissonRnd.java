@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.5.7
+ * 2025.6.3
  */
 package matsu.num.statistics.random.poi;
 
@@ -35,7 +35,7 @@ abstract class SkeletalPoissonRnd implements PoissonRnd {
     }
 
     @Override
-    public double lambda() {
+    public final double lambda() {
         return this.lambda;
     }
 

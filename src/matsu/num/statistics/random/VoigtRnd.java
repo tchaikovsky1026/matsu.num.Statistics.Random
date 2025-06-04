@@ -11,11 +11,11 @@ package matsu.num.statistics.random;
 
 /**
  * <p>
- * Voigt分布に従う乱数発生器を扱う.
+ * Voigt 分布に従う乱数発生器を扱う.
  * </p>
  * 
  * <p>
- * Voigt分布の確率密度関数 P(<i>x</i>) は次のとおりである
+ * Voigt 分布の確率密度関数 P(<i>x</i>) は次のとおりである
  * (<i>&sigma;</i>, <i>&gamma;</i> はパラメータ). <br>
  * 
  * P(<i>x</i>) &prop;
@@ -29,7 +29,7 @@ package matsu.num.statistics.random;
  * 2個のパラメータ (<i>&sigma;</i>, <i>&gamma;</i>)
  * を単一パラメータ <i>&alpha;</i> で代表して扱う. <br>
  * 
- * <i>&alpha;</i> を0以上1以下として,
+ * <i>&alpha;</i> を 0 以上 1 以下として,
  * (<i>&sigma;</i>, <i>&gamma;</i>) を次のように定める.
  * </p>
  * 
@@ -99,7 +99,7 @@ public interface VoigtRnd extends FloatingRandomGenerator {
 
         /**
          * <p>
-         * 指定したパラメータ <i>&alpha;</i> を持つVoigt分布乱数発生器を返す.
+         * 指定したパラメータ <i>&alpha;</i> を持つ Voigt 分布乱数発生器を返す.
          * </p>
          * 
          * <p>
@@ -108,7 +108,7 @@ public interface VoigtRnd extends FloatingRandomGenerator {
          * </p>
          * 
          * @param alpha パラメータ
-         * @return パラメータ <i>&alpha;</i> のVoigt分布乱数発生器
+         * @return パラメータ <i>&alpha;</i> の Voigt 分布乱数発生器
          * @throws IllegalArgumentException パラメータがacceptされない場合
          */
         public abstract VoigtRnd instanceOf(double alpha);

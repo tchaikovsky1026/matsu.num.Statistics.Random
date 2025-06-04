@@ -11,11 +11,11 @@ package matsu.num.statistics.random;
 
 /**
  * <p>
- * 標準Weibull分布に従う乱数発生器を扱う.
+ * 標準 Weibull 分布に従う乱数発生器を扱う.
  * </p>
  * 
  * <p>
- * 標準Weibull分布の確率密度関数 P(<i>x</i>) は次のとおりである
+ * 標準 Weibull 分布の確率密度関数 P(<i>x</i>) は次のとおりである
  * (<i>k</i> は形状パラメータ).
  * </p>
  * 
@@ -86,7 +86,7 @@ public interface WeibullRnd extends FloatingRandomGenerator {
 
         /**
          * <p>
-         * 指定した形状パラメータのWeibull分布乱数発生器インスタンスを返す.
+         * 指定した形状パラメータの Weibull 分布乱数発生器インスタンスを返す.
          * </p>
          * 
          * <p>
@@ -95,7 +95,7 @@ public interface WeibullRnd extends FloatingRandomGenerator {
          * </p>
          *
          * @param k 形状パラメータ
-         * @return 形状パラメータが <i>k</i> のWeibull分布乱数発生器インスタンス
+         * @return 形状パラメータが <i>k</i> の Weibull 分布乱数発生器インスタンス
          * @throws IllegalArgumentException パラメータがacceptされない場合
          */
         public abstract WeibullRnd instanceOf(double k);
