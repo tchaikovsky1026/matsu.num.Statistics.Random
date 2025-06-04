@@ -72,8 +72,9 @@ public final class LongSubstitutedZiggExponentialRnd extends SkeletalExponential
              */
             long long64 = random.nextLong();
             int iArea = (int) (long64 & (N - 1));
-            double u = LONG_TO_DOUBLE_COEFF * (long64 >>> N_BIT);
 
+            // TODO: この部分は, 直接xを計算できるように修正可能.
+            double u = LONG_TO_DOUBLE_COEFF * (long64 >>> N_BIT);
             double x = xi[iArea + 1] * u;
             if (x < xi[iArea]) {
                 return x + x0;
