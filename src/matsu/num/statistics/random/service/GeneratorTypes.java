@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.6.4
+ * 2025.6.5
  */
 package matsu.num.statistics.random.service;
 
@@ -38,7 +38,7 @@ import matsu.num.statistics.random.binomial.DirichletBasedBinomialRnd;
 import matsu.num.statistics.random.cat.TableBasedCategoricalRnd;
 import matsu.num.statistics.random.cauchy.ZiggCauchyRnd;
 import matsu.num.statistics.random.chisq.GammaTypeChiSquaredRnd;
-import matsu.num.statistics.random.exp.ZiggExponentialRnd;
+import matsu.num.statistics.random.exp.LongSubstitutedZiggExponentialRnd;
 import matsu.num.statistics.random.fdist.BetaBasedFDistributionRnd;
 import matsu.num.statistics.random.gamma.MTTypeGammaRndFactory;
 import matsu.num.statistics.random.geo.InversionBasedGeoRnd;
@@ -186,7 +186,7 @@ public final class GeneratorTypes {
 
         EXPONENTIAL_RND = new RandomGeneratorType<>(
                 "EXPONENTIAL_RND", ExponentialRnd.Factory.class,
-                p -> ZiggExponentialRnd.createFactory(p.lib().exponentiation()));
+                p -> LongSubstitutedZiggExponentialRnd.createFactory(p.lib().exponentiation()));
 
         F_DISTRIBUTION_RND = new RandomGeneratorType<>(
                 "F_DISTRIBUTION_RND", FDistributionRnd.Factory.class,
