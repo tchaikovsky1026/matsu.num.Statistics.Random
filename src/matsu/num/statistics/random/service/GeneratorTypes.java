@@ -9,11 +9,6 @@
  */
 package matsu.num.statistics.random.service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
 import matsu.num.statistics.random.ArcsineRnd;
 import matsu.num.statistics.random.BetaRnd;
 import matsu.num.statistics.random.BinomialRnd;
@@ -70,8 +65,6 @@ import matsu.num.statistics.random.zeta.RejectionSamplingZetaRnd;
  * @author Matsuura Y.
  */
 public final class GeneratorTypes {
-
-    private static final Collection<RandomGeneratorType<?>> values;
 
     /**
      * 逆正弦分布に従う乱数を表す.
@@ -167,152 +160,115 @@ public final class GeneratorTypes {
     public static final RandomGeneratorType<ZetaRnd.Factory> ZETA_RND;
 
     static {
-        List<RandomGeneratorType<?>> list = new ArrayList<>();
-
         ARCSINE_RND = new RandomGeneratorType<>(
                 "ARCSINE_RND", ArcsineRnd.Factory.class,
                 p -> ZigguratArcsineRnd.createFactory(p.lib().exponentiation()));
-        list.add(ARCSINE_RND);
 
         BETA_RND = new RandomGeneratorType<>(
                 "BETA_RND", BetaRnd.Factory.class,
                 p -> GammaBasedBetaRnd.createFactory(p.get(GeneratorTypes.GAMMA_RND)));
-        list.add(BETA_RND);
 
         BINOMIAL_RND = new RandomGeneratorType<>(
                 "BINOMIAL_RND", BinomialRnd.Factory.class,
                 p -> DirichletBasedBinomialRnd.createFactory(p.get(GeneratorTypes.GAMMA_RND)));
-        list.add(BINOMIAL_RND);
 
         CATEGORICAL_RND = new RandomGeneratorType<>(
                 "CATEGORICAL_RND", CategoricalRnd.Factory.class,
                 p -> TableBasedCategoricalRnd.createFactory(p.lib().exponentiation()));
-        list.add(CATEGORICAL_RND);
 
         CAUCHY_RND = new RandomGeneratorType<>(
                 "CAUCHY_RND", CauchyRnd.Factory.class,
                 p -> ZiggCauchyRnd.createFactory(p.lib().exponentiation()));
-        list.add(CAUCHY_RND);
 
         CHI_SQUARED_RND = new RandomGeneratorType<>(
                 "CHI_SQUARED_RND", ChiSquaredRnd.Factory.class,
                 p -> GammaTypeChiSquaredRnd.createFactory(p.get(GeneratorTypes.GAMMA_RND)));
-        list.add(CHI_SQUARED_RND);
 
         EXPONENTIAL_RND = new RandomGeneratorType<>(
                 "EXPONENTIAL_RND", ExponentialRnd.Factory.class,
                 p -> ZiggExponentialRnd.createFactory(p.lib().exponentiation()));
-        list.add(EXPONENTIAL_RND);
 
         F_DISTRIBUTION_RND = new RandomGeneratorType<>(
                 "F_DISTRIBUTION_RND", FDistributionRnd.Factory.class,
                 p -> BetaBasedFDistributionRnd.createFactory(p.get(GeneratorTypes.BETA_RND)));
-        list.add(F_DISTRIBUTION_RND);
 
         GAMMA_RND = new RandomGeneratorType<>(
                 "GAMMA_RND", GammaRnd.Factory.class,
                 p -> MTTypeGammaRndFactory.create(
                         p.lib().exponentiation(),
                         p.get(GeneratorTypes.EXPONENTIAL_RND), p.get(GeneratorTypes.NORMAL_RND)));
-        list.add(GAMMA_RND);
 
         GEOMETRIC_RND = new RandomGeneratorType<>(
                 "GEOMETRIC_RND", GeometricRnd.Factory.class,
                 p -> InversionBasedGeoRnd.createFactory(
                         p.lib().exponentiation(), p.get(GeneratorTypes.EXPONENTIAL_RND)));
-        list.add(GEOMETRIC_RND);
 
         GUMBEL_RND = new RandomGeneratorType<>(
                 "GUMBEL_RND", GumbelRnd.Factory.class,
                 p -> UniZiggGumbelRnd.createFactory(
                         p.lib().exponentiation(), p.get(GeneratorTypes.EXPONENTIAL_RND)));
-        list.add(GUMBEL_RND);
 
         LEVY_RND = new RandomGeneratorType<>(
                 "LEVY_RND", LevyRnd.Factory.class,
                 p -> NormalBasedLevyRnd.createFactory(p.get(GeneratorTypes.NORMAL_RND)));
-        list.add(LEVY_RND);
 
         LOGISTIC_RND = new RandomGeneratorType<>(
                 "LOGISTIC_RND", LogisticRnd.Factory.class,
                 p -> ZiggLogiRnd.createFactory(
                         p.lib().exponentiation(), p.get(GeneratorTypes.EXPONENTIAL_RND)));
-        list.add(LOGISTIC_RND);
 
         NEGATIVE_BINOMIAL_RND = new RandomGeneratorType<>(
                 "NEGATIVE_BINOMIAL_RND", NegativeBinomialRnd.Factory.class,
                 p -> GammaPoissonBasedNegativeBinomialRnd.createFactory(
                         p.lib().exponentiation(), p.get(GeneratorTypes.GAMMA_RND)));
-        list.add(NEGATIVE_BINOMIAL_RND);
 
         NORMAL_RND = new RandomGeneratorType<>(
                 "NORMAL_RND", NormalRnd.Factory.class,
                 p -> ZiggNormalRnd.createFactory(
                         p.lib().exponentiation(), p.get(GeneratorTypes.EXPONENTIAL_RND)));
-        list.add(NORMAL_RND);
 
         POISSON_RND = new RandomGeneratorType<>(
                 "POISSON_RND", PoissonRnd.Factory.class,
                 p -> GammaHomoProcessBasedPoissonRnd.createFactory(
                         p.lib().exponentiation(), p.get(GeneratorTypes.GAMMA_RND)));
-        list.add(POISSON_RND);
 
         STATIC_BETA_RND = new RandomGeneratorType<>(
                 "STATIC_BETA_RND", StaticBetaRnd.Factory.class,
                 p -> GammaBasedStaticBetaRnd.createFactory(p.get(GeneratorTypes.STATIC_GAMMA_RND)));
-        list.add(STATIC_BETA_RND);
 
         STATIC_GAMMA_RND = new RandomGeneratorType<>(
                 "STATIC_GAMMA_RND", StaticGammaRnd.Factory.class,
                 p -> MTTypeStaticGammaRnd.createFactory(
                         p.lib().exponentiation(),
                         p.get(GeneratorTypes.EXPONENTIAL_RND), p.get(GeneratorTypes.NORMAL_RND)));
-        list.add(STATIC_GAMMA_RND);
 
         T_DISTRIBUTION_RND = new RandomGeneratorType<>(
                 "T_DISTRIBUTION_RND", TDistributionRnd.Factory.class,
                 p -> NormalGammaBasedTDistRnd.createFactory(
                         p.lib().exponentiation(),
                         p.get(GeneratorTypes.NORMAL_RND), p.get(GeneratorTypes.GAMMA_RND)));
-        list.add(T_DISTRIBUTION_RND);
 
         VOIGT_RND = new RandomGeneratorType<>(
                 "VOIGT_RND", VoigtRnd.Factory.class,
                 p -> StandardImplVoigtRnd.createFactory(
                         p.get(GeneratorTypes.NORMAL_RND), p.get(GeneratorTypes.CAUCHY_RND)));
-        list.add(VOIGT_RND);
 
         WEIBULL_RND = new RandomGeneratorType<>(
                 "WEIBULL_RND", WeibullRnd.Factory.class,
                 p -> GumbelBasedWeibullRnd.createFactory(
                         p.lib().exponentiation(), p.get(GeneratorTypes.GUMBEL_RND)));
-        list.add(WEIBULL_RND);
 
         YULE_SIMON_RND = new RandomGeneratorType<>(
                 "YULE_SIMON_RND", YuleSimonRnd.Factory.class,
                 p -> ExpGeometricBasedYuleSimonRnd.createFactory(
                         p.lib().exponentiation(),
                         p.get(GeneratorTypes.EXPONENTIAL_RND)));
-        list.add(YULE_SIMON_RND);
 
         ZETA_RND = new RandomGeneratorType<>(
                 "ZETA_RND", ZetaRnd.Factory.class,
                 p -> RejectionSamplingZetaRnd.createFactory(
                         p.lib().exponentiation(),
                         p.get(GeneratorTypes.EXPONENTIAL_RND)));
-        list.add(ZETA_RND);
-
-        values = Collections.unmodifiableList(list);
-    }
-
-    /**
-     * 既知の {@link RandomGeneratorType} のコレクションを返す. <br>
-     * (主にテスト用.)
-     * 
-     * @return {@link RandomGeneratorType} のコレクション
-     */
-    static Collection<? extends RandomGeneratorType<?>> values() {
-        return values;
     }
 
     private GeneratorTypes() {
