@@ -24,8 +24,8 @@ public final class SpeedTestExecutor {
     /**
      * エグゼキュータを構築する.
      * 
-     * @param testClass テストクラス, コンソールへの表示で使う.
-     * @param testInstance テストするインスタンス, コンソールへの表示で使う.
+     * @param testClass テストクラス, コンソールへの表示で使う. nullでもよい (表示されなくなる).
+     * @param testInstance テストするインスタンス, コンソールへの表示で使う. nullでもよい (表示されなくなる).
      * @param iteration 繰り返し回数, 1以上
      * @param runner 1回の繰り返しの中で行う処理
      * @throws IllegalArgumentException iterationが不適
