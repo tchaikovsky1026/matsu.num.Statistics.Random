@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.6.4
  */
 package matsu.num.statistics.random;
 
@@ -34,6 +34,24 @@ public interface BaseRandom {
      * @return {@code true}, {@code false} が等確率
      */
     public abstract boolean nextBoolean();
+
+    /**
+     * <p>
+     * {@code long} が取り得る2<sup>64</sup>種類の値のいずれかを等確率で返す.
+     * </p>
+     * 
+     * @return {@code long} が取り得る値全体のうちの1個
+     * @implSpec
+     *               互換性のためにデフォルトメソッドを提供するが,
+     *               実装の特性によってはオーバーライドするのが好ましい.
+     */
+    public default long nextLong() {
+
+        long upper = this.nextInt();
+        long lower = this.nextInt();
+
+        return lower | (upper << 32);
+    }
 
     /**
      * <p>
