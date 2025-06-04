@@ -24,17 +24,17 @@ public final class SpeedTestExecutor {
     /**
      * エグゼキュータを構築する.
      * 
-     * @param testClass テストクラス, コンソールへの表示で使う.
-     * @param testInstance テストするインスタンス, コンソールへの表示で使う.
+     * @param testClass テストクラス, コンソールへの表示で使う. nullでもよい (表示されなくなる).
+     * @param testInstance テストするインスタンス, コンソールへの表示で使う. nullでもよい (表示されなくなる).
      * @param iteration 繰り返し回数, 1以上
      * @param runner 1回の繰り返しの中で行う処理
      * @throws IllegalArgumentException iterationが不適
-     * @throws NullPointerException null
+     * @throws NullPointerException ランナーがnull
      */
     public SpeedTestExecutor(Class<?> testClass, Object testInstance, int iteration, Runnable runner) {
         super();
-        this.testClass = Objects.requireNonNull(testClass);
-        this.testInstance = Objects.requireNonNull(testInstance);
+        this.testClass = testClass;
+        this.testInstance = testInstance;
         this.iteration = iteration;
         this.runner = Objects.requireNonNull(runner);
 
@@ -49,8 +49,12 @@ public final class SpeedTestExecutor {
     public void execute() {
         System.gc();
 
-        System.out.println(testClass.getName() + ": speed measurement");
-        System.out.println(testInstance);
+        if (Objects.nonNull(testClass)) {
+            System.out.println(testClass.getName() + ": speed measurement");
+        }
+        if (Objects.nonNull(testInstance)) {
+            System.out.println(testInstance);
+        }
 
         for (int c = 0; c < 5; c++) {
             long startMills = System.nanoTime();
