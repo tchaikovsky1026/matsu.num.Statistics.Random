@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.6.3
+ * 2025.6.4
  */
 package matsu.num.statistics.random.service;
 
@@ -35,6 +35,7 @@ import matsu.num.statistics.random.StaticGammaRnd;
 import matsu.num.statistics.random.TDistributionRnd;
 import matsu.num.statistics.random.VoigtRnd;
 import matsu.num.statistics.random.WeibullRnd;
+import matsu.num.statistics.random.YuleSimonRnd;
 import matsu.num.statistics.random.ZetaRnd;
 import matsu.num.statistics.random.arcsin.ZigguratArcsineRnd;
 import matsu.num.statistics.random.beta.GammaBasedBetaRnd;
@@ -57,6 +58,7 @@ import matsu.num.statistics.random.staticgamma.MTTypeStaticGammaRnd;
 import matsu.num.statistics.random.tdist.NormalGammaBasedTDistRnd;
 import matsu.num.statistics.random.voigt.StandardImplVoigtRnd;
 import matsu.num.statistics.random.weibull.GumbelBasedWeibullRnd;
+import matsu.num.statistics.random.yulesimon.ExpGeometricBasedYuleSimonRnd;
 import matsu.num.statistics.random.zeta.RejectionSamplingZetaRnd;
 
 /**
@@ -155,6 +157,10 @@ public final class GeneratorTypes {
      * 標準Weibull分布に従う乱数を表す.
      */
     public static final RandomGeneratorType<WeibullRnd.Factory> WEIBULL_RND;
+    /**
+     * Yule-Simon 分布に従う乱数を表す.
+     */
+    public static final RandomGeneratorType<YuleSimonRnd.Factory> YULE_SIMON_RND;
     /**
      * ゼータ分布に従う乱数を表す.
      */
@@ -281,6 +287,13 @@ public final class GeneratorTypes {
                 p -> GumbelBasedWeibullRnd.createFactory(
                         p.lib().exponentiation(), p.get(GeneratorTypes.GUMBEL_RND)));
         list.add(WEIBULL_RND);
+
+        YULE_SIMON_RND = new RandomGeneratorType<>(
+                "YULE_SIMON_RND", YuleSimonRnd.Factory.class,
+                p -> ExpGeometricBasedYuleSimonRnd.createFactory(
+                        p.lib().exponentiation(),
+                        p.get(GeneratorTypes.EXPONENTIAL_RND)));
+        list.add(YULE_SIMON_RND);
 
         ZETA_RND = new RandomGeneratorType<>(
                 "ZETA_RND", ZetaRnd.Factory.class,
