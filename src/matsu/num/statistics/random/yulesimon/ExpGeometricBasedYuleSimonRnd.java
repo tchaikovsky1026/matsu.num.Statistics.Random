@@ -55,10 +55,12 @@ public final class ExpGeometricBasedYuleSimonRnd extends SkeletalYuleSimonRnd {
     @Override
     public int nextRandom(BaseRandom random) {
         while (true) {
-            double y = expRnd.nextRandom(random);
-            double p = exponentiation.exp(-y * invRho);
+            double y_invRho = expRnd.nextRandom(random) * invRho;
+            double invC = y_invRho < 1
+                    ? -exponentiation.log(-exponentiation.expm1(-y_invRho))
+                    : -exponentiation.log1p(-exponentiation.exp(-y_invRho));
 
-            double w = expRnd.nextRandom(random) / (-exponentiation.log1p(-p));
+            double w = expRnd.nextRandom(random) / invC;
             if (w < Integer.MAX_VALUE - 1) {
                 return (int) w + 1;
             }
