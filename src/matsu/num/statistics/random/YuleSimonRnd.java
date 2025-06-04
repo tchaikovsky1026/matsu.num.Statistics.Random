@@ -31,7 +31,7 @@ package matsu.num.statistics.random;
  * </ul>
  * 
  * <p>
- * 扱うことができるパラメータ <i>&rho;</i> は, {@code ** <= rho <= **} である.
+ * 扱うことができるパラメータ <i>&rho;</i> は, {@code 0.25 <= rho <= 100.0} である.
  * </p>
  *
  * @implSpec
@@ -45,7 +45,7 @@ public interface YuleSimonRnd extends IntegerRandomGenerator {
     /**
      * 扱うことができるパラメータの最小値.
      */
-    public static final double LOWER_LIMIT_RHO = 0.1d;
+    public static final double LOWER_LIMIT_RHO = 0.25d;
 
     /**
      * 扱うことができるパラメータの最大値.

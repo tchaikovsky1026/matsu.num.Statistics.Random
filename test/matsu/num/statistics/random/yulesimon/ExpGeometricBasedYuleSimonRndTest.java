@@ -35,7 +35,7 @@ final class ExpGeometricBasedYuleSimonRndTest {
     public static class 乱数のテスト {
 
         @DataPoints
-        public static double[] rho_values = { 0.3, 1.5, 2, 3, 4, 10 };
+        public static double[] rho_values = { 0.25, 1.5, 2, 3, 4, 10, 100 };
 
         @Theory
         public void test(double rho) {
