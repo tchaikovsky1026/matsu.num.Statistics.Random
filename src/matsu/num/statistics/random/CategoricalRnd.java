@@ -15,7 +15,7 @@ package matsu.num.statistics.random;
  * </p>
  * 
  * <p>
- * 取りうる値を0, 1, ... , <i>n</i> - 1 とし,
+ * 取りうる値を 0, 1, ... , <i>n</i> - 1 とし,
  * 値 <i>k</i> を取る確率を <i>p</i><sub><i>k</i></sub> とする
  * (&Sigma; <sub><i>k</i> = 0</sub><sup><i>n</i> - 1</sup>
  * <i>p</i><sub><i>k</i></sub> = 1). <br>
@@ -89,11 +89,11 @@ public interface CategoricalRnd extends IntegerRandomGenerator {
          * </p>
          * 
          * <p>
-         * 配列に負の数やNaN, 極端な値を含んでいても良いが, 適宜修正される. <br>
+         * 配列に負の数や NaN, 極端な値を含んでいても良いが, 適宜修正される. <br>
          * どのように修正されるかは規定していない.
          * </p>
          *
-         * @param probability 確率値の配列(定数倍の不定性は許される)
+         * @param probability 確率値の配列 (定数倍の不定性は許される)
          * @return 値配列に比例するカテゴリカル分布乱数発生器インスタンス
          * @throws IllegalArgumentException 値配列がacceptされない場合
          * @throws NullPointerException 引数がnullの場合
@@ -102,7 +102,7 @@ public interface CategoricalRnd extends IntegerRandomGenerator {
 
         /**
          * <p>
-         * 指定した値配列のexpに比例するカテゴリ確率を持つ, カテゴリカル分布乱数発生器を生成する.
+         * 指定した値配列の exp に比例するカテゴリ確率を持つ, カテゴリカル分布乱数発生器を生成する.
          * </p>
          *
          * <p>
@@ -111,7 +111,7 @@ public interface CategoricalRnd extends IntegerRandomGenerator {
          * </p>
          * 
          * <p>
-         * 配列にNaN, 極端な値を含んでいても良いが, 適宜修正される. <br>
+         * 配列に NaN, 極端な値を含んでいても良いが, 適宜修正される. <br>
          * どのように修正されるかは規定していない.
          * </p>
          *

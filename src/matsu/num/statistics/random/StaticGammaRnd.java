@@ -12,7 +12,7 @@ package matsu.num.statistics.random;
 /**
  * <p>
  * 乱数生成のたびにパラメータを指定する標準ガンマ分布乱数発生器
- * (Staticガンマ乱数発生器)
+ * (Static ガンマ乱数発生器)
  * を扱う.
  * </p>
  * 
@@ -96,10 +96,10 @@ public interface StaticGammaRnd extends Rnd {
 
         /**
          * <p>
-         * Staticガンマ乱数発生器インスタンスを返す.
+         * Static ガンマ乱数発生器インスタンスを返す.
          * </p>
          *
-         * @return Staticガンマ乱数発生器インスタンス
+         * @return Static ガンマ乱数発生器インスタンス
          */
         public abstract StaticGammaRnd instance();
     }
