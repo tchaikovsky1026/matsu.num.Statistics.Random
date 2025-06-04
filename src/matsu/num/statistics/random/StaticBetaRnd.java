@@ -12,7 +12,7 @@ package matsu.num.statistics.random;
 /**
  * <p>
  * 乱数生成のたびにパラメータを指定するベータ分布乱数発生器
- * (Staticベータ乱数発生器)
+ * (Static ベータ乱数発生器)
  * を扱う.
  * </p>
  * 
@@ -136,10 +136,10 @@ public interface StaticBetaRnd extends Rnd {
 
         /**
          * <p>
-         * Staticベータ乱数発生器インスタンスを返す.
+         * Static ベータ乱数発生器インスタンスを返す.
          * </p>
          *
-         * @return Staticベータ乱数発生器インスタンス
+         * @return Static ベータ乱数発生器インスタンス
          */
         public abstract StaticBetaRnd instance();
     }

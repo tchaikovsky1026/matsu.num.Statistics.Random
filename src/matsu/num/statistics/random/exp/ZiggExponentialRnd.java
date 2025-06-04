@@ -85,7 +85,7 @@ public final class ZiggExponentialRnd extends SkeletalExponentialRnd {
     }
 
     /**
-     * 確率五戸関数の逆数.
+     * 確率密度関数の逆数.
      */
     private double funcInv(double f) {
         return -exponentiation.log(f);

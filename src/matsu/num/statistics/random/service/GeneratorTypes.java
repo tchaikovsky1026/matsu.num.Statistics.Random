@@ -83,7 +83,7 @@ public final class GeneratorTypes {
      */
     public static final RandomGeneratorType<CategoricalRnd.Factory> CATEGORICAL_RND;
     /**
-     * 標準Cauchy分布に従う乱数を表す.
+     * 標準 Cauchy 分布に従う乱数を表す.
      */
     public static final RandomGeneratorType<CauchyRnd.Factory> CAUCHY_RND;
     /**
@@ -95,7 +95,7 @@ public final class GeneratorTypes {
      */
     public static final RandomGeneratorType<ExponentialRnd.Factory> EXPONENTIAL_RND;
     /**
-     * F分布に従う乱数を表す.
+     * F 分布に従う乱数を表す.
      */
     public static final RandomGeneratorType<FDistributionRnd.Factory> F_DISTRIBUTION_RND;
     /**
@@ -107,11 +107,11 @@ public final class GeneratorTypes {
      */
     public static final RandomGeneratorType<GeometricRnd.Factory> GEOMETRIC_RND;
     /**
-     * 標準Gumbel分布に従う乱数を表す.
+     * 標準 Gumbel 分布に従う乱数を表す.
      */
     public static final RandomGeneratorType<GumbelRnd.Factory> GUMBEL_RND;
     /**
-     * 標準L&eacute;vy分布に従う乱数を表す.
+     * 標準 L&eacute;vy 分布に従う乱数を表す.
      */
     public static final RandomGeneratorType<LevyRnd.Factory> LEVY_RND;
     /**
@@ -127,27 +127,27 @@ public final class GeneratorTypes {
      */
     public static final RandomGeneratorType<NormalRnd.Factory> NORMAL_RND;
     /**
-     * Poisson分布に従う乱数を表す.
+     * Poisson 分布に従う乱数を表す.
      */
     public static final RandomGeneratorType<PoissonRnd.Factory> POISSON_RND;
     /**
-     * Staticベータ乱数発生器を表す.
+     * Static ベータ乱数発生器を表す.
      */
     public static final RandomGeneratorType<StaticBetaRnd.Factory> STATIC_BETA_RND;
     /**
-     * Staticガンマ乱数発生器を表す.
+     * Static ガンマ乱数発生器を表す.
      */
     public static final RandomGeneratorType<StaticGammaRnd.Factory> STATIC_GAMMA_RND;
     /**
-     * Student-t分布に従う乱数を表す.
+     * Student-t 分布に従う乱数を表す.
      */
     public static final RandomGeneratorType<TDistributionRnd.Factory> T_DISTRIBUTION_RND;
     /**
-     * Voigt分布に従う乱数を表す.
+     * Voigt 分布に従う乱数を表す.
      */
     public static final RandomGeneratorType<VoigtRnd.Factory> VOIGT_RND;
     /**
-     * 標準Weibull分布に従う乱数を表す.
+     * 標準 Weibull 分布に従う乱数を表す.
      */
     public static final RandomGeneratorType<WeibullRnd.Factory> WEIBULL_RND;
     /**

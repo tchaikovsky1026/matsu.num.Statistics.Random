@@ -11,11 +11,11 @@ package matsu.num.statistics.random;
 
 /**
  * <p>
- * Student-t分布に従う乱数発生器を扱う.
+ * Student-t 分布に従う乱数発生器を扱う.
  * </p>
  * 
  * <p>
- * Student-t分布の確率密度関数 P(<i>x</i>) は次のとおりである
+ * Student-t 分布の確率密度関数 P(<i>x</i>) は次のとおりである
  * (<i>&nu;</i> は自由度). <br>
  * P(<i>x</i>) &prop;
  * (1 + <i>x</i><sup><i>2</i></sup> / <i>&nu;</i>)
@@ -79,7 +79,7 @@ public interface TDistributionRnd extends FloatingRandomGenerator {
 
         /**
          * <p>
-         * 指定した自由度のStudent-t分布乱数発生器インスタンスを返す.
+         * 指定した自由度のStudent-t 分布乱数発生器インスタンスを返す.
          * </p>
          * 
          * <p>
@@ -88,7 +88,7 @@ public interface TDistributionRnd extends FloatingRandomGenerator {
          * </p>
          *
          * @param nu 自由度
-         * @return 自由度が <i>&nu;</i> のStudent-t分布乱数発生器インスタンス
+         * @return 自由度が <i>&nu;</i> の Student-t 分布乱数発生器インスタンス
          * @throws IllegalArgumentException パラメータがacceptされない場合
          */
         public abstract TDistributionRnd instanceOf(double nu);

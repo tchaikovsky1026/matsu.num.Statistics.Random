@@ -11,11 +11,11 @@ package matsu.num.statistics.random;
 
 /**
  * <p>
- * 標準L&eacute;vy分布に従う乱数を生成する.
+ * 標準 L&eacute;vy 分布に従う乱数を生成する.
  * </p>
  * 
  * <p>
- * 標準L&eacute;vy分布の確率密度関数 P(<i>x</i>) は次のとおりである.
+ * 標準 L&eacute;vy 分布の確率密度関数 P(<i>x</i>) は次のとおりである.
  * </p>
  * 
  * <ul>
@@ -47,10 +47,10 @@ public interface LevyRnd extends FloatingRandomGenerator {
 
         /**
          * <p>
-         * 標準L&eacute;vy分布乱数発生器インスタンスを返す.
+         * 標準 L&eacute;vy 分布乱数発生器インスタンスを返す.
          * </p>
          *
-         * @return 標準L&eacute;vy分布乱数発生器インスタンス
+         * @return 標準 L&eacute;vy 分布乱数発生器インスタンス
          */
         public abstract LevyRnd instance();
     }

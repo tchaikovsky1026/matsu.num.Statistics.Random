@@ -11,11 +11,11 @@ package matsu.num.statistics.random;
 
 /**
  * <p>
- * Poisson分布に従う乱数発生器を扱う.
+ * Poisson 分布に従う乱数発生器を扱う.
  * </p>
  * 
  * <p>
- * Poisson分布の確率質量関数 P(<i>k</i>) は次のとおりである
+ * Poisson 分布の確率質量関数 P(<i>k</i>) は次のとおりである
  * (<i>&lambda;</i> はパラメータ).
  * </p>
  * 
