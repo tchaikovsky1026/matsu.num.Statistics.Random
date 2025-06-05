@@ -20,7 +20,9 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * Ziggurat法により実装された標準正規分布に従う乱数発生器.
  *
  * @author Matsuura Y.
+ * @deprecated このクラスは使われていない
  */
+@Deprecated
 public final class ZiggNormalRnd extends SkeletalNormalRnd {
 
     private static final int N = 128;
