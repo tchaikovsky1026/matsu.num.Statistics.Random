@@ -6,17 +6,12 @@
  */
 package matsu.num.statistics.random.gumbel;
 
-import java.util.Objects;
-
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
 
-import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.FloatingRandomGeneratorTestingFramework;
 import matsu.num.statistics.random.GumbelRnd;
-import matsu.num.statistics.random.TestedFloatingRandomGenerator;
 import matsu.num.statistics.random.exp.ExponentialFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
@@ -32,40 +27,13 @@ final class UniZiggGumbelRndTest {
                     ExponentiationForTesting.INSTANCE,
                     ExponentialFactoryForTesting.FACTORY);
 
-    public static class Gumbel乱数のテスト {
-
-        private FloatingRandomGeneratorTestingFramework framework;
-
-        @Before
-        public void before() {
-            framework = FloatingRandomGeneratorTestingFramework
-                    .instanceOf(new TestedGumbel(BaseRandom.threadSeparatedRandom()));
-        }
+    public static class 乱数のテスト {
 
         @Test
         public void test() {
-            framework.test();
-        }
-
-        private static final class TestedGumbel implements TestedFloatingRandomGenerator {
-
-            private final BaseRandom random;
-            private final GumbelRnd gumbelRnd = FACTORY.instance();
-
-            public TestedGumbel(BaseRandom random) {
-                this.random = Objects.requireNonNull(random);
-            }
-
-            @Override
-            public double newValue() {
-                return gumbelRnd.nextRandom(random);
-            }
-
-            @Override
-            public double cumulativeProbability(double arg) {
-                return Math.exp(-Math.exp(-arg));
-            }
-
+            FloatingRandomGeneratorTestingFramework
+                    .instanceOf(new TestedGumbelRandomGenerator(FACTORY.instance()))
+                    .test();
         }
     }
 
