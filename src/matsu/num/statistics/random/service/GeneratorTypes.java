@@ -46,7 +46,7 @@ import matsu.num.statistics.random.gumbel.UniZiggGumbelRnd;
 import matsu.num.statistics.random.levy.NormalBasedLevyRnd;
 import matsu.num.statistics.random.logi.ZiggLogiRnd;
 import matsu.num.statistics.random.negbinomial.GammaPoissonBasedNegativeBinomialRnd;
-import matsu.num.statistics.random.norm.ZiggNormalRnd;
+import matsu.num.statistics.random.norm.LongSubstitutedZiggNormalRnd;
 import matsu.num.statistics.random.poi.GammaHomoProcessBasedPoissonRnd;
 import matsu.num.statistics.random.staticbeta.GammaBasedStaticBetaRnd;
 import matsu.num.statistics.random.staticgamma.MTTypeStaticGammaRnd;
@@ -224,7 +224,7 @@ public final class GeneratorTypes {
 
         NORMAL_RND = new RandomGeneratorType<>(
                 "NORMAL_RND", NormalRnd.Factory.class,
-                p -> ZiggNormalRnd.createFactory(
+                p -> LongSubstitutedZiggNormalRnd.createFactory(
                         p.lib().exponentiation(), p.get(GeneratorTypes.EXPONENTIAL_RND)));
 
         POISSON_RND = new RandomGeneratorType<>(
