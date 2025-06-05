@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.4.4
+ * 2025.6.4
  */
 package matsu.num.statistics.random;
 
@@ -65,6 +65,11 @@ final class BaseRandomHelper {
         }
 
         @Override
+        public long nextLong() {
+            return this.random.nextLong();
+        }
+
+        @Override
         public double nextDouble() {
             return this.random.nextDouble();
         }
@@ -112,6 +117,11 @@ final class BaseRandomHelper {
         @Override
         public int nextInt(int bound) {
             return this.getter.get().nextInt(bound);
+        }
+
+        @Override
+        public long nextLong() {
+            return this.getter.get().nextLong();
         }
 
         @Override

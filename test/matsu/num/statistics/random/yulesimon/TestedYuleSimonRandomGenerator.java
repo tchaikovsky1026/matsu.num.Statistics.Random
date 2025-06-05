@@ -64,9 +64,4 @@ final class TestedYuleSimonRandomGenerator implements TestedIntegerRandomGenerat
 
         return 1d - c;
     }
-
-    @Override
-    public double cumulativeProbabilityOneBelow(int arg) {
-        return this.cumulativeProbability(arg - 1);
-    }
 }

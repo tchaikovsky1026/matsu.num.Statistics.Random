@@ -54,11 +54,5 @@ final class BetaBasedIntegerRndTestingTest {
         public double cumulativeProbability(int arg) {
             return (arg + 1) * 0.01;
         }
-
-        @Override
-        public double cumulativeProbabilityOneBelow(int arg) {
-            return arg * 0.01;
-        }
-
     }
 }

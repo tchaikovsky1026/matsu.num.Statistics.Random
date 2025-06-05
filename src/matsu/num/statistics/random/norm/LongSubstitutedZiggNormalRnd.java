@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.6.5
  */
 package matsu.num.statistics.random.norm;
 
@@ -20,16 +20,21 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * Ziggurat法により実装された標準正規分布に従う乱数発生器.
  *
  * @author Matsuura Y.
- * @deprecated このクラスは使われていない
  */
-@Deprecated
-public final class ZiggNormalRnd extends SkeletalNormalRnd {
+public final class LongSubstitutedZiggNormalRnd extends SkeletalNormalRnd {
 
-    private static final int N = 128;
+    private static final int N_BIT = 7;
+    private static final int N = 1 << N_BIT;
     private static final double R_N = 3.44261985589665d;
     private static final double V_N = 0.00991256303533652d;
 
-    private final double[] xi;
+    // 符号に1個使うので, (64 - (N_BIT+1)) が使える
+    private static final double LONG_TO_DOUBLE_COEFF = 1d / (1L << (64 - (N_BIT + 1)));
+
+    /**
+     * xi と (xi * LONG_TO_DOUBLE_COEFF) を扱う.
+     */
+    private final double[] xi_and_xiTimesCoef;
     private final double[] fi;
     private final ExponentialRnd expRnd;
 
@@ -40,35 +45,48 @@ public final class ZiggNormalRnd extends SkeletalNormalRnd {
      * 
      * @throws NullPointerException null
      */
-    private ZiggNormalRnd(Exponentiation exponentiation, ExponentialRnd.Factory exponentialRndFactory) {
+    private LongSubstitutedZiggNormalRnd(Exponentiation exponentiation, ExponentialRnd.Factory exponentialRndFactory) {
         super();
         this.expRnd = exponentialRndFactory.instance();
         this.exponentiation = Objects.requireNonNull(exponentiation);
 
-        xi = new double[N + 1];
+        xi_and_xiTimesCoef = new double[2 * N + 2];
         fi = new double[N + 1]; //配列サイズが2^n個にならないよう、無駄スペースあり
-        xi[N] = V_N / func(R_N);
-        xi[N - 1] = R_N;
-        fi[N - 1] = func(xi[N - 1]);
+
+        setXi(N, V_N / func(R_N));
+        setXi(N - 1, R_N);
+        fi[N - 1] = func(getXi(N - 1));
         for (int i = N - 2; i >= 1; i--) {
-            xi[i] = funcInv(fi[i + 1] + V_N / xi[i + 1]);
-            fi[i] = func(xi[i]);
+            setXi(i, funcInv(fi[i + 1] + V_N / getXi(i + 1)));
+            fi[i] = func(getXi(i));
         }
-        xi[0] = 0.0;
-        fi[0] = func(xi[0]);
+        setXi(0, 0.0);
+        fi[0] = func(getXi(0));
+
+        for (int i = 0; i <= N; i++) {
+            calcAndSetXiTimesCoeff(i, getXi(i));
+        }
     }
 
     @Override
     public double nextRandom(BaseRandom random) {
         while (true) {
-            int int32 = random.nextInt();
-            boolean bSign = (int32 & 1) == 1;
-            int iArea = (int32 >>> 1) & (N - 1);
+            /*
+             * 処理のメインとなる randomDouble を long で代用する.
+             * u = LONG_TO_DOUBLE_COEFF * (long64 >>> (N_BIT+1))
+             * がdouble値に相当する.
+             */
+            long long64 = random.nextLong();
+            boolean bSign = (long64 & 1) == 1;
+            int iArea = (int) ((long64 >>> 1) & (N - 1));
 
-            double x = xi[iArea + 1] * random.nextDouble();
-            if (x < xi[iArea]) {
+            double xiTimesCoeff_at_iAreaPlus1 = getXiTimesCoeff(iArea + 1);
+            double xi_at_iArea = getXi(iArea);
+            double x = xiTimesCoeff_at_iAreaPlus1 * (long64 >>> (N_BIT + 1));
+            if (x < xi_at_iArea) {
                 return bSign ? x : -x;
             }
+
             if (iArea == N - 1) {
                 return bSign ? tail(random) : -tail(random);
             }
@@ -112,6 +130,22 @@ public final class ZiggNormalRnd extends SkeletalNormalRnd {
         return exponentiation.sqrt(-2.0 * Math.log(f));
     }
 
+    private double getXi(int i) {
+        return xi_and_xiTimesCoef[i << 1];
+    }
+
+    private double getXiTimesCoeff(int i) {
+        return xi_and_xiTimesCoef[(i << 1) | 1];
+    }
+
+    private void setXi(int i, double xiValue) {
+        xi_and_xiTimesCoef[i << 1] = xiValue;
+    }
+
+    private void calcAndSetXiTimesCoeff(int i, double xiValue) {
+        xi_and_xiTimesCoef[(i << 1) | 1] = xiValue * LONG_TO_DOUBLE_COEFF;
+    }
+
     /**
      * {@link matsu.num.statistics.random.NormalRnd.Factory} を生成する.
      * 
@@ -122,6 +156,6 @@ public final class ZiggNormalRnd extends SkeletalNormalRnd {
      */
     public static NormalRnd.Factory createFactory(
             Exponentiation exponentiation, ExponentialRnd.Factory exponentialRndFactory) {
-        return new NormalRndFactory(new ZiggNormalRnd(exponentiation, exponentialRndFactory));
+        return new NormalRndFactory(new LongSubstitutedZiggNormalRnd(exponentiation, exponentialRndFactory));
     }
 }

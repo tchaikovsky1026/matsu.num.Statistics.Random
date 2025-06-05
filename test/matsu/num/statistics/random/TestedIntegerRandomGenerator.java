@@ -28,12 +28,4 @@ public interface TestedIntegerRandomGenerator {
      * @return 引数に対する, 確率分布の累積確率
      */
     public abstract double cumulativeProbability(int arg);
-
-    /**
-     * 乱数発生器が従う(ことを期待する)確率分布の, 引数の1つ下の階級に対応する累積確率を計算する.
-     *
-     * @param arg 引数
-     * @return 引数の1つ下の階級に対する, 確率分布の累積確率
-     */
-    public abstract double cumulativeProbabilityOneBelow(int arg);
 }

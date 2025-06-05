@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.6.4
+ * 2025.6.5
  */
 package matsu.num.statistics.random.service;
 
@@ -38,7 +38,7 @@ import matsu.num.statistics.random.binomial.DirichletBasedBinomialRnd;
 import matsu.num.statistics.random.cat.TableBasedCategoricalRnd;
 import matsu.num.statistics.random.cauchy.ZiggCauchyRnd;
 import matsu.num.statistics.random.chisq.GammaTypeChiSquaredRnd;
-import matsu.num.statistics.random.exp.ZiggExponentialRnd;
+import matsu.num.statistics.random.exp.LongSubstitutedZiggExponentialRnd;
 import matsu.num.statistics.random.fdist.BetaBasedFDistributionRnd;
 import matsu.num.statistics.random.gamma.MTTypeGammaRndFactory;
 import matsu.num.statistics.random.geo.InversionBasedGeoRnd;
@@ -46,7 +46,7 @@ import matsu.num.statistics.random.gumbel.UniZiggGumbelRnd;
 import matsu.num.statistics.random.levy.NormalBasedLevyRnd;
 import matsu.num.statistics.random.logi.ZiggLogiRnd;
 import matsu.num.statistics.random.negbinomial.GammaPoissonBasedNegativeBinomialRnd;
-import matsu.num.statistics.random.norm.ZiggNormalRnd;
+import matsu.num.statistics.random.norm.LongSubstitutedZiggNormalRnd;
 import matsu.num.statistics.random.poi.GammaHomoProcessBasedPoissonRnd;
 import matsu.num.statistics.random.staticbeta.GammaBasedStaticBetaRnd;
 import matsu.num.statistics.random.staticgamma.MTTypeStaticGammaRnd;
@@ -186,7 +186,7 @@ public final class GeneratorTypes {
 
         EXPONENTIAL_RND = new RandomGeneratorType<>(
                 "EXPONENTIAL_RND", ExponentialRnd.Factory.class,
-                p -> ZiggExponentialRnd.createFactory(p.lib().exponentiation()));
+                p -> LongSubstitutedZiggExponentialRnd.createFactory(p.lib().exponentiation()));
 
         F_DISTRIBUTION_RND = new RandomGeneratorType<>(
                 "F_DISTRIBUTION_RND", FDistributionRnd.Factory.class,
@@ -224,7 +224,7 @@ public final class GeneratorTypes {
 
         NORMAL_RND = new RandomGeneratorType<>(
                 "NORMAL_RND", NormalRnd.Factory.class,
-                p -> ZiggNormalRnd.createFactory(
+                p -> LongSubstitutedZiggNormalRnd.createFactory(
                         p.lib().exponentiation(), p.get(GeneratorTypes.EXPONENTIAL_RND)));
 
         POISSON_RND = new RandomGeneratorType<>(

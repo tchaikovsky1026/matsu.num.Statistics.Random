@@ -18,7 +18,7 @@ import matsu.num.statistics.random.lib.ExponentiationForTesting;
 public final class ExponentialFactoryForTesting {
 
     public static final ExponentialRnd.Factory FACTORY =
-            ZiggExponentialRnd.createFactory(ExponentiationForTesting.INSTANCE);
+            LongSubstitutedZiggExponentialRnd.createFactory(ExponentiationForTesting.INSTANCE);
 
     private ExponentialFactoryForTesting() {
     }

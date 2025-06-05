@@ -1,5 +1,5 @@
 /*
- * Copyright © 2024 Matsuura Y.
+ * Copyright © 2025 Matsuura Y.
  * 
  * This software is released under the MIT License.
  * http://opensource.org/licenses/mit-license.php
@@ -22,15 +22,14 @@ import matsu.num.statistics.random.lib.ExponentiationForTesting;
 import matsu.num.statistics.random.speedutil.SpeedTestExecutor;
 
 /**
- * {@link ZiggNormalRndFactory} クラスのテスト.
+ * {@link LongSubstitutedZiggNormalRnd} クラスのテスト.
  */
 @RunWith(Enclosed.class)
-@SuppressWarnings("deprecation")
-final class ZiggNormalRndTest {
+final class LongSubstitutedZiggNormalRndTest {
 
-    public static final Class<?> TEST_CLASS = ZiggNormalRnd.class;
+    public static final Class<?> TEST_CLASS = LongSubstitutedZiggNormalRnd.class;
     private static final NormalRnd.Factory FACTORY =
-            ZiggNormalRnd.createFactory(
+            LongSubstitutedZiggNormalRnd.createFactory(
                     ExponentiationForTesting.INSTANCE,
                     ExponentialFactoryForTesting.FACTORY);
 
@@ -59,22 +58,15 @@ final class ZiggNormalRndTest {
             var testRnd = FACTORY.instance();
             BaseRandom baseRandom = BaseRandom.threadSeparatedRandom();
 
-            var executor = new SpeedTestExecutor(
+            var myRndExecutor = new SpeedTestExecutor(
                     TEST_CLASS, testRnd, 50_000_000,
                     () -> testRnd.nextRandom(baseRandom));
-            executor.execute();
-        }
-    }
+            myRndExecutor.execute();
 
-    @Ignore
-    public static class Java標準ライブラリの計算時間評価 {
-
-        @Test
-        public void test_乱数生成の実行() {
-            var executor = new SpeedTestExecutor(
-                    TEST_CLASS, "ThreadLocalRandom.nextGaussian", 50_000_000,
+            var javaApiExecutor = new SpeedTestExecutor(
+                    null, "ThreadLocalRandom.nextGaussian", 20_000_000,
                     () -> ThreadLocalRandom.current().nextGaussian());
-            executor.execute();
+            javaApiExecutor.execute();
         }
     }
 

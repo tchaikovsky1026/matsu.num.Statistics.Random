@@ -105,15 +105,6 @@ final class InversionBasedGeoRndFactoryTest {
                 }
                 return 1 - Math.exp(arg * Math.log1p(-geoRnd.successPobability()));
             }
-
-            @Override
-            public double cumulativeProbabilityOneBelow(int arg) {
-                if (arg <= 1) {
-                    return 0;
-                }
-                return 1 - Math.exp((arg - 1) * Math.log1p(-geoRnd.successPobability()));
-            }
-
         }
     }
 
@@ -157,15 +148,6 @@ final class InversionBasedGeoRndFactoryTest {
                 }
                 return 1 - Math.exp(arg * Math.log1p(-geoRnd.successPobability()));
             }
-
-            @Override
-            public double cumulativeProbabilityOneBelow(int arg) {
-                if (arg <= 1) {
-                    return 0;
-                }
-                return 1 - Math.exp((arg - 1) * Math.log1p(-geoRnd.successPobability()));
-            }
-
         }
     }
 

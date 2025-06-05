@@ -1,10 +1,10 @@
 /*
- * Copyright © 2024 Matsuura Y.
+ * Copyright © 2025 Matsuura Y.
  * 
  * This software is released under the MIT License.
  * http://opensource.org/licenses/mit-license.php
  */
-package matsu.num.statistics.random.norm;
+package matsu.num.statistics.random.exp;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -15,24 +15,20 @@ import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
 
 import matsu.num.statistics.random.BaseRandom;
+import matsu.num.statistics.random.ExponentialRnd;
 import matsu.num.statistics.random.FloatingRandomGeneratorTestingFramework;
-import matsu.num.statistics.random.NormalRnd;
-import matsu.num.statistics.random.exp.ExponentialFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
 import matsu.num.statistics.random.speedutil.SpeedTestExecutor;
 
 /**
- * {@link ZiggNormalRndFactory} クラスのテスト.
+ * {@link LongSubstitutedZiggExponentialRnd} クラスのテスト.
  */
 @RunWith(Enclosed.class)
-@SuppressWarnings("deprecation")
-final class ZiggNormalRndTest {
+final class LongSubstitutedZiggExponentialRndTest {
 
-    public static final Class<?> TEST_CLASS = ZiggNormalRnd.class;
-    private static final NormalRnd.Factory FACTORY =
-            ZiggNormalRnd.createFactory(
-                    ExponentiationForTesting.INSTANCE,
-                    ExponentialFactoryForTesting.FACTORY);
+    public static final Class<?> TEST_CLASS = LongSubstitutedZiggExponentialRnd.class;
+    private static final ExponentialRnd.Factory FACTORY =
+            LongSubstitutedZiggExponentialRnd.createFactory(ExponentiationForTesting.INSTANCE);
 
     public static class 乱数のテスト {
 
@@ -41,7 +37,7 @@ final class ZiggNormalRndTest {
         @Before
         public void before() {
             framework = FloatingRandomGeneratorTestingFramework
-                    .instanceOf(new TestedNormalRandomGenerator(FACTORY.instance()));
+                    .instanceOf(new TestedExponentialRandomGenerator(FACTORY.instance()));
         }
 
         @Test
@@ -55,26 +51,18 @@ final class ZiggNormalRndTest {
 
         @Test
         public void test_乱数生成の実行() {
-
             var testRnd = FACTORY.instance();
             BaseRandom baseRandom = BaseRandom.threadSeparatedRandom();
 
-            var executor = new SpeedTestExecutor(
+            var myRndExecutor = new SpeedTestExecutor(
                     TEST_CLASS, testRnd, 50_000_000,
                     () -> testRnd.nextRandom(baseRandom));
-            executor.execute();
-        }
-    }
+            myRndExecutor.execute();
 
-    @Ignore
-    public static class Java標準ライブラリの計算時間評価 {
-
-        @Test
-        public void test_乱数生成の実行() {
-            var executor = new SpeedTestExecutor(
-                    TEST_CLASS, "ThreadLocalRandom.nextGaussian", 50_000_000,
-                    () -> ThreadLocalRandom.current().nextGaussian());
-            executor.execute();
+            var javaApiExecutor = new SpeedTestExecutor(
+                    null, "ThreadLocalRandom.nextExponential", 50_000_000,
+                    () -> ThreadLocalRandom.current().nextExponential());
+            javaApiExecutor.execute();
         }
     }
 
