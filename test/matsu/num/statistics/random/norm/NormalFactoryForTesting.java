@@ -19,7 +19,7 @@ import matsu.num.statistics.random.lib.ExponentiationForTesting;
 public final class NormalFactoryForTesting {
 
     public static final NormalRnd.Factory FACTORY =
-            ZiggNormalRnd.createFactory(
+            LongSubstitutedZiggNormalRnd.createFactory(
                     ExponentiationForTesting.INSTANCE,
                     ExponentialFactoryForTesting.FACTORY);
 
