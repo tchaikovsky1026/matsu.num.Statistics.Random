@@ -10,8 +10,6 @@ import static matsu.num.statistics.random.StaticGammaRnd.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
-import java.util.Objects;
-
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -22,7 +20,6 @@ import org.junit.runner.RunWith;
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.FloatingRandomGeneratorTestingFramework;
 import matsu.num.statistics.random.StaticGammaRnd;
-import matsu.num.statistics.random.TestedFloatingRandomGenerator;
 import matsu.num.statistics.random.exp.ExponentialFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
 import matsu.num.statistics.random.norm.NormalFactoryForTesting;
@@ -65,140 +62,27 @@ final class MTTypeStaticGammaRndFactoryTest {
         }
     }
 
-    public static class 形状パラメータ4のテスト {
+    public static class 乱数のテスト {
 
-        private FloatingRandomGeneratorTestingFramework framework;
-
-        @Before
-        public void before() {
-            framework = FloatingRandomGeneratorTestingFramework
-                    .instanceOf(new TestedAt4(BaseRandom.threadSeparatedRandom()));
+        @Test
+        public void test_形状パラメータ_4() {
+            FloatingRandomGeneratorTestingFramework
+                    .instanceOf(new Tested_At_4_StaticGammaRandomGenerator(FACTORY.instance()))
+                    .test();
         }
 
         @Test
-        public void test() {
-            framework.test();
-        }
-
-        /**
-         * k=4のガンマ乱数発生器の変則型のテスタ. <br>
-         * 累積分布関数は, <br>
-         * 1 - e^(-x) (1 + x + (1/2) * x^2 + (1/6)x^3)
-         *
-         */
-        private static final class TestedAt4 implements TestedFloatingRandomGenerator {
-
-            private final double k = 4d;
-            private final BaseRandom random;
-            private final StaticGammaRnd gammaRnd;
-
-            public TestedAt4(BaseRandom random) {
-                this.random = Objects.requireNonNull(random);
-                this.gammaRnd = FACTORY.instance();
-            }
-
-            @Override
-            public double newValue() {
-                return gammaRnd.nextRandom(random, k);
-            }
-
-            @Override
-            public double cumulativeProbability(double arg) {
-                double arg2 = arg * arg;
-                double arg3 = arg2 * arg;
-                return 1 - Math.exp(-arg) * (1 + arg + 0.5 * arg2 + (1.0 / 6.0) * arg3);
-            }
-
-        }
-    }
-
-    public static class 形状パラメータ1のテスト {
-
-        private FloatingRandomGeneratorTestingFramework framework;
-
-        @Before
-        public void before() {
-            framework = FloatingRandomGeneratorTestingFramework
-                    .instanceOf(new TestedAt1(BaseRandom.threadSeparatedRandom()));
+        public void test_形状パラメータ_1() {
+            FloatingRandomGeneratorTestingFramework
+                    .instanceOf(new Tested_At_1_StaticGammaRandomGenerator(FACTORY.instance()))
+                    .test();
         }
 
         @Test
-        public void test() {
-            framework.test();
-        }
-
-        /**
-         * k=1のガンマ乱数発生器のテスタ=標準指数分布.
-         */
-        private static final class TestedAt1 implements TestedFloatingRandomGenerator {
-
-            private final double k = 1d;
-            private final BaseRandom random;
-            private final StaticGammaRnd gammaRnd;
-
-            public TestedAt1(BaseRandom random) {
-                this.random = Objects.requireNonNull(random);
-                this.gammaRnd = FACTORY.instance();
-            }
-
-            @Override
-            public double newValue() {
-                return gammaRnd.nextRandom(random, k);
-            }
-
-            @Override
-            public double cumulativeProbability(double arg) {
-                return 1 - Math.exp(-arg);
-            }
-        }
-    }
-
-    public static class 形状パラメータ0_25のテスト {
-
-        private FloatingRandomGeneratorTestingFramework framework;
-
-        @Before
-        public void before() {
-            framework = FloatingRandomGeneratorTestingFramework
-                    .instanceOf(new TestedAtQuarter(BaseRandom.threadSeparatedRandom()));
-        }
-
-        @Test
-        public void test() {
-            framework.test();
-        }
-
-        /**
-         * k=0.25のガンマ乱数発生器の変則型のテスタ. <br>
-         * 指数分布に帰着させる. <br>
-         * <br>
-         * X1からX4がk=0.25ガンマ分布に従うとき,
-         * {@literal  Z = X1 + X2 + X3 + X4}は標準指数分布に従う.
-         */
-        private static final class TestedAtQuarter implements TestedFloatingRandomGenerator {
-
-            private final double k = 0.25d;
-            private final BaseRandom random;
-            private final StaticGammaRnd gammaRnd;
-
-            public TestedAtQuarter(BaseRandom random) {
-                this.random = Objects.requireNonNull(random);
-                this.gammaRnd = FACTORY.instance();
-            }
-
-            @Override
-            public double newValue() {
-                return gammaRnd.nextRandom(random, k)
-                        + gammaRnd.nextRandom(random, k)
-                        + gammaRnd.nextRandom(random, k)
-                        + gammaRnd.nextRandom(random, k);
-            }
-
-            @Override
-            public double cumulativeProbability(double arg) {
-                return 1 - Math.exp(-arg);
-            }
-
+        public void test_形状パラメータ_0_25() {
+            FloatingRandomGeneratorTestingFramework
+                    .instanceOf(new Tested_At_0_25_StaticGammaRandomGenerator(FACTORY.instance()))
+                    .test();
         }
     }
 
