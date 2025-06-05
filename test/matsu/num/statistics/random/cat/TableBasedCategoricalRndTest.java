@@ -123,20 +123,14 @@ final class TableBasedCategoricalRndTest {
 
             @Override
             public double cumulativeProbability(int arg) {
-                if (arg < 0 || arg >= 10) {
+                if (arg < 0) {
                     return 0;
+                }
+                if (arg >= 10) {
+                    return 1d;
                 }
                 return ((double) (arg + 1) * (arg + 2)) / 110;
             }
-
-            @Override
-            public double cumulativeProbabilityOneBelow(int arg) {
-                if (arg <= 0 || arg >= 10) {
-                    return 0;
-                }
-                return ((double) (arg) * (arg + 1)) / 110;
-            }
-
         }
     }
 
@@ -189,20 +183,14 @@ final class TableBasedCategoricalRndTest {
 
             @Override
             public double cumulativeProbability(int arg) {
-                if (arg < 0 || arg >= 10) {
+                if (arg < 0) {
                     return 0;
+                }
+                if (arg >= 10) {
+                    return 1d;
                 }
                 return ((double) (arg + 1) * (arg + 2)) / 110;
             }
-
-            @Override
-            public double cumulativeProbabilityOneBelow(int arg) {
-                if (arg <= 0 || arg >= 10) {
-                    return 0;
-                }
-                return ((double) (arg) * (arg + 1)) / 110;
-            }
-
         }
     }
 

@@ -50,9 +50,4 @@ final class TestedZetaRandomGenerator implements TestedIntegerRandomGenerator {
         }
         return sum / zetaS;
     }
-
-    @Override
-    public double cumulativeProbabilityOneBelow(int arg) {
-        return this.cumulativeProbability(arg - 1);
-    }
 }

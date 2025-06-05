@@ -144,24 +144,6 @@ final class GammaHomoProcessBasedPoissonRndFactoryTest {
             }
             return sum * Math.exp(-lambda);
         }
-
-        @Override
-        public double cumulativeProbabilityOneBelow(int arg) {
-            if (arg <= 0) {
-                return 0;
-            }
-
-            final double lambda = this.poiRnd.lambda();
-
-            double sum = 0;
-            double v = 1;
-            for (int k = 0; k < arg; k++) {
-                sum += v;
-                v *= lambda / (k + 1);
-            }
-            return sum * Math.exp(-lambda);
-        }
-
     }
 
     public static class toString表示 {
