@@ -47,11 +47,6 @@ final class TestedBinomialRandomGenerator implements TestedIntegerRandomGenerato
         return sum;
     }
 
-    @Override
-    public double cumulativeProbabilityOneBelow(int arg) {
-        return this.cumulativeProbability(arg - 1);
-    }
-
     /**
      * 引数には
      * {@literal 0 <= arg <= n}

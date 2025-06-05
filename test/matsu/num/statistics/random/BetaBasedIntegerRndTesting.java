@@ -90,7 +90,7 @@ final class BetaBasedIntegerRndTesting implements IntegerRandomGeneratorTestingF
             double max = VALID_RANGE[i][1];
 
             double analyticalProbability = testedGenerator.cumulativeProbability(samples[index]);
-            double analyticalProbabilityOneBelow = testedGenerator.cumulativeProbabilityOneBelow(samples[index]);
+            double analyticalProbabilityOneBelow = testedGenerator.cumulativeProbability(samples[index] - 1);
 
             if (!(min <= analyticalProbability && analyticalProbabilityOneBelow <= max)) {
                 throw new AssertionError(
@@ -102,7 +102,5 @@ final class BetaBasedIntegerRndTesting implements IntegerRandomGeneratorTestingF
                                 min, max));
             }
         }
-
     }
-
 }
