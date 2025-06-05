@@ -13,6 +13,7 @@ import static org.hamcrest.Matchers.*;
 import java.util.Objects;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.Test.None;
 import org.junit.experimental.runners.Enclosed;
@@ -25,6 +26,7 @@ import matsu.num.statistics.random.TestedFloatingRandomGenerator;
 import matsu.num.statistics.random.exp.ExponentialFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
 import matsu.num.statistics.random.norm.NormalFactoryForTesting;
+import matsu.num.statistics.random.speedutil.SpeedTestExecutor;
 
 /**
  * {@link MTTypeStaticGammaRnd} クラスのテスト.
@@ -197,6 +199,23 @@ final class MTTypeStaticGammaRndFactoryTest {
                 return 1 - Math.exp(-arg);
             }
 
+        }
+    }
+
+    @Ignore
+    public static class 計算時間評価 {
+
+        @Test
+        public void test_乱数生成の実行() {
+
+            final double k = 20d;
+            var testRnd = FACTORY.instance();
+            BaseRandom baseRandom = BaseRandom.threadSeparatedRandom();
+
+            var executor = new SpeedTestExecutor(
+                    TEST_CLASS, testRnd, 20_000_000,
+                    () -> testRnd.nextRandom(baseRandom, k));
+            executor.execute();
         }
     }
 
