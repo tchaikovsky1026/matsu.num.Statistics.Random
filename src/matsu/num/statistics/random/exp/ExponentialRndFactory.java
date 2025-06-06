@@ -10,7 +10,7 @@
 package matsu.num.statistics.random.exp;
 
 import matsu.num.statistics.random.ExponentialRnd;
-import matsu.num.statistics.random.base.ParameterlessFactory;
+import matsu.num.statistics.random.base.SkeletalParameterlessRndFactory;
 
 /**
  * {@link matsu.num.statistics.random.ExponentialRnd.Factory} の実装.
@@ -18,7 +18,7 @@ import matsu.num.statistics.random.base.ParameterlessFactory;
  * @author Matsuura Y.
  */
 final class ExponentialRndFactory
-        extends ParameterlessFactory<ExponentialRnd> implements ExponentialRnd.Factory {
+        extends SkeletalParameterlessRndFactory<ExponentialRnd> implements ExponentialRnd.Factory {
 
     /**
      * 唯一の外部に公開されないコンストラクタ. <br>

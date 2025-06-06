@@ -10,7 +10,7 @@
 package matsu.num.statistics.random.levy;
 
 import matsu.num.statistics.random.LevyRnd;
-import matsu.num.statistics.random.base.ParameterlessFactory;
+import matsu.num.statistics.random.base.SkeletalParameterlessRndFactory;
 
 /**
  * {@link matsu.num.statistics.random.LevyRnd.Factory} の実装.
@@ -18,7 +18,7 @@ import matsu.num.statistics.random.base.ParameterlessFactory;
  * @author Matsuura Y.
  */
 final class LevyRndFactory
-        extends ParameterlessFactory<LevyRnd> implements LevyRnd.Factory {
+        extends SkeletalParameterlessRndFactory<LevyRnd> implements LevyRnd.Factory {
 
     /**
      * 唯一の外部に公開されないコンストラクタ. <br>

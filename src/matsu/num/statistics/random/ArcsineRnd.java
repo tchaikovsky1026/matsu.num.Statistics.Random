@@ -6,7 +6,7 @@
  */
 
 /*
- * 2025.5.31
+ * 2025.6.6
  */
 package matsu.num.statistics.random;
 
@@ -44,16 +44,7 @@ public interface ArcsineRnd extends FloatingRandomGenerator {
      *               このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
      *               モジュール外で実装してはいけない.
      */
-    public static interface Factory extends RndFactory {
-
-        /**
-         * <p>
-         * 逆正弦乱数発生器インスタンスを返す.
-         * </p>
-         *
-         * @return 逆正弦乱数発生器インスタンス
-         */
-        public abstract ArcsineRnd instance();
+    public static interface Factory extends ParameterlessRndFactory<ArcsineRnd> {
 
     }
 }

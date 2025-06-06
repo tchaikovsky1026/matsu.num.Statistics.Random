@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.5.5
+ * 2025.6.6
  */
 package matsu.num.statistics.random;
 
@@ -132,15 +132,7 @@ public interface StaticBetaRnd extends Rnd {
      *               このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
      *               モジュール外で実装してはいけない.
      */
-    public static interface Factory extends RndFactory {
+    public static interface Factory extends ParameterlessRndFactory<StaticBetaRnd> {
 
-        /**
-         * <p>
-         * Static ベータ乱数発生器インスタンスを返す.
-         * </p>
-         *
-         * @return Static ベータ乱数発生器インスタンス
-         */
-        public abstract StaticBetaRnd instance();
     }
 }
