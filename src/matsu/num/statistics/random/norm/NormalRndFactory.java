@@ -10,7 +10,7 @@
 package matsu.num.statistics.random.norm;
 
 import matsu.num.statistics.random.NormalRnd;
-import matsu.num.statistics.random.base.ParameterlessFactory;
+import matsu.num.statistics.random.base.SkeletalParameterlessRndFactory;
 
 /**
  * {@link matsu.num.statistics.random.NormalRnd.Factory} の実装.
@@ -18,7 +18,7 @@ import matsu.num.statistics.random.base.ParameterlessFactory;
  * @author Matsuura Y.
  */
 final class NormalRndFactory
-        extends ParameterlessFactory<NormalRnd> implements NormalRnd.Factory {
+        extends SkeletalParameterlessRndFactory<NormalRnd> implements NormalRnd.Factory {
 
     /**
      * 唯一の外部に公開されないコンストラクタ. <br>

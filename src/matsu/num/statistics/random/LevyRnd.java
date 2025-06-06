@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.5.5
+ * 2025.6.6
  */
 package matsu.num.statistics.random;
 
@@ -43,15 +43,7 @@ public interface LevyRnd extends FloatingRandomGenerator {
      *               このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
      *               モジュール外で実装してはいけない.
      */
-    public static interface Factory extends RndFactory {
+    public static interface Factory extends ParameterlessRndFactory<LevyRnd> {
 
-        /**
-         * <p>
-         * 標準 L&eacute;vy 分布乱数発生器インスタンスを返す.
-         * </p>
-         *
-         * @return 標準 L&eacute;vy 分布乱数発生器インスタンス
-         */
-        public abstract LevyRnd instance();
     }
 }

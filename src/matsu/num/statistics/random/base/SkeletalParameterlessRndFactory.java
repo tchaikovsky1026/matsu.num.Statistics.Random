@@ -5,23 +5,31 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.27
+ * 2025.6.6
  */
 package matsu.num.statistics.random.base;
 
 import java.util.Objects;
 
+import matsu.num.statistics.random.ParameterlessRndFactory;
+import matsu.num.statistics.random.Rnd;
+
 /**
- * パラメータを持たない乱数発生器のファクトリを扱う.
+ * <p>
+ * {@link ParameterlessRndFactory} の骨格実装.
+ * </p>
  * 
  * <p>
- * 乱数発生器は {@link #instance()} メソッドにより取得する.
+ * {@code ParameterlessRndFactory}
+ * を継承したインターフェースを {@code implements} しこのクラスを継承した具象ファクトリクラスを作成するのが,
+ * 通常の使い方である.
  * </p>
  * 
  * @author Matsuura Y.
  * @param <T> このファクトリが扱う乱数発生器の型
  */
-public abstract class ParameterlessFactory<T> {
+public abstract class SkeletalParameterlessRndFactory<T extends Rnd>
+        implements ParameterlessRndFactory<T> {
 
     private final T rnd;
     private final String instanceName;
@@ -38,7 +46,7 @@ public abstract class ParameterlessFactory<T> {
      * @param instanceName このファクトリインスタンスの文字列表現
      * @throws NullPointerException 乱数発生器がnullの場合
      */
-    protected ParameterlessFactory(T rnd, String instanceName) {
+    protected SkeletalParameterlessRndFactory(T rnd, String instanceName) {
         super();
 
         this.rnd = Objects.requireNonNull(rnd);
@@ -47,11 +55,7 @@ public abstract class ParameterlessFactory<T> {
                 : instanceName;
     }
 
-    /**
-     * {@code T} 型の乱数発生器インスタンスを返す.
-     *
-     * @return 乱数発生器インスタンス
-     */
+    @Override
     public final T instance() {
         return this.rnd;
     }

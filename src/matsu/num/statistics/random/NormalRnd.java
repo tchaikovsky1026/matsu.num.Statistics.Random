@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.5.5
+ * 2025.6.6
  */
 package matsu.num.statistics.random;
 
@@ -34,15 +34,7 @@ public interface NormalRnd extends FloatingRandomGenerator {
      *               このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
      *               モジュール外で実装してはいけない.
      */
-    public static interface Factory extends RndFactory {
+    public static interface Factory extends ParameterlessRndFactory<NormalRnd> {
 
-        /**
-         * <p>
-         * 標準正規分布乱数発生器インスタンスを返す.
-         * </p>
-         *
-         * @return 標準正規分布乱数発生器インスタンス
-         */
-        public abstract NormalRnd instance();
     }
 }

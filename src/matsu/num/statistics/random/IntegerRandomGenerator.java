@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.5.5
+ * 2025.6.6
  */
 package matsu.num.statistics.random;
 
@@ -14,12 +14,26 @@ package matsu.num.statistics.random;
  * 整数値を取る離散確率分布に従う乱数の発生器.
  * </p>
  * 
+ * <p>
+ * <u><i>
+ * 注意:
+ * このクラスをモジュール外では型として扱うべきではない.
+ * 具体的に, 次のような取り扱いは強く非推奨である.
+ * </i></u>
+ * </p>
+ * 
+ * <ul>
+ * <li>このクラスを変数宣言の型として使う.</li>
+ * <li>{@code instanceof} 演算子により, このクラスのサブタイプかを判定する.</li>
+ * <li>インスタンスをこのクラスにキャストして使用する.</li>
+ * </ul>
+ * 
  * @implSpec
  *               このインターフェースをモジュール外で継承・実装してはいけない.
  *
  * @author Matsuura Y.
  */
-interface IntegerRandomGenerator extends Rnd {
+public interface IntegerRandomGenerator extends Rnd {
 
     /**
      * <p>

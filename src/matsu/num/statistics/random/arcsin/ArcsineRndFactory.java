@@ -11,7 +11,7 @@
 package matsu.num.statistics.random.arcsin;
 
 import matsu.num.statistics.random.ArcsineRnd;
-import matsu.num.statistics.random.base.ParameterlessFactory;
+import matsu.num.statistics.random.base.SkeletalParameterlessRndFactory;
 
 /**
  * {@link ArcsineRnd.Factory} の実装を提供する.
@@ -19,7 +19,7 @@ import matsu.num.statistics.random.base.ParameterlessFactory;
  * @author Matsuura Y.
  */
 final class ArcsineRndFactory
-        extends ParameterlessFactory<ArcsineRnd>
+        extends SkeletalParameterlessRndFactory<ArcsineRnd>
         implements ArcsineRnd.Factory {
 
     /**

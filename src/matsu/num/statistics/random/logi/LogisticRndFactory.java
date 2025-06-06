@@ -10,7 +10,7 @@
 package matsu.num.statistics.random.logi;
 
 import matsu.num.statistics.random.LogisticRnd;
-import matsu.num.statistics.random.base.ParameterlessFactory;
+import matsu.num.statistics.random.base.SkeletalParameterlessRndFactory;
 
 /**
  * {@link matsu.num.statistics.random.LogisticRnd.Factory} の実装.
@@ -18,7 +18,7 @@ import matsu.num.statistics.random.base.ParameterlessFactory;
  * @author Matsuura Y.
  */
 final class LogisticRndFactory
-        extends ParameterlessFactory<LogisticRnd> implements LogisticRnd.Factory {
+        extends SkeletalParameterlessRndFactory<LogisticRnd> implements LogisticRnd.Factory {
 
     /**
      * 唯一の外部に公開されないコンストラクタ. <br>
