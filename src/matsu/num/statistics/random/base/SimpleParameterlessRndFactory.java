@@ -28,7 +28,7 @@ import matsu.num.statistics.random.Rnd;
  * @author Matsuura Y.
  * @param <T> このファクトリが扱う乱数発生器の型
  */
-public abstract class SkeletalParameterlessRndFactory<T extends Rnd>
+public abstract class SimpleParameterlessRndFactory<T extends Rnd>
         implements ParameterlessRndFactory<T> {
 
     private final T rnd;
@@ -46,7 +46,7 @@ public abstract class SkeletalParameterlessRndFactory<T extends Rnd>
      * @param instanceName このファクトリインスタンスの文字列表現
      * @throws NullPointerException 乱数発生器がnullの場合
      */
-    protected SkeletalParameterlessRndFactory(T rnd, String instanceName) {
+    protected SimpleParameterlessRndFactory(T rnd, String instanceName) {
         super();
 
         this.rnd = Objects.requireNonNull(rnd);

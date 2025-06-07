@@ -10,7 +10,7 @@
 package matsu.num.statistics.random.cauchy;
 
 import matsu.num.statistics.random.CauchyRnd;
-import matsu.num.statistics.random.base.SkeletalParameterlessRndFactory;
+import matsu.num.statistics.random.base.SimpleParameterlessRndFactory;
 
 /**
  * {@link matsu.num.statistics.random.CauchyRnd.Factory} の実装.
@@ -18,7 +18,7 @@ import matsu.num.statistics.random.base.SkeletalParameterlessRndFactory;
  * @author Matsuura Y.
  */
 final class CauchyRndFactory
-        extends SkeletalParameterlessRndFactory<CauchyRnd> implements CauchyRnd.Factory {
+        extends SimpleParameterlessRndFactory<CauchyRnd> implements CauchyRnd.Factory {
 
     /**
      * 唯一の外部に公開されないコンストラクタ. <br>

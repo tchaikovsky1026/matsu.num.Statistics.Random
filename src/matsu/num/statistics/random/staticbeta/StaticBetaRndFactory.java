@@ -10,7 +10,7 @@
 package matsu.num.statistics.random.staticbeta;
 
 import matsu.num.statistics.random.StaticBetaRnd;
-import matsu.num.statistics.random.base.SkeletalParameterlessRndFactory;
+import matsu.num.statistics.random.base.SimpleParameterlessRndFactory;
 
 /**
  * {@link matsu.num.statistics.random.StaticBetaRnd.Factory} の実装.
@@ -18,7 +18,7 @@ import matsu.num.statistics.random.base.SkeletalParameterlessRndFactory;
  * @author Matsuura Y.
  */
 final class StaticBetaRndFactory
-        extends SkeletalParameterlessRndFactory<StaticBetaRnd> implements StaticBetaRnd.Factory {
+        extends SimpleParameterlessRndFactory<StaticBetaRnd> implements StaticBetaRnd.Factory {
 
     /**
      * 唯一の外部に公開されないコンストラクタ. <br>

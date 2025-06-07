@@ -10,7 +10,7 @@
 package matsu.num.statistics.random.gumbel;
 
 import matsu.num.statistics.random.GumbelRnd;
-import matsu.num.statistics.random.base.SkeletalParameterlessRndFactory;
+import matsu.num.statistics.random.base.SimpleParameterlessRndFactory;
 
 /**
  * {@link matsu.num.statistics.random.GumbelRnd.Factory} の実装.
@@ -18,7 +18,7 @@ import matsu.num.statistics.random.base.SkeletalParameterlessRndFactory;
  * @author Matsuura Y.
  */
 final class GumbelRndFactory
-        extends SkeletalParameterlessRndFactory<GumbelRnd> implements GumbelRnd.Factory {
+        extends SimpleParameterlessRndFactory<GumbelRnd> implements GumbelRnd.Factory {
 
     /**
      * 唯一の外部に公開されないコンストラクタ. <br>
