@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.6.5
+ * 2025.6.7
  */
 package matsu.num.statistics.random.norm;
 
@@ -156,6 +156,7 @@ public final class LongSubstitutedZiggNormalRnd extends SkeletalNormalRnd {
      */
     public static NormalRnd.Factory createFactory(
             Exponentiation exponentiation, ExponentialRnd.Factory exponentialRndFactory) {
-        return new NormalRndFactory(new LongSubstitutedZiggNormalRnd(exponentiation, exponentialRndFactory));
+        return new LazyNormalRndFactory(
+                () -> new LongSubstitutedZiggNormalRnd(exponentiation, exponentialRndFactory));
     }
 }

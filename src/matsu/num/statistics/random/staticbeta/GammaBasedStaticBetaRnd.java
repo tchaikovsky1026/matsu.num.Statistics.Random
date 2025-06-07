@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.6.7
  */
 package matsu.num.statistics.random.staticbeta;
 
@@ -52,6 +52,7 @@ public final class GammaBasedStaticBetaRnd extends SkeletalStaticBetaRnd {
      * @throws NullPointerException 引数にnullが含まれる場合
      */
     public static StaticBetaRnd.Factory createFactory(StaticGammaRnd.Factory staticGammaRndFactory) {
-        return new StaticBetaRndFactory(new GammaBasedStaticBetaRnd(staticGammaRndFactory));
+        return new LazyStaticBetaRndFactory(
+                () -> new GammaBasedStaticBetaRnd(staticGammaRndFactory));
     }
 }

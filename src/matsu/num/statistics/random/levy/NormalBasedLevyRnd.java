@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.6.7
  */
 package matsu.num.statistics.random.levy;
 
@@ -46,6 +46,7 @@ public final class NormalBasedLevyRnd extends SkeletalLevyRnd {
      * @throws NullPointerException 引数にnullが含まれる場合
      */
     public static LevyRnd.Factory createFactory(NormalRnd.Factory normalRndFactory) {
-        return new LevyRndFactory(new NormalBasedLevyRnd(normalRndFactory));
+        return new LazyLevyRndFactory(
+                () -> new NormalBasedLevyRnd(normalRndFactory));
     }
 }

@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.6.7
  */
 package matsu.num.statistics.random.staticgamma;
 
@@ -84,7 +84,9 @@ public final class MTTypeStaticGammaRnd extends SkeletalStaticGammaRnd {
             Exponentiation exponentiation,
             ExponentialRnd.Factory exponentialRndFactory,
             NormalRnd.Factory normalRndFactory) {
-        return new StaticGammaRndFactory(
-                new MTTypeStaticGammaRnd(exponentiation, exponentialRndFactory, normalRndFactory));
+
+        return new LazyStaticGammaRndFactory(
+                () -> new MTTypeStaticGammaRnd(
+                        exponentiation, exponentialRndFactory, normalRndFactory));
     }
 }

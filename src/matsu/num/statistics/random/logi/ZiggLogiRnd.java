@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.6.7
  */
 package matsu.num.statistics.random.logi;
 
@@ -124,6 +124,7 @@ public final class ZiggLogiRnd extends SkeletalLogisticRnd {
             Exponentiation exponentiation,
             ExponentialRnd.Factory exponentialRndFactory) {
 
-        return new LogisticRndFactory(new ZiggLogiRnd(exponentiation, exponentialRndFactory));
+        return new LazyLogisticRndFactory(
+                () -> new ZiggLogiRnd(exponentiation, exponentialRndFactory));
     }
 }
