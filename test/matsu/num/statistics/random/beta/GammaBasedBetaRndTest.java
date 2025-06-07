@@ -29,6 +29,7 @@ final class GammaBasedBetaRndTest {
     private static final BetaRnd.Factory FACTORY =
             GammaBasedBetaRnd.createFactory(GammaFactoryForTesting.FACTORY);
 
+    @SuppressWarnings("deprecation")
     public static class ファクトリの境界値テスト {
 
         @Test(expected = None.class)

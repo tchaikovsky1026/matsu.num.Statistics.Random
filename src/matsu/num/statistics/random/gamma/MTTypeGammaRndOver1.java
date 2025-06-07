@@ -5,12 +5,11 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.28
+ * 2025.6.7
  */
 package matsu.num.statistics.random.gamma;
 
 import matsu.num.statistics.random.BaseRandom;
-import matsu.num.statistics.random.GammaRnd;
 import matsu.num.statistics.random.NormalRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
 
@@ -34,7 +33,7 @@ final class MTTypeGammaRndOver1 extends SkeletalGammaRnd {
     MTTypeGammaRndOver1(double k, Exponentiation exponentiation, NormalRnd.Factory normalRndFactory) {
         super(k);
 
-        assert 1 <= k && k <= GammaRnd.UPPER_LIMIT_SHAPE_PARAMETER : "1 <= k <= UL でない";
+        assert 1 <= k : "1 <= k でない";
 
         this.normalRnd = normalRndFactory.instance();
         this.exponentiation = exponentiation;

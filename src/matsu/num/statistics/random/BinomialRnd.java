@@ -6,7 +6,7 @@
  */
 
 /*
- * 2025.5.13
+ * 2025.6.7
  */
 package matsu.num.statistics.random;
 
@@ -49,22 +49,42 @@ public interface BinomialRnd extends IntegerRandomGenerator {
 
     /**
      * 扱うことができる試行回数の最小値.
+     * 
+     * @deprecated
+     *                 モジュール外部で直接この定数に依存すべきではない. <br>
+     *                 パラメータの正当性は static メソッドにより検証されるべきである.
      */
+    @Deprecated
     public static final int LOWER_LIMIT_TRIALS = 0;
 
     /**
      * 扱うことができる試行回数の最大値.
+     * 
+     * @deprecated
+     *                 モジュール外部で直接この定数に依存すべきではない. <br>
+     *                 パラメータの正当性は static メソッドにより検証されるべきである.
      */
+    @Deprecated
     public static final int UPPER_LIMIT_TRIALS = 1_000_000;
 
     /**
      * 扱うことができる成功確率の最小値.
+     * 
+     * @deprecated
+     *                 モジュール外部で直接この定数に依存すべきではない. <br>
+     *                 パラメータの正当性は static メソッドにより検証されるべきである.
      */
+    @Deprecated
     public static final double LOWER_LIMIT_SUCCESS_PROBABILITY = 0d;
 
     /**
      * 扱うことができる成功確率の最大値.
+     * 
+     * @deprecated
+     *                 モジュール外部で直接この定数に依存すべきではない. <br>
+     *                 パラメータの正当性は static メソッドにより検証されるべきである.
      */
+    @Deprecated
     public static final double UPPER_LIMIT_SUCCESS_PROBABILITY = 1d;
 
     /**

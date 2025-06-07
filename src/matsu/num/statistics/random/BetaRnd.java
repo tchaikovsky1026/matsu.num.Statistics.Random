@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.5.5
+ * 2025.6.7
  */
 package matsu.num.statistics.random;
 
@@ -64,12 +64,22 @@ public interface BetaRnd extends FloatingRandomGenerator {
 
     /**
      * 扱うことができる形状パラメータの最小値.
+     * 
+     * @deprecated
+     *                 モジュール外部で直接この定数に依存すべきではない. <br>
+     *                 パラメータの正当性は static メソッドにより検証されるべきである.
      */
+    @Deprecated
     public static final double LOWER_LIMIT_SHAPE_PARAMETER = 1E-2;
 
     /**
      * 扱うことができる形状パラメータの最大値.
+     * 
+     * @deprecated
+     *                 モジュール外部で直接この定数に依存すべきではない. <br>
+     *                 パラメータの正当性は static メソッドにより検証されるべきである.
      */
+    @Deprecated
     public static final double UPPER_LIMIT_SHAPE_PARAMETER = 1E14;
 
     /**

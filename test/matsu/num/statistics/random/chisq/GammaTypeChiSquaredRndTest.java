@@ -34,6 +34,7 @@ final class GammaTypeChiSquaredRndTest {
     private static final ChiSquaredRnd.Factory FACTORY =
             GammaTypeChiSquaredRnd.createFactory(GammaFactoryForTesting.FACTORY);
 
+    @SuppressWarnings("deprecation")
     public static class ファクトリの境界値テスト {
 
         @Test(expected = None.class)
