@@ -16,7 +16,9 @@ import matsu.num.statistics.random.base.SimpleParameterlessRndFactory;
  * {@link matsu.num.statistics.random.LogisticRnd.Factory} の実装.
  * 
  * @author Matsuura Y.
+ * @deprecated このクラスは使われていない
  */
+@Deprecated
 final class LogisticRndFactory
         extends SimpleParameterlessRndFactory<LogisticRnd> implements LogisticRnd.Factory {
 

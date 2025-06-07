@@ -16,7 +16,9 @@ import matsu.num.statistics.random.base.SimpleParameterlessRndFactory;
  * {@link matsu.num.statistics.random.GumbelRnd.Factory} の実装.
  * 
  * @author Matsuura Y.
+ * @deprecated このクラスは使われていない
  */
+@Deprecated
 final class GumbelRndFactory
         extends SimpleParameterlessRndFactory<GumbelRnd> implements GumbelRnd.Factory {
 

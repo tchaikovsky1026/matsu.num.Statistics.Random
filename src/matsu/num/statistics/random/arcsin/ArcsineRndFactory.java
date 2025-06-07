@@ -17,7 +17,9 @@ import matsu.num.statistics.random.base.SimpleParameterlessRndFactory;
  * {@link ArcsineRnd.Factory} の実装を提供する.
  * 
  * @author Matsuura Y.
+ * @deprecated このクラスは使われていない
  */
+@Deprecated
 final class ArcsineRndFactory
         extends SimpleParameterlessRndFactory<ArcsineRnd>
         implements ArcsineRnd.Factory {

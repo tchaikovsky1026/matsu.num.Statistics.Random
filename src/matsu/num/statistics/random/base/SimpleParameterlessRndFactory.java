@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.6.6
+ * 2025.6.7
  */
 package matsu.num.statistics.random.base;
 
@@ -27,7 +27,9 @@ import matsu.num.statistics.random.Rnd;
  * 
  * @author Matsuura Y.
  * @param <T> このファクトリが扱う乱数発生器の型
+ * @deprecated このクラスは使われていない
  */
+@Deprecated
 public abstract class SimpleParameterlessRndFactory<T extends Rnd>
         implements ParameterlessRndFactory<T> {
 
