@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.5.5
+ * 2025.6.7
  */
 package matsu.num.statistics.random;
 
@@ -17,6 +17,13 @@ package matsu.num.statistics.random;
  * (乱数であることを除いて) 関数的に振る舞う. <br>
  * 乱数発生時に与えられる {@link BaseRandom} が許すならば,
  * 並行プロセスにおいて競合が発生しないことを保証する.
+ * </p>
+ * 
+ * <p>
+ * <u><i>
+ * 注意: <br>
+ * モジュール外ではこのインターフェースを型として依存するのは強く非推奨である.
+ * </i></u>
  * </p>
  * 
  * @implSpec

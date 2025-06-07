@@ -31,7 +31,7 @@ package matsu.num.statistics.random.lib;
  *               <p>
  *               この {@link Exponentiation} インターフェース実行する指数関数, 対数関数, 平方根の計算は,
  *               {@link java.lang.Math} に即した結果が返されることが期待される. <br>
- *               ただし, 厳密に一致 ({@code ==} 比較が {@code true}) である必要はなく,
+ *               ただし, 厳密に一致 (「{@code ==}」比較が {@code true}) である必要はなく,
  *               おおよその倍精度であれば良い. <br>
  *               そのため, {@link java.lang.Math} により計算してもよいが,
  *               より高速な計算ライブラリを用いてもよい.
@@ -40,8 +40,8 @@ package matsu.num.statistics.random.lib;
  *               <p>
  *               数学関数の計算であるため定義域については厳格であり,
  *               {@link Double#NaN} を返さないことは極めて重要である. <br>
- *               ただし, 定義域の区間端の極限が有限値 or +&infin; or -&infin; になる場合において,
- *               区間端の付近でそれらを返すことは問題ない.
+ *               定義域の区間端の極限が有限値 or 無限大になる場合において,
+ *               端の付近でその値 （有限値 or 無限大） を返すことは問題ない.
  *               </p>
  * 
  * @author Matsuura Y.
