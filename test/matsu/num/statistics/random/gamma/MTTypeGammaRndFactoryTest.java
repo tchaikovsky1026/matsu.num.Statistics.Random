@@ -36,6 +36,7 @@ final class MTTypeGammaRndFactoryTest {
                     ExponentiationForTesting.INSTANCE,
                     ExponentialFactoryForTesting.FACTORY, NormalFactoryForTesting.FACTORY);
 
+    @SuppressWarnings("deprecation")
     public static class ファクトリの境界値テスト {
 
         @Test(expected = None.class)

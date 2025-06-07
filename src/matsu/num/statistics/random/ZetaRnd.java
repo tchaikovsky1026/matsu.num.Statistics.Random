@@ -6,7 +6,7 @@
  */
 
 /*
- * 2025.6.2
+ * 2025.6.7
  */
 package matsu.num.statistics.random;
 
@@ -44,12 +44,22 @@ public interface ZetaRnd extends IntegerRandomGenerator {
 
     /**
      * 扱うことができるパラメータの最小値.
+     * 
+     * @deprecated
+     *                 モジュール外部で直接この定数に依存すべきではない. <br>
+     *                 パラメータの正当性は static メソッドにより検証されるべきである.
      */
+    @Deprecated
     public static final double LOWER_LIMIT_S = 1.25d;
 
     /**
      * 扱うことができるパラメータの最大値.
+     * 
+     * @deprecated
+     *                 モジュール外部で直接この定数に依存すべきではない. <br>
+     *                 パラメータの正当性は static メソッドにより検証されるべきである.
      */
+    @Deprecated
     public static final double UPPER_LIMIT_S = 100d;
 
     /**
