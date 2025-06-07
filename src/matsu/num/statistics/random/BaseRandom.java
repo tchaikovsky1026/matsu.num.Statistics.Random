@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.6.4
+ * 2025.6.7
  */
 package matsu.num.statistics.random;
 
@@ -127,7 +127,7 @@ public interface BaseRandom {
      * 
      * @param getter {@code java.util.random.RandomGenerator} を呼び出すためのサプライヤ
      * @return 乱数生成のたびにサプライヤから呼び出すように振る舞う {@link BaseRandom}
-     * @throws NullPointerException 引数がnullの場合
+     * @throws NullPointerException 引数がnullの場合, getterからget()した結果がnullの場合
      */
     public static BaseRandom fromGetter(Supplier<? extends java.util.random.RandomGenerator> getter) {
         //ここでNullPointerExを発生させる可能性がある

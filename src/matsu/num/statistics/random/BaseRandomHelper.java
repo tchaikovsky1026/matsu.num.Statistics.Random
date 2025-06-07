@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.6.4
+ * 2025.6.7
  */
 package matsu.num.statistics.random;
 
@@ -98,10 +98,11 @@ final class BaseRandomHelper {
          * 与えたサプライヤをラップしたインスタンスを構築する.
          * 
          * @param getter {@link java.util.Random}を呼び出すためのサプライヤ
-         * @throws NullPointerException 引数にnullが含まれる場合
+         * @throws NullPointerException 引数がnullの場合, getterからget()した結果がnullの場合
          */
         RandomFromGetter(Supplier<? extends java.util.random.RandomGenerator> getter) {
-            this.getter = Objects.requireNonNull(getter);
+            Objects.requireNonNull(getter.get());
+            this.getter = getter;
         }
 
         @Override

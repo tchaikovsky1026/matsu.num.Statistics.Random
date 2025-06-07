@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.6.7
  */
 package matsu.num.statistics.random.gumbel;
 
@@ -240,6 +240,7 @@ public final class UniZiggGumbelRnd extends SkeletalGumbelRnd {
      */
     public static GumbelRnd.Factory createFactory(
             Exponentiation exponentiation, ExponentialRnd.Factory exponentialRndFactory) {
-        return new GumbelRndFactory(new UniZiggGumbelRnd(exponentiation, exponentialRndFactory));
+        return new LazyGumbelRndFactory(
+                () -> new UniZiggGumbelRnd(exponentiation, exponentialRndFactory));
     }
 }

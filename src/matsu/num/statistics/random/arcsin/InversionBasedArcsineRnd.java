@@ -6,7 +6,7 @@
  */
 
 /*
- * 2025.5.31
+ * 2025.6.7
  */
 package matsu.num.statistics.random.arcsin;
 
@@ -41,6 +41,7 @@ public final class InversionBasedArcsineRnd extends SkeletalArcsineRnd {
      * @return 逆正弦乱数のファクトリ
      */
     public static ArcsineRnd.Factory createFactory() {
-        return new ArcsineRndFactory(new InversionBasedArcsineRnd());
+        return new LazyArcsineRndFactory(
+                () -> new InversionBasedArcsineRnd());
     }
 }

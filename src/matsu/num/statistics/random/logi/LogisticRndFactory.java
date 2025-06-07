@@ -10,15 +10,17 @@
 package matsu.num.statistics.random.logi;
 
 import matsu.num.statistics.random.LogisticRnd;
-import matsu.num.statistics.random.base.SkeletalParameterlessRndFactory;
+import matsu.num.statistics.random.base.SimpleParameterlessRndFactory;
 
 /**
  * {@link matsu.num.statistics.random.LogisticRnd.Factory} の実装.
  * 
  * @author Matsuura Y.
+ * @deprecated このクラスは使われていない
  */
+@Deprecated
 final class LogisticRndFactory
-        extends SkeletalParameterlessRndFactory<LogisticRnd> implements LogisticRnd.Factory {
+        extends SimpleParameterlessRndFactory<LogisticRnd> implements LogisticRnd.Factory {
 
     /**
      * 唯一の外部に公開されないコンストラクタ. <br>
