@@ -14,7 +14,7 @@ import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.GammaRnd;
 import matsu.num.statistics.random.NegativeBinomialRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
-import matsu.num.statistics.random.poi.GammaHomoProcessBasedPoissonRndHelper;
+import matsu.num.statistics.random.util.GammaHomoProcessBasedPoissonRndHelper;
 
 /**
  * ガンマ-Poisson乱数を基にした負の二項乱数発生器を扱う.
