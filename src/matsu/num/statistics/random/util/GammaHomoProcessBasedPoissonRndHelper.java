@@ -6,17 +6,15 @@
  */
 
 /*
- * 2025.5.24
+ * 2025.6.8
  */
-package matsu.num.statistics.random.poi;
+package matsu.num.statistics.random.util;
 
 import java.util.Objects;
 
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.GammaRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
-import matsu.num.statistics.random.util.GammaRndPower2Storage;
-import matsu.num.statistics.random.util.Power2Util;
 
 /**
  * <p>
@@ -45,7 +43,7 @@ public final class GammaHomoProcessBasedPoissonRndHelper {
     public static final double MAX_LAMBDA = (1 << GAMMA_RND_BIT);
 
     /**
-     * 最大は 2^20 = 1_048_576 (GAMMA_RND_BIT = 20)
+     * 最大は 2^29 (GAMMA_RND_BIT = 29)
      */
     private final GammaRndPower2Storage gammaRndPower2Storages;
 
