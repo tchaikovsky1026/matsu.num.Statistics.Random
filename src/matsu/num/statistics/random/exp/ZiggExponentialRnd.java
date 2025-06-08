@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.6.7
  */
 package matsu.num.statistics.random.exp;
 
@@ -108,6 +108,7 @@ public final class ZiggExponentialRnd extends SkeletalExponentialRnd {
      * @throws NullPointerException 引数にnullが含まれる場合
      */
     public static ExponentialRnd.Factory createFactory(Exponentiation exponentiation) {
-        return new ExponentialRndFactory(new ZiggExponentialRnd(exponentiation));
+        return new LazyExponentialRndFactory(
+                () -> new ZiggExponentialRnd(exponentiation));
     }
 }

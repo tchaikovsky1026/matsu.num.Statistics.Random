@@ -35,6 +35,7 @@ final class StandardImplVoigtRndFactoryTest {
     private static final VoigtRnd.Factory FACTORY =
             StandardImplVoigtRnd.createFactory(NormalFactoryForTesting.FACTORY, CauchyFactoryForTesting.FACTORY);
 
+    @SuppressWarnings("deprecation")
     public static class ファクトリの境界値テスト {
 
         @Test(expected = None.class)

@@ -36,6 +36,7 @@ final class GumbelBasedWeibullRndFactoryTest {
             GumbelBasedWeibullRnd.createFactory(
                     ExponentiationForTesting.INSTANCE, GumbelFactoryForTesting.FACTORY);
 
+    @SuppressWarnings("deprecation")
     public static class ファクトリの境界値テスト {
 
         @Test(expected = None.class)

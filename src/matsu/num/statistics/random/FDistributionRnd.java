@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.5.5
+ * 2025.6.7
  */
 package matsu.num.statistics.random;
 
@@ -48,12 +48,22 @@ public interface FDistributionRnd extends FloatingRandomGenerator {
 
     /**
      * 扱うことができる自由度の最小値.
+     * 
+     * @deprecated
+     *                 モジュール外部で直接この定数に依存すべきではない. <br>
+     *                 パラメータの正当性は static メソッドにより検証されるべきである.
      */
+    @Deprecated
     public static final double LOWER_LIMIT_DEGREES_OF_FREEDOM = 2E-2;
 
     /**
      * 扱うことができる自由度の最大値.
+     * 
+     * @deprecated
+     *                 モジュール外部で直接この定数に依存すべきではない. <br>
+     *                 パラメータの正当性は static メソッドにより検証されるべきである.
      */
+    @Deprecated
     public static final double UPPER_LIMIT_DEGREES_OF_FREEDOM = 2E14;
 
     /**

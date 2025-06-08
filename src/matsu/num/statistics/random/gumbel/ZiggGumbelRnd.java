@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.9.26
+ * 2025.6.8
  */
 package matsu.num.statistics.random.gumbel;
 
@@ -13,6 +13,7 @@ import java.util.Objects;
 
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.ExponentialRnd;
+import matsu.num.statistics.random.GumbelRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
@@ -52,7 +53,7 @@ final class ZiggGumbelRnd extends SkeletalGumbelRnd {
 
     private final Exponentiation exponentiation;
 
-    ZiggGumbelRnd(ExponentialRnd.Factory exponentialRndFactory, Exponentiation exponentiation) {
+    private ZiggGumbelRnd(ExponentialRnd.Factory exponentialRndFactory, Exponentiation exponentiation) {
 
         this.expRnd = exponentialRndFactory.instance();
         this.exponentiation = Objects.requireNonNull(exponentiation);
@@ -255,5 +256,19 @@ final class ZiggGumbelRnd extends SkeletalGumbelRnd {
             }
             return w0;
         }
+    }
+
+    /**
+     * {@link matsu.num.statistics.random.GumbelRnd.Factory} を生成する.
+     * 
+     * @param exponentiation 指数関数計算器
+     * @param exponentialRndFactory 指数乱数発生器のファクトリ
+     * @return Gumbel乱数のファクトリ
+     * @throws NullPointerException 引数にnullが含まれる場合
+     */
+    static GumbelRnd.Factory createFactory(
+            Exponentiation exponentiation, ExponentialRnd.Factory exponentialRndFactory) {
+        return new LazyGumbelRndFactory(
+                () -> new ZiggGumbelRnd(exponentialRndFactory, exponentiation));
     }
 }

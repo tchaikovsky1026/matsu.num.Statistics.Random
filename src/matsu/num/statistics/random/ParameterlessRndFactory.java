@@ -1,20 +1,22 @@
 /*
- * Copyright © 2024 Matsuura Y.
+ * Copyright © 2025 Matsuura Y.
  * 
  * This software is released under the MIT License.
  * http://opensource.org/licenses/mit-license.php
  */
+
 /*
  * 2025.6.7
  */
 package matsu.num.statistics.random;
 
 /**
+ * パラメータを持たない乱数発生器のファクトリを表現する.
+ * 
  * <p>
- * 離散確率分布に従う乱数の発生器を表し,
- * 整数により値を表現する.
+ * 乱数発生器は {@link #instance()} メソッドにより取得する.
  * </p>
- *
+ * 
  * <p>
  * <u><i>
  * 注意: <br>
@@ -26,19 +28,17 @@ package matsu.num.statistics.random;
  * 
  * @implSpec
  *               このインターフェースをモジュール外で継承・実装してはいけない.
- *
+ * 
  * @author Matsuura Y.
+ * @param <T> このファクトリが扱う乱数発生器の型
  */
-public interface IntegerRandomGenerator extends Rnd {
+public interface ParameterlessRndFactory<T extends Rnd> extends RndFactory {
 
     /**
-     * <p>
-     * 与えられた基本乱数発生器を用いて, 所定の確率分布の乱数を生成する.
-     * </p>
+     * 乱数発生器インスタンスを返す.
      *
-     * @param random 基本乱数発生器
-     * @return 所定の確率分布に従う乱数の値
-     * @throws NullPointerException 引数がnullの場合
+     * @return 乱数発生器
      */
-    public abstract int nextRandom(BaseRandom random);
+    public abstract T instance();
+
 }

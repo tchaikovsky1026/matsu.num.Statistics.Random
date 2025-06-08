@@ -10,15 +10,17 @@
 package matsu.num.statistics.random.cauchy;
 
 import matsu.num.statistics.random.CauchyRnd;
-import matsu.num.statistics.random.base.ParameterlessFactory;
+import matsu.num.statistics.random.base.SimpleParameterlessRndFactory;
 
 /**
  * {@link matsu.num.statistics.random.CauchyRnd.Factory} の実装.
  * 
  * @author Matsuura Y.
+ * @deprecated このクラスは使われていない
  */
+@Deprecated
 final class CauchyRndFactory
-        extends ParameterlessFactory<CauchyRnd> implements CauchyRnd.Factory {
+        extends SimpleParameterlessRndFactory<CauchyRnd> implements CauchyRnd.Factory {
 
     /**
      * 唯一の外部に公開されないコンストラクタ. <br>

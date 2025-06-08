@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.5.5
+ * 2025.6.7
  */
 package matsu.num.statistics.random;
 
@@ -47,12 +47,22 @@ public interface StaticGammaRnd extends Rnd {
 
     /**
      * 扱うことができる形状パラメータの最小値.
+     * 
+     * @deprecated
+     *                 モジュール外部で直接この定数に依存すべきではない. <br>
+     *                 パラメータの正当性は static メソッドにより検証されるべきである.
      */
+    @Deprecated
     public static final double LOWER_LIMIT_SHAPE_PARAMETER = 1E-2;
 
     /**
      * 扱うことができる形状パラメータの最大値.
+     * 
+     * @deprecated
+     *                 モジュール外部で直接この定数に依存すべきではない. <br>
+     *                 パラメータの正当性は static メソッドにより検証されるべきである.
      */
+    @Deprecated
     public static final double UPPER_LIMIT_SHAPE_PARAMETER = 1E28;
 
     /**
@@ -92,15 +102,7 @@ public interface StaticGammaRnd extends Rnd {
      *               このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
      *               モジュール外で実装してはいけない.
      */
-    public static interface Factory extends RndFactory {
+    public static interface Factory extends ParameterlessRndFactory<StaticGammaRnd> {
 
-        /**
-         * <p>
-         * Static ガンマ乱数発生器インスタンスを返す.
-         * </p>
-         *
-         * @return Static ガンマ乱数発生器インスタンス
-         */
-        public abstract StaticGammaRnd instance();
     }
 }

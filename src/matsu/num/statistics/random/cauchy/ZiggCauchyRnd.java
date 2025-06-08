@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.9
+ * 2025.6.7
  */
 package matsu.num.statistics.random.cauchy;
 
@@ -119,6 +119,7 @@ public final class ZiggCauchyRnd extends SkeletalCauchyRnd {
      * @throws NullPointerException 引数にnullが含まれる場合
      */
     public static CauchyRnd.Factory createFactory(Exponentiation exponentiation) {
-        return new CauchyRndFactory(new ZiggCauchyRnd(exponentiation));
+        return new LazyCauchyRndFactory(
+                () -> new ZiggCauchyRnd(exponentiation));
     }
 }

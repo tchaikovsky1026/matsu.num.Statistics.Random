@@ -10,15 +10,17 @@
 package matsu.num.statistics.random.staticgamma;
 
 import matsu.num.statistics.random.StaticGammaRnd;
-import matsu.num.statistics.random.base.ParameterlessFactory;
+import matsu.num.statistics.random.base.SimpleParameterlessRndFactory;
 
 /**
  * {@link matsu.num.statistics.random.StaticGammaRnd.Factory} の実装.
  * 
  * @author Matsuura Y.
+ * @deprecated このクラスは使われていない
  */
+@Deprecated
 final class StaticGammaRndFactory
-        extends ParameterlessFactory<StaticGammaRnd> implements StaticGammaRnd.Factory {
+        extends SimpleParameterlessRndFactory<StaticGammaRnd> implements StaticGammaRnd.Factory {
 
     /**
      * 唯一の外部に公開されないコンストラクタ. <br>

@@ -38,6 +38,7 @@ final class MTTypeStaticGammaRndFactoryTest {
                     ExponentialFactoryForTesting.FACTORY,
                     NormalFactoryForTesting.FACTORY);
 
+    @SuppressWarnings("deprecation")
     public static class パラメータの境界値テスト {
 
         private StaticGammaRnd staticGammaRnd;

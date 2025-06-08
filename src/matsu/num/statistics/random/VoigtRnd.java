@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.5.5
+ * 2025.6.7
  */
 package matsu.num.statistics.random;
 
@@ -58,12 +58,22 @@ public interface VoigtRnd extends FloatingRandomGenerator {
 
     /**
      * パラメータ <i>&alpha;</i> の最小値.
+     * 
+     * @deprecated
+     *                 モジュール外部で直接この定数に依存すべきではない. <br>
+     *                 パラメータの正当性は static メソッドにより検証されるべきである.
      */
+    @Deprecated
     public static final double LOWER_LIMIT_ALPHA = 0d;
 
     /**
      * パラメータ <i>&alpha;</i> の最大値.
+     * 
+     * @deprecated
+     *                 モジュール外部で直接この定数に依存すべきではない. <br>
+     *                 パラメータの正当性は static メソッドにより検証されるべきである.
      */
+    @Deprecated
     public static final double UPPER_LIMIT_ALPHA = 1d;
 
     /**

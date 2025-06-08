@@ -31,6 +31,7 @@ final class GammaBasedStaticBetaRndTest {
     private static final StaticBetaRnd.Factory FACTORY =
             GammaBasedStaticBetaRnd.createFactory(StaticGammaFactoryForTesting.FACTORY);
 
+    @SuppressWarnings("deprecation")
     public static class パラメータの境界値テスト {
 
         private StaticBetaRnd staticBetaRnd;

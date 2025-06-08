@@ -36,6 +36,7 @@ final class GammaHomoProcessBasedPoissonRndFactoryTest {
             GammaHomoProcessBasedPoissonRnd.createFactory(
                     ExponentiationForTesting.INSTANCE, GammaFactoryForTesting.FACTORY);
 
+    @SuppressWarnings("deprecation")
     public static class ファクトリの境界値テスト {
 
         @Test(expected = None.class)

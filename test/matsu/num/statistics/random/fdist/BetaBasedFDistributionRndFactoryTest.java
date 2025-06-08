@@ -34,6 +34,7 @@ final class BetaBasedFDistributionRndFactoryTest {
     private static final FDistributionRnd.Factory FACTORY =
             BetaBasedFDistributionRnd.createFactory(BetaFactoryForTesting.FACTORY);
 
+    @SuppressWarnings("deprecation")
     public static class ファクトリの境界値テスト {
 
         @Test(expected = None.class)

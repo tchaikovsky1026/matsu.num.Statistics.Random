@@ -15,6 +15,7 @@ import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.GammaRnd;
 import matsu.num.statistics.random.PoissonRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
+import matsu.num.statistics.random.util.GammaHomoProcessBasedPoissonRndHelper;
 
 /**
  * ガンマ分布乱数発生器を利用した, Poisson分布に従う乱数発生器を扱う.

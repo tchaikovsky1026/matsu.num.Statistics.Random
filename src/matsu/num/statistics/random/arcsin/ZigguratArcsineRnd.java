@@ -6,7 +6,7 @@
  */
 
 /*
- * 2025.6.1
+ * 2025.6.7
  */
 package matsu.num.statistics.random.arcsin;
 
@@ -126,6 +126,7 @@ public final class ZigguratArcsineRnd extends SkeletalArcsineRnd {
      * @throws NullPointerException 引数にnullが含まれる場合
      */
     public static ArcsineRnd.Factory createFactory(Exponentiation exponentiation) {
-        return new ArcsineRndFactory(new ZigguratArcsineRnd(exponentiation));
+        return new LazyArcsineRndFactory(
+                () -> new ZigguratArcsineRnd(exponentiation));
     }
 }

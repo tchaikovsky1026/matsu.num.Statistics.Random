@@ -5,13 +5,23 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.5.5
+ * 2025.6.7
  */
 package matsu.num.statistics.random;
 
 /**
  * <p>
- * 連続確率分布に従う乱数の発生器.
+ * 連続確率分布に従う乱数の発生器を表し,
+ * 浮動小数点数により値を表現する.
+ * </p>
+ *
+ * <p>
+ * <u><i>
+ * 注意: <br>
+ * このインターフェースは将来にわたって維持されるとは限らず,
+ * モジュール外ではこのインターフェースを型として依存してはいけない. <br>
+ * 公開されたサブインターフェースが存在する場合, 型はサブインターフェースにより扱われなければならない.
+ * </i></u>
  * </p>
  * 
  * @implSpec
@@ -19,7 +29,7 @@ package matsu.num.statistics.random;
  *
  * @author Matsuura Y.
  */
-interface FloatingRandomGenerator extends Rnd {
+public interface FloatingRandomGenerator extends Rnd {
 
     /**
      * <p>
