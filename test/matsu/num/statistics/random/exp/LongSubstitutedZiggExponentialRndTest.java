@@ -66,6 +66,28 @@ final class LongSubstitutedZiggExponentialRndTest {
         }
     }
 
+    @Ignore
+    public static class 指数乱数のべき乱数への適用に関する計算時間評価 {
+
+        @Test
+        public void test_乱数生成の実行() {
+            var testRnd = FACTORY.instance();
+            BaseRandom baseRandom = BaseRandom.threadSeparatedRandom();
+
+            final double pow = 1.5;
+
+            var exp2powExecutor = new SpeedTestExecutor(
+                    null, "Exp -> power, pow = " + pow, 50_000_000,
+                    () -> Math.exp(-pow * testRnd.nextRandom(baseRandom)));
+            exp2powExecutor.execute();
+
+            var uni2powExecutor = new SpeedTestExecutor(
+                    null, "uni -> power, pow = " + pow, 50_000_000,
+                    () -> Math.pow(baseRandom.nextDouble(), pow));
+            uni2powExecutor.execute();
+        }
+    }
+
     public static class toString表示 {
 
         @Test
