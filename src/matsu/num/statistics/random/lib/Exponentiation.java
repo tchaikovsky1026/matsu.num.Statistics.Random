@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.6.3
+ * 2025.6.9
  */
 package matsu.num.statistics.random.lib;
 
@@ -54,7 +54,9 @@ public interface Exponentiation {
      * @param x <i>x</i>
      * @return exp(<i>x</i>)
      */
-    public abstract double exp(double x);
+    public default double exp(double x) {
+        return Math.exp(x);
+    }
 
     /**
      * |<i>x</i>| &ll; 1 で高精度な exp(<i>x</i>) - 1 を返す.
@@ -62,7 +64,9 @@ public interface Exponentiation {
      * @param x <i>x</i>
      * @return exp(<i>x</i>) - 1
      */
-    public abstract double expm1(double x);
+    public default double expm1(double x) {
+        return Math.expm1(x);
+    }
 
     /**
      * ln(<i>x</i>) (自然対数) を返す.
@@ -70,7 +74,9 @@ public interface Exponentiation {
      * @param x <i>x</i>
      * @return ln(<i>x</i>)
      */
-    public abstract double log(double x);
+    public default double log(double x) {
+        return Math.log(x);
+    }
 
     /**
      * ln(1 + <i>x</i>) を返す.
@@ -78,7 +84,9 @@ public interface Exponentiation {
      * @param x <i>x</i>
      * @return ln(1 + <i>x</i>)
      */
-    public abstract double log1p(double x);
+    public default double log1p(double x) {
+        return Math.log1p(x);
+    }
 
     /**
      * <i>a</i> の <i>b</i> 乗
@@ -89,7 +97,7 @@ public interface Exponentiation {
      * @return <i>a</i><sup><i>b</i></sup>
      */
     public default double pow(double a, double b) {
-        return this.exp(b * this.log(a));
+        return Math.pow(a, b);
     }
 
     /**
@@ -98,5 +106,7 @@ public interface Exponentiation {
      * @param x 引数
      * @return 平方根
      */
-    public abstract double sqrt(double x);
+    public default double sqrt(double x) {
+        return Math.sqrt(x);
+    }
 }
