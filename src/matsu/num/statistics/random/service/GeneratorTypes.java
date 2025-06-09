@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.6.5
+ * 2025.6.9
  */
 package matsu.num.statistics.random.service;
 
@@ -24,6 +24,7 @@ import matsu.num.statistics.random.LevyRnd;
 import matsu.num.statistics.random.LogisticRnd;
 import matsu.num.statistics.random.NegativeBinomialRnd;
 import matsu.num.statistics.random.NormalRnd;
+import matsu.num.statistics.random.PlanckRnd;
 import matsu.num.statistics.random.PoissonRnd;
 import matsu.num.statistics.random.StaticBetaRnd;
 import matsu.num.statistics.random.StaticGammaRnd;
@@ -47,6 +48,7 @@ import matsu.num.statistics.random.levy.NormalBasedLevyRnd;
 import matsu.num.statistics.random.logi.ZiggLogiRnd;
 import matsu.num.statistics.random.negbinomial.GammaPoissonBasedNegativeBinomialRnd;
 import matsu.num.statistics.random.norm.LongSubstitutedZiggNormalRnd;
+import matsu.num.statistics.random.planck.GammaZetaBasedPlanckRndFactory;
 import matsu.num.statistics.random.poi.GammaHomoProcessBasedPoissonRnd;
 import matsu.num.statistics.random.staticbeta.GammaBasedStaticBetaRnd;
 import matsu.num.statistics.random.staticgamma.MTTypeStaticGammaRnd;
@@ -126,6 +128,10 @@ public final class GeneratorTypes {
      * 標準正規分布に従う乱数を表す.
      */
     public static final RandomGeneratorType<NormalRnd.Factory> NORMAL_RND;
+    /**
+     * Planck 分布に従う乱数を表す.
+     */
+    public static final RandomGeneratorType<PlanckRnd.Factory> PLANCK_RND;
     /**
      * Poisson 分布に従う乱数を表す.
      */
@@ -226,6 +232,11 @@ public final class GeneratorTypes {
                 "NORMAL_RND", NormalRnd.Factory.class,
                 p -> LongSubstitutedZiggNormalRnd.createFactory(
                         p.lib().exponentiation(), p.get(GeneratorTypes.EXPONENTIAL_RND)));
+
+        PLANCK_RND = new RandomGeneratorType<>(
+                "PLANCK_RND", PlanckRnd.Factory.class,
+                p -> GammaZetaBasedPlanckRndFactory.create(
+                        p.get(GeneratorTypes.GAMMA_RND), p.get(GeneratorTypes.ZETA_RND)));
 
         POISSON_RND = new RandomGeneratorType<>(
                 "POISSON_RND", PoissonRnd.Factory.class,
