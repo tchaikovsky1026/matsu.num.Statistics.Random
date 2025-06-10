@@ -30,7 +30,7 @@ final class CommonLibDefaultHolder {
 
         CommonLibImpl() {
             super();
-            this.exponentiation = new ExponentiationMath();
+            this.exponentiation = new ExponentiationDefault();
         }
 
         @Override
