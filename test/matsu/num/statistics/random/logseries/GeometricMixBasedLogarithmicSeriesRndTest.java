@@ -7,6 +7,7 @@
 package matsu.num.statistics.random.logseries;
 
 import org.junit.Test;
+import org.junit.experimental.runners.Enclosed;
 import org.junit.experimental.theories.DataPoints;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
@@ -14,18 +15,23 @@ import org.junit.runner.RunWith;
 
 import matsu.num.statistics.random.IntegerRandomGeneratorTestingFramework;
 import matsu.num.statistics.random.LogarithmicSeriesRnd;
+import matsu.num.statistics.random.exp.ExponentialFactoryForTesting;
+import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
 /**
- * {@link NaiveLogarithmicSeriesRnd} クラスのテスト.
+ * {@link GeometricMixBasedLogarithmicSeriesRnd} クラスのテスト.
  * 
  * @author Matsuura Y.
  */
-final class NaiveLogarithmicSeriesRndTest {
+@RunWith(Enclosed.class)
+final class GeometricMixBasedLogarithmicSeriesRndTest {
 
-    public static final Class<?> TEST_CLASS = NaiveLogarithmicSeriesRnd.class;
+    public static final Class<?> TEST_CLASS = GeometricMixBasedLogarithmicSeriesRnd.class;
 
     private static final LogarithmicSeriesRnd.Factory FACTORY =
-            NaiveLogarithmicSeriesRnd.createFactory();
+            GeometricMixBasedLogarithmicSeriesRnd.createFactory(
+                    ExponentiationForTesting.INSTANCE,
+                    ExponentialFactoryForTesting.FACTORY);
 
     @RunWith(Theories.class)
     public static class 乱数のテスト {
