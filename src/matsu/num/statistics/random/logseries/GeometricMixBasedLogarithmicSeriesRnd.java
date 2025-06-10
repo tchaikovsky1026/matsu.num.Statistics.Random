@@ -53,6 +53,7 @@ public final class GeometricMixBasedLogarithmicSeriesRnd
     private final ExponentialRnd exponentialRnd;
 
     private final double log1mp;
+    private final double mlogp;
 
     /**
      * 非公開が必須. <br>
@@ -67,22 +68,30 @@ public final class GeometricMixBasedLogarithmicSeriesRnd
         this.exponentiation = exponentiation;
         this.exponentialRnd = exponentialRndFactory.instance();
         this.log1mp = exponentiation.log1p(-p);
+        this.mlogp = -exponentiation.log(p);
     }
 
     @Override
     public int nextRandom(BaseRandom random) {
 
         while (true) {
+            /*
+             * eが小さいとき, yの値に依らずfloor(w) = 0 となる.
+             * w = e / (-log(y))
+             * y = 1 - (1 - p)^u は0からpまでを動くので,
+             * e <= -log(p)ならばfloor(w) = 0
+             */
+            double e = exponentialRnd.nextRandom(random);
+            if (e <= this.mlogp) {
+                return 1;
+            }
+
             double u = random.nextDouble();
             double y = 1 - exponentiation.exp(u * log1mp);
-            if (y == 1d) {
-                continue;
-            }
             if (y == 0d) {
                 return 1;
             }
 
-            double e = exponentialRnd.nextRandom(random);
             double w = -e / exponentiation.log(y);
             if (w >= Integer.MAX_VALUE) {
                 continue;
