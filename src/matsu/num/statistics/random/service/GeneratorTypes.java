@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.6.5
+ * 2025.6.10
  */
 package matsu.num.statistics.random.service;
 
@@ -21,9 +21,11 @@ import matsu.num.statistics.random.GammaRnd;
 import matsu.num.statistics.random.GeometricRnd;
 import matsu.num.statistics.random.GumbelRnd;
 import matsu.num.statistics.random.LevyRnd;
+import matsu.num.statistics.random.LogarithmicSeriesRnd;
 import matsu.num.statistics.random.LogisticRnd;
 import matsu.num.statistics.random.NegativeBinomialRnd;
 import matsu.num.statistics.random.NormalRnd;
+import matsu.num.statistics.random.PlanckRnd;
 import matsu.num.statistics.random.PoissonRnd;
 import matsu.num.statistics.random.StaticBetaRnd;
 import matsu.num.statistics.random.StaticGammaRnd;
@@ -45,8 +47,10 @@ import matsu.num.statistics.random.geo.InversionBasedGeoRnd;
 import matsu.num.statistics.random.gumbel.UniZiggGumbelRnd;
 import matsu.num.statistics.random.levy.NormalBasedLevyRnd;
 import matsu.num.statistics.random.logi.ZiggLogiRnd;
+import matsu.num.statistics.random.logseries.GeometricMixBasedLogarithmicSeriesRnd;
 import matsu.num.statistics.random.negbinomial.GammaPoissonBasedNegativeBinomialRnd;
 import matsu.num.statistics.random.norm.LongSubstitutedZiggNormalRnd;
+import matsu.num.statistics.random.planck.GammaZetaBasedPlanckRndFactory;
 import matsu.num.statistics.random.poi.GammaHomoProcessBasedPoissonRnd;
 import matsu.num.statistics.random.staticbeta.GammaBasedStaticBetaRnd;
 import matsu.num.statistics.random.staticgamma.MTTypeStaticGammaRnd;
@@ -115,6 +119,10 @@ public final class GeneratorTypes {
      */
     public static final RandomGeneratorType<LevyRnd.Factory> LEVY_RND;
     /**
+     * 対数級数分布に従う乱数を表す.
+     */
+    public static final RandomGeneratorType<LogarithmicSeriesRnd.Factory> LOGARITHMIC_SERIES_RND;
+    /**
      * 標準ロジスティック分布に従う乱数を表す.
      */
     public static final RandomGeneratorType<LogisticRnd.Factory> LOGISTIC_RND;
@@ -126,6 +134,10 @@ public final class GeneratorTypes {
      * 標準正規分布に従う乱数を表す.
      */
     public static final RandomGeneratorType<NormalRnd.Factory> NORMAL_RND;
+    /**
+     * Planck 分布に従う乱数を表す.
+     */
+    public static final RandomGeneratorType<PlanckRnd.Factory> PLANCK_RND;
     /**
      * Poisson 分布に従う乱数を表す.
      */
@@ -212,6 +224,11 @@ public final class GeneratorTypes {
                 "LEVY_RND", LevyRnd.Factory.class,
                 p -> NormalBasedLevyRnd.createFactory(p.get(GeneratorTypes.NORMAL_RND)));
 
+        LOGARITHMIC_SERIES_RND = new RandomGeneratorType<>(
+                "LOGARITHMIC_SERIES_RND", LogarithmicSeriesRnd.Factory.class,
+                p -> GeometricMixBasedLogarithmicSeriesRnd.createFactory(
+                        p.lib().exponentiation(), p.get(GeneratorTypes.EXPONENTIAL_RND)));
+
         LOGISTIC_RND = new RandomGeneratorType<>(
                 "LOGISTIC_RND", LogisticRnd.Factory.class,
                 p -> ZiggLogiRnd.createFactory(
@@ -226,6 +243,11 @@ public final class GeneratorTypes {
                 "NORMAL_RND", NormalRnd.Factory.class,
                 p -> LongSubstitutedZiggNormalRnd.createFactory(
                         p.lib().exponentiation(), p.get(GeneratorTypes.EXPONENTIAL_RND)));
+
+        PLANCK_RND = new RandomGeneratorType<>(
+                "PLANCK_RND", PlanckRnd.Factory.class,
+                p -> GammaZetaBasedPlanckRndFactory.create(
+                        p.get(GeneratorTypes.GAMMA_RND), p.get(GeneratorTypes.ZETA_RND)));
 
         POISSON_RND = new RandomGeneratorType<>(
                 "POISSON_RND", PoissonRnd.Factory.class,
