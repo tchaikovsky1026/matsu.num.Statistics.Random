@@ -31,7 +31,7 @@ package matsu.num.statistics.random;
  * </ul>
  * 
  * <p>
- * 扱うことができるパラメータ <i>p</i> は, {@code 0 <= p <= 0.9999} である. <br>
+ * 扱うことができるパラメータ <i>p</i> は, {@code 0 <= p <= (1 - 1E-7)} である. <br>
  * (<i>p</i> = 0 を扱えるようにするため, P(<i>k</i>) の指数を
  * <i>k</i> - 1 とした.
  * </p>
@@ -60,7 +60,7 @@ public interface LogarithmicSeriesRnd extends IntegerRandomGenerator {
      *                 パラメータの正当性は static メソッドにより検証されるべきである.
      */
     @Deprecated
-    public static final double UPPER_LIMIT_P = 0.9999d;
+    public static final double UPPER_LIMIT_P = 1d - 1E-7d;
 
     /**
      * <p>

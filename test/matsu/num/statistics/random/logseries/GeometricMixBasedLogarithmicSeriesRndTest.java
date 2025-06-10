@@ -37,7 +37,7 @@ final class GeometricMixBasedLogarithmicSeriesRndTest {
     public static class 乱数のテスト {
 
         @DataPoints
-        public static double[] p_values = { 0, 0.01, 0.1, 0.3, 0.5, 0.7, 0.9 };
+        public static double[] p_values = { 0, 0.01, 0.1, 0.3, 0.5, 0.7, 0.9, 1d - 1E-7d };
 
         @Theory
         public void test(double p) {
