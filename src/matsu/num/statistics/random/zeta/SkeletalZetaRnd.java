@@ -40,7 +40,7 @@ abstract class SkeletalZetaRnd implements ZetaRnd {
     @Override
     public String toString() {
         return String.format(
-                "ZetaRnd(%s)", this.s());
+                "ZetaRnd(s = %s)", this.s());
     }
 
     /**

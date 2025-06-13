@@ -40,7 +40,7 @@ abstract class SkeletalYuleSimonRnd implements YuleSimonRnd {
     @Override
     public String toString() {
         return String.format(
-                "YuleSimonRnd(%s)", this.rho());
+                "YuleSimonRnd(rho = %s)", this.rho());
     }
 
     /**

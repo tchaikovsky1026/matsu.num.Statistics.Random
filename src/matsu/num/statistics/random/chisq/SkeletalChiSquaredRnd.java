@@ -42,7 +42,7 @@ abstract class SkeletalChiSquaredRnd implements ChiSquaredRnd {
     @Override
     public String toString() {
         return String.format(
-                "ChiSquaredRnd(%s)", this.degreesOfFreedom());
+                "ChiSquaredRnd(k = %s)", this.degreesOfFreedom());
     }
 
     /**

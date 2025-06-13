@@ -42,7 +42,7 @@ abstract class SkeletalPoissonRnd implements PoissonRnd {
     @Override
     public String toString() {
         return String.format(
-                "PoissonRnd(%s)", this.lambda());
+                "PoissonRnd(lambda = %s)", this.lambda());
     }
 
     /**

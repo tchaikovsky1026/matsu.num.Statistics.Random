@@ -42,7 +42,7 @@ abstract class SkeletalWeibullRnd implements WeibullRnd {
     @Override
     public String toString() {
         return String.format(
-                "WeibullRnd(%s)", this.shapeParameter());
+                "WeibullRnd(k = %s)", this.shapeParameter());
     }
 
     /**

@@ -50,7 +50,7 @@ abstract class SkeletalBetaRnd implements BetaRnd {
     @Override
     public String toString() {
         return String.format(
-                "BetaRnd(%s, %s)", this.shapeA(), this.shapeB());
+                "BetaRnd(a = %s, b = %s)", this.shapeA(), this.shapeB());
     }
 
     /**

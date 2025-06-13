@@ -41,7 +41,7 @@ abstract class SkeletalVoigtRnd implements VoigtRnd {
 
     @Override
     public String toString() {
-        return String.format("VoigtRnd(%s)", this.alpha());
+        return String.format("VoigtRnd(alpha = %s)", this.alpha());
     }
 
     /**

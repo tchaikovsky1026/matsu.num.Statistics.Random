@@ -39,7 +39,7 @@ abstract class SkeletalPlanckRnd implements PlanckRnd {
     @Override
     public String toString() {
         return String.format(
-                "PlanckRnd(%s)", this.alpha());
+                "PlanckRnd(alpha = %s)", this.alpha());
     }
 
     /**

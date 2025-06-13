@@ -60,7 +60,7 @@ abstract class SkeletalCauchyRnd implements CauchyRnd {
         @Override
         public String toString() {
             return String.format(
-                    "TDistRnd(%s)", this.degreesOfFreedom());
+                    "TDistRnd(nu = %s)", this.degreesOfFreedom());
         }
 
         @Override

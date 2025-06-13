@@ -43,7 +43,7 @@ abstract class SkeletalTDistributionRnd implements TDistributionRnd {
     @Override
     public String toString() {
         return String.format(
-                "TDistRnd(%s)", this.degreesOfFreedom());
+                "TDistRnd(nu = %s)", this.degreesOfFreedom());
     }
 
     /**
