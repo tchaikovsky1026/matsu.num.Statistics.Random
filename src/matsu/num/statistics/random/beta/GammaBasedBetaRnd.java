@@ -45,7 +45,9 @@ public final class GammaBasedBetaRnd extends SkeletalBetaRnd {
         double u1 = this.gammaRndA.nextRandom(random);
         double u2 = this.gammaRndB.nextRandom(random);
         double out = u1 / (u1 + u2);
-        return Double.isFinite(out) ? out : 0;
+
+        // u1 == 0 && u2 == 0 の場合に関する分岐
+        return Double.isNaN(out) ? 0d : out;
     }
 
     @Override
@@ -53,7 +55,9 @@ public final class GammaBasedBetaRnd extends SkeletalBetaRnd {
         double u1 = this.gammaRndA.nextRandom(random);
         double u2 = this.gammaRndB.nextRandom(random);
         double out = u1 / u2;
-        return Double.isFinite(out) ? out : 0;
+
+        // u1 == 0 && u2 == 0 の場合に関する分岐
+        return Double.isNaN(out) ? 0d : out;
     }
 
     /**

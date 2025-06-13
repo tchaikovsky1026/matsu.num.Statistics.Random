@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.5.8
+ * 2025.6.13
  */
 package matsu.num.statistics.random.tdist;
 
@@ -51,8 +51,11 @@ public final class NormalGammaBasedTDistRnd extends SkeletalTDistributionRnd {
 
     @Override
     public final double nextRandom(BaseRandom random) {
-        return this.normalRnd.nextRandom(random)
+        double out = this.normalRnd.nextRandom(random)
                 / exponentiation.sqrt(this.gammaRnd.nextRandom(random) * 2 / this.nu);
+
+        // outが (0/0) や (inf/inf)　となった場合のフォロー
+        return Double.isNaN(out) ? 0d : out;
     }
 
     /**

@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.5.8
+ * 2025.6.13
  */
 package matsu.num.statistics.random.voigt;
 
@@ -39,8 +39,11 @@ public final class StandardImplVoigtRnd extends SkeletalVoigtRnd {
 
     @Override
     public double nextRandom(BaseRandom random) {
-        return this.alpha * this.cauchyRnd.nextRandom(random)
+        double out = this.alpha * this.cauchyRnd.nextRandom(random)
                 + this.reflectedAlpha * this.normalRnd.nextRandom(random);
+
+        // outが NaN　となった場合のフォロー
+        return Double.isNaN(out) ? 0d : out;
     }
 
     /**

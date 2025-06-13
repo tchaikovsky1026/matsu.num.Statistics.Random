@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.6.7
+ * 2025.6.13
  */
 package matsu.num.statistics.random.levy;
 
@@ -29,13 +29,8 @@ public final class NormalBasedLevyRnd extends SkeletalLevyRnd {
 
     @Override
     public double nextRandom(BaseRandom random) {
-        while (true) {
-            double y = this.normalRnd.nextRandom(random);
-            double x = 1 / (y * y);
-            if (Double.isFinite(x)) {
-                return x;
-            }
-        }
+        double y = this.normalRnd.nextRandom(random);
+        return 1 / (y * y);
     }
 
     /**
