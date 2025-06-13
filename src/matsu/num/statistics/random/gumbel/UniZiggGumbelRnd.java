@@ -160,7 +160,7 @@ public final class UniZiggGumbelRnd extends SkeletalGumbelRnd {
 
     {
         if (X_LOWER.length != X_UPPER.length) {
-            throw new AssertionError("Bug: Xの長さが異なる");
+            throw new AssertionError("Bug: different x.length");
         }
 
         X_DIFF = new double[X_LOWER.length];

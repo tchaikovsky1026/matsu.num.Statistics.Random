@@ -29,7 +29,7 @@ abstract class SkeletalWeibullRnd implements WeibullRnd {
     SkeletalWeibullRnd(double k) {
         super();
 
-        assert WeibullRnd.acceptsParameter(k) : "パラメータ不正";
+        assert WeibullRnd.acceptsParameter(k) : "Illegal parameter.";
 
         this.k = k;
     }
@@ -62,7 +62,7 @@ abstract class SkeletalWeibullRnd implements WeibullRnd {
             if (!matsu.num.statistics.random.WeibullRnd.acceptsParameter(k)) {
                 throw new IllegalArgumentException(
                         String.format(
-                                "パラメータ不正:k=%s", k));
+                                "Illegal parameter: k = %s", k));
             }
 
             return this.createInstanceOf(k);

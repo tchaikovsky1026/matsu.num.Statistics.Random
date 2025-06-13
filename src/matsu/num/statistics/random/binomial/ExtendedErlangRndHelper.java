@@ -30,7 +30,7 @@ abstract class ExtendedErlangRndHelper {
     private ExtendedErlangRndHelper(int k) {
         super();
         if (k < 0) {
-            throw new IllegalArgumentException("k < 0 である");
+            throw new IllegalArgumentException("Illegal parameter: k < 0");
         }
         this.k = k;
     }

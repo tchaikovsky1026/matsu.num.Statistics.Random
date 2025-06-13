@@ -38,7 +38,7 @@ abstract class SkeletalLogarithmicSeriesRnd implements LogarithmicSeriesRnd {
     @Override
     public String toString() {
         return String.format(
-                "LogarithmicSeriesRnd(%s)", this.p());
+                "LogarithmicSeriesRnd(p = %s)", this.p());
     }
 
     /**
@@ -56,7 +56,9 @@ abstract class SkeletalLogarithmicSeriesRnd implements LogarithmicSeriesRnd {
         @Override
         public final LogarithmicSeriesRnd instanceOf(double p) {
             if (!LogarithmicSeriesRnd.acceptsParameter(p)) {
-                throw new IllegalArgumentException(String.format("パラメータ不正:p=%s", p));
+                throw new IllegalArgumentException(
+                        String.format(
+                                "Illegal parameter: p = %s", p));
             }
 
             return this.createInstanceOf(p);

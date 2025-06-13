@@ -29,7 +29,7 @@ abstract class SkeletalChiSquaredRnd implements ChiSquaredRnd {
     SkeletalChiSquaredRnd(double k) {
         super();
 
-        assert ChiSquaredRnd.acceptsParameter(k) : "パラメータ不正";
+        assert ChiSquaredRnd.acceptsParameter(k) : "Illegal parameter.";
 
         this.k = k;
     }
@@ -63,7 +63,7 @@ abstract class SkeletalChiSquaredRnd implements ChiSquaredRnd {
         public final ChiSquaredRnd instanceOf(double k) {
             if (!ChiSquaredRnd.acceptsParameter(k)) {
                 throw new IllegalArgumentException(
-                        String.format("パラメータ不正:k=%s", k));
+                        String.format("Illegal parameter: k = %s", k));
             }
 
             return this.createInstanceOf(k);

@@ -57,7 +57,9 @@ abstract class SkeletalPlanckRnd implements PlanckRnd {
         @Override
         public final PlanckRnd instanceOf(double alpha) {
             if (!PlanckRnd.acceptsParameter(alpha)) {
-                throw new IllegalArgumentException(String.format("パラメータ不正:alpha=%s", alpha));
+                throw new IllegalArgumentException(
+                        String.format(
+                                "Illegal parameter: alpha = %s", alpha));
             }
 
             return this.createInstanceOf(alpha);

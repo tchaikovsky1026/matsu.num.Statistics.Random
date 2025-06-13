@@ -29,7 +29,7 @@ abstract class SkeletalPoissonRnd implements PoissonRnd {
     SkeletalPoissonRnd(double lambda) {
         super();
 
-        assert PoissonRnd.acceptsParameter(lambda) : "パラメータ不正";
+        assert PoissonRnd.acceptsParameter(lambda) : "Illegal parameter.";
 
         this.lambda = lambda;
     }
@@ -60,7 +60,9 @@ abstract class SkeletalPoissonRnd implements PoissonRnd {
         @Override
         public final PoissonRnd instanceOf(double lambda) {
             if (!PoissonRnd.acceptsParameter(lambda)) {
-                throw new IllegalArgumentException(String.format("パラメータ不正:lambda=%s", lambda));
+                throw new IllegalArgumentException(
+                        String.format(
+                                "Illegal parameter: lambda = %s", lambda));
             }
 
             return this.createInstanceOf(lambda);

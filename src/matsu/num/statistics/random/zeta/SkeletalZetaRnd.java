@@ -58,7 +58,9 @@ abstract class SkeletalZetaRnd implements ZetaRnd {
         @Override
         public final ZetaRnd instanceOf(double s) {
             if (!ZetaRnd.acceptsParameter(s)) {
-                throw new IllegalArgumentException(String.format("パラメータ不正:s=%s", s));
+                throw new IllegalArgumentException(
+                        String.format(
+                                "Illegal parameter: s = %s", s));
             }
 
             return this.createInstanceOf(s);

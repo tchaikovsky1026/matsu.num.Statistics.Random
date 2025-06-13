@@ -17,7 +17,8 @@ package matsu.num.statistics.random.cat;
 final class ProbabilityNormalization {
 
     private ProbabilityNormalization() {
-        throw new AssertionError("インスタンス化不可");
+        // インスタンス化不可
+        throw new AssertionError();
     }
 
     /**
@@ -45,10 +46,10 @@ final class ProbabilityNormalization {
             double p_l = probability[l];
             sum += p_l;
 
-            assert p_l >= 0 : "有効な配列でない";
+            assert p_l >= 0;
         }
 
-        assert Double.isFinite(sum) && sum > 0 : "有効な配列でない";
+        assert Double.isFinite(sum) && sum > 0;
 
         for (int i = 0; i < cat; i++) {
             probability[i] /= sum;
