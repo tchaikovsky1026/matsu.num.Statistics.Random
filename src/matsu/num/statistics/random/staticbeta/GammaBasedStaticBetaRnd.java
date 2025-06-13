@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.6.7
+ * 2025.6.13
  */
 package matsu.num.statistics.random.staticbeta;
 
@@ -29,23 +29,30 @@ public final class GammaBasedStaticBetaRnd extends SkeletalStaticBetaRnd {
 
     @Override
     double calcNextBeta(BaseRandom random, double a, double b) {
-        double u1 = this.staticGammaRnd.nextRandom(random, a);
-        double u2 = this.staticGammaRnd.nextRandom(random, b);
-        double out = u1 / (u1 + u2);
+        double out;
+        do {
+            double u1 = this.staticGammaRnd.nextRandom(random, a);
+            double u2 = this.staticGammaRnd.nextRandom(random, b);
+            out = u1 / (u1 + u2);
 
-        // u1 == 0 && u2 == 0 の場合に関する分岐
-        return Double.isNaN(out) ? 0d : out;
+            // u1 == 0 && u2 == 0 の場合に関する分岐
+        } while (Double.isNaN(out));
+
+        return out;
     }
 
     @Override
     double calcNextBetaPrime(BaseRandom random, double a, double b) {
+        double out;
+        do {
+            double u1 = this.staticGammaRnd.nextRandom(random, a);
+            double u2 = this.staticGammaRnd.nextRandom(random, b);
+            out = u1 / u2;
 
-        double u1 = this.staticGammaRnd.nextRandom(random, a);
-        double u2 = this.staticGammaRnd.nextRandom(random, b);
-        double out = u1 / u2;
+            // u1 == 0 && u2 == 0 の場合に関する分岐
+        } while (Double.isNaN(out));
 
-        // u1 == 0 && u2 == 0 の場合に関する分岐
-        return Double.isNaN(out) ? 0d : out;
+        return out;
     }
 
     /**
