@@ -17,10 +17,17 @@ package matsu.num.statistics.random;
  * <p>
  * Student-t 分布の確率密度関数 P(<i>x</i>) は次のとおりである
  * (<i>&nu;</i> は自由度). <br>
+ * (ただし, 境界値が発生する可能性がある.)
+ * </p>
+ * 
+ * <ul>
+ * <li>
  * P(<i>x</i>) &prop;
  * (1 + <i>x</i><sup><i>2</i></sup> / <i>&nu;</i>)
  * <sup>-(<i>&nu;</i> + 1) / 2</sup>
- * </p>
+ * &emsp; (-&infin; &lt; <i>x</i> &lt; +&infin;)
+ * </li>
+ * </ul>
  * 
  * <p>
  * 扱える自由度 <i>&nu;</i> は, <br>

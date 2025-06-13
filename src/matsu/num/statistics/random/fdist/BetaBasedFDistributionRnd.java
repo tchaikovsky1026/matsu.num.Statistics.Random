@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.5.7
+ * 2025.6.13
  */
 package matsu.num.statistics.random.fdist;
 
@@ -34,8 +34,7 @@ public final class BetaBasedFDistributionRnd extends SkeletalFDistributionRnd {
 
     @Override
     public final double nextRandom(BaseRandom random) {
-        double out = this.D2OverD1 * this.betaRnd.nextBetaPrime(random);
-        return Double.isFinite(out) ? out : 0;
+        return this.D2OverD1 * this.betaRnd.nextBetaPrime(random);
     }
 
     /**

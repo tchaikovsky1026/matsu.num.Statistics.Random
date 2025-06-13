@@ -35,6 +35,11 @@ public interface FloatingRandomGenerator extends Rnd {
      * <p>
      * 与えられた基本乱数発生器を用いて, 所定の確率分布の乱数を生成する.
      * </p>
+     * 
+     * <p>
+     * 確率分布が開区間で定義されている場合でも, 境界値を返す場合がある. <br>
+     * とくに, 無限大を返す場合があることに注意.
+     * </p>
      *
      * @param random 基本乱数発生器
      * @return 所定の確率分布に従う乱数の値

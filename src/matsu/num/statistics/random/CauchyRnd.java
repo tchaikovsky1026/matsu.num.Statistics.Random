@@ -16,9 +16,16 @@ package matsu.num.statistics.random;
  * 
  * <p>
  * 標準 Cauchy 分布の確率密度関数 P(<i>x</i>) は次のとおりである. <br>
+ * (ただし, 境界値が発生する可能性がある.)
+ * </p>
+ * 
+ * <ul>
+ * <li>
  * P(<i>x</i>) &prop;
  * 1 / (1 + <i>x</i><sup><i>2</i></sup>)
- * </p>
+ * &emsp; (-&infin; &lt; <i>x</i> &lt; +&infin;)
+ * </li>
+ * </ul>
  * 
  * <p>
  * 標準 Cauchy 分布は自由度1の Student-t 分布に一致する.

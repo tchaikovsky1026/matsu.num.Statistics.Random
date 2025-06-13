@@ -16,17 +16,16 @@ package matsu.num.statistics.random;
  * </p>
  * 
  * <p>
- * 逆正弦分布の確率密度関数 P(<i>x</i>) は次のとおりである.
+ * 逆正弦分布の確率密度関数 P(<i>x</i>) は次のとおりである. <br>
+ * (ただし, 境界値が発生する可能性がある.)
  * </p>
  * 
  * <ul>
  * <li>
  * P(<i>x</i>) &prop;
  * 1 / &radic;(<i>x</i>(1 - <i>x</i>))
- * &emsp; (0 &le; <i>x</i> &le; 1)
+ * &emsp; (0 &lt; <i>x</i> &lt; 1)
  * </li>
- * 
- * <li>P(<i>x</i>) = 0 &emsp; (otherwise)</li>
  * </ul>
  *
  * @implSpec

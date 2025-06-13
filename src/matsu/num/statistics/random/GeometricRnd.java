@@ -25,8 +25,6 @@ package matsu.num.statistics.random;
  * <i>p</i> (1 - <i>p</i>)<sup><i>k</i> - 1</sup>
  * &emsp; (<i>k</i> = 1, 2, ...)
  * </li>
- * 
- * <li>P(<i>k</i>) = 0 &emsp; (otherwise)</li>
  * </ul>
  * 
  * <p>

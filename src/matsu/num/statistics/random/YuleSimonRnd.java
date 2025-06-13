@@ -26,8 +26,6 @@ package matsu.num.statistics.random;
  * B(<i>k</i>, <i>&rho;</i> + 1)
  * &emsp; (<i>k</i> = 1, 2, ...)
  * </li>
- * 
- * <li>P(<i>k</i>) = 0 &emsp; (otherwise)</li>
  * </ul>
  * 
  * <p>

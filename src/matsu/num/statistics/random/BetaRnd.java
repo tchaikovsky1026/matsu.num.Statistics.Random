@@ -16,7 +16,8 @@ package matsu.num.statistics.random;
  * 
  * <p>
  * ベータ分布の確率密度関数 P(<i>x</i>) は次のとおりである
- * (<i>a</i>, <i>b</i> は形状パラメータ).
+ * (<i>a</i>, <i>b</i> は形状パラメータ). <br>
+ * (ただし, 境界値が発生する可能性がある.)
  * </p>
  * 
  * <ul>
@@ -24,16 +25,15 @@ package matsu.num.statistics.random;
  * P(<i>x</i>) &prop;
  * <i>x</i><sup><i>a</i> - 1</sup>
  * (1 - <i>x</i>)<sup><i>b</i> - 1</sup>
- * &emsp; (0 &le; <i>x</i> &le; 1)
+ * &emsp; (0 &lt; <i>x</i> &lt; 1)
  * </li>
- * 
- * <li>P(<i>x</i>) = 0 &emsp; (otherwise)</li>
  * </ul>
  * 
  * <p>
  * このインターフェースではベータ分布に加えて, ベータプライム分布に従う乱数生成も扱う
  * ({@link #nextBetaPrime(BaseRandom)}). <br>
- * ベータプライム分布の確率密度関数 P(<i>x</i>) は次のとおりである.
+ * ベータプライム分布の確率密度関数 P(<i>x</i>) は次のとおりである. <br>
+ * (ただし, 境界値が発生する可能性がある.)
  * </p>
  * 
  * <ul>
@@ -42,10 +42,8 @@ package matsu.num.statistics.random;
  * <i>x</i><sup><i>a</i> - 1</sup>
  * /
  * (1 + <i>x</i>)<sup><i>a</i> + <i>b</i></sup>
- * &emsp; (<i>x</i> &ge; 0)
+ * &emsp; (0 &lt; <i>x</i> &lt; +&infin;)
  * </li>
- * 
- * <li>P(<i>x</i>) = 0 &emsp; (otherwise)</li>
  * </ul>
  * 
  * <p>
