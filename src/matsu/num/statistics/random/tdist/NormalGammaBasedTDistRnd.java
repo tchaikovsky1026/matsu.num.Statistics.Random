@@ -51,11 +51,14 @@ public final class NormalGammaBasedTDistRnd extends SkeletalTDistributionRnd {
 
     @Override
     public final double nextRandom(BaseRandom random) {
-        double out = this.normalRnd.nextRandom(random)
-                / exponentiation.sqrt(this.gammaRnd.nextRandom(random) * 2 / this.nu);
+        double out;
+        do {
+            out = this.normalRnd.nextRandom(random)
+                    / exponentiation.sqrt(this.gammaRnd.nextRandom(random) * 2 / this.nu);
 
-        // outが (0/0) や (inf/inf)　となった場合のフォロー
-        return Double.isNaN(out) ? 0d : out;
+            // outが (0/0) や (inf/inf)　となった場合のフォロー
+        } while (Double.isNaN(out));
+        return out;
     }
 
     /**

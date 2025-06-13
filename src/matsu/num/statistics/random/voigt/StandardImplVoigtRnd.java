@@ -39,11 +39,15 @@ public final class StandardImplVoigtRnd extends SkeletalVoigtRnd {
 
     @Override
     public double nextRandom(BaseRandom random) {
-        double out = this.alpha * this.cauchyRnd.nextRandom(random)
-                + this.reflectedAlpha * this.normalRnd.nextRandom(random);
+        double out;
+        do {
+            out = this.alpha * this.cauchyRnd.nextRandom(random)
+                    + this.reflectedAlpha * this.normalRnd.nextRandom(random);
 
-        // outが NaN　となった場合のフォロー
-        return Double.isNaN(out) ? 0d : out;
+            // outが NaN　となった場合のフォロー
+        } while (Double.isNaN(out));
+
+        return out;
     }
 
     /**
