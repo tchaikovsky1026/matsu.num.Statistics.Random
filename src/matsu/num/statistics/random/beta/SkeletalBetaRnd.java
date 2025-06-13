@@ -31,7 +31,7 @@ abstract class SkeletalBetaRnd implements BetaRnd {
     SkeletalBetaRnd(double a, double b) {
         super();
 
-        assert BetaRnd.acceptsParameters(a, b) : "パラメータ不正";
+        assert BetaRnd.acceptsParameters(a, b) : "Illegal parameter.";
 
         this.a = a;
         this.b = b;
@@ -50,7 +50,7 @@ abstract class SkeletalBetaRnd implements BetaRnd {
     @Override
     public String toString() {
         return String.format(
-                "BetaRnd(%s, %s)", this.shapeA(), this.shapeB());
+                "BetaRnd(a = %s, b = %s)", this.shapeA(), this.shapeB());
     }
 
     /**
@@ -69,7 +69,7 @@ abstract class SkeletalBetaRnd implements BetaRnd {
         public final BetaRnd instanceOf(double a, double b) {
             if (!BetaRnd.acceptsParameters(a, b)) {
                 throw new IllegalArgumentException(
-                        String.format("パラメータ不正:a=%s, b=%s", a, b));
+                        String.format("Illegal parameter: a = %s, b = %s", a, b));
             }
 
             return this.createInstanceOf(a, b);

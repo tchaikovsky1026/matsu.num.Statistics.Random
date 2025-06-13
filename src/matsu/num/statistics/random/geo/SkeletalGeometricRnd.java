@@ -29,7 +29,7 @@ abstract class SkeletalGeometricRnd implements GeometricRnd {
     SkeletalGeometricRnd(double p) {
         super();
 
-        assert GeometricRnd.acceptsParameter(p) : "パラメータ不正";
+        assert GeometricRnd.acceptsParameter(p) : "Illegal parameter.";
 
         this.p = p;
     }
@@ -42,7 +42,7 @@ abstract class SkeletalGeometricRnd implements GeometricRnd {
     @Override
     public String toString() {
         return String.format(
-                "GeometricRnd(%s)", this.successPobability());
+                "GeometricRnd(p = %s)", this.successPobability());
     }
 
     /**
@@ -62,7 +62,9 @@ abstract class SkeletalGeometricRnd implements GeometricRnd {
         @Override
         public final GeometricRnd instanceOf(double p) {
             if (!GeometricRnd.acceptsParameter(p)) {
-                throw new IllegalArgumentException(String.format("パラメータ不正:p=%s", p));
+                throw new IllegalArgumentException(
+                        String.format(
+                                "Illegal parameter: p = %s", p));
             }
 
             return this.createInstanceOf(p);

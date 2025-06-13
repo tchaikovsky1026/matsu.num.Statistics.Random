@@ -32,7 +32,9 @@ abstract class SkeletalStaticGammaRnd implements StaticGammaRnd {
     public final double nextRandom(BaseRandom random, double k) {
         Objects.requireNonNull(random);
         if (!matsu.num.statistics.random.StaticGammaRnd.acceptsParameter(k)) {
-            throw new IllegalArgumentException(String.format("パラメータ不正:k=%s", k));
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Illegal parameter: k = %s", k));
         }
 
         return this.calcNextGamma(random, k);

@@ -31,7 +31,7 @@ abstract class SkeletalFDistributionRnd implements FDistributionRnd {
     SkeletalFDistributionRnd(double d1, double d2) {
         super();
 
-        assert FDistributionRnd.acceptsParameters(d1, d2) : "パラメータ不正";
+        assert FDistributionRnd.acceptsParameters(d1, d2) : "Illegal parameter.";
 
         this.d1 = d1;
         this.d2 = d2;
@@ -50,7 +50,8 @@ abstract class SkeletalFDistributionRnd implements FDistributionRnd {
     @Override
     public String toString() {
         return String.format(
-                "FDistRnd(%s, %s)", this.numeratorDegreesOfFreedom(), this.denominatorDegreesOfFreedom());
+                "FDistRnd(d1 = %s, d2 = %s)",
+                this.numeratorDegreesOfFreedom(), this.denominatorDegreesOfFreedom());
     }
 
     /**
@@ -70,7 +71,7 @@ abstract class SkeletalFDistributionRnd implements FDistributionRnd {
             if (!FDistributionRnd.acceptsParameters(d1, d2)) {
                 throw new IllegalArgumentException(
                         String.format(
-                                "パラメータ不正:d1 = %s, d2 = %s", d1, d2));
+                                "Illegal parameter: d1 = %s, d2 = %s", d1, d2));
             }
 
             return this.createInstanceOf(d1, d2);

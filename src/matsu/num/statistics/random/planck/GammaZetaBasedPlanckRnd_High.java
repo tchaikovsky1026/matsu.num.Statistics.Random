@@ -44,7 +44,7 @@ final class GammaZetaBasedPlanckRnd_High extends SkeletalPlanckRnd {
             GammaRnd.Factory gammaRndFactory) {
         super(alpha);
 
-        assert !ZetaRnd.acceptsParameter(alpha + 1d) : "alphaが不正";
+        assert !ZetaRnd.acceptsParameter(alpha + 1d) : "Illegal parameter: alpha";
 
         this.gammaRnd = gammaRndFactory.instanceOf(alpha + 1d);
     }

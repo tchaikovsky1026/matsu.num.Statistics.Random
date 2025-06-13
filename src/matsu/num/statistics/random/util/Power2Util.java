@@ -31,7 +31,7 @@ public final class Power2Util {
      */
     public static boolean isPowerOf2(int n) {
         if (n < 1) {
-            throw new IllegalArgumentException("nが1以上でない: n=" + n);
+            throw new IllegalArgumentException("not n >= 1");
         }
         return (n & (n - 1)) == 0;
     }
@@ -46,7 +46,7 @@ public final class Power2Util {
      */
     public static int floorLog2(int n) {
         if (n < 1) {
-            throw new IllegalArgumentException("nが1以上でない: n=" + n);
+            throw new IllegalArgumentException("not n >= 1");
         }
         return 31 - Integer.numberOfLeadingZeros(n);
     }
@@ -62,7 +62,7 @@ public final class Power2Util {
      */
     public static int[] expandBinary(int n) {
         if (n < 0) {
-            throw new IllegalArgumentException("nが0以上でない: n=" + n);
+            throw new IllegalArgumentException("not n >= 1");
         }
 
         int[] out = new int[Integer.bitCount(n)];

@@ -66,7 +66,7 @@ abstract class SkeletalBinomialRnd implements BinomialRnd {
             if (!BinomialRnd.acceptsParameters(n, p)) {
                 throw new IllegalArgumentException(
                         String.format(
-                                "パラメータ不正:n=%s, p=%s",
+                                "Illegal parameter: n = %s, p = %s",
                                 n, p));
             }
 

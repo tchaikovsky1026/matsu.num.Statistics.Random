@@ -78,7 +78,7 @@ public final class GammaHomoProcessBasedPoissonRndHelper {
      * @return Poisson乱数
      */
     public int next(double lambda, BaseRandom random) {
-        assert 0 <= lambda && lambda <= MAX_LAMBDA : "lambdaが不正: lambda=" + lambda;
+        assert 0 <= lambda && lambda <= MAX_LAMBDA : "Illegal parameter: lambda = " + lambda;
 
         double z = lambda;
         int shift = 0;

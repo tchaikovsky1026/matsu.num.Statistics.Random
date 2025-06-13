@@ -62,7 +62,7 @@ public final class GammaRndPower2Storage {
      */
     public static GammaRndPower2Storage create(int size, GammaRnd.Factory gammaRndFactory) {
         if (!(0 <= size && size < 31)) {
-            throw new IllegalArgumentException("sizeが不適: size=" + size);
+            throw new IllegalArgumentException("Illegal parameter: size = " + size);
         }
 
         return new GammaRndPower2Storage(size, gammaRndFactory);
