@@ -38,7 +38,7 @@ final class GammaZetaBasedPlanckRnd_LowMiddle extends SkeletalPlanckRnd {
             GammaRnd.Factory gammaRndFactory, ZetaRnd.Factory zetaRndFactory) {
         super(alpha);
 
-        assert ZetaRnd.acceptsParameter(alpha + 1d) : "alphaが不正";
+        assert ZetaRnd.acceptsParameter(alpha + 1d) : "Illegal parameter: alpha";
 
         this.gammaRnd = gammaRndFactory.instanceOf(alpha + 1d);
         this.zetaRnd = zetaRndFactory.instanceOf(alpha + 1d);

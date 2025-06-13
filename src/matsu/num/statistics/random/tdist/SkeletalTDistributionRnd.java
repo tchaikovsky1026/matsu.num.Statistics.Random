@@ -30,7 +30,7 @@ abstract class SkeletalTDistributionRnd implements TDistributionRnd {
     SkeletalTDistributionRnd(double nu) {
         super();
 
-        assert TDistributionRnd.acceptsParameter(nu) : "パラメータ不正";
+        assert TDistributionRnd.acceptsParameter(nu) : "Illegal parameter.";
 
         this.nu = nu;
     }
@@ -43,7 +43,7 @@ abstract class SkeletalTDistributionRnd implements TDistributionRnd {
     @Override
     public String toString() {
         return String.format(
-                "TDistRnd(%s)", this.degreesOfFreedom());
+                "TDistRnd(nu = %s)", this.degreesOfFreedom());
     }
 
     /**
@@ -61,7 +61,9 @@ abstract class SkeletalTDistributionRnd implements TDistributionRnd {
         @Override
         public final TDistributionRnd instanceOf(double nu) {
             if (!TDistributionRnd.acceptsParameter(nu)) {
-                throw new IllegalArgumentException(String.format("パラメータ不正:nu=%s", nu));
+                throw new IllegalArgumentException(
+                        String.format(
+                                "Illegal parameter: nu = %s", nu));
             }
 
             return this.createInstanceOf(nu);

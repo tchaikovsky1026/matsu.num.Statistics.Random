@@ -29,7 +29,7 @@ abstract class SkeletalVoigtRnd implements VoigtRnd {
     SkeletalVoigtRnd(double alpha) {
         super();
 
-        assert VoigtRnd.acceptsParameter(alpha) : "パラメータ不正";
+        assert VoigtRnd.acceptsParameter(alpha) : "Illegal parameter.";
 
         this.alpha = alpha;
     }
@@ -41,7 +41,7 @@ abstract class SkeletalVoigtRnd implements VoigtRnd {
 
     @Override
     public String toString() {
-        return String.format("VoigtRnd(%s)", this.alpha());
+        return String.format("VoigtRnd(alpha = %s)", this.alpha());
     }
 
     /**
@@ -59,7 +59,8 @@ abstract class SkeletalVoigtRnd implements VoigtRnd {
         @Override
         public final VoigtRnd instanceOf(double alpha) {
             if (!VoigtRnd.acceptsParameter(alpha)) {
-                throw new IllegalArgumentException(String.format("alphaが不正:%s", alpha));
+                throw new IllegalArgumentException(String.format(
+                        "Illegal parameter: alpha = %s", alpha));
             }
 
             return this.createInstanceOf(alpha);

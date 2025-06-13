@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.6.7
+ * 2025.6.13
  */
 package matsu.num.statistics.random.cauchy;
 
@@ -103,10 +103,7 @@ public final class ZiggCauchyRnd extends SkeletalCauchyRnd {
         while (true) {
             double u = random.nextDouble();
             if (random.nextDouble() * (R_N + u) < R_N) {
-                double y = exponentiation.sqrt(R_N / u);
-                if (Double.isFinite(y)) {
-                    return y;
-                }
+                return exponentiation.sqrt(R_N / u);
             }
         }
     }

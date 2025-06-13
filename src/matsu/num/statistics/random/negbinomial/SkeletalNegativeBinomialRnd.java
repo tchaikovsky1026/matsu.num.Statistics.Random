@@ -66,7 +66,7 @@ abstract class SkeletalNegativeBinomialRnd implements NegativeBinomialRnd {
             if (!NegativeBinomialRnd.acceptsParameters(r, p)) {
                 throw new IllegalArgumentException(
                         String.format(
-                                "パラメータ不正:r=%s, p=%s",
+                                "Illegal parameter: r = %s, p = %s",
                                 r, p));
             }
 

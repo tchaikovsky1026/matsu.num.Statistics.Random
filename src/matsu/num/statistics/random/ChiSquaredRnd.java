@@ -16,7 +16,8 @@ package matsu.num.statistics.random;
  * 
  * <p>
  * カイ二乗分布の確率密度関数 P(<i>x</i>) は次のとおりである
- * (<i>k</i> は自由度).
+ * (<i>k</i> は自由度). <br>
+ * (ただし, 境界値が発生する可能性がある.)
  * </p>
  * 
  * <ul>
@@ -24,10 +25,8 @@ package matsu.num.statistics.random;
  * P(<i>x</i>) &prop;
  * <i>x</i><sup><i>k</i> / 2 - 1</sup>
  * exp(-<i>x</i> / 2)
- * &emsp; (<i>x</i> &ge; 0)
+ * &emsp; (0 &lt; <i>x</i> &lt; +&infin;)
  * </li>
- * 
- * <li>P(<i>x</i>) = 0 &emsp; (otherwise)</li>
  * </ul>
  * 
  * <p>

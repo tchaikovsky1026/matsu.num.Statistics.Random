@@ -49,7 +49,7 @@ abstract class SkeletalCategoricalRnd implements CategoricalRnd {
     @Override
     public String toString() {
         return String.format(
-                "CategoricalRnd(size=%s)", this.size());
+                "CategoricalRnd(size = %s)", this.size());
     }
 
     /**
@@ -58,7 +58,8 @@ abstract class SkeletalCategoricalRnd implements CategoricalRnd {
     static abstract class Factory implements CategoricalRnd.Factory {
 
         private static final Function<double[], IllegalArgumentException> exceptionGetter =
-                values -> new IllegalArgumentException(String.format("パラメータ不正: size=%s", values.length));
+                values -> new IllegalArgumentException(
+                        String.format("Illegal parameter: size = %s", values.length));
 
         private final Exponentiation exponentiation;
 
@@ -204,7 +205,7 @@ abstract class SkeletalCategoricalRnd implements CategoricalRnd {
          */
         private double max(double[] values) {
             if (values.length == 0) {
-                throw new AssertionError("Bug; 空である");
+                throw new AssertionError("Bug: empty");
             }
             double max = -Double.MAX_VALUE;
             for (double v : values) {

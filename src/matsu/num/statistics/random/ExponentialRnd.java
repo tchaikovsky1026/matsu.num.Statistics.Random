@@ -15,18 +15,16 @@ package matsu.num.statistics.random;
  * </p>
  * 
  * <p>
- * 標準指数分布の確率密度関数 P(<i>x</i>) は次のとおりである.
+ * 標準指数分布の確率密度関数 P(<i>x</i>) は次のとおりである. <br>
+ * (ただし, 境界値が発生する可能性がある.)
  * </p>
  * 
  * <ul>
  * <li>
  * P(<i>x</i>) &prop;
  * exp(-<i>x</i>)
- * &emsp; (<i>x</i> &ge; 0)
+ * &emsp; (0 &lt; <i>x</i> &lt; +&infin;)
  * </li>
- * 
- * 
- * <li>P(<i>x</i>) = 0 &emsp; (otherwise)</li>
  * </ul>
  *
  * @implSpec

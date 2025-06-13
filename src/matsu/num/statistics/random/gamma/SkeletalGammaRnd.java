@@ -29,7 +29,7 @@ abstract class SkeletalGammaRnd implements GammaRnd {
     SkeletalGammaRnd(double k) {
         super();
 
-        assert GammaRnd.acceptsParameter(k) : "パラメータ不正";
+        assert GammaRnd.acceptsParameter(k) : "Illegal parameter.";
 
         this.k = k;
     }
@@ -42,7 +42,7 @@ abstract class SkeletalGammaRnd implements GammaRnd {
     @Override
     public String toString() {
         return String.format(
-                "GammaRnd(%s)", this.shapeParameter());
+                "GammaRnd(k = %s)", this.shapeParameter());
     }
 
     /**
@@ -60,7 +60,9 @@ abstract class SkeletalGammaRnd implements GammaRnd {
         @Override
         public final GammaRnd instanceOf(double k) {
             if (!GammaRnd.acceptsParameter(k)) {
-                throw new IllegalArgumentException(String.format("パラメータ不正:k=%s", k));
+                throw new IllegalArgumentException(
+                        String.format(
+                                "Illegal parameter: k = %s", k));
             }
 
             return this.createInstanceOf(k);

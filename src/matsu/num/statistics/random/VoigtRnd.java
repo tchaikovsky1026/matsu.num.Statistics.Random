@@ -17,12 +17,18 @@ package matsu.num.statistics.random;
  * <p>
  * Voigt 分布の確率密度関数 P(<i>x</i>) は次のとおりである
  * (<i>&sigma;</i>, <i>&gamma;</i> はパラメータ). <br>
+ * (ただし, 境界値が発生する可能性がある.)
+ * </p>
  * 
+ * <ul>
+ * <li>
  * P(<i>x</i>) &prop;
  * &int;<sub>-&infin;</sub><sup>&infin;</sup> d<i>t</i>
  * exp[-<i>t</i><sup>2</sup> / (2<i>&sigma;</i><sup>2</sup>)]
  * / [<i>&gamma;</i><sup>2</sup> + (<i>x</i> - <i>t</i>)<sup>2</sup>]
- * </p>
+ * &emsp; (-&infin; &lt; <i>x</i> &lt; +&infin;)
+ * </li>
+ * </ul>
  * 
  * <p>
  * この {@link VoigtRnd} インターフェースでは,

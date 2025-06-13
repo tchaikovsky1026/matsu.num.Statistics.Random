@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.6.7
+ * 2025.6.13
  */
 package matsu.num.statistics.random.gamma;
 
@@ -38,7 +38,7 @@ final class MTTypeGammaRndUnder1 extends SkeletalGammaRnd {
             ExponentialRnd.Factory exponentialRndFactory, NormalRnd.Factory normalRndFactory) {
         super(k);
 
-        assert k <= 1 : "k <=1 でない";
+        assert k <= 1 : "not k <= 1";
 
         this.exponentiation = exponentiation;
         this.gammaKPlus1 = new MTTypeGammaRndOver1(k + 1, exponentiation, normalRndFactory);
@@ -58,7 +58,13 @@ final class MTTypeGammaRndUnder1 extends SkeletalGammaRnd {
          * Beta(k,1)は指数k-1のべき分布であり,
          * 累積分布関数が y^k で書けるので逆関数法が使える.
          */
-        return this.gammaKPlus1.nextRandom(random) * exponentiation.exp(
-                -this.expRnd.nextRandom(random) * this.invK);
+        double out;
+        do {
+            out = this.gammaKPlus1.nextRandom(random) *
+                    exponentiation.exp(-this.expRnd.nextRandom(random) * this.invK);
+
+            // outが (0 * inf)　となった場合のフォロー
+        } while (Double.isNaN(out));
+        return out;
     }
 }

@@ -40,7 +40,7 @@ abstract class SkeletalYuleSimonRnd implements YuleSimonRnd {
     @Override
     public String toString() {
         return String.format(
-                "YuleSimonRnd(%s)", this.rho());
+                "YuleSimonRnd(rho = %s)", this.rho());
     }
 
     /**
@@ -58,7 +58,9 @@ abstract class SkeletalYuleSimonRnd implements YuleSimonRnd {
         @Override
         public final YuleSimonRnd instanceOf(double rho) {
             if (!YuleSimonRnd.acceptsParameter(rho)) {
-                throw new IllegalArgumentException(String.format("パラメータ不正:rho=%s", rho));
+                throw new IllegalArgumentException(
+                        String.format(
+                                "Illegal parameter: rho = %s", rho));
             }
 
             return this.createInstanceOf(rho);

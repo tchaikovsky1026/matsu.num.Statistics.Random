@@ -33,7 +33,7 @@ final class MTTypeGammaRndOver1 extends SkeletalGammaRnd {
     MTTypeGammaRndOver1(double k, Exponentiation exponentiation, NormalRnd.Factory normalRndFactory) {
         super(k);
 
-        assert 1 <= k : "1 <= k でない";
+        assert 1 <= k : "not 1 <= k";
 
         this.normalRnd = normalRndFactory.instance();
         this.exponentiation = exponentiation;

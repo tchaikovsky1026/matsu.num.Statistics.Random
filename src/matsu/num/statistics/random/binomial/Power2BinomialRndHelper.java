@@ -44,8 +44,8 @@ final class Power2BinomialRndHelper {
             NaiveBinomialRndHelper naiveBinomialRndHelper,
             GammaRndPower2Storage gammaRndPower2Storage) {
 
-        assert naiveThrehold >= 2 : "2以上でない";
-        assert Power2Util.isPowerOf2(naiveThrehold) : "2の累乗でない";
+        assert naiveThrehold >= 2 : "not >= 2";
+        assert Power2Util.isPowerOf2(naiveThrehold) : "not 2^(int)";
 
         this.naiveThrehold = naiveThrehold;
         this.naiveBinomialRndHelper = naiveBinomialRndHelper;
@@ -57,7 +57,7 @@ final class Power2BinomialRndHelper {
      * (n = 2<sup>N</sup> - 1)と書けなければならない.
      */
     int next(int n, double p, BaseRandom random) {
-        assert Power2Util.isPowerOf2(n + 1) : "2の累乗でない";
+        assert Power2Util.isPowerOf2(n + 1) : "not 2^(int)";
 
         if (n < this.naiveThrehold) {
             return this.naiveBinomialRndHelper.next(n, p, random);

@@ -16,17 +16,16 @@ package matsu.num.statistics.random;
  * 
  * <p>
  * 標準ガンマ分布の確率密度関数 P(<i>x</i>) は次のとおりである
- * (<i>k</i> は形状パラメータ).
+ * (<i>k</i> は形状パラメータ). <br>
+ * (ただし, 境界値が発生する可能性がある.)
  * </p>
  * 
  * <ul>
  * <li>
  * P(<i>x</i>) &prop;
  * <i>x</i><sup><i>k</i> - 1</sup> exp(-<i>x</i>)
- * &emsp; (<i>x</i> &ge; 0)
+ * &emsp; (0 &lt; <i>x</i> &lt; +&infin;)
  * </li>
- * 
- * <li>P(<i>x</i>) = 0 &emsp; (otherwise)</li>
  * </ul>
  * 
  * <p>

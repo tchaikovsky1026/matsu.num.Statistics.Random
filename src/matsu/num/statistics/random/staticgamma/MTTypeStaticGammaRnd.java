@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.6.7
+ * 2025.6.13
  */
 package matsu.num.statistics.random.staticgamma;
 
@@ -49,9 +49,17 @@ public final class MTTypeStaticGammaRnd extends SkeletalStaticGammaRnd {
         }
 
         //k<1
-        double d = k + (2.0 / 3.0);
-        double c = (1.0 / 3.0) / exponentiation.sqrt(d);
-        return nextGammaOver1(random, d, c) * exponentiation.exp(-this.expRnd.nextRandom(random) / k);
+        double out;
+        do {
+            double d = k + (2.0 / 3.0);
+            double c = (1.0 / 3.0) / exponentiation.sqrt(d);
+            out = nextGammaOver1(random, d, c) *
+                    exponentiation.exp(-this.expRnd.nextRandom(random) / k);
+
+            // outが (0 * inf)　となった場合のフォロー
+        } while (Double.isNaN(out));
+
+        return out;
     }
 
     private double nextGammaOver1(BaseRandom random, double d, double c) {
