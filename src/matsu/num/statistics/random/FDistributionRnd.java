@@ -16,7 +16,8 @@ package matsu.num.statistics.random;
  * 
  * <p>
  * F 分布の確率密度関数 P(<i>x</i>) は次のとおりである
- * (<i>d</i><sub>1</sub>, <i>d</i><sub>2</sub> は自由度).
+ * (<i>d</i><sub>1</sub>, <i>d</i><sub>2</sub> は自由度). <br>
+ * (ただし, 境界値が発生する可能性がある.)
  * </p>
  * 
  * <ul>
@@ -26,10 +27,8 @@ package matsu.num.statistics.random;
  * /
  * (1 + (<i>d</i><sub>1</sub> / <i>d</i><sub>2</sub>) <i>x</i>)
  * <sup>(<i>d</i><sub>1</sub> + <i>d</i><sub>2</sub>) / 2</sup>
- * &emsp; (<i>x</i> &ge; 0)
+ * &emsp; (0 &lt; <i>x</i> &lt; +&infin;)
  * </li>
- * 
- * <li>P(<i>x</i>) = 0 &emsp; (otherwise)</li>
  * </ul>
  * 
  * <p>

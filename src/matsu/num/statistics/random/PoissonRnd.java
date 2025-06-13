@@ -28,8 +28,6 @@ package matsu.num.statistics.random;
  * <i>k</i>!
  * &emsp; (<i>k</i> = 0, 1, ...)
  * </li>
- * 
- * <li>P(<i>k</i>) = 0 &emsp; (otherwise)</li>
  * </ul>
  * 
  * <p>

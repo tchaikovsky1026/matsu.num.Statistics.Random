@@ -16,8 +16,15 @@ package matsu.num.statistics.random;
  * 
  * <p>
  * 標準Gumbel分布の確率密度関数 P(<i>x</i>) は次のとおりである. <br>
- * P(<i>x</i>) &prop; exp(-<i>x</i> - exp(-<i>x</i>))
+ * (ただし, 境界値が発生する可能性がある.)
  * </p>
+ * 
+ * <ul>
+ * <li>
+ * P(<i>x</i>) &prop; exp(-<i>x</i> - exp(-<i>x</i>))
+ * &emsp; (-&infin; &lt; <i>x</i> &lt; +&infin;)
+ * </li>
+ * </ul>
  *
  * @implSpec
  *               このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
