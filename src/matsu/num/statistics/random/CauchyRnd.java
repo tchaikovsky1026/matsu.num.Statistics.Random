@@ -62,7 +62,9 @@ public interface CauchyRnd extends FloatingRandomGenerator {
      *                 (「クライアントが依存するインターフェースはクライアントが定めなければならない」)
      */
     @Deprecated(forRemoval = true)
-    public abstract TDistributionRnd asTDistributionRnd();
+    public default TDistributionRnd asTDistributionRnd() {
+        return new CauchyRndTDistView(this);
+    }
 
     /**
      * {@link CauchyRnd} のファクトリ.

@@ -9,9 +9,7 @@
  */
 package matsu.num.statistics.random.cauchy;
 
-import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.CauchyRnd;
-import matsu.num.statistics.random.TDistributionRnd;
 
 /**
  * {@link CauchyRnd} の骨格実装.
@@ -20,52 +18,15 @@ import matsu.num.statistics.random.TDistributionRnd;
  */
 abstract class SkeletalCauchyRnd implements CauchyRnd {
 
-    private final TDistributionRnd tdistView;
-
     /**
      * 唯一の外部に公開されないコンストラクタ.
      */
     SkeletalCauchyRnd() {
         super();
-
-        this.tdistView = new TDistView();
-    }
-
-    @Override
-    public final TDistributionRnd asTDistributionRnd() {
-        return this.tdistView;
     }
 
     @Override
     public String toString() {
         return "CauchyRnd";
-    }
-
-    /**
-     * Cauchy分布のt分布としてのビューを扱うクラス.
-     */
-    private final class TDistView implements TDistributionRnd {
-
-        /**
-         * 唯一のコンストラクタ.
-         */
-        TDistView() {
-        }
-
-        @Override
-        public final double degreesOfFreedom() {
-            return 1d;
-        }
-
-        @Override
-        public String toString() {
-            return String.format(
-                    "TDistRnd(nu = %s)", this.degreesOfFreedom());
-        }
-
-        @Override
-        public double nextRandom(BaseRandom random) {
-            return SkeletalCauchyRnd.this.nextRandom(random);
-        }
     }
 }
