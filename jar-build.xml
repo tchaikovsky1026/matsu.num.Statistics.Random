@@ -27,7 +27,9 @@
 		       destdir="${bin.dir}"
 		       includeantruntime="false"
 		       modulepath="${module.path}"
-		/>
+		>
+			<compilerarg value="-Xlint:-removal" />
+		</javac>
 	</target>
 
 	<!-- ========== JARファイルの生成 ========== -->
