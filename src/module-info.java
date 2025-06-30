@@ -44,5 +44,6 @@ module matsu.num.Statistics.Random {
 
     exports matsu.num.statistics.random;
     exports matsu.num.statistics.random.lib;
+    exports matsu.num.statistics.random.mix;
     exports matsu.num.statistics.random.service;
 }
