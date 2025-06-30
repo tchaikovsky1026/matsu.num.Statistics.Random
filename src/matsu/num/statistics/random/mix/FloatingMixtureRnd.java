@@ -10,6 +10,11 @@
  */
 package matsu.num.statistics.random.mix;
 
+import java.util.Collection;
+import java.util.function.ToDoubleFunction;
+
+import matsu.num.statistics.random.BaseRandom;
+import matsu.num.statistics.random.CategoricalRnd;
 import matsu.num.statistics.random.FloatingRandomGenerator;
 
 /**
@@ -19,9 +24,10 @@ import matsu.num.statistics.random.FloatingRandomGenerator;
  * </p>
  * 
  * <p>
- * 乱数の生成は,
- * {@link FloatingRandomGenerator#nextRandom(matsu.num.statistics.random.BaseRandom)}
- * によって行われる. <br>
+ * 乱数の生成は, {@link FloatingRandomGenerator} から継承された
+ * {@link FloatingRandomGenerator#nextRandom(matsu.num.statistics.random.BaseRandom)
+ * nextRandom(BaseRandom)}
+ * メソッドによって行われる. <br>
  * {@link matsu.num.statistics.random.Rnd} のインターフェース説明のとおり,
  * 実装のインスタンスはイミュータブルであり,
  * (乱数であることを除いて) 関数的に振る舞う.
@@ -41,4 +47,20 @@ public interface FloatingMixtureRnd extends FloatingRandomGenerator {
      * @return コンポーネント数
      */
     public abstract int size();
+
+    /**
+     * モデル選択器とコンポーネント群を与えて, 混合分布による乱数発生器を生成する.
+     * 
+     * @param modelSelector モデル選択器
+     * @param components コンポーネント群
+     * @return 混合分布乱数発生器
+     * @throws IllegalArgumentException モデル洗濯機とコンポーネント群のサイズが異なる場合
+     * @throws NullPointerException 引数にnullが含まれる場合
+     */
+    public static FloatingMixtureRnd createFrom(
+            CategoricalRnd modelSelector,
+            Collection<? extends ToDoubleFunction<? super BaseRandom>> components) {
+
+        return CategoricalBasedFloatingMixtureRnd.createFrom(modelSelector, components);
+    }
 }
