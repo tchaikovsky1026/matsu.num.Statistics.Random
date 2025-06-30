@@ -35,4 +35,10 @@ import matsu.num.statistics.random.FloatingRandomGenerator;
  */
 public interface FloatingMixtureRnd extends FloatingRandomGenerator {
 
+    /**
+     * この混合モデルのコンポーネント数を返す.
+     * 
+     * @return コンポーネント数
+     */
+    public abstract int size();
 }
