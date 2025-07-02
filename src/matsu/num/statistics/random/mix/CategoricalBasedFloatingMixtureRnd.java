@@ -18,7 +18,6 @@ import java.util.function.ToDoubleFunction;
 
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.CategoricalRnd;
-import matsu.num.statistics.random.NormalRnd;
 
 /**
  * {@link FloatingMixtureRnd} のシンプルな実装,
@@ -50,8 +49,7 @@ final class CategoricalBasedFloatingMixtureRnd implements FloatingMixtureRnd {
      * (ただし, 乱数である部分は参照透過ではない). <br>
      * これは例えば, <br>
      * {@code (BaseRandom br) -> normalRnd.nextRandom(br)} <br>
-     * を与えることになる
-     * ({@code normalRnd} は {@link NormalRnd} のインスタンス).
+     * を与えることになる.
      * </p>
      * 
      * <p>
@@ -90,7 +88,7 @@ final class CategoricalBasedFloatingMixtureRnd implements FloatingMixtureRnd {
      * @param modelSelector モデル選択器
      * @param components コンポーネント群
      * @return 混合分布乱数発生器
-     * @throws IllegalArgumentException モデル洗濯機とコンポーネント群のサイズが異なる場合
+     * @throws IllegalArgumentException モデル選択器とコンポーネント群のサイズが異なる場合
      * @throws NullPointerException 引数にnullが含まれる場合
      */
     static FloatingMixtureRnd createFrom(
