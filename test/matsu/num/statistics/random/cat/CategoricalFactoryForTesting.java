@@ -13,11 +13,8 @@ import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
 /**
  * テストクラスで使用する {@link matsu.num.statistics.random.CategoricalRnd.Factory}.
- * 
- * @deprecated このクラスは使用されていない.
  */
 @Ignore
-@Deprecated
 public final class CategoricalFactoryForTesting {
 
     public static final CategoricalRnd.Factory FACTORY =
