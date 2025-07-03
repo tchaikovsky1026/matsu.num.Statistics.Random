@@ -40,33 +40,6 @@ package matsu.num.statistics.random;
 public interface CauchyRnd extends FloatingRandomGenerator {
 
     /**
-     * <p>
-     * この標準 Cauchy 分布と同等な, Student-t 分布としてのビューを返す.
-     * </p>
-     * 
-     * <p>
-     * 戻り値の Student-t 分布の自由度は 1 である. <br>
-     * ビューの変更であるため,
-     * {@link CauchyRnd} としての
-     * {@link #nextRandom(BaseRandom)}
-     * と
-     * {@link TDistributionRnd} としての
-     * {@link TDistributionRnd#nextRandom(BaseRandom)}
-     * とは同一の処理を行う.
-     * </p>
-     * 
-     * @return 標準 Cauchy 分布と同等な, 自由度 1 の Student-t 分布
-     * @deprecated
-     *                 このメソッドは version 26 以降削除予定である. <br>
-     *                 モジュール外では, ビューの変更 (型変換) を行うのは不適切である. <br>
-     *                 (「クライアントが依存するインターフェースはクライアントが定めなければならない」)
-     */
-    @Deprecated(forRemoval = true)
-    public default TDistributionRnd asTDistributionRnd() {
-        return new CauchyRndTDistView(this);
-    }
-
-    /**
      * {@link CauchyRnd} のファクトリ.
      * 
      * @implSpec
