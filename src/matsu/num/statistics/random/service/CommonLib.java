@@ -64,28 +64,6 @@ public abstract class CommonLib {
     }
 
     /**
-     * -
-     * 
-     * @return -
-     * @throws CloneNotSupportedException 常に
-     * @deprecated Clone不可
-     */
-    @Deprecated
-    @Override
-    protected final Object clone() throws CloneNotSupportedException {
-        throw new CloneNotSupportedException();
-    }
-
-    /**
-     * オーバーライド不可.
-     */
-    @Deprecated
-    @Override
-    protected final void finalize() throws Throwable {
-        super.finalize();
-    }
-
-    /**
      * {@link CommonLib} のイミュータブルなビルダ.
      * 
      * <p>

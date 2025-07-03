@@ -14,11 +14,8 @@ import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
 /**
  * テストクラスで使用する {@link matsu.num.statistics.random.GeometricRnd.Factory}.
- * 
- * @deprecated このクラスは使用されていない.
  */
 @Ignore
-@Deprecated
 public final class GeometricFactoryForTesting {
 
     public static final GeometricRnd.Factory FACTORY =

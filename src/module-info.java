@@ -38,11 +38,12 @@
  * </p>
  * 
  * @author Matsuura Y.
- * @version 25.8.0
+ * @version 25.9.0
  */
 module matsu.num.Statistics.Random {
 
     exports matsu.num.statistics.random;
     exports matsu.num.statistics.random.lib;
+    exports matsu.num.statistics.random.mix;
     exports matsu.num.statistics.random.service;
 }
