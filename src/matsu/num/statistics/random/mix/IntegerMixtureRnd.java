@@ -16,7 +16,7 @@ import java.util.function.ToIntFunction;
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.BoundIntRnd;
 import matsu.num.statistics.random.GeometricRnd;
-import matsu.num.statistics.random.IntegerRandomGenerator;
+import matsu.num.statistics.random.accomp.IntegerRandomGenerator;
 
 /**
  * 整数により値が表現された,

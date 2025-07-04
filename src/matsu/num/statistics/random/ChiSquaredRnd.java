@@ -9,6 +9,8 @@
  */
 package matsu.num.statistics.random;
 
+import matsu.num.statistics.random.accomp.FloatingRandomGenerator;
+
 /**
  * <p>
  * カイ二乗分布に従う乱数発生器を扱う.

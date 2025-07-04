@@ -15,8 +15,8 @@ import java.util.function.ToDoubleFunction;
 
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.BoundIntRnd;
-import matsu.num.statistics.random.FloatingRandomGenerator;
 import matsu.num.statistics.random.NormalRnd;
+import matsu.num.statistics.random.accomp.FloatingRandomGenerator;
 
 /**
  * 浮動小数点数により値が表現された,

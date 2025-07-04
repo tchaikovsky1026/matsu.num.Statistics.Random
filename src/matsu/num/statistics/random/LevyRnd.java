@@ -9,6 +9,8 @@
  */
 package matsu.num.statistics.random;
 
+import matsu.num.statistics.random.accomp.FloatingRandomGenerator;
+
 /**
  * <p>
  * 標準 L&eacute;vy 分布に従う乱数を生成する.
