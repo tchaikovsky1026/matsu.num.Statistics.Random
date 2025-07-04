@@ -10,6 +10,7 @@
 package matsu.num.statistics.random;
 
 import matsu.num.statistics.random.accomp.FloatingRandomGenerator;
+import matsu.num.statistics.random.accomp.ParameterlessRndFactory;
 
 /**
  * <p>

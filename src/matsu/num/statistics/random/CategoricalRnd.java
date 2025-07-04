@@ -49,15 +49,11 @@ public interface CategoricalRnd extends IntegerRandomGenerator, BoundIntRnd {
      */
     public abstract int size();
 
-    @Override
-    public default int limit() {
-        return this.size();
-    }
-
     /**
      * <p>
-     * 指定した値配列のサイズが {@link CategoricalRnd.Factory#instanceOf(double[])},
-     * {@link CategoricalRnd.Factory#instanceOfExp(double[])}
+     * 指定した値配列のサイズが
+     * {@link CategoricalRnd.Factory#instanceOf(double[]) Factory.instanceOf(double[])},
+     * {@link CategoricalRnd.Factory#instanceOfExp(double[]) Factory.instanceOfExp(double[])}
      * の引数に適合するかを判定する.
      * </p>
      * 
