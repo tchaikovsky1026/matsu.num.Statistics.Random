@@ -43,7 +43,7 @@ package matsu.num.statistics.random;
  * 
  * @author Matsuura Y.
  */
-public interface BinomialRnd extends IntegerRandomGenerator {
+public interface BinomialRnd extends IntegerRandomGenerator, BoundIntRnd {
 
     /**
      * 扱うことができる試行回数の最小値.

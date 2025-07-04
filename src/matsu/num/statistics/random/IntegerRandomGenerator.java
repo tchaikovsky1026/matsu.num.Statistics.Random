@@ -25,16 +25,14 @@ package matsu.num.statistics.random;
  * </p>
  * 
  * @implSpec
- *               このインターフェースをモジュール外で継承・実装してはいけない.
+ *               このインターフェースをモジュール外で <u>直接</u> 継承・実装してはいけない.
  *
  * @author Matsuura Y.
  */
 public interface IntegerRandomGenerator extends Rnd {
 
     /**
-     * <p>
      * 与えられた基本乱数発生器を用いて, 所定の確率分布の乱数を生成する.
-     * </p>
      *
      * @param random 基本乱数発生器
      * @return 所定の確率分布に従う乱数の値

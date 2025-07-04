@@ -33,6 +33,11 @@ abstract class SkeletalBinomialRnd implements BinomialRnd {
     }
 
     @Override
+    public final int limit() {
+        return this.numberOfTrials() + 1;
+    }
+
+    @Override
     public final int numberOfTrials() {
         return this.n;
     }

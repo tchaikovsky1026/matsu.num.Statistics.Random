@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.5.8
+ * 2025.7.4
  */
 package matsu.num.statistics.random;
 
@@ -36,7 +36,7 @@ package matsu.num.statistics.random;
  * 
  * @author Matsuura Y.
  */
-public interface CategoricalRnd extends IntegerRandomGenerator {
+public interface CategoricalRnd extends IntegerRandomGenerator, BoundIntRnd {
 
     /**
      * <p>
@@ -46,6 +46,11 @@ public interface CategoricalRnd extends IntegerRandomGenerator {
      * @return カテゴリサイズ (<i>n</i>)
      */
     public abstract int size();
+
+    @Override
+    public default int limit() {
+        return this.size();
+    }
 
     /**
      * <p>
