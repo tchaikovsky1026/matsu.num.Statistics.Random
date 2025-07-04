@@ -10,6 +10,8 @@
  */
 package matsu.num.statistics.random;
 
+import matsu.num.statistics.random.accomp.IntegerRandomGenerator;
+
 /**
  * <p>
  * 二項分布に従う乱数発生器を扱う.
@@ -43,7 +45,7 @@ package matsu.num.statistics.random;
  * 
  * @author Matsuura Y.
  */
-public interface BinomialRnd extends IntegerRandomGenerator {
+public interface BinomialRnd extends IntegerRandomGenerator, BoundIntRnd {
 
     /**
      * 扱うことができる試行回数の最小値.

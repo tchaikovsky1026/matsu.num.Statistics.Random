@@ -15,17 +15,17 @@ import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
 
 import matsu.num.statistics.random.BaseRandom;
-import matsu.num.statistics.random.CategoricalRnd;
+import matsu.num.statistics.random.BoundIntRnd;
 import matsu.num.statistics.random.FloatingRandomGeneratorTestingFramework;
 import matsu.num.statistics.random.cat.CategoricalFactoryForTesting;
 
 /**
- * {@link CategoricalBasedFloatingMixtureRnd} クラスのテスト.
+ * {@link SimpleFloatingMixtureRnd} クラスのテスト.
  */
 @RunWith(Enclosed.class)
-final class CategoricalBasedFloatingMixtureRndTest {
+final class SimpleFloatingMixtureRndTest {
 
-    public static final Class<?> TEST_CLASS = CategoricalBasedFloatingMixtureRnd.class;
+    public static final Class<?> TEST_CLASS = SimpleFloatingMixtureRnd.class;
 
     public static class 乱数のテスト {
 
@@ -44,14 +44,14 @@ final class CategoricalBasedFloatingMixtureRndTest {
         @Before
         public void before_混合分布の用意() {
 
-            CategoricalRnd selector = CategoricalFactoryForTesting.FACTORY.instanceOf(
+            BoundIntRnd selector = CategoricalFactoryForTesting.FACTORY.instanceOf(
                     new double[] { 1, 1 });
 
             List<ToDoubleFunction<BaseRandom>> components = List.of(
                     br -> br.nextDouble(),
                     br -> br.nextDouble() + 1d);
 
-            this.mixtureRnd = CategoricalBasedFloatingMixtureRnd.createFrom(selector, components);
+            this.mixtureRnd = SimpleFloatingMixtureRnd.createFrom(selector, components);
         }
 
         @Test

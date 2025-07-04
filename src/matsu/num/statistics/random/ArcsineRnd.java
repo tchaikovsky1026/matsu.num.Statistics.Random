@@ -10,6 +10,9 @@
  */
 package matsu.num.statistics.random;
 
+import matsu.num.statistics.random.accomp.FloatingRandomGenerator;
+import matsu.num.statistics.random.accomp.ParameterlessRndFactory;
+
 /**
  * <p>
  * 逆正弦 (Arcsine) 分布に従う乱数発生器を扱う.

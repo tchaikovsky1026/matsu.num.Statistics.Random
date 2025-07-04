@@ -6,7 +6,7 @@
  */
 
 /*
- * 2025.7.2
+ * 2025.7.4
  */
 package matsu.num.statistics.random.mix;
 
@@ -14,41 +14,41 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.ToIntFunction;
+import java.util.function.ToDoubleFunction;
 
 import matsu.num.statistics.random.BaseRandom;
-import matsu.num.statistics.random.CategoricalRnd;
+import matsu.num.statistics.random.BoundIntRnd;
 
 /**
- * {@link IntegerMixtureRnd} のシンプルな実装,
+ * {@link FloatingMixtureRnd} のシンプルな実装,
  * カテゴリカル分布を用いてコンポーネントの選択を行う.
  * 
  * @author Matsuura Y.
  */
-final class CategoricalBasedIntegerMixtureRnd implements IntegerMixtureRnd {
+final class SimpleFloatingMixtureRnd implements FloatingMixtureRnd {
 
     /**
      * モデルセレクタ.
      */
-    private final CategoricalRnd modelSelector;
+    private final BoundIntRnd modelSelector;
 
     /**
      * コンポーネント. <br>
      * ジェネリック配列なので, 参照が漏洩しないように注意しなければならない.
      */
-    private final ToIntFunction<? super BaseRandom>[] components;
+    private final ToDoubleFunction<? super BaseRandom>[] components;
 
     /**
      * 唯一の非公開コンストラクタ.
      * 
      * <p>
      * カテゴリカル乱数発生器と, コンポーネントを表す配列を受け取る. <br>
-     * コンポーネントは {@link BaseRandom} から {@code int} への写像
-     * ({@link ToIntFunction})
+     * コンポーネントは {@link BaseRandom} から {@code double} への写像
+     * ({@link ToDoubleFunction})
      * として表現される
      * (ただし, 乱数である部分は参照透過ではない). <br>
      * これは例えば, <br>
-     * {@code (BaseRandom br) -> geometricRnd.nextRandom(br)} <br>
+     * {@code (BaseRandom br) -> normalRnd.nextRandom(br)} <br>
      * を与えることになる.
      * </p>
      * 
@@ -58,28 +58,28 @@ final class CategoricalBasedIntegerMixtureRnd implements IntegerMixtureRnd {
      * {@code components} の要素は {@code null} ではいけない.
      * </p>
      */
-    private CategoricalBasedIntegerMixtureRnd(
-            CategoricalRnd modelSelector,
-            ToIntFunction<? super BaseRandom>[] components) {
+    private SimpleFloatingMixtureRnd(
+            BoundIntRnd modelSelector,
+            ToDoubleFunction<? super BaseRandom>[] components) {
 
         this.modelSelector = modelSelector;
         this.components = components;
     }
 
     @Override
-    public int nextRandom(BaseRandom random) {
-        return this.components[this.modelSelector.nextRandom(random)].applyAsInt(random);
+    public double nextRandom(BaseRandom random) {
+        return this.components[this.modelSelector.nextRandom(random)].applyAsDouble(random);
     }
 
     @Override
     public int size() {
-        return this.modelSelector.size();
+        return this.modelSelector.limit();
     }
 
     @Override
     public String toString() {
         return String.format(
-                "IntegerMixtureRnd(size = %s)", this.size());
+                "FloatingMixtureRnd(size = %s)", this.size());
     }
 
     /**
@@ -91,13 +91,13 @@ final class CategoricalBasedIntegerMixtureRnd implements IntegerMixtureRnd {
      * @throws IllegalArgumentException モデル選択器とコンポーネント群のサイズが異なる場合
      * @throws NullPointerException 引数にnullが含まれる場合
      */
-    static IntegerMixtureRnd createFrom(
-            CategoricalRnd modelSelector,
-            Collection<? extends ToIntFunction<? super BaseRandom>> components) {
+    static FloatingMixtureRnd createFrom(
+            BoundIntRnd modelSelector,
+            Collection<? extends ToDoubleFunction<? super BaseRandom>> components) {
 
-        List<ToIntFunction<? super BaseRandom>> componentList = new ArrayList<>(components);
+        List<ToDoubleFunction<? super BaseRandom>> componentList = new ArrayList<>(components);
 
-        if (modelSelector.size() != componentList.size()) {
+        if (modelSelector.limit() != componentList.size()) {
             throw new IllegalArgumentException("size mismatch");
         }
         if (componentList.stream().anyMatch(Objects::isNull)) {
@@ -109,10 +109,10 @@ final class CategoricalBasedIntegerMixtureRnd implements IntegerMixtureRnd {
          * この配列の要素にToDoubleFunction<? super BaseRandom>以外が格納されないことを保証する.
          */
         @SuppressWarnings({ "cast", "unchecked" })
-        ToIntFunction<? super BaseRandom>[] componentArr =
-                (ToIntFunction<? super BaseRandom>[]) componentList.stream()
-                        .toArray(ToIntFunction[]::new);
+        ToDoubleFunction<? super BaseRandom>[] componentArr =
+                (ToDoubleFunction<? super BaseRandom>[]) componentList.stream()
+                        .toArray(ToDoubleFunction[]::new);
 
-        return new CategoricalBasedIntegerMixtureRnd(modelSelector, componentArr);
+        return new SimpleFloatingMixtureRnd(modelSelector, componentArr);
     }
 }

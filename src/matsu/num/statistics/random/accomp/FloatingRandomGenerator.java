@@ -5,9 +5,12 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.6.7
+ * 2025.7.4
  */
-package matsu.num.statistics.random;
+package matsu.num.statistics.random.accomp;
+
+import matsu.num.statistics.random.BaseRandom;
+import matsu.num.statistics.random.Rnd;
 
 /**
  * <p>
@@ -18,23 +21,20 @@ package matsu.num.statistics.random;
  * <p>
  * <u><i>
  * 注意: <br>
- * このインターフェースは将来にわたって維持されるとは限らず,
  * モジュール外ではこのインターフェースを型として依存してはいけない. <br>
  * 公開されたサブインターフェースが存在する場合, 型はサブインターフェースにより扱われなければならない.
  * </i></u>
  * </p>
  * 
  * @implSpec
- *               このインターフェースをモジュール外で継承・実装してはいけない.
+ *               このインターフェースをモジュール外で <u>直接</u> 継承・実装してはいけない.
  *
  * @author Matsuura Y.
  */
 public interface FloatingRandomGenerator extends Rnd {
 
     /**
-     * <p>
      * 与えられた基本乱数発生器を用いて, 所定の確率分布の乱数を生成する.
-     * </p>
      * 
      * <p>
      * 確率分布が開区間で定義されている場合でも, 境界値を返す場合がある. <br>

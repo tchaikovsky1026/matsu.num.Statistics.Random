@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.6.3
+ * 2025.7.4
  */
 package matsu.num.statistics.random.cat;
 
@@ -44,6 +44,11 @@ abstract class SkeletalCategoricalRnd implements CategoricalRnd {
     @Override
     public final int size() {
         return this.catSize;
+    }
+
+    @Override
+    public int limit() {
+        return this.size();
     }
 
     @Override

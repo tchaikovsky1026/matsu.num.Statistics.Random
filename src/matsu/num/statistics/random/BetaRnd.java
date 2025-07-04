@@ -9,6 +9,8 @@
  */
 package matsu.num.statistics.random;
 
+import matsu.num.statistics.random.accomp.FloatingRandomGenerator;
+
 /**
  * <p>
  * ベータ分布に従う乱数発生器を扱う.
@@ -99,8 +101,23 @@ public interface BetaRnd extends FloatingRandomGenerator {
     public abstract double shapeB();
 
     /**
+     * 与えられた基本乱数発生器を用いて, ベータ分布に従う乱数を発生させる.
+     * 
      * <p>
+     * 0, 1 を返す場合がある.
+     * </p>
+     * 
+     * @return ベータ分布に従う乱数の値
+     * @throws NullPointerException {@inheritDoc }
+     */
+    @Override
+    public abstract double nextRandom(BaseRandom random);
+
+    /**
      * 与えられた基本乱数発生器を用いて, ベータプライム分布に従う乱数を発生させる.
+     * 
+     * <p>
+     * 0, 無限大を返す場合がある.
      * </p>
      * 
      * @param random 基本乱数発生器
