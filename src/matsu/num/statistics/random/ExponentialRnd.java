@@ -9,6 +9,9 @@
  */
 package matsu.num.statistics.random;
 
+import matsu.num.statistics.random.accomp.FloatingRandomGenerator;
+import matsu.num.statistics.random.accomp.ParameterlessRndFactory;
+
 /**
  * <p>
  * 標準指数分布に従う乱数発生器を扱う.

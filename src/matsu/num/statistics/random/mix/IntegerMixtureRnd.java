@@ -6,7 +6,7 @@
  */
 
 /*
- * 2025.7.2
+ * 2025.7.4
  */
 package matsu.num.statistics.random.mix;
 
@@ -14,9 +14,9 @@ import java.util.Collection;
 import java.util.function.ToIntFunction;
 
 import matsu.num.statistics.random.BaseRandom;
-import matsu.num.statistics.random.CategoricalRnd;
+import matsu.num.statistics.random.BoundIntRnd;
 import matsu.num.statistics.random.GeometricRnd;
-import matsu.num.statistics.random.IntegerRandomGenerator;
+import matsu.num.statistics.random.accomp.IntegerRandomGenerator;
 
 /**
  * 整数により値が表現された,
@@ -49,9 +49,9 @@ import matsu.num.statistics.random.IntegerRandomGenerator;
  * 
  * <p>
  * {@link IntegerMixtureRnd} のインスタンスの生成は,
- * 最も基本的には {@link #createFrom(CategoricalRnd, Collection)} メソッドにより行う.
+ * 最も基本的には {@link #createFrom(BoundIntRnd, Collection)} メソッドにより行う.
  * <br>
- * 詳細は, {@link #createFrom(CategoricalRnd, Collection)}
+ * 詳細は, {@link #createFrom(BoundIntRnd, Collection)}
  * メソッドの説明の通りである.
  * </p>
  * 
@@ -75,10 +75,14 @@ public interface IntegerMixtureRnd extends IntegerRandomGenerator {
      * 
      * <p>
      * このメソッドは, 最も基本的な {@code static} ファクトリである. <br>
-     * モデル選択器: {@link CategoricalRnd} は,
+     * モデル選択器: {@link BoundIntRnd} は,
+     * 0, 1, ..., <i>n</i> - 1 を確率
      * <i>&phi;</i><sub>0</sub>, <i>&phi;</i><sub>1</sub>, ...,
      * <i>&phi;</i><sub><i>n</i> - 1</sub>
-     * をカテゴリ確率とするカテゴリカル乱数発生器である. <br>
+     * で発生させるような乱数発生器である. <br>
+     * 例えば, <i>&phi;</i><sub>0</sub>, <i>&phi;</i><sub>1</sub>, ...,
+     * <i>&phi;</i><sub><i>n</i> - 1</sub>
+     * をカテゴリ確率とするカテゴリカル乱数発生器を使用する. <br>
      * 各コンポーネントは,
      * {@link ToIntFunction
      * ToIntFunction&lt;?&nbsp;super&nbsp;BaseRandom&gt;}
@@ -95,19 +99,19 @@ public interface IntegerMixtureRnd extends IntegerRandomGenerator {
      * <p>
      * コンポーネント群は,
      * コンポーネントの {@link Collection} であり,
-     * {@link CategoricalRnd} による乱数値と {@link Collection} の index が対応する.
+     * {@link BoundIntRnd} による乱数値と {@link Collection} の index が対応する.
      * </p>
      * 
      * @param modelSelector モデル選択器
      * @param components コンポーネント群
      * @return 混合分布乱数発生器
-     * @throws IllegalArgumentException モデル選択器とコンポーネント群のサイズが異なる場合
+     * @throws IllegalArgumentException モデル選択器の上限とコンポーネント群のサイズが異なる場合
      * @throws NullPointerException 引数にnullが含まれる場合
      */
     public static IntegerMixtureRnd createFrom(
-            CategoricalRnd modelSelector,
+            BoundIntRnd modelSelector,
             Collection<? extends ToIntFunction<? super BaseRandom>> components) {
 
-        return CategoricalBasedIntegerMixtureRnd.createFrom(modelSelector, components);
+        return SimpleIntegerMixtureRnd.createFrom(modelSelector, components);
     }
 }

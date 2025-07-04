@@ -5,9 +5,11 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.5.8
+ * 2025.7.4
  */
 package matsu.num.statistics.random;
+
+import matsu.num.statistics.random.accomp.IntegerRandomGenerator;
 
 /**
  * <p>
@@ -36,7 +38,7 @@ package matsu.num.statistics.random;
  * 
  * @author Matsuura Y.
  */
-public interface CategoricalRnd extends IntegerRandomGenerator {
+public interface CategoricalRnd extends IntegerRandomGenerator, BoundIntRnd {
 
     /**
      * <p>
@@ -49,8 +51,9 @@ public interface CategoricalRnd extends IntegerRandomGenerator {
 
     /**
      * <p>
-     * 指定した値配列のサイズが {@link CategoricalRnd.Factory#instanceOf(double[])},
-     * {@link CategoricalRnd.Factory#instanceOfExp(double[])}
+     * 指定した値配列のサイズが
+     * {@link CategoricalRnd.Factory#instanceOf(double[]) Factory.instanceOf(double[])},
+     * {@link CategoricalRnd.Factory#instanceOfExp(double[]) Factory.instanceOfExp(double[])}
      * の引数に適合するかを判定する.
      * </p>
      * 

@@ -10,6 +10,8 @@
  */
 package matsu.num.statistics.random;
 
+import matsu.num.statistics.random.accomp.FloatingRandomGenerator;
+
 /**
  * <p>
  * 標準 Planck 分布に従う乱数発生器を扱う.

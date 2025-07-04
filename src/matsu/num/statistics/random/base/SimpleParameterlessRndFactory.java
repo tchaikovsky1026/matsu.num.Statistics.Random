@@ -11,8 +11,8 @@ package matsu.num.statistics.random.base;
 
 import java.util.Objects;
 
-import matsu.num.statistics.random.ParameterlessRndFactory;
 import matsu.num.statistics.random.Rnd;
+import matsu.num.statistics.random.accomp.ParameterlessRndFactory;
 
 /**
  * <p>
