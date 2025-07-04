@@ -10,6 +10,8 @@
  */
 package matsu.num.statistics.random;
 
+import matsu.num.statistics.random.accomp.IntegerRandomGenerator;
+
 /**
  * あらかじめ定められた上限 <i>n</i> で,
  * 0 以上 <i>n</i> - 1 以下の値が生成されることが保証された整数乱数発生器.

@@ -10,6 +10,8 @@
  */
 package matsu.num.statistics.random;
 
+import matsu.num.statistics.random.accomp.IntegerRandomGenerator;
+
 /**
  * <p>
  * 対数級数分布に従う乱数発生器を扱う.

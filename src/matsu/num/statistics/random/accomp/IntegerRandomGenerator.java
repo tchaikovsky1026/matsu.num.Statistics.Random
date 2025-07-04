@@ -5,9 +5,12 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.6.7
+ * 2025.7.4
  */
-package matsu.num.statistics.random;
+package matsu.num.statistics.random.accomp;
+
+import matsu.num.statistics.random.BaseRandom;
+import matsu.num.statistics.random.Rnd;
 
 /**
  * <p>
@@ -18,7 +21,6 @@ package matsu.num.statistics.random;
  * <p>
  * <u><i>
  * 注意: <br>
- * このインターフェースは将来にわたって維持されるとは限らず,
  * モジュール外ではこのインターフェースを型として依存してはいけない. <br>
  * 公開されたサブインターフェースが存在する場合, 型はサブインターフェースにより扱われなければならない.
  * </i></u>
