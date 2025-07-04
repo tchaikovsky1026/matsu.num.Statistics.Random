@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.function.ToIntFunction;
 
 import matsu.num.statistics.random.BaseRandom;
-import matsu.num.statistics.random.CategoricalRnd;
+import matsu.num.statistics.random.BoundIntRnd;
 import matsu.num.statistics.random.GeometricRnd;
 import matsu.num.statistics.random.TestedFloatingRandomGenerator;
 import matsu.num.statistics.random.TestedIntegerRandomGenerator;
@@ -18,7 +18,7 @@ import matsu.num.statistics.random.cat.CategoricalFactoryForTesting;
 import matsu.num.statistics.random.geo.GeometricFactoryForTesting;
 
 /**
- * {@link CategoricalBasedFloatingMixtureRnd} に関する
+ * {@link SimpleFloatingMixtureRnd} に関する
  * {@link TestedFloatingRandomGenerator} を提供する.
  * 
  * <p>
@@ -42,7 +42,7 @@ final class TestedCategoricalBasedIntegerFloatingMixtureRnd
     TestedCategoricalBasedIntegerFloatingMixtureRnd() {
         super();
 
-        CategoricalRnd selector = CategoricalFactoryForTesting.FACTORY.instanceOf(
+        BoundIntRnd selector = CategoricalFactoryForTesting.FACTORY.instanceOf(
                 new double[] { 5, 4, 3, 2, 1 });
         GeometricRnd.Factory factory = GeometricFactoryForTesting.FACTORY;
         final GeometricRnd[] geometricRnd = {
@@ -60,7 +60,7 @@ final class TestedCategoricalBasedIntegerFloatingMixtureRnd
                 geometricRnd[3]::nextRandom,
                 geometricRnd[4]::nextRandom);
 
-        this.mixtureRnd = CategoricalBasedIntegerMixtureRnd.createFrom(selector, components);
+        this.mixtureRnd = SimpleIntegerMixtureRnd.createFrom(selector, components);
     }
 
     @Override
