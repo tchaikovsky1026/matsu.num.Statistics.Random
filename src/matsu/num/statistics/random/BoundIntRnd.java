@@ -30,7 +30,7 @@ package matsu.num.statistics.random;
  * 
  * @author Matsuura Y.
  */
-public interface BoundIntRnd extends Rnd {
+public interface BoundIntRnd extends IntegerRandomGenerator {
 
     /**
      * 上限 (exclusive) の値を返す.
@@ -45,16 +45,19 @@ public interface BoundIntRnd extends Rnd {
     public abstract int limit();
 
     /**
-     * 与えられた基本乱数発生器を用いて, 所定の確率分布の乱数を生成する. <br>
+     * {@inheritDoc }
+     * 
+     * <p>
      * 生成される値は 0 以上 {@link #limit() limit} 未満であることが保証されている.
+     * </p>
      *
      * @implSpec
      *               引数が {@code null} でない場合,
      *               必ず 0 以上 {@link #limit() limit} 未満の {@code int} を返さなければならない.
      *
-     * @param random 基本乱数発生器
-     * @return 所定の確率分布に従う乱数の値, 0以上 {@link #limit() limit} 未満
-     * @throws NullPointerException 引数がnullの場合
+     * @return {@inheritDoc }, 0以上 {@link #limit() limit} 未満
+     * @throws NullPointerException {@inheritDoc }
      */
+    @Override
     public abstract int nextRandom(BaseRandom random);
 }
