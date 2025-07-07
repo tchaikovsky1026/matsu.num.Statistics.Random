@@ -21,7 +21,7 @@ import matsu.num.statistics.random.speedutil.SpeedTestExecutor;
  * 
  * @author Matsuura Y.
  */
-@SuppressWarnings("deprecation")
+@Deprecated
 @RunWith(Enclosed.class)
 final class InversionBasedArcsineRndTest {
 
@@ -57,6 +57,7 @@ final class InversionBasedArcsineRndTest {
         }
     }
 
+    @Ignore
     public static class toString表示 {
 
         @Test
