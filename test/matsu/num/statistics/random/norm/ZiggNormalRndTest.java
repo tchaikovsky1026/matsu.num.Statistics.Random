@@ -24,8 +24,8 @@ import matsu.num.statistics.random.speedutil.SpeedTestExecutor;
 /**
  * {@link ZiggNormalRndFactory} クラスのテスト.
  */
+@Deprecated
 @RunWith(Enclosed.class)
-@SuppressWarnings("deprecation")
 final class ZiggNormalRndTest {
 
     public static final Class<?> TEST_CLASS = ZiggNormalRnd.class;

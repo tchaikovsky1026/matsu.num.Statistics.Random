@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.6.7
+ * 2025.7.7
  */
 package matsu.num.statistics.random.exp;
 
@@ -26,7 +26,7 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * @deprecated このクラスは使われていない
  */
 @Deprecated
-public final class ZiggExponentialRnd extends SkeletalExponentialRnd {
+final class ZiggExponentialRnd extends SkeletalExponentialRnd {
 
     private static final int N = 128;
     private static final double R_N = 6.89831511661564d;
@@ -107,7 +107,7 @@ public final class ZiggExponentialRnd extends SkeletalExponentialRnd {
      * @return 指数乱数のファクトリ
      * @throws NullPointerException 引数にnullが含まれる場合
      */
-    public static ExponentialRnd.Factory createFactory(Exponentiation exponentiation) {
+    static ExponentialRnd.Factory createFactory(Exponentiation exponentiation) {
         return new LazyExponentialRndFactory(
                 () -> new ZiggExponentialRnd(exponentiation));
     }
