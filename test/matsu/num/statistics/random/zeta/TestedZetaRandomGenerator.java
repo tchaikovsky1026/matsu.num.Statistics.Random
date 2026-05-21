@@ -41,6 +41,7 @@ final class TestedZetaRandomGenerator implements TestedIntegerRandomGenerator {
 
     @Override
     public double cumulativeProbability(int arg) {
+        @SuppressWarnings("deprecation")
         double zetaS = RiemannZetaFunction.at(zetaRnd.s());
 
         double sum = 0d;

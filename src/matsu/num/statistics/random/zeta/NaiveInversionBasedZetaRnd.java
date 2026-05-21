@@ -6,7 +6,7 @@
  */
 
 /*
- * 2025.6.3
+ * 2025.7.7
  */
 package matsu.num.statistics.random.zeta;
 
@@ -17,10 +17,10 @@ import matsu.num.statistics.random.ZetaRnd;
  * 素朴な逆関数法によるゼータ乱数生成器を扱う.
  * 
  * @author Matsuura Y.
- * @deprecated このクラスは往路ダクトコード内で使用されていない
+ * @deprecated このクラスはプロダクトコード内で使用されていない
  */
 @Deprecated
-public final class NaiveInversionBasedZetaRnd
+final class NaiveInversionBasedZetaRnd
         extends SkeletalZetaRnd {
 
     private final double zetaS;
@@ -55,7 +55,7 @@ public final class NaiveInversionBasedZetaRnd
      * 
      * @return ゼータ乱数のファクトリ
      */
-    public static ZetaRnd.Factory createFactory() {
+    static ZetaRnd.Factory createFactory() {
         return new Factory();
     }
 

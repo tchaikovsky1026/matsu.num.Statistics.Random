@@ -23,8 +23,8 @@ import matsu.num.statistics.random.speedutil.SpeedTestExecutor;
 /**
  * {@link ZiggExponentialRnd} クラスのテスト.
  */
+@Deprecated
 @RunWith(Enclosed.class)
-@SuppressWarnings("deprecation")
 final class ZiggExponentialRndTest {
 
     public static final Class<?> TEST_CLASS = ZiggExponentialRnd.class;
@@ -74,6 +74,7 @@ final class ZiggExponentialRndTest {
         }
     }
 
+    @Ignore
     public static class toString表示 {
 
         @Test

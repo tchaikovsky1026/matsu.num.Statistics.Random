@@ -6,7 +6,7 @@
  */
 
 /*
- * 2025.6.7
+ * 2025.7.7
  */
 package matsu.num.statistics.random.arcsin;
 
@@ -20,7 +20,7 @@ import matsu.num.statistics.random.BaseRandom;
  * @deprecated このクラスは使用されていない
  */
 @Deprecated
-public final class InversionBasedArcsineRnd extends SkeletalArcsineRnd {
+final class InversionBasedArcsineRnd extends SkeletalArcsineRnd {
 
     /**
      * 非公開の唯一のコンストラクタ.
@@ -40,7 +40,7 @@ public final class InversionBasedArcsineRnd extends SkeletalArcsineRnd {
      * 
      * @return 逆正弦乱数のファクトリ
      */
-    public static ArcsineRnd.Factory createFactory() {
+    static ArcsineRnd.Factory createFactory() {
         return new LazyArcsineRndFactory(
                 () -> new InversionBasedArcsineRnd());
     }
