@@ -6,7 +6,7 @@
  */
 
 /*
- * 2025.7.4
+ * 2026.5.21
  */
 package matsu.num.statistics.random.mix;
 
@@ -15,6 +15,7 @@ import java.util.function.ToDoubleFunction;
 
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.BoundIntRnd;
+import matsu.num.statistics.random.CategoricalRnd;
 import matsu.num.statistics.random.NormalRnd;
 import matsu.num.statistics.random.accomp.FloatingRandomGenerator;
 
@@ -113,5 +114,51 @@ public interface FloatingMixtureRnd extends FloatingRandomGenerator {
             Collection<? extends ToDoubleFunction<? super BaseRandom>> components) {
 
         return SimpleFloatingMixtureRnd.createFrom(modelSelector, components);
+    }
+
+    /**
+     * モデル選択器とコンポーネント群を与えて, 混合分布による乱数発生器を生成する.
+     * 
+     * <p>
+     * このメソッドは, 最も基本的な {@code static} ファクトリである. <br>
+     * モデル選択器: {@link CategoricalRnd} は,
+     * <i>&phi;</i><sub>0</sub>, <i>&phi;</i><sub>1</sub>, ...,
+     * <i>&phi;</i><sub><i>n</i> - 1</sub>
+     * をカテゴリ確率とするカテゴリカル乱数発生器である. <br>
+     * 各コンポーネントは,
+     * {@link ToDoubleFunction
+     * ToDoubleFunction&lt;?&nbsp;super&nbsp;BaseRandom&gt;}
+     * により表現し,
+     * {@link BaseRandom} から {@code double} を生成させる. <br>
+     * 例えば, 次のように与える
+     * ({@link NormalRnd} の場合).
+     * </p>
+     * 
+     * <pre>
+     *   {@literal ToDoubleFunction<? super BaseRandom> component = br -> normalRnd.nextRandom(br);}
+     * </pre>
+     * 
+     * <p>
+     * コンポーネント群は,
+     * コンポーネントの {@link Collection} であり,
+     * {@link CategoricalRnd} による乱数値と {@link Collection} の index が対応する.
+     * </p>
+     * 
+     * @param modelSelector モデル選択器
+     * @param components コンポーネント群
+     * @return 混合分布乱数発生器
+     * @throws IllegalArgumentException モデル選択器とコンポーネント群のサイズが異なる場合
+     * @throws NullPointerException 引数にnullが含まれる場合
+     * @deprecated
+     *                 このメソッドは古く,
+     *                 {@link #createFrom(BoundIntRnd, Collection)}
+     *                 に置き換えられている.
+     */
+    @Deprecated(since = "25.10")
+    public static FloatingMixtureRnd createFrom(
+            CategoricalRnd modelSelector,
+            Collection<? extends ToDoubleFunction<? super BaseRandom>> components) {
+
+        return createFrom((BoundIntRnd) modelSelector, components);
     }
 }
