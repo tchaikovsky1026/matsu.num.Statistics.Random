@@ -19,6 +19,7 @@ import org.junit.runner.RunWith;
 /**
  * {@link RiemannZetaFunction} のテスト.
  */
+@Deprecated
 @RunWith(Enclosed.class)
 final class RiemannZetaFunctionTest {
 

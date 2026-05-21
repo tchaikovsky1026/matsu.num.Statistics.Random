@@ -23,7 +23,7 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * @deprecated このクラスは使われていない
  */
 @Deprecated
-public final class ZiggNormalRnd extends SkeletalNormalRnd {
+final class ZiggNormalRnd extends SkeletalNormalRnd {
 
     private static final int N = 128;
     private static final double R_N = 3.44261985589665d;
@@ -120,7 +120,7 @@ public final class ZiggNormalRnd extends SkeletalNormalRnd {
      * @return 正規乱数のファクトリ
      * @throws NullPointerException 引数にnullが含まれる場合
      */
-    public static NormalRnd.Factory createFactory(
+    static NormalRnd.Factory createFactory(
             Exponentiation exponentiation, ExponentialRnd.Factory exponentialRndFactory) {
         return new LazyNormalRndFactory(
                 () -> new ZiggNormalRnd(exponentiation, exponentialRndFactory));

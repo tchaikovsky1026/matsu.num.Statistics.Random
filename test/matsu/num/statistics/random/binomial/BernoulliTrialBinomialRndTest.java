@@ -18,10 +18,10 @@ import matsu.num.statistics.random.IntegerRandomGeneratorTestingFramework;
 /**
  * {@link BernoulliTrialBinomialRnd} クラスのテスト.
  */
+@Deprecated
 @RunWith(Enclosed.class)
 final class BernoulliTrialBinomialRndTest {
 
-    @SuppressWarnings("deprecation")
     private static final BinomialRnd.Factory FACTORY = BernoulliTrialBinomialRnd.factory();
 
     @RunWith(Theories.class)
