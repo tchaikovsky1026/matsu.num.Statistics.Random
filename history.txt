@@ -5,6 +5,7 @@ develop/next-generation:
 26.0.0: Majorアップ(破壊的変更).
     - 削除予定のAPIを削除
         - CauchyRnd.asTDistributionRnd()
+    - プロダクトコードの公開APIから到達不能なクラスを削除対応(公開APIは後方互換)
 
 25:
 25.11.0: 内部のメンテナンス. ドキュメント類の整備.
