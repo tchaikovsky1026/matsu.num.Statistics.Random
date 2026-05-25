@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2025.6.7
+ * 2026.5.25
  */
 package matsu.num.statistics.random;
 
@@ -18,8 +18,8 @@ import java.util.function.Supplier;
  * 
  * <p>
  * 基本的なインスタンスは, このインターフェース内に定義された
- * {@code static} ファクトリメソッドにより得られる. <br>
- * また, 必要ならば独自に {@code implement} して使用しても良い.
+ *　static ファクトリメソッドにより得られる. <br>
+ * また, 必要ならば独自に implements して使用しても良い.
  * </p>
  * 
  * @author Matsuura Y.
@@ -42,8 +42,8 @@ public interface BaseRandom {
      * 
      * @return {@code long} が取り得る値全体のうちの1個
      * @implSpec
-     *               互換性のためにデフォルトメソッドを提供するが,
-     *               実装の特性によってはオーバーライドするのが好ましい.
+     *               v25系での後方互換性のためにデフォルトメソッドを提供するが,
+     *               オーバーライドするのが好ましい.
      */
     public default long nextLong() {
 
@@ -90,6 +90,13 @@ public interface BaseRandom {
      * <p>
      * {@code java.util.random.RandomGenerator} をラップした
      * {@link BaseRandom} インスタンスを返す.
+     * </p>
+     * 
+     * <p>
+     * このメソッドは, 実体のある {@link java.util.random.RandomGenerator}
+     * インスタンスを使用した乱数生成を行う用途に適合する. <br>
+     * 例えば, 適切に split された {@link java.util.SplittableRandom} インスタンスを渡して
+     * {@link BaseRandom} を構築する.
      * </p>
      * 
      * @param random ラップされるインスタンス
