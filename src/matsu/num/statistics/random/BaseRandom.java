@@ -4,21 +4,20 @@
  * This software is released under the MIT License.
  * http://opensource.org/licenses/mit-license.php
  */
+
 /*
- * 2026.5.25
+ * 2026.5.27
  */
 package matsu.num.statistics.random;
 
 import java.util.function.Supplier;
 
 /**
- * <p>
  * このモジュールが提供する機能で使用する基本乱数発生器を扱う.
- * </p>
  * 
  * <p>
  * 基本的なインスタンスは, このインターフェース内に定義された
- *　static ファクトリメソッドにより得られる. <br>
+ * static ファクトリメソッドにより得られる. <br>
  * また, 必要ならば独自に implements して使用しても良い.
  * </p>
  * 
@@ -27,18 +26,14 @@ import java.util.function.Supplier;
 public interface BaseRandom {
 
     /**
-     * <p>
      * {@code true} または {@code false} を等確率で返す.
-     * </p>
      * 
      * @return {@code true}, {@code false} が等確率
      */
     public abstract boolean nextBoolean();
 
     /**
-     * <p>
      * {@code long} が取り得る2<sup>64</sup>種類の値のいずれかを等確率で返す.
-     * </p>
      * 
      * @return {@code long} が取り得る値全体のうちの1個
      * @implSpec
@@ -54,18 +49,14 @@ public interface BaseRandom {
     }
 
     /**
-     * <p>
      * {@code int} が取り得る2<sup>32</sup>種類の値のいずれかを等確率で返す.
-     * </p>
      * 
      * @return {@code int} が取り得る値全体のうちの1個
      */
     public abstract int nextInt();
 
     /**
-     * <p>
      * 0 &le; x &lt; bound を満たす一様整数乱数を発生する.
-     * </p>
      * 
      * <p>
      * boundは正でなければならない.
@@ -78,13 +69,54 @@ public interface BaseRandom {
     public abstract int nextInt(int bound);
 
     /**
-     * <p>
      * 0 &le; x &lt; 1 を満たす一様乱数を発生する.
-     * </p>
      * 
      * @return 0以上1未満の値
      */
     public abstract double nextDouble();
+
+    /**
+     * 標準指数分布に従う乱数を発生させる.
+     * 
+     * <p>
+     * 標準指数分布の確率密度関数 P(<i>x</i>) は次のとおりである. <br>
+     * (ただし, 境界値が発生する可能性がある.)
+     * </p>
+     * 
+     * <ul>
+     * <li>
+     * P(<i>x</i>) &prop;
+     * exp(-<i>x</i>)
+     * &emsp; (0 &lt; <i>x</i> &lt; +&infin;)
+     * </li>
+     * </ul>
+     * 
+     * @return 0以上の値 (+&infin;の可能性もある)
+     */
+    public default double nextExponential() {
+        return BaseRandomTemporaryHelper.EXPONENTIAL_RND.nextRandom(this);
+    }
+
+    /**
+     * 標準正規分布に従う乱数を発生させる.
+     * 
+     * <p>
+     * 標準正規分布の確率密度関数 P(<i>x</i>) は次のとおりである. <br>
+     * (ただし, 境界値が発生する可能性がある.)
+     * </p>
+     * 
+     * <ul>
+     * <li>
+     * P(<i>x</i>) &prop; exp(-<i>x</i><sup>2</sup> / 2)
+     * &emsp; (-&infin; &lt; <i>x</i> &lt; +&infin;)
+     * </li>
+     * </ul>
+     * 
+     * @return NaN以外の {@code double} 値 (&pm;&infin;の可能性もある)
+     */
+    public default double nextGaussian() {
+        return BaseRandomTemporaryHelper.NORMAL_RND.nextRandom(this);
+    }
 
     /**
      * <p>
