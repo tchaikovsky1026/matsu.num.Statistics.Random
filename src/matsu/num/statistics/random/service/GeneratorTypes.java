@@ -227,7 +227,7 @@ public final class GeneratorTypes {
         LOGARITHMIC_SERIES_RND = new RandomGeneratorType<>(
                 "LOGARITHMIC_SERIES_RND", LogarithmicSeriesRnd.Factory.class,
                 p -> GeometricMixBasedLogarithmicSeriesRnd.createFactory(
-                        p.lib().exponentiation(), p.get(GeneratorTypes.EXPONENTIAL_RND)));
+                        p.lib().exponentiation()));
 
         LOGISTIC_RND = new RandomGeneratorType<>(
                 "LOGISTIC_RND", LogisticRnd.Factory.class,
