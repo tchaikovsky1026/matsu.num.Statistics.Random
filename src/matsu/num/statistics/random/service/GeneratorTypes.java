@@ -282,8 +282,7 @@ public final class GeneratorTypes {
         YULE_SIMON_RND = new RandomGeneratorType<>(
                 "YULE_SIMON_RND", YuleSimonRnd.Factory.class,
                 p -> ExpGeometricBasedYuleSimonRnd.createFactory(
-                        p.lib().exponentiation(),
-                        p.get(GeneratorTypes.EXPONENTIAL_RND)));
+                        p.lib().exponentiation()));
 
         ZETA_RND = new RandomGeneratorType<>(
                 "ZETA_RND", ZetaRnd.Factory.class,
