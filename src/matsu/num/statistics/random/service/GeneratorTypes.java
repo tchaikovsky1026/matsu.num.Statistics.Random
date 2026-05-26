@@ -272,7 +272,7 @@ public final class GeneratorTypes {
         VOIGT_RND = new RandomGeneratorType<>(
                 "VOIGT_RND", VoigtRnd.Factory.class,
                 p -> StandardImplVoigtRnd.createFactory(
-                        p.get(GeneratorTypes.NORMAL_RND), p.get(GeneratorTypes.CAUCHY_RND)));
+                        p.get(GeneratorTypes.CAUCHY_RND)));
 
         WEIBULL_RND = new RandomGeneratorType<>(
                 "WEIBULL_RND", WeibullRnd.Factory.class,
