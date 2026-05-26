@@ -207,8 +207,7 @@ public final class GeneratorTypes {
         GAMMA_RND = new RandomGeneratorType<>(
                 "GAMMA_RND", GammaRnd.Factory.class,
                 p -> MTTypeGammaRndFactory.create(
-                        p.lib().exponentiation(),
-                        p.get(GeneratorTypes.EXPONENTIAL_RND), p.get(GeneratorTypes.NORMAL_RND)));
+                        p.lib().exponentiation()));
 
         GEOMETRIC_RND = new RandomGeneratorType<>(
                 "GEOMETRIC_RND", GeometricRnd.Factory.class,
