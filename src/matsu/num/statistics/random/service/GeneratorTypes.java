@@ -218,7 +218,7 @@ public final class GeneratorTypes {
         GUMBEL_RND = new RandomGeneratorType<>(
                 "GUMBEL_RND", GumbelRnd.Factory.class,
                 p -> UniZiggGumbelRnd.createFactory(
-                        p.lib().exponentiation(), p.get(GeneratorTypes.EXPONENTIAL_RND)));
+                        p.lib().exponentiation()));
 
         LEVY_RND = new RandomGeneratorType<>(
                 "LEVY_RND", LevyRnd.Factory.class,
