@@ -13,7 +13,6 @@ package matsu.num.statistics.random.zeta;
 import org.junit.Ignore;
 
 import matsu.num.statistics.random.ZetaRnd;
-import matsu.num.statistics.random.exp.ExponentialFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
 /**
@@ -26,8 +25,7 @@ public final class ZetaRndFactoryForTesting {
 
     public static final ZetaRnd.Factory FACTORY =
             RejectionSamplingZetaRnd.createFactory(
-                    ExponentiationForTesting.INSTANCE,
-                    ExponentialFactoryForTesting.FACTORY);
+                    ExponentiationForTesting.INSTANCE);
 
     private ZetaRndFactoryForTesting() {
         //インスタンス化不可

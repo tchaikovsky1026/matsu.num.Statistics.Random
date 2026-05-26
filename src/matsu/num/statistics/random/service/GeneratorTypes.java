@@ -287,8 +287,7 @@ public final class GeneratorTypes {
         ZETA_RND = new RandomGeneratorType<>(
                 "ZETA_RND", ZetaRnd.Factory.class,
                 p -> RejectionSamplingZetaRnd.createFactory(
-                        p.lib().exponentiation(),
-                        p.get(GeneratorTypes.EXPONENTIAL_RND)));
+                        p.lib().exponentiation()));
     }
 
     private GeneratorTypes() {
