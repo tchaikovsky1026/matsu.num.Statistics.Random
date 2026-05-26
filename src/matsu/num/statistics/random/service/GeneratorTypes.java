@@ -267,7 +267,7 @@ public final class GeneratorTypes {
                 "T_DISTRIBUTION_RND", TDistributionRnd.Factory.class,
                 p -> NormalGammaBasedTDistRnd.createFactory(
                         p.lib().exponentiation(),
-                        p.get(GeneratorTypes.NORMAL_RND), p.get(GeneratorTypes.GAMMA_RND)));
+                        p.get(GeneratorTypes.GAMMA_RND)));
 
         VOIGT_RND = new RandomGeneratorType<>(
                 "VOIGT_RND", VoigtRnd.Factory.class,
