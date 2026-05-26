@@ -232,7 +232,7 @@ public final class GeneratorTypes {
         LOGISTIC_RND = new RandomGeneratorType<>(
                 "LOGISTIC_RND", LogisticRnd.Factory.class,
                 p -> ZiggLogiRnd.createFactory(
-                        p.lib().exponentiation(), p.get(GeneratorTypes.EXPONENTIAL_RND)));
+                        p.lib().exponentiation()));
 
         NEGATIVE_BINOMIAL_RND = new RandomGeneratorType<>(
                 "NEGATIVE_BINOMIAL_RND", NegativeBinomialRnd.Factory.class,
