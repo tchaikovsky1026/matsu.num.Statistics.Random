@@ -4,15 +4,14 @@
  * This software is released under the MIT License.
  * http://opensource.org/licenses/mit-license.php
  */
+
 /*
- * 2025.6.13
+ * 2026.5.27
  */
 package matsu.num.statistics.random.gamma;
 
 import matsu.num.statistics.random.BaseRandom;
-import matsu.num.statistics.random.ExponentialRnd;
 import matsu.num.statistics.random.GammaRnd;
-import matsu.num.statistics.random.NormalRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
@@ -27,23 +26,19 @@ final class MTTypeGammaRndUnder1 extends SkeletalGammaRnd {
     private final GammaRnd gammaKPlus1;
     private final double invK;
 
-    private final ExponentialRnd expRnd;
-
     private final Exponentiation exponentiation;
 
     /**
      * @param k 0.01<=k<=1
      */
-    MTTypeGammaRndUnder1(double k, Exponentiation exponentiation,
-            ExponentialRnd.Factory exponentialRndFactory, NormalRnd.Factory normalRndFactory) {
+    MTTypeGammaRndUnder1(double k, Exponentiation exponentiation) {
         super(k);
 
         assert k <= 1 : "not k <= 1";
 
         this.exponentiation = exponentiation;
-        this.gammaKPlus1 = new MTTypeGammaRndOver1(k + 1, exponentiation, normalRndFactory);
+        this.gammaKPlus1 = new MTTypeGammaRndOver1(k + 1, exponentiation);
         this.invK = 1 / k;
-        this.expRnd = exponentialRndFactory.instance();
     }
 
     @Override
@@ -61,7 +56,7 @@ final class MTTypeGammaRndUnder1 extends SkeletalGammaRnd {
         double out;
         do {
             out = this.gammaKPlus1.nextRandom(random) *
-                    exponentiation.exp(-this.expRnd.nextRandom(random) * this.invK);
+                    exponentiation.exp(-random.nextExponential() * this.invK);
 
             // outが (0 * inf)　となった場合のフォロー
         } while (Double.isNaN(out));

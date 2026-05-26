@@ -4,13 +4,13 @@
  * This software is released under the MIT License.
  * http://opensource.org/licenses/mit-license.php
  */
+
 /*
- * 2025.6.7
+ * 2026.5.27
  */
 package matsu.num.statistics.random.gamma;
 
 import matsu.num.statistics.random.BaseRandom;
-import matsu.num.statistics.random.NormalRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
@@ -23,19 +23,17 @@ final class MTTypeGammaRndOver1 extends SkeletalGammaRnd {
     //Gamma(k)乱数を発生させるためのdとc
     private final double d;
     private final double c;
-    private final NormalRnd normalRnd;
 
     private final Exponentiation exponentiation;
 
     /**
      * @param k 1<=k<=1E28
      */
-    MTTypeGammaRndOver1(double k, Exponentiation exponentiation, NormalRnd.Factory normalRndFactory) {
+    MTTypeGammaRndOver1(double k, Exponentiation exponentiation) {
         super(k);
 
         assert 1 <= k : "not 1 <= k";
 
-        this.normalRnd = normalRndFactory.instance();
         this.exponentiation = exponentiation;
         this.d = k - (1.0 / 3.0);
         this.c = (1.0 / 3.0) / exponentiation.sqrt(d);
@@ -48,7 +46,7 @@ final class MTTypeGammaRndOver1 extends SkeletalGammaRnd {
          * ただし, d = k - 1/3, c = 1/sqrt(9d)
          */
         while (true) {
-            double z = this.normalRnd.nextRandom(random);
+            double z = random.nextGaussian();
             double v = 1 + c * z;
             double w = v * v * v;
             double y = d * w;

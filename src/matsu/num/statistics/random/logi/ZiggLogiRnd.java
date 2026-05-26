@@ -4,15 +4,15 @@
  * This software is released under the MIT License.
  * http://opensource.org/licenses/mit-license.php
  */
+
 /*
- * 2025.6.7
+ * 2026.5.27
  */
 package matsu.num.statistics.random.logi;
 
 import java.util.Objects;
 
 import matsu.num.statistics.random.BaseRandom;
-import matsu.num.statistics.random.ExponentialRnd;
 import matsu.num.statistics.random.LogisticRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
 
@@ -34,14 +34,12 @@ public final class ZiggLogiRnd extends SkeletalLogisticRnd {
 
     private final double[] xi;
     private final double[] fi;
-    private final ExponentialRnd expRnd;
 
     private final Exponentiation exponentiation;
 
-    private ZiggLogiRnd(Exponentiation exponentiation, ExponentialRnd.Factory exponentialRndFactory) {
+    private ZiggLogiRnd(Exponentiation exponentiation) {
         super();
         this.exponentiation = Objects.requireNonNull(exponentiation);
-        this.expRnd = exponentialRndFactory.instance();
 
         xi = new double[N + 1];
         fi = new double[N + 1]; //配列サイズが2^n個にならないよう、無駄スペースあり
@@ -95,7 +93,7 @@ public final class ZiggLogiRnd extends SkeletalLogisticRnd {
 
     private double tail(BaseRandom random) {
         while (true) {
-            double u = this.expRnd.nextRandom(random);
+            double u = random.nextExponential();
             double u2 = random.nextDouble();
             double thre1 = 1 - u + u * u * 0.5;
             thre1 = 1 / (1 + EXP_NEGATIVE_R * thre1);
@@ -116,15 +114,13 @@ public final class ZiggLogiRnd extends SkeletalLogisticRnd {
      * {@link matsu.num.statistics.random.LogisticRnd.Factory} を生成する.
      * 
      * @param exponentiation 指数関数計算器
-     * @param exponentialRndFactory 正規乱数発生器のファクトリ
      * @return Logistic乱数のファクトリ
      * @throws NullPointerException 引数にnullが含まれる場合
      */
     public static LogisticRnd.Factory createFactory(
-            Exponentiation exponentiation,
-            ExponentialRnd.Factory exponentialRndFactory) {
+            Exponentiation exponentiation) {
 
         return new LazyLogisticRndFactory(
-                () -> new ZiggLogiRnd(exponentiation, exponentialRndFactory));
+                () -> new ZiggLogiRnd(exponentiation));
     }
 }
