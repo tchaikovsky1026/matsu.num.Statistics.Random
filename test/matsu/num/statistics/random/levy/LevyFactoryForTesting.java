@@ -9,7 +9,6 @@ package matsu.num.statistics.random.levy;
 import org.junit.Ignore;
 
 import matsu.num.statistics.random.LevyRnd;
-import matsu.num.statistics.random.norm.NormalFactoryForTesting;
 
 /**
  * テストクラスで使用する {@link matsu.num.statistics.random.LevyRnd.Factory}.
@@ -21,7 +20,7 @@ import matsu.num.statistics.random.norm.NormalFactoryForTesting;
 public final class LevyFactoryForTesting {
 
     public static final LevyRnd.Factory FACTORY =
-            NormalBasedLevyRnd.createFactory(NormalFactoryForTesting.FACTORY);
+            NormalBasedLevyRnd.createFactory();
 
     private LevyFactoryForTesting() {
     }

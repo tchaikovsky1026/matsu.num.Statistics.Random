@@ -222,7 +222,7 @@ public final class GeneratorTypes {
 
         LEVY_RND = new RandomGeneratorType<>(
                 "LEVY_RND", LevyRnd.Factory.class,
-                p -> NormalBasedLevyRnd.createFactory(p.get(GeneratorTypes.NORMAL_RND)));
+                p -> NormalBasedLevyRnd.createFactory());
 
         LOGARITHMIC_SERIES_RND = new RandomGeneratorType<>(
                 "LOGARITHMIC_SERIES_RND", LogarithmicSeriesRnd.Factory.class,
