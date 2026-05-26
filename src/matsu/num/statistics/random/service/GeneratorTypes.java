@@ -4,8 +4,9 @@
  * This software is released under the MIT License.
  * http://opensource.org/licenses/mit-license.php
  */
+
 /*
- * 2025.6.10
+ * 2026.5.27
  */
 package matsu.num.statistics.random.service;
 
@@ -212,7 +213,7 @@ public final class GeneratorTypes {
         GEOMETRIC_RND = new RandomGeneratorType<>(
                 "GEOMETRIC_RND", GeometricRnd.Factory.class,
                 p -> InversionBasedGeoRnd.createFactory(
-                        p.lib().exponentiation(), p.get(GeneratorTypes.EXPONENTIAL_RND)));
+                        p.lib().exponentiation()));
 
         GUMBEL_RND = new RandomGeneratorType<>(
                 "GUMBEL_RND", GumbelRnd.Factory.class,
