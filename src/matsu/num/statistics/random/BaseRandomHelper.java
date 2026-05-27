@@ -11,7 +11,6 @@
 package matsu.num.statistics.random;
 
 import java.util.Objects;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Supplier;
 
 /**
@@ -20,12 +19,6 @@ import java.util.function.Supplier;
  * @author Matsuura Y.
  */
 final class BaseRandomHelper {
-
-    /**
-     * {@link ThreadLocalRandom} の呼び出しをラップした {@link BaseRandom} インスタンス.
-     * {@link ThreadLocalRandom} の外側では状態を持たないので使いまわし可能.
-     */
-    static final BaseRandom THREAD_SEPARATED_RANDOM = new RandomFromGetter(ThreadLocalRandom::current);
 
     private BaseRandomHelper() {
         //インスタンス化不可
