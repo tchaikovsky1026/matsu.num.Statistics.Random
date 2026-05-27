@@ -119,10 +119,8 @@ public interface BaseRandom {
     }
 
     /**
-     * <p>
      * {@code java.util.random.RandomGenerator} をラップした
      * {@link BaseRandom} インスタンスを返す.
-     * </p>
      * 
      * <p>
      * このメソッドは, 実体のある {@link java.util.random.RandomGenerator}
@@ -140,11 +138,9 @@ public interface BaseRandom {
     }
 
     /**
-     * <p>
      * 与えたサプライヤにより {@link java.util.random.RandomGenerator}
      * を呼び出して乱数を生成するように振る舞う
      * {@link BaseRandom} インスタンスを返す.
-     * </p>
      * 
      * <p>
      * このメソッドにより返される {@link BaseRandom} は,
@@ -154,7 +150,10 @@ public interface BaseRandom {
      * 例えば, <br>
      * {@code getter = () -> java.util.concurrent.ThreadLocalRandom.current();}
      * <br>
-     * などである.
+     * などである. <br>
+     * (これは単なる使用例であり, {@link java.util.concurrent.ThreadLocalRandom}
+     * はこの仕組みに適していない. <br>
+     * 並行処理のためにスレッドローカルな仕組みを使うなら, {@link #threadSeparatedRandom()} を使用すべきである.)
      * </p>
      * 
      * <p>
@@ -174,22 +173,16 @@ public interface BaseRandom {
     }
 
     /**
-     * <p>
      * スレッド間で競合が発生しないような {@link BaseRandom} インスタンスを返す.
-     * </p>
      * 
      * <p>
      * このインスタンスはスレッド間の競合が発生しないように実装されている. <br>
      * よって, このインスタンス自体は複数スレッドで共有されたとしても, 適切に動作する.
      * </p>
      * 
-     * <p>
-     * このメソッドは, {@link #fromGetter(Supplier)} の派生である.
-     * </p>
-     * 
      * @return スレッド間の競合が発生しない {@link BaseRandom}
      */
     public static BaseRandom threadSeparatedRandom() {
-        return BaseRandomHelper.THREAD_SEPARATED_RANDOM;
+        return ThreadSeparatedRandom.INSTANCE;
     }
 }
