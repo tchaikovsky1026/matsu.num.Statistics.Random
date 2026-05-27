@@ -15,7 +15,10 @@ import matsu.num.statistics.random.ExponentialRnd;
  * {@link ExponentialRnd} の骨格実装.
  * 
  * @author Matsuura Y.
+ * @deprecated インターフェースと一緒に削除される.
  */
+@SuppressWarnings("removal")
+@Deprecated
 abstract class SkeletalExponentialRnd implements ExponentialRnd {
 
     /**

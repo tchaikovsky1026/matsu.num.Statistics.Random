@@ -23,8 +23,9 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * </p>
  *
  * @author Matsuura Y.
- * @deprecated このクラスは使われていない
+ * @deprecated このクラスは使われていない. インターフェースと一緒に削除される.
  */
+@SuppressWarnings("removal")
 @Deprecated
 final class ZiggExponentialRnd extends SkeletalExponentialRnd {
 

@@ -17,8 +17,13 @@ import matsu.num.statistics.random.norm.LongSubstitutedZiggNormalRnd;
 /**
  * 次バージョンで削除される可能性がある, 一次的なヘルパ.
  * 
+ * <p>
+ * {@link ExponentialRnd}, {@link NormalRnd} の削除とともに, このヘルパも削除.
+ * </p>
+ * 
  * @author Matsuura Y.
  */
+@SuppressWarnings({ "removal", "deprecation" })
 final class BaseRandomTemporaryHelper {
 
     private BaseRandomTemporaryHelper() {
