@@ -35,10 +35,17 @@ public interface BaseRandom {
     /**
      * {@code long} が取り得る2<sup>64</sup>種類の値のいずれかを等確率で返す.
      * 
+     * <p>
+     * <i><u>
+     * v25系での後方互換性のためにデフォルトメソッドを提供している. <br>
+     * v26以降にデフォルトメソッドが削除される可能性がある.
+     * </u></i>
+     * </p>
+     * 
      * @return {@code long} が取り得る値全体のうちの1個
      * @implSpec
-     *               v25系での後方互換性のためにデフォルトメソッドを提供するが,
-     *               オーバーライドするのが好ましい.
+     *               v25系での後方互換性のためにデフォルトメソッドが提供されているが,
+     *               長期維持のために必ずオーバーライドすること.
      */
     public default long nextLong() {
 
@@ -91,8 +98,19 @@ public interface BaseRandom {
      * </li>
      * </ul>
      * 
+     * <p>
+     * <i><u>
+     * v25系での後方互換性のためにデフォルトメソッドを提供している. <br>
+     * v26以降にデフォルトメソッドが削除される.
+     * </u></i>
+     * </p>
+     * 
      * @return 0以上の値 (+&infin;の可能性もある)
+     * @implSpec
+     *               v25系での後方互換性のためにデフォルトメソッドが提供されているが,
+     *               長期維持のために必ずオーバーライドすること.
      */
+    @SuppressWarnings("deprecation")
     public default double nextExponential() {
         return BaseRandomTemporaryHelper.EXPONENTIAL_RND.nextRandom(this);
     }
@@ -112,8 +130,19 @@ public interface BaseRandom {
      * </li>
      * </ul>
      * 
+     * <p>
+     * <i><u>
+     * v25系での後方互換性のためにデフォルトメソッドを提供している. <br>
+     * v26以降にデフォルトメソッドが削除される.
+     * </u></i>
+     * </p>
+     * 
      * @return NaN以外の {@code double} 値 (&pm;&infin;の可能性もある)
+     * @implSpec
+     *               v25系での後方互換性のためにデフォルトメソッドが提供されているが,
+     *               長期維持のために必ずオーバーライドすること.
      */
+    @SuppressWarnings("deprecation")
     public default double nextGaussian() {
         return BaseRandomTemporaryHelper.NORMAL_RND.nextRandom(this);
     }
