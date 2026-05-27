@@ -69,6 +69,7 @@ import matsu.num.statistics.random.zeta.RejectionSamplingZetaRnd;
  * 
  * @author Matsuura Y.
  */
+@SuppressWarnings({ "removal", "deprecation" })
 public final class GeneratorTypes {
 
     /**
@@ -97,7 +98,11 @@ public final class GeneratorTypes {
     public static final RandomGeneratorType<ChiSquaredRnd.Factory> CHI_SQUARED_RND;
     /**
      * 標準指数分布に従う乱数を表す.
+     * 
+     * @deprecated
+     *                 この乱数発生器は v26 以降に {@link ExponentialRnd} とともに削除される.
      */
+    @Deprecated(forRemoval = true, since = "25.12")
     public static final RandomGeneratorType<ExponentialRnd.Factory> EXPONENTIAL_RND;
     /**
      * F 分布に従う乱数を表す.
@@ -133,7 +138,11 @@ public final class GeneratorTypes {
     public static final RandomGeneratorType<NegativeBinomialRnd.Factory> NEGATIVE_BINOMIAL_RND;
     /**
      * 標準正規分布に従う乱数を表す.
+     * 
+     * @deprecated
+     *                 この乱数発生器は v26 以降に {@link NormalRnd} とともに削除される.
      */
+    @Deprecated(forRemoval = true, since = "25.12")
     public static final RandomGeneratorType<NormalRnd.Factory> NORMAL_RND;
     /**
      * Planck 分布に従う乱数を表す.

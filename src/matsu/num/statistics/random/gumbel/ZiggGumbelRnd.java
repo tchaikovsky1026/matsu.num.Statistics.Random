@@ -28,9 +28,10 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * </p>
  *
  * @author Matsuura Y.
- * @deprecated {@link UniZiggGumbelRnd}を推奨する.
+ * @deprecated {@link UniZiggGumbelRnd}を推奨する. v26で削除.
  */
-@Deprecated
+@SuppressWarnings("removal")
+@Deprecated(forRemoval = true)
 final class ZiggGumbelRnd extends SkeletalGumbelRnd {
 
     private static final int N = 128;

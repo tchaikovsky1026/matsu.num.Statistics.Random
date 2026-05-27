@@ -15,7 +15,10 @@ import matsu.num.statistics.random.NormalRnd;
  * {@link NormalRnd} の骨格実装.
  * 
  * @author Matsuura Y.
+ * @deprecated インターフェースと一緒に削除される.
  */
+@SuppressWarnings("removal")
+@Deprecated
 abstract class SkeletalNormalRnd implements NormalRnd {
 
     /**

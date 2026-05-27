@@ -20,7 +20,10 @@ import matsu.num.statistics.random.base.LazyParameterlessRndFactory;
  * の遅延初期化型の実装.
  * 
  * @author Matsuura Y.
+ * @deprecated インターフェースと一緒に削除される.
  */
+@SuppressWarnings("removal")
+@Deprecated
 final class LazyNormalRndFactory
         extends LazyParameterlessRndFactory<NormalRnd> implements NormalRnd.Factory {
 
