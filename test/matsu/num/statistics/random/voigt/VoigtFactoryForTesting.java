@@ -10,7 +10,6 @@ import org.junit.Ignore;
 
 import matsu.num.statistics.random.VoigtRnd;
 import matsu.num.statistics.random.cauchy.CauchyFactoryForTesting;
-import matsu.num.statistics.random.norm.NormalFactoryForTesting;
 
 /**
  * テストクラスで使用する {@link matsu.num.statistics.random.VoigtRnd.Factory}.
@@ -23,7 +22,7 @@ public final class VoigtFactoryForTesting {
 
     public static final VoigtRnd.Factory FACTORY =
             StandardImplVoigtRnd.createFactory(
-                    NormalFactoryForTesting.FACTORY, CauchyFactoryForTesting.FACTORY);
+                    CauchyFactoryForTesting.FACTORY);
 
     private VoigtFactoryForTesting() {
     }

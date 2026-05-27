@@ -9,7 +9,6 @@ package matsu.num.statistics.random.gumbel;
 import org.junit.Ignore;
 
 import matsu.num.statistics.random.GumbelRnd;
-import matsu.num.statistics.random.exp.ExponentialFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
 /**
@@ -20,8 +19,7 @@ public final class GumbelFactoryForTesting {
 
     public static final GumbelRnd.Factory FACTORY =
             UniZiggGumbelRnd.createFactory(
-                    ExponentiationForTesting.INSTANCE,
-                    ExponentialFactoryForTesting.FACTORY);
+                    ExponentiationForTesting.INSTANCE);
 
     private GumbelFactoryForTesting() {
     }

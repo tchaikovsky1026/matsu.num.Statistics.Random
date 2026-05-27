@@ -12,7 +12,6 @@ import org.junit.runner.RunWith;
 
 import matsu.num.statistics.random.FloatingRandomGeneratorTestingFramework;
 import matsu.num.statistics.random.GumbelRnd;
-import matsu.num.statistics.random.exp.ExponentialFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
 /**
@@ -24,8 +23,7 @@ final class UniZiggGumbelRndTest {
     public static final Class<?> TEST_CLASS = UniZiggGumbelRnd.class;
     private static final GumbelRnd.Factory FACTORY =
             UniZiggGumbelRnd.createFactory(
-                    ExponentiationForTesting.INSTANCE,
-                    ExponentialFactoryForTesting.FACTORY);
+                    ExponentiationForTesting.INSTANCE);
 
     public static class 乱数のテスト {
 

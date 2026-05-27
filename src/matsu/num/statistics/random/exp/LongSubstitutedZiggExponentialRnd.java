@@ -23,7 +23,10 @@ import matsu.num.statistics.random.lib.Exponentiation;
  * </p>
  *
  * @author Matsuura Y.
+ * @deprecated インターフェースと一緒に削除される.
  */
+@SuppressWarnings("removal")
+@Deprecated
 public final class LongSubstitutedZiggExponentialRnd extends SkeletalExponentialRnd {
 
     private static final int N_BIT = 7;

@@ -12,7 +12,6 @@ import org.junit.runner.RunWith;
 
 import matsu.num.statistics.random.FloatingRandomGeneratorTestingFramework;
 import matsu.num.statistics.random.LevyRnd;
-import matsu.num.statistics.random.norm.NormalFactoryForTesting;
 
 /**
  * {@link NormalBasedLevyRnd} クラスのテスト.
@@ -22,7 +21,7 @@ final class NormalBasedLevyRndTest {
 
     public static final Class<?> TEST_CLASS = NormalBasedLevyRnd.class;
     private static final LevyRnd.Factory FACTORY =
-            NormalBasedLevyRnd.createFactory(NormalFactoryForTesting.FACTORY);
+            NormalBasedLevyRnd.createFactory();
 
     public static class 乱数のテスト {
 

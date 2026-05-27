@@ -11,10 +11,8 @@ import java.util.function.ToDoubleFunction;
 
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.BoundIntRnd;
-import matsu.num.statistics.random.ExponentialRnd;
 import matsu.num.statistics.random.TestedFloatingRandomGenerator;
 import matsu.num.statistics.random.cat.CategoricalFactoryForTesting;
-import matsu.num.statistics.random.exp.ExponentialFactoryForTesting;
 
 /**
  * {@link SimpleFloatingMixtureRnd} に関する
@@ -42,14 +40,13 @@ final class TestedCategoricalBasedFloatingMixtureRnd implements TestedFloatingRa
 
         BoundIntRnd selector = CategoricalFactoryForTesting.FACTORY.instanceOf(
                 new double[] { 5, 4, 3, 2, 1 });
-        final ExponentialRnd exponentialRnd = ExponentialFactoryForTesting.FACTORY.instance();
 
         List<ToDoubleFunction<BaseRandom>> components = List.of(
-                br -> exponentialRnd.nextRandom(br),
-                br -> exponentialRnd.nextRandom(br) + 1d,
-                br -> exponentialRnd.nextRandom(br) + 2d,
-                br -> exponentialRnd.nextRandom(br) + 3d,
-                br -> exponentialRnd.nextRandom(br) + 4d);
+                br -> br.nextExponential(),
+                br -> br.nextExponential() + 1d,
+                br -> br.nextExponential() + 2d,
+                br -> br.nextExponential() + 3d,
+                br -> br.nextExponential() + 4d);
 
         this.mixtureRnd = SimpleFloatingMixtureRnd.createFrom(selector, components);
     }

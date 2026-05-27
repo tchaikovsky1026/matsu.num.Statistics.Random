@@ -16,8 +16,9 @@ import matsu.num.statistics.random.base.SimpleParameterlessRndFactory;
  * {@link matsu.num.statistics.random.ExponentialRnd.Factory} の実装.
  * 
  * @author Matsuura Y.
- * @deprecated このクラスは使われていない
+ * @deprecated このクラスは使われていない. インターフェースと一緒に削除される.
  */
+@SuppressWarnings("removal")
 @Deprecated
 final class ExponentialRndFactory
         extends SimpleParameterlessRndFactory<ExponentialRnd> implements ExponentialRnd.Factory {
@@ -29,7 +30,7 @@ final class ExponentialRndFactory
      * @param rnd 乱数発生器
      * @throws NullPointerException 乱数発生器がnullの場合
      */
-    ExponentialRndFactory(ExponentialRnd rnd) {
+    ExponentialRndFactory(@SuppressWarnings("removal") ExponentialRnd rnd) {
         super(rnd, "ExponentialRnd.Factory");
     }
 }

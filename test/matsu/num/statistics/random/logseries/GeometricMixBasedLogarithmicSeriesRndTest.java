@@ -15,7 +15,6 @@ import org.junit.runner.RunWith;
 
 import matsu.num.statistics.random.IntegerRandomGeneratorTestingFramework;
 import matsu.num.statistics.random.LogarithmicSeriesRnd;
-import matsu.num.statistics.random.exp.ExponentialFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
 /**
@@ -30,8 +29,7 @@ final class GeometricMixBasedLogarithmicSeriesRndTest {
 
     private static final LogarithmicSeriesRnd.Factory FACTORY =
             GeometricMixBasedLogarithmicSeriesRnd.createFactory(
-                    ExponentiationForTesting.INSTANCE,
-                    ExponentialFactoryForTesting.FACTORY);
+                    ExponentiationForTesting.INSTANCE);
 
     @RunWith(Theories.class)
     public static class 乱数のテスト {

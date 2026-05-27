@@ -4,8 +4,9 @@
  * This software is released under the MIT License.
  * http://opensource.org/licenses/mit-license.php
  */
+
 /*
- * 2025.6.13
+ * 2026.5.27
  */
 package matsu.num.statistics.random.tdist;
 
@@ -13,7 +14,6 @@ import java.util.Objects;
 
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.GammaRnd;
-import matsu.num.statistics.random.NormalRnd;
 import matsu.num.statistics.random.TDistributionRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
 
@@ -25,7 +25,6 @@ import matsu.num.statistics.random.lib.Exponentiation;
 public final class NormalGammaBasedTDistRnd extends SkeletalTDistributionRnd {
 
     private final GammaRnd gammaRnd;
-    private final NormalRnd normalRnd;
     private final Exponentiation exponentiation;
 
     /**
@@ -40,12 +39,10 @@ public final class NormalGammaBasedTDistRnd extends SkeletalTDistributionRnd {
      */
     private NormalGammaBasedTDistRnd(double nu,
             Exponentiation exponentiation,
-            NormalRnd.Factory normalRndFactory,
             GammaRnd.Factory gammaRndFactory) {
         super(nu);
 
         this.exponentiation = exponentiation;
-        this.normalRnd = normalRndFactory.instance();
         this.gammaRnd = gammaRndFactory.instanceOf(nu * 0.5);
     }
 
@@ -53,7 +50,7 @@ public final class NormalGammaBasedTDistRnd extends SkeletalTDistributionRnd {
     public final double nextRandom(BaseRandom random) {
         double out;
         do {
-            out = this.normalRnd.nextRandom(random)
+            out = random.nextGaussian()
                     / exponentiation.sqrt(this.gammaRnd.nextRandom(random) * 2 / this.nu);
 
             // outが (0/0) や (inf/inf)　となった場合のフォロー
@@ -65,19 +62,16 @@ public final class NormalGammaBasedTDistRnd extends SkeletalTDistributionRnd {
      * 正規ガンマタイプの {@link TDistributionRnd} のファクトリインスタンスを生成する.
      * 
      * @param exponentiation 指数関数の計算
-     * @param normalRndFactory 正規乱数生成器のファクトリ
      * @param gammaRndFactory ガンマ乱数生成器のファクトリ
      * @return 乱数生成器ファクトリ
      * @throws NullPointerException 引数にnullが含まれる場合
      */
     public static TDistributionRnd.Factory createFactory(
             Exponentiation exponentiation,
-            NormalRnd.Factory normalRndFactory,
             GammaRnd.Factory gammaRndFactory) {
 
         return new Factory(
                 Objects.requireNonNull(exponentiation),
-                Objects.requireNonNull(normalRndFactory),
                 Objects.requireNonNull(gammaRndFactory));
     }
 
@@ -87,22 +81,19 @@ public final class NormalGammaBasedTDistRnd extends SkeletalTDistributionRnd {
     private static final class Factory extends SkeletalTDistributionRnd.Factory {
 
         private final Exponentiation exponentiation;
-        private final NormalRnd.Factory normalRndFactory;
         private final GammaRnd.Factory gammaRndFactory;
 
         Factory(
                 Exponentiation exponentiation,
-                NormalRnd.Factory normalRndFactory,
                 GammaRnd.Factory gammaRndFactory) {
             super();
             this.exponentiation = exponentiation;
-            this.normalRndFactory = normalRndFactory;
             this.gammaRndFactory = gammaRndFactory;
         }
 
         @Override
         TDistributionRnd createInstanceOf(double nu) {
-            return new NormalGammaBasedTDistRnd(nu, this.exponentiation, this.normalRndFactory, this.gammaRndFactory);
+            return new NormalGammaBasedTDistRnd(nu, this.exponentiation, this.gammaRndFactory);
         }
     }
 }

@@ -24,7 +24,6 @@ import matsu.num.statistics.random.TDistributionRnd;
 import matsu.num.statistics.random.TestedFloatingRandomGenerator;
 import matsu.num.statistics.random.gamma.GammaFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
-import matsu.num.statistics.random.norm.NormalFactoryForTesting;
 
 /**
  * {@link NormalGammaBasedTDistRnd} クラスのテスト.
@@ -36,7 +35,6 @@ final class NormalGammaBasedTDistRndFactoryTest {
     private static final TDistributionRnd.Factory FACTORY =
             NormalGammaBasedTDistRnd.createFactory(
                     ExponentiationForTesting.INSTANCE,
-                    NormalFactoryForTesting.FACTORY,
                     GammaFactoryForTesting.FACTORY);
 
     @SuppressWarnings("deprecation")

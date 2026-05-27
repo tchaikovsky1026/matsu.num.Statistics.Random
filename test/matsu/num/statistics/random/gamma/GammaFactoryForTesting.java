@@ -9,9 +9,7 @@ package matsu.num.statistics.random.gamma;
 import org.junit.Ignore;
 
 import matsu.num.statistics.random.GammaRnd;
-import matsu.num.statistics.random.exp.ExponentialFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
-import matsu.num.statistics.random.norm.NormalFactoryForTesting;
 
 /**
  * テストクラスで使用する {@link matsu.num.statistics.random.GammaRnd.Factory}.
@@ -20,9 +18,7 @@ import matsu.num.statistics.random.norm.NormalFactoryForTesting;
 public final class GammaFactoryForTesting {
 
     public static final GammaRnd.Factory FACTORY =
-            MTTypeGammaRndFactory.create(
-                    ExponentiationForTesting.INSTANCE,
-                    ExponentialFactoryForTesting.FACTORY, NormalFactoryForTesting.FACTORY);
+            MTTypeGammaRndFactory.create(ExponentiationForTesting.INSTANCE);
 
     private GammaFactoryForTesting() {
     }
