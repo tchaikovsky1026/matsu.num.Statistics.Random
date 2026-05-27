@@ -4,8 +4,9 @@
  * This software is released under the MIT License.
  * http://opensource.org/licenses/mit-license.php
  */
+
 /*
- * 2025.6.10
+ * 2026.5.27
  */
 package matsu.num.statistics.random.service;
 
@@ -68,6 +69,7 @@ import matsu.num.statistics.random.zeta.RejectionSamplingZetaRnd;
  * 
  * @author Matsuura Y.
  */
+@SuppressWarnings({ "removal", "deprecation" })
 public final class GeneratorTypes {
 
     /**
@@ -96,7 +98,11 @@ public final class GeneratorTypes {
     public static final RandomGeneratorType<ChiSquaredRnd.Factory> CHI_SQUARED_RND;
     /**
      * 標準指数分布に従う乱数を表す.
+     * 
+     * @deprecated
+     *                 この乱数発生器は v26 以降に {@link ExponentialRnd} とともに削除される.
      */
+    @Deprecated(forRemoval = true, since = "25.12")
     public static final RandomGeneratorType<ExponentialRnd.Factory> EXPONENTIAL_RND;
     /**
      * F 分布に従う乱数を表す.
@@ -132,7 +138,11 @@ public final class GeneratorTypes {
     public static final RandomGeneratorType<NegativeBinomialRnd.Factory> NEGATIVE_BINOMIAL_RND;
     /**
      * 標準正規分布に従う乱数を表す.
+     * 
+     * @deprecated
+     *                 この乱数発生器は v26 以降に {@link NormalRnd} とともに削除される.
      */
+    @Deprecated(forRemoval = true, since = "25.12")
     public static final RandomGeneratorType<NormalRnd.Factory> NORMAL_RND;
     /**
      * Planck 分布に従う乱数を表す.
@@ -207,32 +217,31 @@ public final class GeneratorTypes {
         GAMMA_RND = new RandomGeneratorType<>(
                 "GAMMA_RND", GammaRnd.Factory.class,
                 p -> MTTypeGammaRndFactory.create(
-                        p.lib().exponentiation(),
-                        p.get(GeneratorTypes.EXPONENTIAL_RND), p.get(GeneratorTypes.NORMAL_RND)));
+                        p.lib().exponentiation()));
 
         GEOMETRIC_RND = new RandomGeneratorType<>(
                 "GEOMETRIC_RND", GeometricRnd.Factory.class,
                 p -> InversionBasedGeoRnd.createFactory(
-                        p.lib().exponentiation(), p.get(GeneratorTypes.EXPONENTIAL_RND)));
+                        p.lib().exponentiation()));
 
         GUMBEL_RND = new RandomGeneratorType<>(
                 "GUMBEL_RND", GumbelRnd.Factory.class,
                 p -> UniZiggGumbelRnd.createFactory(
-                        p.lib().exponentiation(), p.get(GeneratorTypes.EXPONENTIAL_RND)));
+                        p.lib().exponentiation()));
 
         LEVY_RND = new RandomGeneratorType<>(
                 "LEVY_RND", LevyRnd.Factory.class,
-                p -> NormalBasedLevyRnd.createFactory(p.get(GeneratorTypes.NORMAL_RND)));
+                p -> NormalBasedLevyRnd.createFactory());
 
         LOGARITHMIC_SERIES_RND = new RandomGeneratorType<>(
                 "LOGARITHMIC_SERIES_RND", LogarithmicSeriesRnd.Factory.class,
                 p -> GeometricMixBasedLogarithmicSeriesRnd.createFactory(
-                        p.lib().exponentiation(), p.get(GeneratorTypes.EXPONENTIAL_RND)));
+                        p.lib().exponentiation()));
 
         LOGISTIC_RND = new RandomGeneratorType<>(
                 "LOGISTIC_RND", LogisticRnd.Factory.class,
                 p -> ZiggLogiRnd.createFactory(
-                        p.lib().exponentiation(), p.get(GeneratorTypes.EXPONENTIAL_RND)));
+                        p.lib().exponentiation()));
 
         NEGATIVE_BINOMIAL_RND = new RandomGeneratorType<>(
                 "NEGATIVE_BINOMIAL_RND", NegativeBinomialRnd.Factory.class,
@@ -261,19 +270,18 @@ public final class GeneratorTypes {
         STATIC_GAMMA_RND = new RandomGeneratorType<>(
                 "STATIC_GAMMA_RND", StaticGammaRnd.Factory.class,
                 p -> MTTypeStaticGammaRnd.createFactory(
-                        p.lib().exponentiation(),
-                        p.get(GeneratorTypes.EXPONENTIAL_RND), p.get(GeneratorTypes.NORMAL_RND)));
+                        p.lib().exponentiation()));
 
         T_DISTRIBUTION_RND = new RandomGeneratorType<>(
                 "T_DISTRIBUTION_RND", TDistributionRnd.Factory.class,
                 p -> NormalGammaBasedTDistRnd.createFactory(
                         p.lib().exponentiation(),
-                        p.get(GeneratorTypes.NORMAL_RND), p.get(GeneratorTypes.GAMMA_RND)));
+                        p.get(GeneratorTypes.GAMMA_RND)));
 
         VOIGT_RND = new RandomGeneratorType<>(
                 "VOIGT_RND", VoigtRnd.Factory.class,
                 p -> StandardImplVoigtRnd.createFactory(
-                        p.get(GeneratorTypes.NORMAL_RND), p.get(GeneratorTypes.CAUCHY_RND)));
+                        p.get(GeneratorTypes.CAUCHY_RND)));
 
         WEIBULL_RND = new RandomGeneratorType<>(
                 "WEIBULL_RND", WeibullRnd.Factory.class,
@@ -283,14 +291,12 @@ public final class GeneratorTypes {
         YULE_SIMON_RND = new RandomGeneratorType<>(
                 "YULE_SIMON_RND", YuleSimonRnd.Factory.class,
                 p -> ExpGeometricBasedYuleSimonRnd.createFactory(
-                        p.lib().exponentiation(),
-                        p.get(GeneratorTypes.EXPONENTIAL_RND)));
+                        p.lib().exponentiation()));
 
         ZETA_RND = new RandomGeneratorType<>(
                 "ZETA_RND", ZetaRnd.Factory.class,
                 p -> RejectionSamplingZetaRnd.createFactory(
-                        p.lib().exponentiation(),
-                        p.get(GeneratorTypes.EXPONENTIAL_RND)));
+                        p.lib().exponentiation()));
     }
 
     private GeneratorTypes() {

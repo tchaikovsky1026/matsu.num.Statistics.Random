@@ -22,7 +22,6 @@ import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.GeometricRnd;
 import matsu.num.statistics.random.IntegerRandomGeneratorTestingFramework;
 import matsu.num.statistics.random.TestedIntegerRandomGenerator;
-import matsu.num.statistics.random.exp.ExponentialFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
 /**
@@ -33,8 +32,7 @@ final class InversionBasedGeoRndFactoryTest {
 
     public static final Class<?> TEST_CLASS = InversionBasedGeoRnd.class;
     private static final GeometricRnd.Factory FACTORY =
-            InversionBasedGeoRnd.createFactory(
-                    ExponentiationForTesting.INSTANCE, ExponentialFactoryForTesting.FACTORY);
+            InversionBasedGeoRnd.createFactory(ExponentiationForTesting.INSTANCE);
 
     @SuppressWarnings("deprecation")
     public static class ファクトリの境界値テスト {

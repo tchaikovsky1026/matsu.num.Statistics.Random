@@ -15,7 +15,6 @@ import org.junit.runner.RunWith;
 
 import matsu.num.statistics.random.IntegerRandomGeneratorTestingFramework;
 import matsu.num.statistics.random.YuleSimonRnd;
-import matsu.num.statistics.random.exp.ExponentialFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
 /**
@@ -28,8 +27,7 @@ final class ExpGeometricBasedYuleSimonRndTest {
 
     private static final YuleSimonRnd.Factory FACTORY =
             ExpGeometricBasedYuleSimonRnd.createFactory(
-                    ExponentiationForTesting.INSTANCE,
-                    ExponentialFactoryForTesting.FACTORY);
+                    ExponentiationForTesting.INSTANCE);
 
     @RunWith(Theories.class)
     public static class 乱数のテスト {

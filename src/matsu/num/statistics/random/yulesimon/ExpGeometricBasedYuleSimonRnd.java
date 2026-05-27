@@ -6,14 +6,13 @@
  */
 
 /*
- * 2025.6.4
+ * 2026.5.27
  */
 package matsu.num.statistics.random.yulesimon;
 
 import java.util.Objects;
 
 import matsu.num.statistics.random.BaseRandom;
-import matsu.num.statistics.random.ExponentialRnd;
 import matsu.num.statistics.random.YuleSimonRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
 
@@ -36,18 +35,15 @@ public final class ExpGeometricBasedYuleSimonRnd extends SkeletalYuleSimonRnd {
     private final double invRho;
 
     private final Exponentiation exponentiation;
-    private final ExponentialRnd expRnd;
 
     /**
      * 唯一の非公開コンストラクタ.
      * 引数のバリデーションは行われていない.
      */
-    private ExpGeometricBasedYuleSimonRnd(double rho,
-            Exponentiation exponentiation, ExponentialRnd.Factory expRndFActory) {
+    private ExpGeometricBasedYuleSimonRnd(double rho, Exponentiation exponentiation) {
         super(rho);
 
         this.exponentiation = exponentiation;
-        this.expRnd = expRndFActory.instance();
 
         this.invRho = 1d / rho;
     }
@@ -55,12 +51,12 @@ public final class ExpGeometricBasedYuleSimonRnd extends SkeletalYuleSimonRnd {
     @Override
     public int nextRandom(BaseRandom random) {
         while (true) {
-            double y_invRho = expRnd.nextRandom(random) * invRho;
+            double y_invRho = random.nextExponential() * invRho;
             double invC = y_invRho < 1
                     ? -exponentiation.log(-exponentiation.expm1(-y_invRho))
                     : -exponentiation.log1p(-exponentiation.exp(-y_invRho));
 
-            double w = expRnd.nextRandom(random) / invC;
+            double w = random.nextExponential() / invC;
             if (w < Integer.MAX_VALUE - 1) {
                 return (int) w + 1;
             }
@@ -71,16 +67,13 @@ public final class ExpGeometricBasedYuleSimonRnd extends SkeletalYuleSimonRnd {
      * {@link matsu.num.statistics.random.YuleSimonRnd.Factory} を生成する.
      * 
      * @param exponentiation 指数関数の計算
-     * @param exponentialRndFactory 指数乱数発生器のファクトリ
      * @return Yule-Simon 乱数のファクトリ
      * @throws NullPointerException 引数がnullの場合
      */
     public static YuleSimonRnd.Factory createFactory(
-            Exponentiation exponentiation,
-            ExponentialRnd.Factory exponentialRndFactory) {
+            Exponentiation exponentiation) {
         return new Factory(
-                Objects.requireNonNull(exponentiation),
-                Objects.requireNonNull(exponentialRndFactory));
+                Objects.requireNonNull(exponentiation));
     }
 
     /**
@@ -90,21 +83,19 @@ public final class ExpGeometricBasedYuleSimonRnd extends SkeletalYuleSimonRnd {
     private static final class Factory extends SkeletalYuleSimonRnd.Factory {
 
         private final Exponentiation exponentiation;
-        private final ExponentialRnd.Factory expRndFActory;
 
         /**
          * 唯一の非公開コンストラクタ.
          * 引数のバリデーションは行われていない.
          */
-        Factory(Exponentiation exponentiation, ExponentialRnd.Factory expRndFActory) {
+        Factory(Exponentiation exponentiation) {
             super();
             this.exponentiation = exponentiation;
-            this.expRndFActory = expRndFActory;
         }
 
         @Override
         YuleSimonRnd createInstanceOf(double rho) {
-            return new ExpGeometricBasedYuleSimonRnd(rho, exponentiation, expRndFActory);
+            return new ExpGeometricBasedYuleSimonRnd(rho, exponentiation);
         }
     }
 }

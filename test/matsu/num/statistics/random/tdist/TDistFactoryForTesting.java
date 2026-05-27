@@ -11,7 +11,6 @@ import org.junit.Ignore;
 import matsu.num.statistics.random.TDistributionRnd;
 import matsu.num.statistics.random.gamma.GammaFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
-import matsu.num.statistics.random.norm.NormalFactoryForTesting;
 
 /**
  * テストクラスで使用する {@link matsu.num.statistics.random.TDistributionRnd.Factory}.
@@ -25,7 +24,6 @@ public final class TDistFactoryForTesting {
     public static final TDistributionRnd.Factory FACTORY =
             NormalGammaBasedTDistRnd.createFactory(
                     ExponentiationForTesting.INSTANCE,
-                    NormalFactoryForTesting.FACTORY,
                     GammaFactoryForTesting.FACTORY);
 
     private TDistFactoryForTesting() {

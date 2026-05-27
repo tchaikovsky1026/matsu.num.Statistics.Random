@@ -23,7 +23,6 @@ import matsu.num.statistics.random.FloatingRandomGeneratorTestingFramework;
 import matsu.num.statistics.random.TestedFloatingRandomGenerator;
 import matsu.num.statistics.random.VoigtRnd;
 import matsu.num.statistics.random.cauchy.CauchyFactoryForTesting;
-import matsu.num.statistics.random.norm.NormalFactoryForTesting;
 
 /**
  * {@link StandardImplVoigtRnd} クラスのテスト.
@@ -33,7 +32,7 @@ final class StandardImplVoigtRndFactoryTest {
 
     public static final Class<?> TEST_CLASS = StandardImplVoigtRnd.class;
     private static final VoigtRnd.Factory FACTORY =
-            StandardImplVoigtRnd.createFactory(NormalFactoryForTesting.FACTORY, CauchyFactoryForTesting.FACTORY);
+            StandardImplVoigtRnd.createFactory(CauchyFactoryForTesting.FACTORY);
 
     @SuppressWarnings("deprecation")
     public static class ファクトリの境界値テスト {
