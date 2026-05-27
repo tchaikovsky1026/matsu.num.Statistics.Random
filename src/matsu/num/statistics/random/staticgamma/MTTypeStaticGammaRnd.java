@@ -4,16 +4,15 @@
  * This software is released under the MIT License.
  * http://opensource.org/licenses/mit-license.php
  */
+
 /*
- * 2025.6.13
+ * 2026.5.27
  */
 package matsu.num.statistics.random.staticgamma;
 
 import java.util.Objects;
 
 import matsu.num.statistics.random.BaseRandom;
-import matsu.num.statistics.random.ExponentialRnd;
-import matsu.num.statistics.random.NormalRnd;
 import matsu.num.statistics.random.StaticGammaRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
 
@@ -24,23 +23,17 @@ import matsu.num.statistics.random.lib.Exponentiation;
  */
 public final class MTTypeStaticGammaRnd extends SkeletalStaticGammaRnd {
 
-    private final ExponentialRnd expRnd;
-    private final NormalRnd normalRnd;
-
     private final Exponentiation exponentiation;
 
-    private MTTypeStaticGammaRnd(Exponentiation exponentiation, ExponentialRnd.Factory exponentialRndFactory,
-            NormalRnd.Factory normalRndFactory) {
+    private MTTypeStaticGammaRnd(Exponentiation exponentiation) {
         super();
         this.exponentiation = Objects.requireNonNull(exponentiation);
-        this.expRnd = exponentialRndFactory.instance();
-        this.normalRnd = normalRndFactory.instance();
     }
 
     @Override
     double calcNextGamma(BaseRandom random, double k) {
         if (k == 1) {
-            return this.expRnd.nextRandom(random);
+            return random.nextExponential();
         }
         if (k > 1) {
             double d = k - (1.0 / 3.0);
@@ -54,7 +47,7 @@ public final class MTTypeStaticGammaRnd extends SkeletalStaticGammaRnd {
             double d = k + (2.0 / 3.0);
             double c = (1.0 / 3.0) / exponentiation.sqrt(d);
             out = nextGammaOver1(random, d, c) *
-                    exponentiation.exp(-this.expRnd.nextRandom(random) / k);
+                    exponentiation.exp(-random.nextExponential() / k);
 
             // outが (0 * inf)　となった場合のフォロー
         } while (Double.isNaN(out));
@@ -64,7 +57,7 @@ public final class MTTypeStaticGammaRnd extends SkeletalStaticGammaRnd {
 
     private double nextGammaOver1(BaseRandom random, double d, double c) {
         while (true) {
-            double z = this.normalRnd.nextRandom(random);
+            double z = random.nextGaussian();
             double v = 1 + c * z;
             double w = v * v * v;
             double y = d * w;
@@ -83,18 +76,13 @@ public final class MTTypeStaticGammaRnd extends SkeletalStaticGammaRnd {
      * {@link matsu.num.statistics.random.StaticGammaRnd.Factory} を生成する.
      * 
      * @param exponentiation 指数関数計算器
-     * @param exponentialRndFactory 指数乱数発生器のファクトリ
-     * @param normalRndFactory 正規乱数発生器のファクトリ
      * @return StaticGammaRnd乱数のファクトリ
      * @throws NullPointerException 引数にnullが含まれる場合
      */
     public static StaticGammaRnd.Factory createFactory(
-            Exponentiation exponentiation,
-            ExponentialRnd.Factory exponentialRndFactory,
-            NormalRnd.Factory normalRndFactory) {
+            Exponentiation exponentiation) {
 
         return new LazyStaticGammaRndFactory(
-                () -> new MTTypeStaticGammaRnd(
-                        exponentiation, exponentialRndFactory, normalRndFactory));
+                () -> new MTTypeStaticGammaRnd(exponentiation));
     }
 }

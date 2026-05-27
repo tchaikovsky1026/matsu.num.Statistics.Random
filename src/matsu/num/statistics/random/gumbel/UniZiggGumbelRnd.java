@@ -4,15 +4,15 @@
  * This software is released under the MIT License.
  * http://opensource.org/licenses/mit-license.php
  */
+
 /*
- * 2025.6.7
+ * 2026.5.27
  */
 package matsu.num.statistics.random.gumbel;
 
 import java.util.Objects;
 
 import matsu.num.statistics.random.BaseRandom;
-import matsu.num.statistics.random.ExponentialRnd;
 import matsu.num.statistics.random.GumbelRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
 
@@ -40,8 +40,6 @@ public final class UniZiggGumbelRnd extends SkeletalGumbelRnd {
     private static final double EXP_R_LOWER = Math.exp(R_LOWER);
 
     private final Exponentiation exponentiation;
-
-    private final ExponentialRnd expRnd;
 
     private final double[] X_LOWER = {
             0.0, -0.2673193376281921, -0.3510237686340313, -0.4084427617247585,
@@ -179,10 +177,9 @@ public final class UniZiggGumbelRnd extends SkeletalGumbelRnd {
      * 
      * @throws NullPointerException null
      */
-    private UniZiggGumbelRnd(Exponentiation exponentiation, ExponentialRnd.Factory exponentialRndFactory) {
+    private UniZiggGumbelRnd(Exponentiation exponentiation) {
         super();
         this.exponentiation = Objects.requireNonNull(exponentiation);
-        this.expRnd = exponentialRndFactory.instance();
     }
 
     @Override
@@ -210,15 +207,15 @@ public final class UniZiggGumbelRnd extends SkeletalGumbelRnd {
 
     private double tail_p(BaseRandom random) {
         while (true) {
-            double z = R_UPPER + this.expRnd.nextRandom(random);
-            if (1 < exponentiation.exp(z) * this.expRnd.nextRandom(random)) {
+            double z = R_UPPER + random.nextExponential();
+            if (1 < exponentiation.exp(z) * random.nextExponential()) {
                 return z;
             }
         }
     }
 
     private double tail_m(BaseRandom random) {
-        return -exponentiation.log(EXP_R_LOWER + this.expRnd.nextRandom(random));
+        return -exponentiation.log(EXP_R_LOWER + random.nextExponential());
     }
 
     /**
@@ -234,13 +231,11 @@ public final class UniZiggGumbelRnd extends SkeletalGumbelRnd {
      * {@link matsu.num.statistics.random.GumbelRnd.Factory} を生成する.
      * 
      * @param exponentiation 指数関数計算器
-     * @param exponentialRndFactory 指数乱数発生器のファクトリ
      * @return Gumbel乱数のファクトリ
      * @throws NullPointerException 引数にnullが含まれる場合
      */
-    public static GumbelRnd.Factory createFactory(
-            Exponentiation exponentiation, ExponentialRnd.Factory exponentialRndFactory) {
+    public static GumbelRnd.Factory createFactory(Exponentiation exponentiation) {
         return new LazyGumbelRndFactory(
-                () -> new UniZiggGumbelRnd(exponentiation, exponentialRndFactory));
+                () -> new UniZiggGumbelRnd(exponentiation));
     }
 }

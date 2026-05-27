@@ -10,7 +10,6 @@ import org.junit.Test;
 
 import matsu.num.statistics.random.FloatingRandomGeneratorTestingFramework;
 import matsu.num.statistics.random.LogisticRnd;
-import matsu.num.statistics.random.exp.ExponentialFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
 /**
@@ -20,7 +19,7 @@ final class ZiggLogiRndTest {
 
     public static final Class<?> TEST_CLASS = ZiggLogiRnd.class;
     private static final LogisticRnd.Factory FACTORY =
-            ZiggLogiRnd.createFactory(ExponentiationForTesting.INSTANCE, ExponentialFactoryForTesting.FACTORY);
+            ZiggLogiRnd.createFactory(ExponentiationForTesting.INSTANCE);
 
     public static class Logistic乱数の生成テスト {
 

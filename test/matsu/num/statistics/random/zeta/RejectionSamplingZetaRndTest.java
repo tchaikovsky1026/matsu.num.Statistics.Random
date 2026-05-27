@@ -17,7 +17,6 @@ import org.junit.runner.RunWith;
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.IntegerRandomGeneratorTestingFramework;
 import matsu.num.statistics.random.ZetaRnd;
-import matsu.num.statistics.random.exp.ExponentialFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
 import matsu.num.statistics.random.speedutil.SpeedTestExecutor;
 
@@ -31,8 +30,7 @@ final class RejectionSamplingZetaRndTest {
 
     private static final ZetaRnd.Factory FACTORY =
             RejectionSamplingZetaRnd.createFactory(
-                    ExponentiationForTesting.INSTANCE,
-                    ExponentialFactoryForTesting.FACTORY);
+                    ExponentiationForTesting.INSTANCE);
 
     @RunWith(Theories.class)
     public static class 乱数のテスト {

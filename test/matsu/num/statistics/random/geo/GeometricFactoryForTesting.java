@@ -9,7 +9,6 @@ package matsu.num.statistics.random.geo;
 import org.junit.Ignore;
 
 import matsu.num.statistics.random.GeometricRnd;
-import matsu.num.statistics.random.exp.ExponentialFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
 
 /**
@@ -19,8 +18,7 @@ import matsu.num.statistics.random.lib.ExponentiationForTesting;
 public final class GeometricFactoryForTesting {
 
     public static final GeometricRnd.Factory FACTORY =
-            InversionBasedGeoRnd.createFactory(
-                    ExponentiationForTesting.INSTANCE, ExponentialFactoryForTesting.FACTORY);
+            InversionBasedGeoRnd.createFactory(ExponentiationForTesting.INSTANCE);
 
     private GeometricFactoryForTesting() {
     }

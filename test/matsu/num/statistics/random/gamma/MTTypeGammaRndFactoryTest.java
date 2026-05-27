@@ -19,9 +19,7 @@ import org.junit.runner.RunWith;
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.FloatingRandomGeneratorTestingFramework;
 import matsu.num.statistics.random.GammaRnd;
-import matsu.num.statistics.random.exp.ExponentialFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
-import matsu.num.statistics.random.norm.NormalFactoryForTesting;
 import matsu.num.statistics.random.speedutil.SpeedTestExecutor;
 
 /**
@@ -32,9 +30,7 @@ final class MTTypeGammaRndFactoryTest {
 
     public static final Class<?> TEST_CLASS = MTTypeGammaRndFactory.class;
     private static final GammaRnd.Factory FACTORY =
-            MTTypeGammaRndFactory.create(
-                    ExponentiationForTesting.INSTANCE,
-                    ExponentialFactoryForTesting.FACTORY, NormalFactoryForTesting.FACTORY);
+            MTTypeGammaRndFactory.create(ExponentiationForTesting.INSTANCE);
 
     @SuppressWarnings("deprecation")
     public static class ファクトリの境界値テスト {

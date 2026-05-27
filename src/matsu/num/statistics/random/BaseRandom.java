@@ -4,22 +4,21 @@
  * This software is released under the MIT License.
  * http://opensource.org/licenses/mit-license.php
  */
+
 /*
- * 2025.6.7
+ * 2026.5.27
  */
 package matsu.num.statistics.random;
 
 import java.util.function.Supplier;
 
 /**
- * <p>
  * このモジュールが提供する機能で使用する基本乱数発生器を扱う.
- * </p>
  * 
  * <p>
  * 基本的なインスタンスは, このインターフェース内に定義された
- * {@code static} ファクトリメソッドにより得られる. <br>
- * また, 必要ならば独自に {@code implement} して使用しても良い.
+ * static ファクトリメソッドにより得られる. <br>
+ * また, 必要ならば独自に implements して使用しても良い.
  * </p>
  * 
  * @author Matsuura Y.
@@ -27,23 +26,26 @@ import java.util.function.Supplier;
 public interface BaseRandom {
 
     /**
-     * <p>
      * {@code true} または {@code false} を等確率で返す.
-     * </p>
      * 
      * @return {@code true}, {@code false} が等確率
      */
     public abstract boolean nextBoolean();
 
     /**
-     * <p>
      * {@code long} が取り得る2<sup>64</sup>種類の値のいずれかを等確率で返す.
+     * 
+     * <p>
+     * <i><u>
+     * v25系での後方互換性のためにデフォルトメソッドを提供している. <br>
+     * v26以降にデフォルトメソッドが削除される可能性がある.
+     * </u></i>
      * </p>
      * 
      * @return {@code long} が取り得る値全体のうちの1個
      * @implSpec
-     *               互換性のためにデフォルトメソッドを提供するが,
-     *               実装の特性によってはオーバーライドするのが好ましい.
+     *               v25系での後方互換性のためにデフォルトメソッドが提供されているが,
+     *               長期維持のために必ずオーバーライドすること.
      */
     public default long nextLong() {
 
@@ -54,18 +56,14 @@ public interface BaseRandom {
     }
 
     /**
-     * <p>
      * {@code int} が取り得る2<sup>32</sup>種類の値のいずれかを等確率で返す.
-     * </p>
      * 
      * @return {@code int} が取り得る値全体のうちの1個
      */
     public abstract int nextInt();
 
     /**
-     * <p>
      * 0 &le; x &lt; bound を満たす一様整数乱数を発生する.
-     * </p>
      * 
      * <p>
      * boundは正でなければならない.
@@ -78,18 +76,86 @@ public interface BaseRandom {
     public abstract int nextInt(int bound);
 
     /**
-     * <p>
      * 0 &le; x &lt; 1 を満たす一様乱数を発生する.
-     * </p>
      * 
      * @return 0以上1未満の値
      */
     public abstract double nextDouble();
 
     /**
+     * 標準指数分布に従う乱数を発生させる.
+     * 
      * <p>
+     * 標準指数分布の確率密度関数 P(<i>x</i>) は次のとおりである. <br>
+     * (ただし, 境界値が発生する可能性がある.)
+     * </p>
+     * 
+     * <ul>
+     * <li>
+     * P(<i>x</i>) &prop;
+     * exp(-<i>x</i>)
+     * &emsp; (0 &lt; <i>x</i> &lt; +&infin;)
+     * </li>
+     * </ul>
+     * 
+     * <p>
+     * <i><u>
+     * v25系での後方互換性のためにデフォルトメソッドを提供している. <br>
+     * v26以降にデフォルトメソッドが削除される.
+     * </u></i>
+     * </p>
+     * 
+     * @return 0以上の値 (+&infin;の可能性もある)
+     * @implSpec
+     *               v25系での後方互換性のためにデフォルトメソッドが提供されているが,
+     *               長期維持のために必ずオーバーライドすること.
+     */
+    @SuppressWarnings("deprecation")
+    public default double nextExponential() {
+        return BaseRandomTemporaryHelper.EXPONENTIAL_RND.nextRandom(this);
+    }
+
+    /**
+     * 標準正規分布に従う乱数を発生させる.
+     * 
+     * <p>
+     * 標準正規分布の確率密度関数 P(<i>x</i>) は次のとおりである. <br>
+     * (ただし, 境界値が発生する可能性がある.)
+     * </p>
+     * 
+     * <ul>
+     * <li>
+     * P(<i>x</i>) &prop; exp(-<i>x</i><sup>2</sup> / 2)
+     * &emsp; (-&infin; &lt; <i>x</i> &lt; +&infin;)
+     * </li>
+     * </ul>
+     * 
+     * <p>
+     * <i><u>
+     * v25系での後方互換性のためにデフォルトメソッドを提供している. <br>
+     * v26以降にデフォルトメソッドが削除される.
+     * </u></i>
+     * </p>
+     * 
+     * @return NaN以外の {@code double} 値 (&pm;&infin;の可能性もある)
+     * @implSpec
+     *               v25系での後方互換性のためにデフォルトメソッドが提供されているが,
+     *               長期維持のために必ずオーバーライドすること.
+     */
+    @SuppressWarnings("deprecation")
+    public default double nextGaussian() {
+        return BaseRandomTemporaryHelper.NORMAL_RND.nextRandom(this);
+    }
+
+    /**
      * {@code java.util.random.RandomGenerator} をラップした
      * {@link BaseRandom} インスタンスを返す.
+     * 
+     * <p>
+     * このメソッドは, 実体のある {@link java.util.random.RandomGenerator}
+     * インスタンスを使用した乱数生成を行う用途に適合する. <br>
+     * 例えば, 適切に split された {@link java.util.SplittableRandom} インスタンスを渡して
+     * {@link BaseRandom} を構築する.
      * </p>
      * 
      * @param random ラップされるインスタンス
@@ -101,11 +167,9 @@ public interface BaseRandom {
     }
 
     /**
-     * <p>
      * 与えたサプライヤにより {@link java.util.random.RandomGenerator}
      * を呼び出して乱数を生成するように振る舞う
      * {@link BaseRandom} インスタンスを返す.
-     * </p>
      * 
      * <p>
      * このメソッドにより返される {@link BaseRandom} は,
@@ -115,7 +179,10 @@ public interface BaseRandom {
      * 例えば, <br>
      * {@code getter = () -> java.util.concurrent.ThreadLocalRandom.current();}
      * <br>
-     * などである.
+     * などである. <br>
+     * (これは単なる使用例であり, {@link java.util.concurrent.ThreadLocalRandom}
+     * はこの仕組みに適していない. <br>
+     * 並行処理のためにスレッドローカルな仕組みを使うなら, {@link #threadSeparatedRandom()} を使用すべきである.)
      * </p>
      * 
      * <p>
@@ -135,22 +202,16 @@ public interface BaseRandom {
     }
 
     /**
-     * <p>
      * スレッド間で競合が発生しないような {@link BaseRandom} インスタンスを返す.
-     * </p>
      * 
      * <p>
      * このインスタンスはスレッド間の競合が発生しないように実装されている. <br>
      * よって, このインスタンス自体は複数スレッドで共有されたとしても, 適切に動作する.
      * </p>
      * 
-     * <p>
-     * このメソッドは, {@link #fromGetter(Supplier)} の派生である.
-     * </p>
-     * 
      * @return スレッド間の競合が発生しない {@link BaseRandom}
      */
     public static BaseRandom threadSeparatedRandom() {
-        return BaseRandomHelper.THREAD_SEPARATED_RANDOM;
+        return ThreadSeparatedRandom.INSTANCE;
     }
 }

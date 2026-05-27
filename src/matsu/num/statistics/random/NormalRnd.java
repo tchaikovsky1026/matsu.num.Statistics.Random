@@ -4,8 +4,9 @@
  * This software is released under the MIT License.
  * http://opensource.org/licenses/mit-license.php
  */
+
 /*
- * 2025.6.6
+ * 2026.5.27
  */
 package matsu.num.statistics.random;
 
@@ -34,7 +35,14 @@ import matsu.num.statistics.random.accomp.ParameterlessRndFactory;
  *               モジュール外で継承・実装してはいけない.
  * 
  * @author Matsuura Y.
+ * @deprecated
+ *                 この乱数発生器は v26 以降に削除される.
+ *                 {@link BaseRandom#nextGaussian()}
+ *                 や Java の標準 APIである
+ *                 {@link java.util.random.RandomGenerator#nextGaussian()}
+ *                 を使用すべき.
  */
+@Deprecated(forRemoval = true, since = "25.12")
 public interface NormalRnd extends FloatingRandomGenerator {
 
     /**
@@ -43,7 +51,12 @@ public interface NormalRnd extends FloatingRandomGenerator {
      * @implSpec
      *               このインターフェースは実装を隠ぺいして型を公開するためのものである. <br>
      *               モジュール外で実装してはいけない.
+     * 
+     * @deprecated
+     *                 この乱数発生器は v26 以降に削除される
+     *                 ({@link ExponentialRnd} の説明の通り).
      */
+    @Deprecated(forRemoval = true, since = "25.12")
     public static interface Factory extends ParameterlessRndFactory<NormalRnd> {
 
     }

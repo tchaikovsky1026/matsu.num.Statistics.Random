@@ -6,14 +6,13 @@
  */
 
 /*
- * 2025.6.10
+ * 2026.5.27
  */
 package matsu.num.statistics.random.logseries;
 
 import java.util.Objects;
 
 import matsu.num.statistics.random.BaseRandom;
-import matsu.num.statistics.random.ExponentialRnd;
 import matsu.num.statistics.random.LogarithmicSeriesRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
 
@@ -50,7 +49,6 @@ public final class GeometricMixBasedLogarithmicSeriesRnd
         extends SkeletalLogarithmicSeriesRnd {
 
     private final Exponentiation exponentiation;
-    private final ExponentialRnd exponentialRnd;
 
     private final double log1mp;
     private final double mlogp;
@@ -61,12 +59,10 @@ public final class GeometricMixBasedLogarithmicSeriesRnd
      */
     private GeometricMixBasedLogarithmicSeriesRnd(
             double p,
-            Exponentiation exponentiation,
-            ExponentialRnd.Factory exponentialRndFactory) {
+            Exponentiation exponentiation) {
         super(p);
 
         this.exponentiation = exponentiation;
-        this.exponentialRnd = exponentialRndFactory.instance();
         this.log1mp = exponentiation.log1p(-p);
         this.mlogp = -exponentiation.log(p);
     }
@@ -81,7 +77,7 @@ public final class GeometricMixBasedLogarithmicSeriesRnd
              * y = 1 - (1 - p)^u は0からpまでを動くので,
              * e <= -log(p)ならばfloor(w) = 0
              */
-            double e = exponentialRnd.nextRandom(random);
+            double e = random.nextExponential();
             if (e <= this.mlogp) {
                 return 1;
             }
@@ -105,37 +101,31 @@ public final class GeometricMixBasedLogarithmicSeriesRnd
      * ファクトリを生成して返す.
      * 
      * @param exponentiation 指数関数の計算
-     * @param exponentialRndFactory 指数乱数生成器のファクトリ
      * @return ファクトリ
      * @throws NullPointerException 引数にnullが含まれる場合
      */
-    public static LogarithmicSeriesRnd.Factory createFactory(
-            Exponentiation exponentiation, ExponentialRnd.Factory exponentialRndFactory) {
+    public static LogarithmicSeriesRnd.Factory createFactory(Exponentiation exponentiation) {
         return new Factory(
-                Objects.requireNonNull(exponentiation),
-                Objects.requireNonNull(exponentialRndFactory));
+                Objects.requireNonNull(exponentiation));
     }
 
     private static final class Factory extends SkeletalLogarithmicSeriesRnd.Factory {
 
         private final Exponentiation exponentiation;
-        private final ExponentialRnd.Factory exponentialRndFactory;
 
         /**
          * staticメソッドから呼ばれる.
          */
-        Factory(Exponentiation exponentiation,
-                ExponentialRnd.Factory exponentialRndFactory) {
+        Factory(Exponentiation exponentiation) {
             super();
 
             this.exponentiation = exponentiation;
-            this.exponentialRndFactory = exponentialRndFactory;
         }
 
         @Override
         LogarithmicSeriesRnd createInstanceOf(double p) {
             return new GeometricMixBasedLogarithmicSeriesRnd(
-                    p, exponentiation, exponentialRndFactory);
+                    p, exponentiation);
         }
     }
 
