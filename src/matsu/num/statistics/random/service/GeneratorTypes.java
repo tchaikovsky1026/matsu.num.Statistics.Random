@@ -16,7 +16,6 @@ import matsu.num.statistics.random.BinomialRnd;
 import matsu.num.statistics.random.CategoricalRnd;
 import matsu.num.statistics.random.CauchyRnd;
 import matsu.num.statistics.random.ChiSquaredRnd;
-import matsu.num.statistics.random.ExponentialRnd;
 import matsu.num.statistics.random.FDistributionRnd;
 import matsu.num.statistics.random.GammaRnd;
 import matsu.num.statistics.random.GeometricRnd;
@@ -25,7 +24,6 @@ import matsu.num.statistics.random.LevyRnd;
 import matsu.num.statistics.random.LogarithmicSeriesRnd;
 import matsu.num.statistics.random.LogisticRnd;
 import matsu.num.statistics.random.NegativeBinomialRnd;
-import matsu.num.statistics.random.NormalRnd;
 import matsu.num.statistics.random.PlanckRnd;
 import matsu.num.statistics.random.PoissonRnd;
 import matsu.num.statistics.random.StaticBetaRnd;
@@ -41,7 +39,6 @@ import matsu.num.statistics.random.binomial.DirichletBasedBinomialRnd;
 import matsu.num.statistics.random.cat.TableBasedCategoricalRnd;
 import matsu.num.statistics.random.cauchy.ZiggCauchyRnd;
 import matsu.num.statistics.random.chisq.GammaTypeChiSquaredRnd;
-import matsu.num.statistics.random.exp.LongSubstitutedZiggExponentialRnd;
 import matsu.num.statistics.random.fdist.BetaBasedFDistributionRnd;
 import matsu.num.statistics.random.gamma.MTTypeGammaRndFactory;
 import matsu.num.statistics.random.geo.InversionBasedGeoRnd;
@@ -50,7 +47,6 @@ import matsu.num.statistics.random.levy.NormalBasedLevyRnd;
 import matsu.num.statistics.random.logi.ZiggLogiRnd;
 import matsu.num.statistics.random.logseries.GeometricMixBasedLogarithmicSeriesRnd;
 import matsu.num.statistics.random.negbinomial.GammaPoissonBasedNegativeBinomialRnd;
-import matsu.num.statistics.random.norm.LongSubstitutedZiggNormalRnd;
 import matsu.num.statistics.random.planck.GammaZetaBasedPlanckRndFactory;
 import matsu.num.statistics.random.poi.GammaHomoProcessBasedPoissonRnd;
 import matsu.num.statistics.random.staticbeta.GammaBasedStaticBetaRnd;
@@ -69,7 +65,6 @@ import matsu.num.statistics.random.zeta.RejectionSamplingZetaRnd;
  * 
  * @author Matsuura Y.
  */
-@SuppressWarnings({ "removal", "deprecation" })
 public final class GeneratorTypes {
 
     /**
@@ -96,14 +91,6 @@ public final class GeneratorTypes {
      * カイ二乗分布に従う乱数を表す.
      */
     public static final RandomGeneratorType<ChiSquaredRnd.Factory> CHI_SQUARED_RND;
-    /**
-     * 標準指数分布に従う乱数を表す.
-     * 
-     * @deprecated
-     *                 この乱数発生器は v26 以降に {@link ExponentialRnd} とともに削除される.
-     */
-    @Deprecated(forRemoval = true, since = "25.12")
-    public static final RandomGeneratorType<ExponentialRnd.Factory> EXPONENTIAL_RND;
     /**
      * F 分布に従う乱数を表す.
      */
@@ -136,14 +123,6 @@ public final class GeneratorTypes {
      * 負の二項分布に従う乱数を表す.
      */
     public static final RandomGeneratorType<NegativeBinomialRnd.Factory> NEGATIVE_BINOMIAL_RND;
-    /**
-     * 標準正規分布に従う乱数を表す.
-     * 
-     * @deprecated
-     *                 この乱数発生器は v26 以降に {@link NormalRnd} とともに削除される.
-     */
-    @Deprecated(forRemoval = true, since = "25.12")
-    public static final RandomGeneratorType<NormalRnd.Factory> NORMAL_RND;
     /**
      * Planck 分布に従う乱数を表す.
      */
@@ -206,10 +185,6 @@ public final class GeneratorTypes {
                 "CHI_SQUARED_RND", ChiSquaredRnd.Factory.class,
                 p -> GammaTypeChiSquaredRnd.createFactory(p.get(GeneratorTypes.GAMMA_RND)));
 
-        EXPONENTIAL_RND = new RandomGeneratorType<>(
-                "EXPONENTIAL_RND", ExponentialRnd.Factory.class,
-                p -> LongSubstitutedZiggExponentialRnd.createFactory(p.lib().exponentiation()));
-
         F_DISTRIBUTION_RND = new RandomGeneratorType<>(
                 "F_DISTRIBUTION_RND", FDistributionRnd.Factory.class,
                 p -> BetaBasedFDistributionRnd.createFactory(p.get(GeneratorTypes.BETA_RND)));
@@ -247,11 +222,6 @@ public final class GeneratorTypes {
                 "NEGATIVE_BINOMIAL_RND", NegativeBinomialRnd.Factory.class,
                 p -> GammaPoissonBasedNegativeBinomialRnd.createFactory(
                         p.lib().exponentiation(), p.get(GeneratorTypes.GAMMA_RND)));
-
-        NORMAL_RND = new RandomGeneratorType<>(
-                "NORMAL_RND", NormalRnd.Factory.class,
-                p -> LongSubstitutedZiggNormalRnd.createFactory(
-                        p.lib().exponentiation(), p.get(GeneratorTypes.EXPONENTIAL_RND)));
 
         PLANCK_RND = new RandomGeneratorType<>(
                 "PLANCK_RND", PlanckRnd.Factory.class,
