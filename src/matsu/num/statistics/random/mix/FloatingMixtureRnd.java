@@ -16,7 +16,7 @@ import java.util.function.ToDoubleFunction;
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.BoundIntRnd;
 import matsu.num.statistics.random.CategoricalRnd;
-import matsu.num.statistics.random.NormalRnd;
+import matsu.num.statistics.random.GammaRnd;
 import matsu.num.statistics.random.accomp.FloatingRandomGenerator;
 
 /**
@@ -90,11 +90,11 @@ public interface FloatingMixtureRnd extends FloatingRandomGenerator {
      * により表現し,
      * {@link BaseRandom} から {@code double} を生成させる. <br>
      * 例えば, 次のように与える
-     * ({@link NormalRnd} の場合).
+     * ({@link GammaRnd} の場合).
      * </p>
      * 
      * <pre>
-     *   {@literal ToDoubleFunction<? super BaseRandom> component = br -> normalRnd.nextRandom(br);}
+     *   {@literal ToDoubleFunction<? super BaseRandom> component = br -> gammaRnd.nextRandom(br);}
      * </pre>
      * 
      * <p>
@@ -131,11 +131,11 @@ public interface FloatingMixtureRnd extends FloatingRandomGenerator {
      * により表現し,
      * {@link BaseRandom} から {@code double} を生成させる. <br>
      * 例えば, 次のように与える
-     * ({@link NormalRnd} の場合).
+     * ({@link GammaRnd} の場合).
      * </p>
      * 
      * <pre>
-     *   {@literal ToDoubleFunction<? super BaseRandom> component = br -> normalRnd.nextRandom(br);}
+     *   {@literal ToDoubleFunction<? super BaseRandom> component = br -> gammaRnd.nextRandom(br);}
      * </pre>
      * 
      * <p>

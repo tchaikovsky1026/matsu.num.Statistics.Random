@@ -35,25 +35,9 @@ public interface BaseRandom {
     /**
      * {@code long} が取り得る2<sup>64</sup>種類の値のいずれかを等確率で返す.
      * 
-     * <p>
-     * <i><u>
-     * v25系での後方互換性のためにデフォルトメソッドを提供している. <br>
-     * v26以降にデフォルトメソッドが削除される可能性がある.
-     * </u></i>
-     * </p>
-     * 
      * @return {@code long} が取り得る値全体のうちの1個
-     * @implSpec
-     *               v25系での後方互換性のためにデフォルトメソッドが提供されているが,
-     *               長期維持のために必ずオーバーライドすること.
      */
-    public default long nextLong() {
-
-        long upper = this.nextInt();
-        long lower = this.nextInt();
-
-        return lower | (upper << 32);
-    }
+    public abstract long nextLong();
 
     /**
      * {@code int} が取り得る2<sup>32</sup>種類の値のいずれかを等確率で返す.
@@ -98,22 +82,9 @@ public interface BaseRandom {
      * </li>
      * </ul>
      * 
-     * <p>
-     * <i><u>
-     * v25系での後方互換性のためにデフォルトメソッドを提供している. <br>
-     * v26以降にデフォルトメソッドが削除される.
-     * </u></i>
-     * </p>
-     * 
      * @return 0以上の値 (+&infin;の可能性もある)
-     * @implSpec
-     *               v25系での後方互換性のためにデフォルトメソッドが提供されているが,
-     *               長期維持のために必ずオーバーライドすること.
      */
-    @SuppressWarnings("deprecation")
-    public default double nextExponential() {
-        return BaseRandomTemporaryHelper.EXPONENTIAL_RND.nextRandom(this);
-    }
+    public abstract double nextExponential();
 
     /**
      * 標準正規分布に従う乱数を発生させる.
@@ -130,22 +101,9 @@ public interface BaseRandom {
      * </li>
      * </ul>
      * 
-     * <p>
-     * <i><u>
-     * v25系での後方互換性のためにデフォルトメソッドを提供している. <br>
-     * v26以降にデフォルトメソッドが削除される.
-     * </u></i>
-     * </p>
-     * 
      * @return NaN以外の {@code double} 値 (&pm;&infin;の可能性もある)
-     * @implSpec
-     *               v25系での後方互換性のためにデフォルトメソッドが提供されているが,
-     *               長期維持のために必ずオーバーライドすること.
      */
-    @SuppressWarnings("deprecation")
-    public default double nextGaussian() {
-        return BaseRandomTemporaryHelper.NORMAL_RND.nextRandom(this);
-    }
+    public abstract double nextGaussian();
 
     /**
      * {@code java.util.random.RandomGenerator} をラップした
