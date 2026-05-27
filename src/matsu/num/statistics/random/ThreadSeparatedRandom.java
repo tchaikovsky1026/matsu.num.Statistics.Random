@@ -65,6 +65,11 @@ final class ThreadSeparatedRandom implements BaseRandom {
         return randomGenerator.nextGaussian();
     }
 
+    @Override
+    public String toString() {
+        return "BaseRandom(thread-separated)";
+    }
+
     /**
      * ThreadLocalRandom を適切にラップしたラッパー. <br>
      * このインスタンスは複数スレッドで共有されてよい.
