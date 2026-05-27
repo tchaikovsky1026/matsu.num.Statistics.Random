@@ -110,6 +110,7 @@ public interface BaseRandom {
      *               v25系での後方互換性のためにデフォルトメソッドが提供されているが,
      *               長期維持のために必ずオーバーライドすること.
      */
+    @SuppressWarnings("deprecation")
     public default double nextExponential() {
         return BaseRandomTemporaryHelper.EXPONENTIAL_RND.nextRandom(this);
     }
@@ -141,6 +142,7 @@ public interface BaseRandom {
      *               v25系での後方互換性のためにデフォルトメソッドが提供されているが,
      *               長期維持のために必ずオーバーライドすること.
      */
+    @SuppressWarnings("deprecation")
     public default double nextGaussian() {
         return BaseRandomTemporaryHelper.NORMAL_RND.nextRandom(this);
     }

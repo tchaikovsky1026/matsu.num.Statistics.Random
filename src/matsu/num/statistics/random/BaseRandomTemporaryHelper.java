@@ -15,15 +15,17 @@ import matsu.num.statistics.random.lib.Exponentiation;
 import matsu.num.statistics.random.norm.LongSubstitutedZiggNormalRnd;
 
 /**
- * 次バージョンで削除される可能性がある, 一次的なヘルパ.
- * 
- * <p>
- * {@link ExponentialRnd}, {@link NormalRnd} の削除とともに, このヘルパも削除.
- * </p>
+ * {@link BaseRandom#nextExponential()},
+ * {@link BaseRandom#nextGaussian()}
+ * のデフォルトメソッドを提供するための一次的なヘルパ.
  * 
  * @author Matsuura Y.
+ * @deprecated
+ *                 v26以降での {@link ExponentialRnd},
+ *                 {@link NormalRnd} の削除とともに, このヘルパも削除.
  */
-@SuppressWarnings({ "removal", "deprecation" })
+@SuppressWarnings("removal")
+@Deprecated
 final class BaseRandomTemporaryHelper {
 
     private BaseRandomTemporaryHelper() {
