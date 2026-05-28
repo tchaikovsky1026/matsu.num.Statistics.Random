@@ -6,7 +6,7 @@
  */
 
 /*
- * 2026.5.27
+ * 2026.5.28
  */
 package matsu.num.statistics.random;
 
@@ -20,6 +20,11 @@ import java.util.function.Supplier;
  */
 final class BaseRandomHelper {
 
+    /** このクラスの唯一のシングルトンインスタンス. */
+    static final BaseRandom THREAD_SEPARATED_RANDOM =
+            new BaseRandomHelper.RandomImpl(
+                    FastThreadLocalRandom.INSTANCE, "BaseRandom(thread-separated)");
+
     private BaseRandomHelper() {
         //インスタンス化不可
         throw new AssertionError();
@@ -31,6 +36,9 @@ final class BaseRandomHelper {
      */
     static final class RandomImpl implements BaseRandom {
 
+        /** toString の戻り値 */
+        private final String name;
+
         private final java.util.random.RandomGenerator random;
 
         /**
@@ -40,7 +48,18 @@ final class BaseRandomHelper {
          * @throws NullPointerException 引数にnullが含まれる場合
          */
         RandomImpl(java.util.random.RandomGenerator random) {
+            this(random, "BaseRandom(src)");
+        }
+
+        /**
+         * {@link java.util.Random}をラップする.
+         * 
+         * @param random ラップされるインスタンス
+         * @throws NullPointerException 引数にnullが含まれる場合
+         */
+        RandomImpl(java.util.random.RandomGenerator random, String name) {
             this.random = Objects.requireNonNull(random);
+            this.name = Objects.requireNonNull(name);
         }
 
         @Override
@@ -80,7 +99,7 @@ final class BaseRandomHelper {
 
         @Override
         public String toString() {
-            return "BaseRandom(src)";
+            return name;
         }
     }
 
