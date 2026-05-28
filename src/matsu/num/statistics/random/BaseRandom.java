@@ -220,6 +220,6 @@ public interface BaseRandom {
      * @return スレッド間の競合が発生しない {@link BaseRandom}
      */
     public static BaseRandom threadSeparatedRandom() {
-        return ThreadSeparatedRandom.INSTANCE;
+        return BaseRandomHelper.THREAD_SEPARATED_RANDOM;
     }
 }
