@@ -6,7 +6,7 @@
  */
 
 /*
- * 2026.5.27
+ * 2026.5.28
  */
 package matsu.num.statistics.random;
 
@@ -18,7 +18,15 @@ import java.util.function.Supplier;
  * <p>
  * 基本的なインスタンスは, このインターフェース内に定義された
  * static ファクトリメソッドにより得られる. <br>
- * また, 必要ならば独自に implements して使用しても良い.
+ * (また, 必要ならば独自に implements して使用しても良い.)
+ * </p>
+ * 
+ * <p>
+ * <i><u>
+ * v26 以降, {@link BaseRandom} のモジュール外実装を禁止する. <br>
+ * (v26 以降は抽象メソッドの追加をMINORアップで行う可能性がある.)
+ * </u>
+ * </i>
  * </p>
  * 
  * @author Matsuura Y.
