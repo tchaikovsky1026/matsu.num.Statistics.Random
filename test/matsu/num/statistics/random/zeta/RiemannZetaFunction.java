@@ -14,9 +14,7 @@ package matsu.num.statistics.random.zeta;
  * Riemann ゼータ関数を扱うためのユーティリティ.
  * 
  * @author Matsuura Y.
- * @deprecated プロダクトの公開APIから到達不可
  */
-@Deprecated
 final class RiemannZetaFunction {
 
     private static final double THRESHOLD_S = 15d;
