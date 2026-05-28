@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.11.8
+ * 2026.5.28
  */
 package matsu.num.statistics.random.service;
 
@@ -100,7 +100,11 @@ public final class RandomGeneratorFactoryProvider {
      * @param lib ライブラリ
      * @return ライブラリを使用する乱数発生器プロバイダ
      * @throws NullPointerException 引数にnullが含まれる場合
+     * @deprecated
+     *                 v26.0 時点でデフォルトライブラリが推奨され,
+     *                 {@link #byDefaultLib()} が推奨される.
      */
+    @Deprecated(since = "26.0")
     public static RandomGeneratorFactoryProvider by(CommonLib lib) {
         return new RandomGeneratorFactoryProvider(Objects.requireNonNull(lib));
     }

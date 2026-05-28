@@ -9,6 +9,7 @@ develop/next-generation:
         - NormalRnd
     - 契約の変更
         - BaseRandom のモジュール外実装を禁止.
+        - CommonLibの使用について,デフォルトが推奨されることを表明.
     - プロダクトコードの公開APIから到達不能なクラスを削除対応(公開APIは後方互換)
 
 25:
