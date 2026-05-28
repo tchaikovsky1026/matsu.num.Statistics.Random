@@ -7,6 +7,8 @@ develop/next-generation:
         - CauchyRnd.asTDistributionRnd()
         - ExponentialRnd
         - NormalRnd
+    - 契約の変更
+        - BaseRandom のモジュール外実装を禁止.
     - プロダクトコードの公開APIから到達不能なクラスを削除対応(公開APIは後方互換)
 
 25:
