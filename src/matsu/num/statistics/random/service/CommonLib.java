@@ -5,7 +5,7 @@
  * http://opensource.org/licenses/mit-license.php
  */
 /*
- * 2024.12.17
+ * 2026.5.28
  */
 package matsu.num.statistics.random.service;
 
@@ -100,7 +100,9 @@ public abstract class CommonLib {
      * 
      * </blockquote>
      * 
+     * @deprecated v26.0 時点で {@link CommonLib} はデフォルトライブラリが良いパフォーマンスを提供する.
      */
+    @Deprecated(since = "26.0")
     public static final class Builder {
 
         private static final Builder DEFAULT_BUILDER = new Builder();
