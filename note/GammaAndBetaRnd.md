@@ -60,3 +60,60 @@ $Y \sim \text{Beta}(k_1,k_2)$ である.
 逆も同様.
 
 ---
+
+## Random Value Generator
+
+乱数発生方法を考える際, ガンマ分布の scape parameter は本質的でない.
+したがって今後は, 標準ガンマ分布 (sGamma) について考える事とする.
+
+- shape parameter が1の標準ガンマ分布は標準指数分布に一致するので, 今は問題としない.
+- shape parameter が1より大きい標準ガンマ分布については,
+  後述する Marsaglia-Tsang の方法に基づく発生方法を利用する.
+- shape parameter が1より小さい標準ガンマ分布は,
+  $y \sim \text{Beta}(k,1)$, $z \sim \text{sGamma}(k+1)$ を独立に発生させ,
+  $x = yz$ とすれば, $x \sim \text{sGamma}(k)$ となる.
+    - $z$ は shape parameter が 1より大きいので, 前項に適合する.
+    - $y \sim \text{Beta}(k,1)$ の発生は逆関数法を用いる.
+      これは, $f_Y(y) = k y^{k-1}$ よりべき分布である.
+        - 0から1の範囲の一様分布 (標準一様分布) に従う乱数 $u$ を発生させ, $y = u^{1/k}$ とすればよい.  
+          もしくは, $e = -\log u$ の変数変換を考え, 標準指数分布に従う乱数 $e$ を発生させ, $y = \exp(-\frac{1}{k}e)$ としてもよい.
+          通常, べき乗の計算は $\exp$ と $\log$ を用いて実装されるので, 指数乱数を使う仕組みの方が高速になる.
+- ベータ分布に従う乱数は, 独立な標準ガンマ分布に従う乱数2個を用いて得られる.  
+  $x_1 \sim \text{sGamma}(k_1)$, $x_2 \sim \text{sGamma}(k_2)$ を発生させ,
+  $y = \frac{x_1}{x_1+x_2}$ とすれば, $y \sim \text{Beta}(k_1,k_2)$ となる.
+
+
+**(Marsaglia-Tsang の方法)**
+
+shape parameter が1より大きい標準ガンマ分布の生成に関して,
+Marsaglia-Tsang の方法を説明する.
+引用文献は次である.  
+G. Marsaglia and W.W. Tsang, "A simple method for generating gamma variables." ACM Transactions on Mathematical Software (TOMS) 26 (2000) 363-372.
+
+主な方針は, $X$ がガンマ分布に従うとき, $\sqrt[3]{X}$ が正規分布に近くなるという性質を使い,
+Rejection Algorithm に結び付けることである.
+$X \sim \text{sGamma}(k)$ であるとき, $X = d(1+cZ')^3$ と変数変換した $Z'$ が標準正規分布に近くなるような
+$c$, $d$ を計算すれば, $d=k-\frac{1}{3}$, $c=\frac{1}{\sqrt{9d}}$ となる.
+逆にこの値を使って, $\text{sGamma}(k)$ の提案分布として, $Z$ が標準正規分布に従う確率変数としたときの, $X' = d(1+cZ)^3$ を考えると,
+
+$$
+f_{X'}(x) = \frac{3c w^{-2/3}}{\sqrt{2\pi}} \exp(-z^2/2)
+$$
+
+となる ( $w = (1+cz)^3$ とした).
+$X'$ についてはこの時点で負の数も許容する (後の Rejection 判定により 100 %棄却される).
+$f_X(x) / f_{X'}(x)$ は $z = 0$ で最大値をとるので, 
+提案分布に乗じる定数 $K$ を, 
+
+$$
+K = \frac{\sqrt{2\pi} d^{k-\frac{1}{2}}\exp(-d)}{\Gamma{(k)}}
+$$
+
+とすれば,
+
+$$
+\log \frac{f_X(x)}{Kf_{X'}(x)} = d \log w - x + \frac{z^2}{2} + d \quad \text{for } x > 0
+$$
+
+を得る.
+これと, 標準一様分布に従う乱数 $u$ とに対する $\log u$ とを比較するという Rejection Algorithm になる.
