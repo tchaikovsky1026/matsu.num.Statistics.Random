@@ -1,17 +1,18 @@
-# `GammaHomoProcessBasedPoissonRnd` に関する資料
+# Poisson Distribution, Random
 
-## 原理
+## `GammaHomoProcessBasedPoissonRnd` に関する資料
+### 原理
 
 Poisson乱数の生成について, 次の原理を基にしている：
-$\lambda$を非負実数とする.
-確率変数$(X_0,X_1,...)$がスケールパラメータが1の指数分布に従うとき,
-$Z$を
+$\lambda$ を非負実数とする.
+確率変数 $(X_0,X_1,...)$ がスケールパラメータが1の指数分布に従うとき,
+$Z$ を
 
-```math
+$$
 Z = ( X_0 + X_1 + \cdots \ge \lambda \text{となる最小の} k)
-```
+$$
 
-とすれば, $Z\sim\mathrm{Poi}(\lambda)$である.
+とすれば, $Z\sim\mathrm{Poi}(\lambda)$ である.
 
 `GammaHomoProcessBasedPoissonRnd` では,
 
@@ -20,4 +21,4 @@ Z = ( X_0 + X_1 + \cdots \ge \lambda \text{となる最小の} k)
 - ベータ分布による「指数乱数の和が固定されているときの, 2グループに分けたときの各値の和」のシミュレート (二分探索シミュレート)
 
 を行うことで,
-実際に乱数発生が必要な確率変数の個数を$O(\log n)$に減らしている.
+実際に乱数発生が必要な確率変数の個数を $O(\log n)$ に減らしている.
