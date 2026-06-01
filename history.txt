@@ -1,5 +1,6 @@
 develop:
 技術ノートの追加(Gamma, Beta)
+既存docの移動修正(Poisson, Binomial)
 
 26:
 26.0.0: Majorアップ(破壊的変更).
