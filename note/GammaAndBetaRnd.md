@@ -37,8 +37,6 @@ $$
   then $X_1 = YZ$ and $X_2 = Z(1-Y)$ are independent
   and are $X_1 \sim \text{Gamma}(k_1,\theta)$ and $X_2 \sim \text{Gamma}(k_2,\theta)$, respectively.
 
----
-
 **(Proof memo)**
 
 確率変数 $X_1$, $X_2$ は独立で, $X_1 \sim \text{Gamma}(k_1,\theta)$, $X_2 \sim \text{Gamma}(k_2,\theta)$ とする.
@@ -58,8 +56,6 @@ $$
 $Y \sim \text{Beta}(k_1,k_2)$ である.
 
 逆も同様.
-
----
 
 ## Random Value Generator
 
