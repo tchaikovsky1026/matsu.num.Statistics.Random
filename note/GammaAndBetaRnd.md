@@ -16,14 +16,26 @@ $$
 (本文ではそのように呼ぶ).
 
 ベータ分布は2個の shape parameter によって特徴づけられる連続分布である.
-確率変数 $Y$ が shape parameter $\alpha > 0$, $\beta > 0$ のベータ分布に従う
-( $Y \sim \text{Beta}(\alpha,\beta)$ ) のとき, $Y$ の確率密度関数 $f_Y(y)$ は
+確率変数 $Y_1$ が shape parameter $\alpha > 0$, $\beta > 0$ のベータ分布に従う
+( $Y_1 \sim \text{Beta}(\alpha,\beta)$ ) とき, $Y_1$ の確率密度関数 $f_{Y_1}(y)$ は
 
 $$
-f_Y(y) = \frac{1}{\mathrm{B}(\alpha,\beta)}y^{\alpha-1}(1-y)^{\beta-1} \quad \text{for } 0 < y < 1
+f_{Y_1}(y) = \frac{1}{\mathrm{B}(\alpha,\beta)}y^{\alpha-1}(1-y)^{\beta-1} \quad \text{for } 0 < y < 1
 $$
 
 となる ( $\mathrm{B}()$ はベータ関数).
+
+ベータ分布と関連して, ベータプライム分布 (もしくは第2種ベータ分布) がある.
+2個の shape parameter によって特徴づけられる連続分布であるベータプライム分布に
+$Y_2$ が従う ( $Y_2 \sim \text{BetaPrime}(\alpha,\beta)$ ) とき,
+$Y_2$ の確率密度関数 $f_{Y_2}(y)$ は
+
+$$
+f_{Y_2}(y) = \frac{1}{\mathrm{B}(\alpha,\beta)} \frac{y^{\alpha-1}}{(1+y)^{\alpha+\beta}}
+\quad \text{for } y > 0
+$$
+
+となる.
 
 
 ### Related Distributions
@@ -36,6 +48,7 @@ $$
 - If $Y \sim \text{Beta}(k_1,k_2)$ and $Z \sim \text{Gamma}(k_1+k_2,\theta)$ are independent,
   then $X_1 = YZ$ and $X_2 = Z(1-Y)$ are independent
   and are $X_1 \sim \text{Gamma}(k_1,\theta)$ and $X_2 \sim \text{Gamma}(k_2,\theta)$, respectively.
+- If $Y \sim \text{Beta}(\alpha,\beta)$, then $\frac{Y}{1-Y} \sim \text{BetaPrime}(\alpha,\beta)$.
 
 **(Proof memo)**
 
@@ -77,6 +90,9 @@ $Y \sim \text{Beta}(k_1,k_2)$ である.
 - ベータ分布に従う乱数は, 独立な標準ガンマ分布に従う乱数2個を用いて得られる.  
   $x_1 \sim \text{sGamma}(k_1)$, $x_2 \sim \text{sGamma}(k_2)$ を発生させ,
   $y = \frac{x_1}{x_1+x_2}$ とすれば, $y \sim \text{Beta}(k_1,k_2)$ となる.
+- ベータプライム分布に従う乱数は, ベータ分布乱数からの変換により得られ,
+  つまるところ, $x_1 \sim \text{sGamma}(k_1)$, $x_2 \sim \text{sGamma}(k_2)$ を発生させ,
+  $y = \frac{x_1}{x_2}$ とすれば, $y \sim \text{BetaPrime}(k_1,k_2)$ となる.
 
 
 **(Marsaglia-Tsang の方法)**
