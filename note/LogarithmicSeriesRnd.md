@@ -15,6 +15,8 @@ $$
 
 ## Random Value Generator
 
+(参考文献: A.W. Kemp, "Efficient generation of logarithmically distributed pseudo‐random variables." Journal of the Royal Statistical Society: Series C (Applied Statistics) 30.3 (1981): 249-253.)
+
 対数級数分布の累積分布関数は初等的でないので, 逆関数法は適さない.
 そこで, 確率質量関数が幾何分布に近い形であることを参考に,
 
