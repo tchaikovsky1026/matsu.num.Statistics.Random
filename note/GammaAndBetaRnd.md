@@ -102,10 +102,10 @@ Marsaglia-Tsang の方法を説明する.
 引用文献は次である.  
 G. Marsaglia and W.W. Tsang, "A simple method for generating gamma variables." ACM Transactions on Mathematical Software (TOMS) 26 (2000) 363-372.
 
-主な方針は, $X$ がガンマ分布に従うとき, $\sqrt[3]{X}$ が正規分布に近くなるという性質を使い,
+主な方針は, 標準正規分布に従う確率変数を変換してガンマ分布の近似を得て,
 Rejection Algorithm に結び付けることである.
-$X \sim \text{sGamma}(k)$ であるとき, $X = d(1+cZ')^3$ と変数変換した $Z'$ が標準正規分布に近くなるような
-$c$, $d$ を計算すれば, $d=k-\frac{1}{3}$, $c=\frac{1}{\sqrt{9d}}$ となる.
+$X \sim \text{sGamma}(k)$ であるとき, $X = d(1+cZ')^{\alpha}$ と変数変換した $Z'$ が標準正規分布に近くなるような
+$\alpha$, $c$, $d$ を計算すれば, $\alpha=3$, $d=k-\frac{1}{3}$, $c=\frac{1}{\sqrt{9d}}$ となる.
 逆にこの値を使って, $\text{sGamma}(k)$ の提案分布として, $Z$ が標準正規分布に従う確率変数としたときの, $X' = d(1+cZ)^3$ を考えると,
 
 $$
@@ -143,7 +143,6 @@ $$
 通過しない場合は厳密な Rejection 判定を行う
 (Squeeze Method).
 $\log (u)$ の計算は, 厳密な Rejection 判定に移行した場合にのみ計算すればよい.
-
 このような $s(z)$ として,
 
 $$
@@ -151,3 +150,13 @@ s(z) = 1 - 0.0331 z^4
 $$
 
 が満たされる.
+
+すなわち, Marsaglia-Tsang の $k>1$ でのアルゴリズムは次のようになる.
+
+1. $d = k - \frac{1}{3}$, $c=\frac{1}{\sqrt{9d}}$ を計算する.
+2. 標準正規分布に従う乱数を発生させ, $z$ とする.
+3. $w = (1+cz)^3$, $x = dw$ を計算する. $x < 0$ なら (2) に戻る.
+4. 標準一様分布に従う乱数を発生させ, $u$ とする. $u < s(z)$ なら return $x$.
+   そうでないなら次へ.
+5. $\log(u)<d \log (w) - x + \frac{z^2}{2} + d$ なら return $x$.
+   そうでないなら (2) に戻る.
