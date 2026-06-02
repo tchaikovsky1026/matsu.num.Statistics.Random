@@ -1,5 +1,5 @@
 develop:
-技術ノートの追加(Gamma, Beta)
+技術ノートの追加(Gamma, Beta, Geometric, LogarithmSeries)
 既存docの移動修正(Poisson, Binomial)
 
 26:
