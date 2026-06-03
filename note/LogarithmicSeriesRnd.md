@@ -15,10 +15,12 @@ $$
 
 ## Random Value Generator
 
+(参考文献: A.W. Kemp, "Efficient generation of logarithmically distributed pseudo‐random variables." Journal of the Royal Statistical Society: Series C (Applied Statistics) 30.3 (1981): 249-253.)
+
 対数級数分布の累積分布関数は初等的でないので, 逆関数法は適さない.
 そこで, 確率質量関数が幾何分布に近い形であることを参考に,
 
-1. $0 \le Y < 1$ の範囲 (の一部) で $y$ を発生
+1. $0 \le Y < 1$ の範囲 (の一部) で $Y$ を発生
 2. $1-Y$ を成功確率とする幾何分布により $X$ を発生 ( $P_{X|Y}(k|y) = (1-y)y^{k-1}$ )
 
 という2段階で $X \sim \text{LogSeries}(p)$ を得ることを考える.
@@ -44,5 +46,5 @@ $Y$ はこの確率密度関数を満たす.
 すなわち, 次のアルゴリズムにより $\text{LogSeries}(p)$ に従う乱数が得られる.
 
 1. 標準一様分布に従う乱数 $u$ を発生させ, $y = 1-(1-p)^{u}$ を計算 ( $0 \le y \le  p$ をとる).
-3. 標準指数分布に従う乱数 $e$ を発生させ, $x = 1 + \lfloor -e/\log (y) \rfloor$ を計算して返す
+2. 標準指数分布に従う乱数 $e$ を発生させ, $x = 1 + \lfloor -e/\log (y) \rfloor$ を計算して返す
 ( $y=0$ の場合は $-\frac{1}{\log (y)} = 0$ とみなす).
