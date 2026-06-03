@@ -41,8 +41,8 @@ $X \sim \text{Geo}(W)$ とすると, $P_{X|W}(k|w) = w(1-w)^{k-1}$  であるの
 $$
 \begin{split}
 P_X(k) &= \int_0^1 dw\ P_{X|W}(k|w)f_W(w) \\
-  &= \int_0^1 dw\ w^{\rho}(1-w)^{k-1} \\
-  &= \mathrm{B}(k,\rho+1)
+  &= \int_0^1 dw\ \rho w^{\rho}(1-w)^{k-1} \\
+  &= \rho \mathrm{B}(k,\rho+1)
 \end{split}
 $$
 
