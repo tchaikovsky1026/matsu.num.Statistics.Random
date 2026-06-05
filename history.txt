@@ -1,6 +1,5 @@
 develop:
-技術ノートの追加(Gamma, Beta, Geometric, LogarithmSeries, YuleSimon, Zeta)
-既存docの移動修正(Poisson, Binomial)
+技術ノートの整備(Gamma, Beta, Geometric, LogarithmSeries, YuleSimon, Zeta, Binomial, Poisson).
 
 26:
 26.0.0: Majorアップ(破壊的変更).
