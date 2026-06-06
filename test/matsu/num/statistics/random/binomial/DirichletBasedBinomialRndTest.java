@@ -20,8 +20,8 @@ import org.junit.runner.RunWith;
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.BinomialRnd;
 import matsu.num.statistics.random.IntegerRandomGeneratorTestingFramework;
-import matsu.num.statistics.random.gamma.GammaFactoryForTesting;
 import matsu.num.statistics.random.speedutil.SpeedTestExecutor;
+import matsu.num.statistics.random.staticgamma.StaticGammaFactoryForTesting;
 
 /**
  * {@link DirichletBasedBinomialRnd} クラスのテスト.
@@ -32,7 +32,7 @@ final class DirichletBasedBinomialRndTest {
     public static final Class<?> TEST_CLASS = DirichletBasedBinomialRnd.class;
 
     private static final BinomialRnd.Factory FACTORY =
-            DirichletBasedBinomialRnd.createFactory(GammaFactoryForTesting.FACTORY);
+            DirichletBasedBinomialRnd.createFactory(StaticGammaFactoryForTesting.FACTORY);
 
     @RunWith(Theories.class)
     public static class パラメータによる網羅的テスト {

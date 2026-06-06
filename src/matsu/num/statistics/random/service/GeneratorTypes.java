@@ -171,7 +171,7 @@ public final class GeneratorTypes {
 
         BINOMIAL_RND = new RandomGeneratorType<>(
                 "BINOMIAL_RND", BinomialRnd.Factory.class,
-                p -> DirichletBasedBinomialRnd.createFactory(p.get(GeneratorTypes.GAMMA_RND)));
+                p -> DirichletBasedBinomialRnd.createFactory(p.get(GeneratorTypes.STATIC_GAMMA_RND)));
 
         CATEGORICAL_RND = new RandomGeneratorType<>(
                 "CATEGORICAL_RND", CategoricalRnd.Factory.class,
