@@ -25,6 +25,9 @@ import matsu.num.statistics.random.lib.Exponentiation;
  */
 public final class GammaDirichletBasedStaticPoissonRnd implements InnerStaticPoissonRnd {
 
+    /** Basic な方法を採用する場合の, 試行回数の最大値 */
+    private static final double MAX_TRIAL_BY_BASIC_METHOD = 16d;
+
     private final Exponentiation exponentiation;
     private final StaticGammaRnd staticGammaRnd;
     private final InnerStaticBinomialRnd staticBinomialRnd;
@@ -53,7 +56,63 @@ public final class GammaDirichletBasedStaticPoissonRnd implements InnerStaticPoi
                             "Illegal parameter: lambda = %s", lambda));
         }
 
-        throw new AssertionError("TODO");
+        /*
+         * lambda が小さいとき, basic な方法で乱数生成: randBasic.
+         * lambda が大きいときは以下.
+         * 
+         * m >= 1 なる整数 m を定める.
+         * z: rand with sGamma(m)
+         * z > lambda なら, return Bin(m-1,lambda/z)
+         * z <= lambda なら, m + Poi(lambda-z)
+         */
+
+        int shift = 0;
+        // lambda, shift を更新しながら, 再帰的に区間減少を行う.
+        while (true) {
+            if (lambda <= MAX_TRIAL_BY_BASIC_METHOD) {
+                return shift + randBasic(lambda, random);
+            }
+
+            int m = ((int) lambda) >> 1; // m approx lambda/2
+            double z = staticGammaRnd.nextRandom(random, m);
+            // 極端な場合はやり直し
+            if (z < 1E-200 || z > 1E+200) {
+                continue;
+            }
+            if (z > lambda) {
+                return shift + staticBinomialRnd.next(m - 1, lambda / z, random);
+            }
+
+            // z <= lambda
+            shift += m;
+            lambda -= z;
+        }
+    }
+
+    /** 素朴な方法により二項乱数を生成する. */
+    private int randBasic(double lambda, BaseRandom random) {
+
+        /*
+         * sUni に従う U0,U1,... を発生.
+         * U0*U1*...*Uk <= exp(-lambda) となる最小の k を返す.
+         */
+
+        double exp_mLambda = exponentiation.exp(-lambda);
+        int k = 0;
+        double v = 1d;
+        while (true) {
+            v *= random.nextDouble();
+            if (v <= exp_mLambda) {
+                return k;
+            }
+            k++;
+        }
+    }
+
+    /** このインスタンスの文字列表現を返す. */
+    @Override
+    public String toString() {
+        return "InnerStaticPoissonRnd";
     }
 
     /**
