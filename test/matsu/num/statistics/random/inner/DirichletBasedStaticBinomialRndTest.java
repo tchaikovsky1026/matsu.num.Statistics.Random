@@ -37,6 +37,10 @@ final class DirichletBasedStaticBinomialRndTest {
 
         @DataPoints
         public static BinomialParameters[] parameters = {
+                new BinomialParameters(0, 0d),
+                new BinomialParameters(10, 0d),
+                new BinomialParameters(31, 0d),
+                new BinomialParameters(100, 0d),
                 new BinomialParameters(0, 0.01),
                 new BinomialParameters(10, 0.01),
                 new BinomialParameters(31, 0.01),
@@ -52,7 +56,11 @@ final class DirichletBasedStaticBinomialRndTest {
                 new BinomialParameters(0, 0.99),
                 new BinomialParameters(10, 0.99),
                 new BinomialParameters(31, 0.99),
-                new BinomialParameters(100, 0.99)
+                new BinomialParameters(100, 0.99),
+                new BinomialParameters(0, 1d),
+                new BinomialParameters(10, 1d),
+                new BinomialParameters(31, 1d),
+                new BinomialParameters(100, 1d)
         };
 
         @Theory
@@ -179,8 +187,14 @@ final class DirichletBasedStaticBinomialRndTest {
                 logP += Math.log(((double) n - i + 1) / i);
             }
 
-            logP += k * Math.log(p)
-                    + (n - k) * Math.log1p(-p);
+            double k_log_p = k == 0
+                    ? 0d
+                    : k * Math.log(p);
+            double nmk_log_1mp = n - k == 0
+                    ? 0d
+                    : (n - k) * Math.log1p(-p);
+
+            logP += k_log_p + nmk_log_1mp;
 
             return Math.exp(logP);
         }

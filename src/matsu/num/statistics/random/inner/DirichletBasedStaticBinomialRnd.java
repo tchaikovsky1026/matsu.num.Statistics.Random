@@ -67,7 +67,7 @@ public final class DirichletBasedStaticBinomialRnd implements InnerStaticBinomia
         // n, p, shift を更新しながら, 再帰的に区間減少を行う.
         while (true) {
             if (n <= MAX_TRIAL_BY_NAIVE_METHOD) {
-                return shift + rndNaive(n, p, random);
+                return shift + randNaive(n, p, random);
             }
 
             int m = n >> 1; // m approx n/2
@@ -96,7 +96,7 @@ public final class DirichletBasedStaticBinomialRnd implements InnerStaticBinomia
     }
 
     /** 素朴な方法により二項乱数を生成する. */
-    private int rndNaive(int n, double p, BaseRandom random) {
+    private int randNaive(int n, double p, BaseRandom random) {
         int count = 0;
         for (int i = 0; i < n; i++) {
             if (random.nextDouble() < p) {
@@ -104,6 +104,12 @@ public final class DirichletBasedStaticBinomialRnd implements InnerStaticBinomia
             }
         }
         return count;
+    }
+
+    /** このインスタンスの文字列表現を返す. */
+    @Override
+    public String toString() {
+        return "InnerStaticBinomialRnd";
     }
 
     /**
