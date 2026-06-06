@@ -104,7 +104,7 @@ shape parameter が 1 のとき, ガンマ分布は指数分布に一致する.
 
 標準ガンマ分布には, 次の性質がある.
 
-- If $X_1 \sim \text{sGamma}(\alpha_1)$ and $X_2 \sim \text{sGamma}(\alpha)$ are independent,
+- If $X_1 \sim \text{sGamma}(\alpha_1)$ and $X_2 \sim \text{sGamma}(\alpha_2)$ are independent,
   then $X_1 + X_2 \sim \text{sGamma}(\alpha_1+\alpha_2)$.
 
 
@@ -119,7 +119,7 @@ $\text{sExp}$ に従う乱数列 $X_0,X_1,...$ を次々と発生させ,
 さて, $X \sim \text{sExp}$ のとき, $U = \exp (-X)$ は標準一様分布
 (0 から 1 の範囲の実数値をとる連続一様分布) に従う ( $U \sim \text{sUni}$ ).
 これを用いれば, 初めて $\prod_{j=0} ^k U_j \le \exp (-\lambda)$ となる $k$ を返すとしてよい.
-通常は, $\text{sExp}$ に従う乱数を使用するよりも高速である.
+通常, 1回の $\exp (-\lambda)$ の計算コストを払ってでも, $\text{sExp}$ に従う乱数を使用するよりも高速である.
 
 これらの方法の計算コストは $O(\lambda)$ であり, $\lambda$ が大きい場合は効率が良いとは言えない.
 また, $\text{sUni}$ の方を使用する方法は, 数値計算的には $\exp (-\lambda)$ のアンダーフローに気を付ける必要がある.

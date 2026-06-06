@@ -28,18 +28,17 @@ $\sum_{k=0}^n X_k = 1$ で束縛された連続分布である
 $X_0,...,X_n$ それぞれに対する集中度パラメータ $\alpha_0,...,\alpha_n (>0)$ によって分布は特徴づけられ,
 $\text{Dir}(\alpha_0,...,\alpha_n)$ と表す.
 $(X_0,X_1,...,X_n) \sim \text{Dir}(\alpha_0,...,\alpha_n)$ であるとき,
-確率密度関数 $f_{(X_k)}(x_1,...,x_n)$ は
+$X_0$ を除いた確率密度関数 $f_{X_1,...,X_n}(x_1,...,x_n)$ は
 
 $$
-f_{(X_k)}(x_1,...,x_n) =
+f_{X_1,...,X_n}(x_1,...,x_n) =
 \frac{1}{\mathrm{B}(\alpha_0,...,\alpha_n)}
 x_0^{\alpha_0 - 1}x_1^{\alpha_1 - 1} \cdots x_n^{\alpha_n - 1}
 \quad \text{for } x_k > 0 \ (k=0,1,...,n)
 $$
 
 と表される.
-ただし, $X_0$ 以外の確率変数の値を $x_1,...,x_n$ とし,
-$x_0 = 1 - \sum_{k=1}^n x_k$ の意味である.
+ただし, $x_0 = 1 - \sum_{k=1}^n x_k$ の意味である.
 $\mathrm{B}(\alpha_0,...,\alpha_n) =
 \frac{\Gamma(\alpha_0)\Gamma(\alpha_1)\cdots \Gamma(\alpha_n)}{\Gamma(\alpha_0+\alpha_1+\cdots +\alpha_n)}$
 は多変数ベータ関数である.
@@ -63,11 +62,11 @@ $(X_0,X_1,...,X_n)$ を考える
 この確率密度関数は,
 
 $$
-f_{(X_k)}(x_1,...,x_n) = n!
+f_{X_1,...,X_n}(x_1,...,x_n) = n!
 \quad \text{for } x_k > 0 \ (k=0,1,...,n)
 $$
 
-である (紛らわしいが, これは一様分布ではない).
+である.
 $0 \le p \le 1$ であるような $p$ に対し,
 この $(X_0,X_1,...,X_n)$ から, 整数値をとる $Y (0 \le Y \le n)$ を次のように定める.
 
