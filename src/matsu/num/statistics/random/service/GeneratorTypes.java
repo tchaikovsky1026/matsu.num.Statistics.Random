@@ -48,7 +48,7 @@ import matsu.num.statistics.random.logi.ZiggLogiRnd;
 import matsu.num.statistics.random.logseries.GeometricMixBasedLogarithmicSeriesRnd;
 import matsu.num.statistics.random.negbinomial.GammaPoissonBasedNegativeBinomialRnd;
 import matsu.num.statistics.random.planck.GammaZetaBasedPlanckRndFactory;
-import matsu.num.statistics.random.poi.GammaHomoProcessBasedPoissonRnd;
+import matsu.num.statistics.random.poi.GammaDirichletBasedPoissonRnd;
 import matsu.num.statistics.random.staticbeta.GammaBasedStaticBetaRnd;
 import matsu.num.statistics.random.staticgamma.MTTypeStaticGammaRnd;
 import matsu.num.statistics.random.tdist.NormalGammaBasedTDistRnd;
@@ -230,8 +230,8 @@ public final class GeneratorTypes {
 
         POISSON_RND = new RandomGeneratorType<>(
                 "POISSON_RND", PoissonRnd.Factory.class,
-                p -> GammaHomoProcessBasedPoissonRnd.createFactory(
-                        p.lib().exponentiation(), p.get(GeneratorTypes.GAMMA_RND)));
+                p -> GammaDirichletBasedPoissonRnd.createFactory(
+                        p.lib().exponentiation(), p.get(GeneratorTypes.STATIC_GAMMA_RND)));
 
         STATIC_BETA_RND = new RandomGeneratorType<>(
                 "STATIC_BETA_RND", StaticBetaRnd.Factory.class,
