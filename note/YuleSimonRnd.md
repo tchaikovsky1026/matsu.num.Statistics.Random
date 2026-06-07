@@ -23,7 +23,7 @@ $\frac{\Gamma(k)}{\Gamma(k+\rho+1)}
 
 ### Related Distributions
 
-- If $U \sim \text{sUni}$ and $X \sim \text{Geo}(U^{1/\rho})$,
+- If $U \sim \text{sUni}$ and $X|U \sim \text{Geo}(U^{1/\rho})$,
   then $X \sim \text{YS}(\rho)$.
 
 **(proof memo)**
@@ -36,7 +36,7 @@ f_W(w) = \rho w^{\rho - 1} \quad \text{for } 0 < w < 1
 $$
 
 である.
-$X \sim \text{Geo}(W)$ とすると, $P_{X|W}(k|w) = w(1-w)^{k-1}$  であるので,
+$X|W \sim \text{Geo}(W)$ とすると, $P_{X|W}(k|w) = w(1-w)^{k-1}$  であるので,
 
 $$
 \begin{split}
@@ -51,7 +51,7 @@ $$
 
 ## Random Value Generator
 
-$U \sim \text{sUni}$ かつ $X \sim \text{Geo}(U^{1/\rho})$ ならば,
+$U \sim \text{sUni}$ かつ $X|U \sim \text{Geo}(U^{1/\rho})$ ならば,
  $X \sim \text{YS}(\rho)$ という性質を用いて乱数生成を行う.
 $\text{Geo}(p)$ に従う乱数は, 標準指数分布に従う乱数 $e$ を用いて
 $1 + \lfloor -e/\log (1-p) \rfloor$
