@@ -6,7 +6,7 @@
  */
 
 /*
- * 2026.5.27
+ * 2026.6.7
  */
 package matsu.num.statistics.random.service;
 
@@ -35,7 +35,7 @@ import matsu.num.statistics.random.YuleSimonRnd;
 import matsu.num.statistics.random.ZetaRnd;
 import matsu.num.statistics.random.arcsin.ZigguratArcsineRnd;
 import matsu.num.statistics.random.beta.GammaBasedBetaRnd;
-import matsu.num.statistics.random.binomial.DirichletBasedBinomialRnd;
+import matsu.num.statistics.random.binomial.InnerStaticForwardingBinomialRnd;
 import matsu.num.statistics.random.cat.TableBasedCategoricalRnd;
 import matsu.num.statistics.random.cauchy.ZiggCauchyRnd;
 import matsu.num.statistics.random.chisq.GammaTypeChiSquaredRnd;
@@ -43,12 +43,16 @@ import matsu.num.statistics.random.fdist.BetaBasedFDistributionRnd;
 import matsu.num.statistics.random.gamma.MTTypeGammaRndFactory;
 import matsu.num.statistics.random.geo.InversionBasedGeoRnd;
 import matsu.num.statistics.random.gumbel.UniZiggGumbelRnd;
+import matsu.num.statistics.random.inner.DirichletBasedStaticBinomialRnd;
+import matsu.num.statistics.random.inner.GammaDirichletBasedStaticPoissonRnd;
+import matsu.num.statistics.random.inner.InnerStaticBinomialRnd;
+import matsu.num.statistics.random.inner.InnerStaticPoissonRnd;
 import matsu.num.statistics.random.levy.NormalBasedLevyRnd;
 import matsu.num.statistics.random.logi.ZiggLogiRnd;
 import matsu.num.statistics.random.logseries.GeometricMixBasedLogarithmicSeriesRnd;
 import matsu.num.statistics.random.negbinomial.GammaPoissonBasedNegativeBinomialRnd;
 import matsu.num.statistics.random.planck.GammaZetaBasedPlanckRndFactory;
-import matsu.num.statistics.random.poi.GammaHomoProcessBasedPoissonRnd;
+import matsu.num.statistics.random.poi.InnerStaticForwardingPoissonRnd;
 import matsu.num.statistics.random.staticbeta.GammaBasedStaticBetaRnd;
 import matsu.num.statistics.random.staticgamma.MTTypeStaticGammaRnd;
 import matsu.num.statistics.random.tdist.NormalGammaBasedTDistRnd;
@@ -60,7 +64,7 @@ import matsu.num.statistics.random.zeta.RejectionSamplingZetaRnd;
 /**
  * <p>
  * このモジュールが管理する {@link RandomGeneratorType} の定数インスタンスの列挙を公開するユーティリティクラス. <br>
- * {@link RandomGeneratorType} インスタンスは全てこのクラス内に定義されている.
+ * 公開された {@link RandomGeneratorType} インスタンスは全てこのクラス内に定義されている.
  * </p>
  * 
  * @author Matsuura Y.
@@ -160,6 +164,14 @@ public final class GeneratorTypes {
      */
     public static final RandomGeneratorType<ZetaRnd.Factory> ZETA_RND;
 
+    // -------- private 定数 -----------
+
+    /** inner static 二項分布に従う乱数を表す. */
+    private static final RandomGeneratorType<InnerStaticBinomialRnd.Factory> INNER_STATIC_BINOMIAL_RND;
+
+    /** inner static Poisson 分布に従う乱数を表す. */
+    private static final RandomGeneratorType<InnerStaticPoissonRnd.Factory> INNER_STATIC_POISSON_RND;
+
     static {
         ARCSINE_RND = new RandomGeneratorType<>(
                 "ARCSINE_RND", ArcsineRnd.Factory.class,
@@ -171,7 +183,8 @@ public final class GeneratorTypes {
 
         BINOMIAL_RND = new RandomGeneratorType<>(
                 "BINOMIAL_RND", BinomialRnd.Factory.class,
-                p -> DirichletBasedBinomialRnd.createFactory(p.get(GeneratorTypes.GAMMA_RND)));
+                p -> InnerStaticForwardingBinomialRnd.createFactory(
+                        p.get(GeneratorTypes.INNER_STATIC_BINOMIAL_RND)));
 
         CATEGORICAL_RND = new RandomGeneratorType<>(
                 "CATEGORICAL_RND", CategoricalRnd.Factory.class,
@@ -221,7 +234,8 @@ public final class GeneratorTypes {
         NEGATIVE_BINOMIAL_RND = new RandomGeneratorType<>(
                 "NEGATIVE_BINOMIAL_RND", NegativeBinomialRnd.Factory.class,
                 p -> GammaPoissonBasedNegativeBinomialRnd.createFactory(
-                        p.lib().exponentiation(), p.get(GeneratorTypes.GAMMA_RND)));
+                        p.get(GeneratorTypes.GAMMA_RND),
+                        p.get(GeneratorTypes.INNER_STATIC_POISSON_RND)));
 
         PLANCK_RND = new RandomGeneratorType<>(
                 "PLANCK_RND", PlanckRnd.Factory.class,
@@ -230,8 +244,8 @@ public final class GeneratorTypes {
 
         POISSON_RND = new RandomGeneratorType<>(
                 "POISSON_RND", PoissonRnd.Factory.class,
-                p -> GammaHomoProcessBasedPoissonRnd.createFactory(
-                        p.lib().exponentiation(), p.get(GeneratorTypes.GAMMA_RND)));
+                p -> InnerStaticForwardingPoissonRnd.createFactory(
+                        p.get(GeneratorTypes.INNER_STATIC_POISSON_RND)));
 
         STATIC_BETA_RND = new RandomGeneratorType<>(
                 "STATIC_BETA_RND", StaticBetaRnd.Factory.class,
@@ -267,6 +281,19 @@ public final class GeneratorTypes {
                 "ZETA_RND", ZetaRnd.Factory.class,
                 p -> RejectionSamplingZetaRnd.createFactory(
                         p.lib().exponentiation()));
+
+        INNER_STATIC_BINOMIAL_RND = new RandomGeneratorType<>(
+                "INNER_STATIC_BINOMIAL_RND", InnerStaticBinomialRnd.Factory.class,
+                p -> DirichletBasedStaticBinomialRnd.createFactory(
+                        p.get(GeneratorTypes.STATIC_GAMMA_RND)));
+
+        INNER_STATIC_POISSON_RND = new RandomGeneratorType<>(
+                "INNER_STATIC_POISSON_RND", InnerStaticPoissonRnd.Factory.class,
+                p -> GammaDirichletBasedStaticPoissonRnd.createFactory(
+                        p.lib().exponentiation(),
+                        p.get(GeneratorTypes.STATIC_GAMMA_RND),
+                        p.get(GeneratorTypes.INNER_STATIC_BINOMIAL_RND)));
+
     }
 
     private GeneratorTypes() {

@@ -1,13 +1,13 @@
 # matsu.num.Statistics.Random
 
-![Version](https://img.shields.io/badge/version-26.0.0-blue)
+![Version](https://img.shields.io/badge/version-26.1.0-blue)
 ![Java](https://img.shields.io/badge/Java-17%2B-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-green)
 [![Javadoc](https://img.shields.io/badge/docs-Javadoc-blue)](https://tchaikovsky1026.github.io/matsu.num.Statistics.Random/)
 [![SemVer](https://img.shields.io/badge/SemVer-2.0.0-blue)](https://semver.org/spec/v2.0.0.html)
 
 `matsu.num.Statistics.Random` は Java 言語向けの数値計算における, 乱数生成を扱うライブラリである.  
-現在のリリースバージョンは `26.0.0` であり, Java 17 に準拠する.  
+現在のリリースバージョンは `26.1.0` であり, Java 17 に準拠する.  
 このバージョンにおいて, 次がサポートされている.
 
 - 確率分布に従う乱数生成とそのファクトリに関するインターフェース &middot; 実装
@@ -46,6 +46,7 @@
 https://tchaikovsky1026.github.io/matsu.num.Statistics.Random/  
 This site contains the public API reference generated from source code.  
 The documentation is generated from the latest release.
+- Technical notes and supplementary documentation are available in the `note` directory.
 
 ## History
 更新履歴は history.txt を参照のこと.
