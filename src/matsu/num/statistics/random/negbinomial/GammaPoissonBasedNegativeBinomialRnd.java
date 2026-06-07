@@ -15,11 +15,7 @@ import java.util.Objects;
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.GammaRnd;
 import matsu.num.statistics.random.NegativeBinomialRnd;
-import matsu.num.statistics.random.StaticGammaRnd;
-import matsu.num.statistics.random.inner.DirichletBasedStaticBinomialRnd;
-import matsu.num.statistics.random.inner.GammaDirichletBasedStaticPoissonRnd;
 import matsu.num.statistics.random.inner.InnerStaticPoissonRnd;
-import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
  * ガンマ-Poisson乱数を基にした負の二項乱数発生器を扱う.
@@ -64,20 +60,18 @@ public final class GammaPoissonBasedNegativeBinomialRnd
     /**
      * ガンマ-Poisson乱数を基にした負の二項乱数発生器のファクトリ.
      * 
-     * @param exponentiation 指数関数の計算
      * @param gammaRndFactory ガンマ乱数生成器ファクトリ
-     * @param staticGammaRndFactory
+     * @param staticPoissonRndFactory inner static Poisson 乱数生成器ファクトリ
      * @return 負の二項乱数生成器ファクトリ
      * @throws NullPointerException 引数がnullの場合
      */
     public static NegativeBinomialRnd.Factory createFactory(
-            Exponentiation exponentiation, GammaRnd.Factory gammaRndFactory,
-            StaticGammaRnd.Factory staticGammaRndFactory) {
+            GammaRnd.Factory gammaRndFactory,
+            InnerStaticPoissonRnd.Factory staticPoissonRndFactory) {
 
         return new Factory(
-                Objects.requireNonNull(exponentiation),
                 Objects.requireNonNull(gammaRndFactory),
-                Objects.requireNonNull(staticGammaRndFactory));
+                Objects.requireNonNull(staticPoissonRndFactory));
     }
 
     private static final class Factory extends SkeletalNegativeBinomialRnd.Factory {
@@ -90,13 +84,11 @@ public final class GammaPoissonBasedNegativeBinomialRnd
          * 
          * 引数チェックはされていない.
          */
-        Factory(Exponentiation exponentiation, GammaRnd.Factory gammaRndFactory,
-                StaticGammaRnd.Factory staticGammaRndFactory) {
+        Factory(GammaRnd.Factory gammaRndFactory,
+                InnerStaticPoissonRnd.Factory staticPoissonRndFactory) {
             super();
             this.gammaRndFactory = gammaRndFactory;
-            this.staticPoissonRndFactory = GammaDirichletBasedStaticPoissonRnd.createFactory(
-                    exponentiation, staticGammaRndFactory,
-                    DirichletBasedStaticBinomialRnd.createFactory(staticGammaRndFactory));
+            this.staticPoissonRndFactory = staticPoissonRndFactory;
         }
 
         @Override

@@ -22,19 +22,18 @@ import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.IntegerRandomGeneratorTestingFramework;
 import matsu.num.statistics.random.PoissonRnd;
 import matsu.num.statistics.random.TestedIntegerRandomGenerator;
-import matsu.num.statistics.random.lib.ExponentiationForTesting;
-import matsu.num.statistics.random.staticgamma.StaticGammaFactoryForTesting;
+import matsu.num.statistics.random.inner.InnerStaticPoissonFactoryForTesting;
 
 /**
- * {@link GammaDirichletBasedPoissonRnd} クラスのテスト.
+ * {@link InnerStaticForwardingPoissonRnd} クラスのテスト.
  */
 @RunWith(Enclosed.class)
 final class GammaDirichletBasedPoissonRndFactoryTest {
 
-    public static final Class<?> TEST_CLASS = GammaDirichletBasedPoissonRnd.class;
+    public static final Class<?> TEST_CLASS = InnerStaticForwardingPoissonRnd.class;
     private static final PoissonRnd.Factory FACTORY =
-            GammaDirichletBasedPoissonRnd.createFactory(
-                    ExponentiationForTesting.INSTANCE, StaticGammaFactoryForTesting.FACTORY);
+            InnerStaticForwardingPoissonRnd.createFactory(
+                    InnerStaticPoissonFactoryForTesting.FACTORY);
 
     @SuppressWarnings("deprecation")
     public static class ファクトリの境界値テスト {
