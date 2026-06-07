@@ -9,8 +9,8 @@ package matsu.num.statistics.random.poi;
 import org.junit.Ignore;
 
 import matsu.num.statistics.random.PoissonRnd;
-import matsu.num.statistics.random.gamma.GammaFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
+import matsu.num.statistics.random.staticgamma.StaticGammaFactoryForTesting;
 
 /**
  * テストクラスで使用する {@link matsu.num.statistics.random.PoissonRnd.Factory}.
@@ -22,8 +22,8 @@ import matsu.num.statistics.random.lib.ExponentiationForTesting;
 public final class PoissonFactoryForTesting {
 
     public static final PoissonRnd.Factory FACTORY =
-            GammaHomoProcessBasedPoissonRnd.createFactory(
-                    ExponentiationForTesting.INSTANCE, GammaFactoryForTesting.FACTORY);
+            GammaDirichletBasedPoissonRnd.createFactory(
+                    ExponentiationForTesting.INSTANCE, StaticGammaFactoryForTesting.FACTORY);
 
     private PoissonFactoryForTesting() {
     }

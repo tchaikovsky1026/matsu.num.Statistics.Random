@@ -65,8 +65,14 @@ final class TestedBinomialRandomGenerator implements TestedIntegerRandomGenerato
             logP += Math.log(((double) n - i + 1) / i);
         }
 
-        logP += k * Math.log(p)
-                + (n - k) * Math.log1p(-p);
+        double k_log_p = k == 0
+                ? 0d
+                : k * Math.log(p);
+        double nmk_log_1mp = n - k == 0
+                ? 0d
+                : (n - k) * Math.log1p(-p);
+
+        logP += k_log_p + nmk_log_1mp;
 
         return Math.exp(logP);
     }
