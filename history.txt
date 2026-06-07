@@ -1,5 +1,6 @@
 develop:
 技術ノートの整備(Gamma, Beta, Geometric, LogarithmSeries, YuleSimon, Zeta, Binomial, Poisson).
+リファクタリング(Binomial, Poisson, NegativeBinomial)
 
 26:
 26.0.0: Majorアップ(破壊的変更).
