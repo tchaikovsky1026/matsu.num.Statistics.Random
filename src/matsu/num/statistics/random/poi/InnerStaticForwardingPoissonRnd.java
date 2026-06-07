@@ -4,6 +4,7 @@
  * This software is released under the MIT License.
  * http://opensource.org/licenses/mit-license.php
  */
+
 /*
  * 2026.6.7
  */
@@ -13,18 +14,14 @@ import java.util.Objects;
 
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.PoissonRnd;
-import matsu.num.statistics.random.StaticGammaRnd;
-import matsu.num.statistics.random.inner.DirichletBasedStaticBinomialRnd;
-import matsu.num.statistics.random.inner.GammaDirichletBasedStaticPoissonRnd;
 import matsu.num.statistics.random.inner.InnerStaticPoissonRnd;
-import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
- * Gamma and Dirichlet 分布乱数発生器を利用した, Poisson分布に従う乱数発生器を扱う.
+ * Inner Static Poisson 乱数生成器に転送を行う乱数発生を扱う.
  *
  * @author Matsuura Y.
  */
-public final class GammaDirichletBasedPoissonRnd extends SkeletalPoissonRnd {
+public final class InnerStaticForwardingPoissonRnd extends SkeletalPoissonRnd {
 
     private final InnerStaticPoissonRnd staticPoissonRnd;
 
@@ -32,7 +29,7 @@ public final class GammaDirichletBasedPoissonRnd extends SkeletalPoissonRnd {
      * 非公開の唯一のコンストラクタ. <br>
      * 引数チェックがされていないので, 公開してはならない.
      */
-    private GammaDirichletBasedPoissonRnd(
+    private InnerStaticForwardingPoissonRnd(
             double lambda,
             InnerStaticPoissonRnd.Factory staticPoissonRndFactory) {
         super(lambda);
@@ -46,37 +43,31 @@ public final class GammaDirichletBasedPoissonRnd extends SkeletalPoissonRnd {
     }
 
     /**
-     * ガンマ分布乱数発生器を利用した {@link PoissonRnd} のファクトリインスタンスを生成する.
+     * {@link InnerStaticPoissonRnd} に転送を行う二項乱数発生器のファクトリ.
      * 
-     * @param exponentiation 指数関数の計算
-     * @param staticGammaRndFactory staticガンマ乱数生成器のファクトリ
+     * @param staticPoissonRndFactory inner static Poisson 乱数発生器のファクトリ
      * @return 乱数生成器ファクトリ
      * @throws NullPointerException 引数にnullが含まれる場合
      */
-    public static PoissonRnd.Factory createFactory(
-            Exponentiation exponentiation, StaticGammaRnd.Factory staticGammaRndFactory) {
+    public static PoissonRnd.Factory createFactory(InnerStaticPoissonRnd.Factory staticPoissonRndFactory) {
 
         return new Factory(
-                Objects.requireNonNull(exponentiation),
-                Objects.requireNonNull(staticGammaRndFactory));
+                Objects.requireNonNull(staticPoissonRndFactory));
     }
 
     private static final class Factory extends SkeletalPoissonRnd.Factory {
 
         private final InnerStaticPoissonRnd.Factory staticPoissonRndFactory;
 
-        Factory(Exponentiation exponentiation, StaticGammaRnd.Factory staticGammaRndFactory) {
+        Factory(InnerStaticPoissonRnd.Factory staticPoissonRndFactory) {
             super();
 
-            this.staticPoissonRndFactory =
-                    GammaDirichletBasedStaticPoissonRnd.createFactory(
-                            exponentiation, staticGammaRndFactory,
-                            DirichletBasedStaticBinomialRnd.createFactory(staticGammaRndFactory));
+            this.staticPoissonRndFactory = staticPoissonRndFactory;
         }
 
         @Override
         PoissonRnd createInstanceOf(double lambda) {
-            return new GammaDirichletBasedPoissonRnd(
+            return new InnerStaticForwardingPoissonRnd(
                     lambda, staticPoissonRndFactory);
         }
     }

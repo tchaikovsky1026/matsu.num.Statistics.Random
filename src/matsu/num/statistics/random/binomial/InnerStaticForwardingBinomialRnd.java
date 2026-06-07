@@ -10,26 +10,25 @@
  */
 package matsu.num.statistics.random.binomial;
 
+import java.util.Objects;
+
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.BinomialRnd;
-import matsu.num.statistics.random.StaticGammaRnd;
-import matsu.num.statistics.random.inner.DirichletBasedStaticBinomialRnd;
 import matsu.num.statistics.random.inner.InnerStaticBinomialRnd;
 
 /**
- * Dirichlet 分布乱数を使用した, 二項分布に従う乱数発生を扱う. <br>
- * Dirichlet 分布乱数は内部的にガンマ乱数を使用する.
+ * Inner Static 二項乱数生成器に転送を行う乱数発生を扱う.
  * 
  * @author Matsuura Y.
  */
-public final class DirichletBasedBinomialRnd extends SkeletalBinomialRnd {
+public final class InnerStaticForwardingBinomialRnd extends SkeletalBinomialRnd {
 
     private final InnerStaticBinomialRnd staticBinomialRnd;
 
     /**
      * 指定したパラメータの二項分布乱数発生器インスタンスを構築する.
      */
-    private DirichletBasedBinomialRnd(
+    private InnerStaticForwardingBinomialRnd(
             int n, double p,
             InnerStaticBinomialRnd.Factory staticBinomialRndFactory) {
         super(n, p);
@@ -42,30 +41,30 @@ public final class DirichletBasedBinomialRnd extends SkeletalBinomialRnd {
     }
 
     /**
-     * Dirichlet 分布乱数に基づく二項乱数発生器のファクトリ.
+     * {@link InnerStaticBinomialRnd} に転送を行う二項乱数発生器のファクトリ.
      * 
-     * @param staticGammaRndFactory staticガンマ乱数生成器ファクトリ
+     * @param innerStaticBinomialRndFactory inner static 二項乱数生成器ファクトリ
      * @return 二項乱数生成器ファクトリ
      * @throws NullPointerException 引数がnullの場合
      */
-    public static BinomialRnd.Factory createFactory(StaticGammaRnd.Factory staticGammaRndFactory) {
+    public static BinomialRnd.Factory createFactory(InnerStaticBinomialRnd.Factory innerStaticBinomialRndFactory) {
         //ここでNPExの可能性
-        return new Factory(staticGammaRndFactory);
+        return new Factory(
+                Objects.requireNonNull(innerStaticBinomialRndFactory));
     }
 
     private static final class Factory extends SkeletalBinomialRnd.Factory {
 
         private final InnerStaticBinomialRnd.Factory staticBinomialRndFactory;
 
-        Factory(StaticGammaRnd.Factory staticGammaRndFactory) {
+        Factory(InnerStaticBinomialRnd.Factory staticBinomialRndFactory) {
             super();
-            this.staticBinomialRndFactory =
-                    DirichletBasedStaticBinomialRnd.createFactory(staticGammaRndFactory);
+            this.staticBinomialRndFactory = staticBinomialRndFactory;
         }
 
         @Override
         BinomialRnd createInstanceOf(int n, double p) {
-            return new DirichletBasedBinomialRnd(
+            return new InnerStaticForwardingBinomialRnd(
                     n, p,
                     staticBinomialRndFactory);
         }
