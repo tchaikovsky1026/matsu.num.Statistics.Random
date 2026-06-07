@@ -234,8 +234,8 @@ public final class GeneratorTypes {
         NEGATIVE_BINOMIAL_RND = new RandomGeneratorType<>(
                 "NEGATIVE_BINOMIAL_RND", NegativeBinomialRnd.Factory.class,
                 p -> GammaPoissonBasedNegativeBinomialRnd.createFactory(
-                        p.lib().exponentiation(), p.get(GeneratorTypes.GAMMA_RND),
-                        p.get(GeneratorTypes.STATIC_GAMMA_RND)));
+                        p.get(GeneratorTypes.GAMMA_RND),
+                        p.get(GeneratorTypes.INNER_STATIC_POISSON_RND)));
 
         PLANCK_RND = new RandomGeneratorType<>(
                 "PLANCK_RND", PlanckRnd.Factory.class,
