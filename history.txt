@@ -1,8 +1,5 @@
-develop:
-技術ノートの整備(Gamma, Beta, Geometric, LogarithmSeries, YuleSimon, Zeta, Binomial, Poisson, NegativeBinomial).
-リファクタリング(Binomial, Poisson, NegativeBinomial)
-
 26:
+26.1.0: 技術ノートの整備. リファクタリング(Binomial, Poisson, NegativeBinomial).
 26.0.0: Majorアップ(破壊的変更).
     - 削除予定のAPIを削除
         - CauchyRnd.asTDistributionRnd()
