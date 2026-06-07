@@ -17,6 +17,7 @@ import matsu.num.statistics.random.IntegerRandomGeneratorTestingFramework;
 import matsu.num.statistics.random.NegativeBinomialRnd;
 import matsu.num.statistics.random.gamma.GammaFactoryForTesting;
 import matsu.num.statistics.random.lib.ExponentiationForTesting;
+import matsu.num.statistics.random.staticgamma.StaticGammaFactoryForTesting;
 
 /**
  * {@link GammaPoissonBasedNegativeBinomialRnd} クラスのテスト.
@@ -30,7 +31,9 @@ final class GammaPoissonBasedNegativeBinomialRndTest {
 
     private static final NegativeBinomialRnd.Factory FACTORY =
             GammaPoissonBasedNegativeBinomialRnd.createFactory(
-                    ExponentiationForTesting.INSTANCE, GammaFactoryForTesting.FACTORY);
+                    ExponentiationForTesting.INSTANCE,
+                    GammaFactoryForTesting.FACTORY,
+                    StaticGammaFactoryForTesting.FACTORY);
 
     @RunWith(Theories.class)
     public static class パラメータによる網羅的テスト {
