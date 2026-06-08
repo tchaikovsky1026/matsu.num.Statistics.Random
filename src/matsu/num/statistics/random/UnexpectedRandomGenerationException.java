@@ -20,6 +20,10 @@ public final class UnexpectedRandomGenerationException extends RuntimeException 
     /** デフォルトシリアルバージョン. */
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 唯一のコンストラクタ. <br>
+     * モジュール外でインスタンスを生成することは, おそらく非適切である.
+     */
     public UnexpectedRandomGenerationException() {
         super(
                 "random value generation fails, (probably) invalid implementation of %s."
