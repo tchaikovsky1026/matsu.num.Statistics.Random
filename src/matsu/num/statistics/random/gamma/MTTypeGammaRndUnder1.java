@@ -6,12 +6,13 @@
  */
 
 /*
- * 2026.5.27
+ * 2026.6.8
  */
 package matsu.num.statistics.random.gamma;
 
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.GammaRnd;
+import matsu.num.statistics.random.UnexpectedRandomGenerationException;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
@@ -54,7 +55,16 @@ final class MTTypeGammaRndUnder1 extends SkeletalGammaRnd {
          * 累積分布関数が y^k で書けるので逆関数法が使える.
          */
         double out;
+
+        // 乱数生成異常を検知するためのiterationCount
+        int iteCount = 0;
         do {
+            iteCount++;
+            if (iteCount >= Integer.MAX_VALUE) {
+                // 乱数生成の異常
+                throw new UnexpectedRandomGenerationException();
+            }
+
             out = this.gammaKPlus1.nextRandom(random) *
                     exponentiation.exp(-random.nextExponential() * this.invK);
 

@@ -6,7 +6,7 @@
  */
 
 /*
- * 2026.6.6
+ * 2026.6.8
  */
 package matsu.num.statistics.random.inner;
 
@@ -14,6 +14,7 @@ import java.util.Objects;
 
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.StaticGammaRnd;
+import matsu.num.statistics.random.UnexpectedRandomGenerationException;
 import matsu.num.statistics.random.base.LazyParameterlessRndFactory;
 
 /**
@@ -65,7 +66,16 @@ public final class DirichletBasedStaticBinomialRnd implements InnerStaticBinomia
 
         int shift = 0;
         // n, p, shift を更新しながら, 再帰的に区間減少を行う.
+
+        // 乱数生成異常を検知するためのiterationCount
+        int iteCount = 0;
         while (true) {
+            iteCount++;
+            if (iteCount >= Integer.MAX_VALUE) {
+                // 乱数生成の異常
+                throw new UnexpectedRandomGenerationException();
+            }
+
             if (n <= MAX_TRIAL_BY_NAIVE_METHOD) {
                 return shift + randNaive(n, p, random);
             }
@@ -80,13 +90,13 @@ public final class DirichletBasedStaticBinomialRnd implements InnerStaticBinomia
             }
             double zp = p * sum_z;
 
-            if (z1 > zp) {
+            if (z1 >= zp) {
                 n = m;
                 p = zp / z1;
                 continue;
             }
             double z1mp = (1 - p) * sum_z;
-            if (z2 > z1mp) {
+            if (z2 >= z1mp) {
                 shift += m + 1;
                 n = n - m - 1;
                 p = 1 - z1mp / z2;
