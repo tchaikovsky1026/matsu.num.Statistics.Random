@@ -6,7 +6,7 @@
  */
 
 /*
- * 2026.5.27
+ * 2026.6.8
  */
 package matsu.num.statistics.random.tdist;
 
@@ -15,6 +15,7 @@ import java.util.Objects;
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.GammaRnd;
 import matsu.num.statistics.random.TDistributionRnd;
+import matsu.num.statistics.random.UnexpectedRandomGenerationException;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
@@ -49,7 +50,16 @@ public final class NormalGammaBasedTDistRnd extends SkeletalTDistributionRnd {
     @Override
     public final double nextRandom(BaseRandom random) {
         double out;
+
+        // 乱数生成異常を検知するためのiterationCount
+        int iteCount = 0;
         do {
+            iteCount++;
+            if (iteCount >= Integer.MAX_VALUE) {
+                // 乱数生成の異常
+                throw new UnexpectedRandomGenerationException();
+            }
+
             out = random.nextGaussian()
                     / exponentiation.sqrt(this.gammaRnd.nextRandom(random) * 2 / this.nu);
 

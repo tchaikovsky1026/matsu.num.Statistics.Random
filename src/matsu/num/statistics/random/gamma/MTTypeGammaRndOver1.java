@@ -6,11 +6,12 @@
  */
 
 /*
- * 2026.5.27
+ * 2026.6.8
  */
 package matsu.num.statistics.random.gamma;
 
 import matsu.num.statistics.random.BaseRandom;
+import matsu.num.statistics.random.UnexpectedRandomGenerationException;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
@@ -45,7 +46,16 @@ final class MTTypeGammaRndOver1 extends SkeletalGammaRnd {
          * Marsaglia-Tsangの方法により, {@literal k > 1}のGamma乱数を生成する.
          * ただし, d = k - 1/3, c = 1/sqrt(9d)
          */
+
+        // 乱数生成異常を検知するためのiterationCount
+        int iteCount = 0;
         while (true) {
+            iteCount++;
+            if (iteCount >= Integer.MAX_VALUE) {
+                // 乱数生成の異常
+                throw new UnexpectedRandomGenerationException();
+            }
+
             double z = random.nextGaussian();
             double v = 1 + c * z;
             double w = v * v * v;

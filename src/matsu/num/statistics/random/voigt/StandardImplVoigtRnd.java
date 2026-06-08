@@ -6,7 +6,7 @@
  */
 
 /*
- * 2026.5.27
+ * 2026.6.8
  */
 package matsu.num.statistics.random.voigt;
 
@@ -14,6 +14,7 @@ import java.util.Objects;
 
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.CauchyRnd;
+import matsu.num.statistics.random.UnexpectedRandomGenerationException;
 import matsu.num.statistics.random.VoigtRnd;
 
 /**
@@ -37,13 +38,21 @@ public final class StandardImplVoigtRnd extends SkeletalVoigtRnd {
     @Override
     public double nextRandom(BaseRandom random) {
         double out;
+
+        // 乱数生成異常を検知するためのiterationCount
+        int iteCount = 0;
         do {
+            iteCount++;
+            if (iteCount >= Integer.MAX_VALUE) {
+                // 乱数生成の異常
+                throw new UnexpectedRandomGenerationException();
+            }
+
             out = this.alpha * this.cauchyRnd.nextRandom(random)
                     + this.reflectedAlpha * random.nextGaussian();
 
             // outが NaN　となった場合のフォロー
         } while (Double.isNaN(out));
-
         return out;
     }
 

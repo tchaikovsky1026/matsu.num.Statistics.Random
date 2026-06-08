@@ -6,7 +6,7 @@
  */
 
 /*
- * 2026.5.27
+ * 2026.6.8
  */
 package matsu.num.statistics.random.staticgamma;
 
@@ -14,6 +14,7 @@ import java.util.Objects;
 
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.StaticGammaRnd;
+import matsu.num.statistics.random.UnexpectedRandomGenerationException;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
@@ -43,7 +44,16 @@ public final class MTTypeStaticGammaRnd extends SkeletalStaticGammaRnd {
 
         //k<1
         double out;
+
+        // 乱数生成異常を検知するためのiterationCount
+        int iteCount = 0;
         do {
+            iteCount++;
+            if (iteCount >= Integer.MAX_VALUE) {
+                // 乱数生成の異常
+                throw new UnexpectedRandomGenerationException();
+            }
+
             double d = k + (2.0 / 3.0);
             double c = (1.0 / 3.0) / exponentiation.sqrt(d);
             out = nextGammaOver1(random, d, c) *
@@ -56,7 +66,16 @@ public final class MTTypeStaticGammaRnd extends SkeletalStaticGammaRnd {
     }
 
     private double nextGammaOver1(BaseRandom random, double d, double c) {
+
+        // 乱数生成異常を検知するためのiterationCount
+        int iteCount = 0;
         while (true) {
+            iteCount++;
+            if (iteCount >= Integer.MAX_VALUE) {
+                // 乱数生成の異常
+                throw new UnexpectedRandomGenerationException();
+            }
+
             double z = random.nextGaussian();
             double v = 1 + c * z;
             double w = v * v * v;

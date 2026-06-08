@@ -4,8 +4,9 @@
  * This software is released under the MIT License.
  * http://opensource.org/licenses/mit-license.php
  */
+
 /*
- * 2025.6.13
+ * 2026.6.8
  */
 package matsu.num.statistics.random.beta;
 
@@ -14,6 +15,7 @@ import java.util.Objects;
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.BetaRnd;
 import matsu.num.statistics.random.GammaRnd;
+import matsu.num.statistics.random.UnexpectedRandomGenerationException;
 
 /**
  * ガンマ分布乱数器を利用した, ベータ分布に従う乱数発生器.
@@ -43,13 +45,23 @@ public final class GammaBasedBetaRnd extends SkeletalBetaRnd {
     @Override
     public final double nextRandom(BaseRandom random) {
         double out;
+
+        // 乱数生成異常を検知するためのiterationCount
+        int iteCount = 0;
         do {
+            iteCount++;
+            if (iteCount >= Integer.MAX_VALUE) {
+                // 乱数生成の異常
+                throw new UnexpectedRandomGenerationException();
+            }
+
             double u1 = this.gammaRndA.nextRandom(random);
             double u2 = this.gammaRndB.nextRandom(random);
             out = u1 / (u1 + u2);
 
             // u1 == 0 && u2 == 0 の場合に関する分岐
         } while (Double.isNaN(out));
+
         return out;
     }
 

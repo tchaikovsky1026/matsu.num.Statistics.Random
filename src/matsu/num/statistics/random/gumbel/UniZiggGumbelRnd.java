@@ -6,7 +6,7 @@
  */
 
 /*
- * 2026.5.27
+ * 2026.6.8
  */
 package matsu.num.statistics.random.gumbel;
 
@@ -14,6 +14,7 @@ import java.util.Objects;
 
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.GumbelRnd;
+import matsu.num.statistics.random.UnexpectedRandomGenerationException;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
@@ -184,7 +185,15 @@ public final class UniZiggGumbelRnd extends SkeletalGumbelRnd {
 
     @Override
     public double nextRandom(BaseRandom random) {
+        // 乱数生成異常を検知するためのiterationCount
+        int iteCount = 0;
         while (true) {
+            iteCount++;
+            if (iteCount >= Integer.MAX_VALUE) {
+                // 乱数生成の異常
+                throw new UnexpectedRandomGenerationException();
+            }
+
             int int32 = random.nextInt();
             int iArea = int32 & (N - 1);
             int iArea_p_1 = iArea + 1;
@@ -206,7 +215,15 @@ public final class UniZiggGumbelRnd extends SkeletalGumbelRnd {
     }
 
     private double tail_p(BaseRandom random) {
+        // 乱数生成異常を検知するためのiterationCount
+        int iteCount = 0;
         while (true) {
+            iteCount++;
+            if (iteCount >= Integer.MAX_VALUE) {
+                // 乱数生成の異常
+                throw new UnexpectedRandomGenerationException();
+            }
+
             double z = R_UPPER + random.nextExponential();
             if (1 < exponentiation.exp(z) * random.nextExponential()) {
                 return z;

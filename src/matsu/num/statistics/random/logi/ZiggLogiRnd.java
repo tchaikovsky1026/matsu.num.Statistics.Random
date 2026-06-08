@@ -6,7 +6,7 @@
  */
 
 /*
- * 2026.5.27
+ * 2026.6.8
  */
 package matsu.num.statistics.random.logi;
 
@@ -14,6 +14,7 @@ import java.util.Objects;
 
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.LogisticRnd;
+import matsu.num.statistics.random.UnexpectedRandomGenerationException;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
@@ -56,7 +57,15 @@ public final class ZiggLogiRnd extends SkeletalLogisticRnd {
 
     @Override
     public double nextRandom(BaseRandom random) {
+        // 乱数生成異常を検知するためのiterationCount
+        int iteCount = 0;
         while (true) {
+            iteCount++;
+            if (iteCount >= Integer.MAX_VALUE) {
+                // 乱数生成の異常
+                throw new UnexpectedRandomGenerationException();
+            }
+
             int int32 = random.nextInt();
             boolean bSign = (int32 & 1) == 1;
             int iArea = (int32 >>> 1) & (N - 1);
@@ -92,7 +101,15 @@ public final class ZiggLogiRnd extends SkeletalLogisticRnd {
     }
 
     private double tail(BaseRandom random) {
+        // 乱数生成異常を検知するためのiterationCount
+        int iteCount = 0;
         while (true) {
+            iteCount++;
+            if (iteCount >= Integer.MAX_VALUE) {
+                // 乱数生成の異常
+                throw new UnexpectedRandomGenerationException();
+            }
+
             double u = random.nextExponential();
             double u2 = random.nextDouble();
             double thre1 = 1 - u + u * u * 0.5;

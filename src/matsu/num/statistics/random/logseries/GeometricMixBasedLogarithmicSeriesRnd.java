@@ -6,7 +6,7 @@
  */
 
 /*
- * 2026.5.27
+ * 2026.6.8
  */
 package matsu.num.statistics.random.logseries;
 
@@ -14,6 +14,7 @@ import java.util.Objects;
 
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.LogarithmicSeriesRnd;
+import matsu.num.statistics.random.UnexpectedRandomGenerationException;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
@@ -69,8 +70,17 @@ public final class GeometricMixBasedLogarithmicSeriesRnd
 
     @Override
     public int nextRandom(BaseRandom random) {
+        int out;
 
-        while (true) {
+        // 乱数生成異常を検知するためのiterationCount
+        int iteCount = 0;
+        do {
+            iteCount++;
+            if (iteCount >= Integer.MAX_VALUE) {
+                // 乱数生成の異常
+                throw new UnexpectedRandomGenerationException();
+            }
+
             /*
              * eが小さいとき, yの値に依らずfloor(w) = 0 となる.
              * w = e / (-log(y))
@@ -79,22 +89,21 @@ public final class GeometricMixBasedLogarithmicSeriesRnd
              */
             double e = random.nextExponential();
             if (e <= this.mlogp) {
-                return 1;
+                out = 1;
+                continue;
             }
 
             double u = random.nextDouble();
             double y = 1 - exponentiation.exp(u * log1mp);
             if (y == 0d) {
-                return 1;
-            }
-
-            double w = -e / exponentiation.log(y);
-            if (w >= Integer.MAX_VALUE) {
+                out = 1;
                 continue;
             }
 
-            return 1 + ((int) w);
-        }
+            // intMax以上の値をキャストした場合, out = int.MIN となる
+            out = 1 + (int) (-e / exponentiation.log(y));
+        } while (out <= 0);
+        return out;
     }
 
     /**

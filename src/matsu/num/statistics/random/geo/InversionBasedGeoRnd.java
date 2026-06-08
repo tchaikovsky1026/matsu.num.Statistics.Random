@@ -6,7 +6,7 @@
  */
 
 /*
- * 2026.5.27
+ * 2026.6.8
  */
 package matsu.num.statistics.random.geo;
 
@@ -14,6 +14,7 @@ import java.util.Objects;
 
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.GeometricRnd;
+import matsu.num.statistics.random.UnexpectedRandomGenerationException;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
@@ -34,12 +35,22 @@ public final class InversionBasedGeoRnd extends SkeletalGeometricRnd {
 
     @Override
     public int nextRandom(BaseRandom random) {
-        while (true) {
-            double out = coeff * random.nextExponential();
-            if (out < Integer.MAX_VALUE) {
-                return 1 + (int) out;
+
+        int out;
+
+        // 乱数生成異常を検知するためのiterationCount
+        int iteCount = 0;
+        do {
+            iteCount++;
+            if (iteCount >= Integer.MAX_VALUE) {
+                // 乱数生成の異常
+                throw new UnexpectedRandomGenerationException();
             }
-        }
+
+            // intMax以上の値をキャストした場合, out = int.MIN となる
+            out = 1 + (int) (coeff * random.nextExponential());
+        } while (out <= 0);
+        return out;
     }
 
     /**

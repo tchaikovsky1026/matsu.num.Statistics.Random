@@ -6,7 +6,7 @@
  */
 
 /*
- * 2025.6.7
+ * 2026.6.8
  */
 package matsu.num.statistics.random.arcsin;
 
@@ -14,6 +14,7 @@ import java.util.Objects;
 
 import matsu.num.statistics.random.ArcsineRnd;
 import matsu.num.statistics.random.BaseRandom;
+import matsu.num.statistics.random.UnexpectedRandomGenerationException;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
@@ -100,7 +101,15 @@ public final class ZigguratArcsineRnd extends SkeletalArcsineRnd {
          * (ただし, その領域は採択率 100 %である.)
          */
 
+        // 乱数生成異常を検知するためのiterationCount
+        int iteCount = 0;
         while (true) {
+            iteCount++;
+            if (iteCount >= Integer.MAX_VALUE) {
+                // 乱数生成の異常
+                throw new UnexpectedRandomGenerationException();
+            }
+
             int int32 = random.nextInt();
             boolean bSign = (int32 & 1) == 1;
             int iArea = (int32 >>> 1) & (N - 1);
