@@ -1,5 +1,6 @@
 develop:
 無限ループとオーバーフローへの対策強化.
+技術ノートの追加.
 
 26:
 26.1.0: 技術ノートの整備. リファクタリング(Binomial, Poisson, NegativeBinomial).
