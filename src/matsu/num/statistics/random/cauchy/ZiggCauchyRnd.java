@@ -4,8 +4,9 @@
  * This software is released under the MIT License.
  * http://opensource.org/licenses/mit-license.php
  */
+
 /*
- * 2025.6.13
+ * 2026.6.8
  */
 package matsu.num.statistics.random.cauchy;
 
@@ -13,6 +14,7 @@ import java.util.Objects;
 
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.CauchyRnd;
+import matsu.num.statistics.random.UnexpectedRandomGenerationException;
 import matsu.num.statistics.random.lib.Exponentiation;
 
 /**
@@ -77,7 +79,16 @@ public final class ZiggCauchyRnd extends SkeletalCauchyRnd {
 
     @Override
     public double nextRandom(BaseRandom random) {
+
+        // 乱数生成異常を検知するためのiterationCount
+        int iteCount = 0;
         while (true) {
+            iteCount++;
+            if (iteCount >= Integer.MAX_VALUE) {
+                // 乱数生成の異常
+                throw new UnexpectedRandomGenerationException();
+            }
+
             int int32 = random.nextInt();
             boolean bSign = (int32 & 1) == 1;
             int iArea = (int32 >>> 1) & (N - 1);
@@ -100,7 +111,16 @@ public final class ZiggCauchyRnd extends SkeletalCauchyRnd {
      * 1/x^2を提案分布(逆関数法)とする棄却法を用いる.
      */
     private double tail(BaseRandom random) {
+
+        // 乱数生成異常を検知するためのiterationCount
+        int iteCount = 0;
         while (true) {
+            iteCount++;
+            if (iteCount >= Integer.MAX_VALUE) {
+                // 乱数生成の異常
+                throw new UnexpectedRandomGenerationException();
+            }
+
             double u = random.nextDouble();
             if (random.nextDouble() * (R_N + u) < R_N) {
                 return exponentiation.sqrt(R_N / u);

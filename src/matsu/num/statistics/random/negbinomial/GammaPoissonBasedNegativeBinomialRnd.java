@@ -6,7 +6,7 @@
  */
 
 /*
- * 2026.6.7
+ * 2026.6.8
  */
 package matsu.num.statistics.random.negbinomial;
 
@@ -15,6 +15,7 @@ import java.util.Objects;
 import matsu.num.statistics.random.BaseRandom;
 import matsu.num.statistics.random.GammaRnd;
 import matsu.num.statistics.random.NegativeBinomialRnd;
+import matsu.num.statistics.random.UnexpectedRandomGenerationException;
 import matsu.num.statistics.random.inner.InnerStaticPoissonRnd;
 
 /**
@@ -48,7 +49,17 @@ public final class GammaPoissonBasedNegativeBinomialRnd
 
     @Override
     public int nextRandom(BaseRandom random) {
+
+        // 乱数生成異常を検知するためのiterationCount
+        // ループを抜けるのは異常
+        int iteCount = 0;
         while (true) {
+            iteCount++;
+            if (iteCount >= Integer.MAX_VALUE) {
+                // 乱数生成の異常
+                throw new UnexpectedRandomGenerationException();
+            }
+
             double y = this.gammaRnd_r.nextRandom(random) * this.coeff;
             if (!InnerStaticPoissonRnd.acceptsParameter(y)) {
                 continue;

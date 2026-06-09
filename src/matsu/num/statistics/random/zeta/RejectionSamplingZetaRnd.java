@@ -6,13 +6,14 @@
  */
 
 /*
- * 2026.5.27
+ * 2026.6.8
  */
 package matsu.num.statistics.random.zeta;
 
 import java.util.Objects;
 
 import matsu.num.statistics.random.BaseRandom;
+import matsu.num.statistics.random.UnexpectedRandomGenerationException;
 import matsu.num.statistics.random.ZetaRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
 
@@ -72,7 +73,16 @@ public final class RejectionSamplingZetaRnd extends SkeletalZetaRnd {
 
     @Override
     public int nextRandom(BaseRandom random) {
+
+        // 乱数生成異常を検知するためのiterationCount
+        int iteCount = 0;
         while (true) {
+            iteCount++;
+            if (iteCount >= Integer.MAX_VALUE) {
+                // 乱数生成の異常
+                throw new UnexpectedRandomGenerationException();
+            }
+
             double z = exponentiation.exp(random.nextExponential() * inv_s_minus_1);
             if (z > Integer.MAX_VALUE) {
                 continue;

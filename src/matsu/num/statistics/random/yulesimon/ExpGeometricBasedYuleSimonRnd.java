@@ -6,13 +6,14 @@
  */
 
 /*
- * 2026.5.27
+ * 2026.6.8
  */
 package matsu.num.statistics.random.yulesimon;
 
 import java.util.Objects;
 
 import matsu.num.statistics.random.BaseRandom;
+import matsu.num.statistics.random.UnexpectedRandomGenerationException;
 import matsu.num.statistics.random.YuleSimonRnd;
 import matsu.num.statistics.random.lib.Exponentiation;
 
@@ -50,17 +51,27 @@ public final class ExpGeometricBasedYuleSimonRnd extends SkeletalYuleSimonRnd {
 
     @Override
     public int nextRandom(BaseRandom random) {
-        while (true) {
+
+        int out;
+
+        // 乱数生成異常を検知するためのiterationCount
+        int iteCount = 0;
+        do {
+            iteCount++;
+            if (iteCount >= Integer.MAX_VALUE) {
+                // 乱数生成の異常
+                throw new UnexpectedRandomGenerationException();
+            }
+
             double y_invRho = random.nextExponential() * invRho;
             double invC = y_invRho < 1
                     ? -exponentiation.log(-exponentiation.expm1(-y_invRho))
                     : -exponentiation.log1p(-exponentiation.exp(-y_invRho));
 
-            double w = random.nextExponential() / invC;
-            if (w < Integer.MAX_VALUE - 1) {
-                return (int) w + 1;
-            }
-        }
+            // intMax以上の値をキャストした場合, out = int.MIN となる
+            out = 1 + (int) (random.nextExponential() / invC);
+        } while (out <= 0);
+        return out;
     }
 
     /**

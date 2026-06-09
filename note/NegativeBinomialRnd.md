@@ -38,4 +38,4 @@ $$
 
 $Y \sim \text{Gamma}(r,\frac{1}{p}-1)$ かつ $X|Y \sim \text{Poi}(Y)$ ならば,
 $X \sim \text{NB}(r,p)$ という性質を用いて乱数生成を行う.
-各乱数生成については GammaAndBetaRnd.md, PoissonRnd.md に従う.
+各乱数生成については `GammaAndBetaRnd.md`, `PoissonRnd.md` に従う.
